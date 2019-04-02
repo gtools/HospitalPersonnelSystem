@@ -5,28 +5,29 @@ using System.ComponentModel.DataAnnotations;
 namespace HospitalPersonnelSystem.Models
 {
     /// <summary>
-    /// 项目
+    /// 性别
     /// </summary>
-    public class SysItem
+    public class ComGender
     {
         /// <summary>
-        /// 项目代码
+        /// 代码
         /// </summary>
-        public Guid ItemCode { get; set; }
+        public Guid Code { get; set; }
         /// <summary>
-        /// 项目名称
+        /// 名称
         /// </summary>
         [Required(ErrorMessage = Validate.Required)]
-        [Display(Name = "项目")]
-        public string ItemName { get; set; }
+        [Display(Name = "名称")]
+        public string Name { get; set; }
         /// <summary>
         /// 拼音码
         /// </summary>
         [Display(Name = "拼音码")]
         public string Spell { get; set; }
         /// <summary>
-        /// 集合导航属性
+        /// 序号
         /// </summary>
-        public List<SysItemInfo> SysItemInfos { get; set; }
+        [Display(Name = "序号")]
+        public int Sort { get; set; }
     }
 }

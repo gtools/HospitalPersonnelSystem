@@ -8,6 +8,7 @@
 
 
   <ItemGroup>
+    <PackageReference Include="Devart.Data.Oracle.EFCore" Version="9.6.725" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.3" />
@@ -17,6 +18,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\GTSharp\GTSharp\GTSharp.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Controllers\Sys\" />
   </ItemGroup>
 
 </Project>
