@@ -5,9 +5,9 @@ using System.ComponentModel.DataAnnotations;
 namespace HospitalPersonnelSystem.Models
 {
     /// <summary>
-    /// 性别
+    /// 职称系类
     /// </summary>
-    public class ComGender
+    public class ComProfessionTitleType
     {
         /// <summary>
         /// 代码
@@ -30,7 +30,11 @@ namespace HospitalPersonnelSystem.Models
         [Display(Name = "序号")]
         public int Sort { get; set; }
         /// <summary>
-        /// 人员列表
+        /// 职称
+        /// </summary>
+        public List<ComProfessionTitle> ComProfessionTitles { get; set; }
+        /// <summary>
+        /// 人员
         /// </summary>
         public List<SysEmp> SysEmps { get; set; }
     }

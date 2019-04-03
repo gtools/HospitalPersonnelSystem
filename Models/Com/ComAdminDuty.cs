@@ -5,9 +5,9 @@ using System.ComponentModel.DataAnnotations;
 namespace HospitalPersonnelSystem.Models
 {
     /// <summary>
-    /// 性别
+    /// 行政职务
     /// </summary>
-    public class ComGender
+    public class ComAdminDuty
     {
         /// <summary>
         /// 代码

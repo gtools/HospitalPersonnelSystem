@@ -46,22 +46,22 @@ namespace HospitalPersonnelSystem.Models
         /// 性别
         /// </summary>
         [Display(Name = "性别")]
-        public Guid GenderKey { get; set; }
+        public Guid GenderCode { get; set; }
         /// <summary>
         /// 科室
         /// </summary>
         [Display(Name = "性别")]
-        public SysItemInfo Gender { get; set; }
+        public ComGender Gender { get; set; }
         /// <summary>
         /// 民族
         /// </summary>
         [Display(Name = "民族")]
-        public Guid NationKey { get; set; }
+        public Guid NationCode { get; set; }
         /// <summary>
         /// 民族
         /// </summary>
         [Display(Name = "民族")]
-        public SysItemInfo Nation { get; set; }
+        public ComNation Nation { get; set; }
         /// <summary>
         /// 出生日期
         /// </summary>
@@ -76,12 +76,12 @@ namespace HospitalPersonnelSystem.Models
         /// 政治面貌
         /// </summary>
         [Display(Name = "政治面貌")]
-        public Guid PoliticalKey { get; set; }
+        public Guid PoliticalCode { get; set; }
         /// <summary>
         /// 政治面貌
         /// </summary>
         [Display(Name = "政治面貌")]
-        public SysItemInfo Political { get; set; }
+        public ComPolitical Political { get; set; }
         /// <summary>
         /// 入党时间
         /// </summary>
@@ -90,10 +90,74 @@ namespace HospitalPersonnelSystem.Models
         /// <summary>
         /// 身份证
         /// </summary>
-        [StringLength(18, MinimumLength = 18)]
         [Required(ErrorMessage = Validate.Required)]
         [Display(Name = "身份证号")]
         public string IdentityCard { get; set; }
+        /// <summary>
+        /// 职称系类
+        /// </summary>
+        [Display(Name = "职称系类")]
+        public Guid ProfessionTitleTypeCode { get; set; }
+        /// <summary>
+        /// 职称系类
+        /// </summary>
+        [Display(Name = "职称系类")]
+        public ComProfessionTitleType ProfessionTitleType { get; set; }
+        /// <summary>
+        /// 职称
+        /// </summary>
+        [Display(Name = "职称")]
+        public Guid ProfessionTitleCode { get; set; }
+        /// <summary>
+        /// 职称
+        /// </summary>
+        [Display(Name = "职称")]
+        public ComProfessionTitle ProfessionTitle { get; set; }
+        /// <summary>
+        /// 职称级别
+        /// </summary>
+        [Display(Name = "职称级别")]
+        public Guid ProfessionTitleLevelCode { get; set; }
+        /// <summary>
+        /// 职称级别
+        /// </summary>
+        [Display(Name = "职称级别")]
+        public ComProfessionTitleLevel ProfessionTitleLevel { get; set; }
+        /// <summary>
+        /// 行政职务
+        /// </summary>
+        [Display(Name = "行政职务")]
+        public Guid AdminDutyCode { get; set; }
+        /// <summary>
+        /// 行政职务
+        /// </summary>
+        [Display(Name = "行政职务")]
+        public ComAdminDuty AdminDuty { get; set; }
+        /// <summary>
+        /// 人员类别
+        /// </summary>
+        [Display(Name = "人员类别")]
+        public Guid TypeCode { get; set; }
+        /// <summary>
+        /// 人员类别
+        /// </summary>
+        [Display(Name = "人员类别")]
+        public SysEmpType Type { get; set; }
+        /// <summary>
+        /// 人员分类
+        /// </summary>
+        [Display(Name = "人员分类")]
+        public Guid ClassCode { get; set; }
+        /// <summary>
+        /// 人员分类
+        /// </summary>
+        [Display(Name = "人员分类")]
+        public SysEmpClass Class { get; set; }
+        
+
+
+
+
         /// <summary>
         /// 家庭住址
         /// </summary>

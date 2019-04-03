@@ -36,10 +36,10 @@ namespace HospitalPersonnelSystem
             });
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseOracle(
-                    Configuration.GetConnectionString("OracleConnection")));
-            //options.UseSqlServer(
-            //    Configuration.GetConnectionString("MSSqlConnection")));
+            //options.UseOracle(
+            //    Configuration.GetConnectionString("OracleConnection")));
+            options.UseSqlServer(
+                Configuration.GetConnectionString("MSSqlConnection")));
             services.AddDefaultIdentity<IdentityUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
