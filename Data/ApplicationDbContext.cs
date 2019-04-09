@@ -48,6 +48,34 @@ namespace HospitalPersonnelSystem.Data
         /// 人员分类
         /// </summary>
         public DbSet<SysEmpClass> SysEmpClasss { get; set; }
+        /// <summary>
+        /// 岗位类别
+        /// </summary>
+        public DbSet<ComPostType> ComPostTypes { get; set; }
+        /// <summary>
+        /// 岗位
+        /// </summary>
+        public DbSet<ComPost> ComPosts { get; set; }
+        /// <summary>
+        /// 岗位级别
+        /// </summary>
+        public DbSet<ComPostLevel> ComPostLevels { get; set; }
+        /// <summary>
+        /// 学历
+        /// </summary>
+        public DbSet<ComEducation> ComEducations { get; set; }
+        /// <summary>
+        /// 学位
+        /// </summary>
+        public DbSet<ComDegree> ComDegrees { get; set; }
+        /// <summary>
+        /// 婚姻状况
+        /// </summary>
+        public DbSet<ComMarriage> ComMarriages { get; set; }
+        /// <summary>
+        /// 人员
+        /// </summary>
+        public DbSet<SysEmp> SysEmps { get; set; }
 
 
 
@@ -1479,75 +1507,981 @@ namespace HospitalPersonnelSystem.Data
             modelBuilder.Entity<SysEmpClass>()
                 .HasData(new SysEmpClass
                 {
-                    Code = Guid.Parse("{4ed17c51-f905-497c-bc71-b3ede7439508}"),
-                    Name = "男",
-                    Spell = "N",
+                    Code = Guid.Parse("{d5108379-4bc2-42c6-96ea-f4f84eb728da}"),
+                    Name = "医疗",
+                    Spell = "YL",
                     Sort = 0
                 }, new SysEmpClass
                 {
-                    Code = Guid.Parse("{1239d139-2932-442d-890a-e39c2d08e42e}"),
-                    Name = "女",
-                    Spell = "N",
+                    Code = Guid.Parse("{2c5f6589-4c07-41ad-8e62-3e28ce106e41}"),
+                    Name = "护理",
+                    Spell = "HL",
                     Sort = 1
                 }, new SysEmpClass
                 {
-                    Code = Guid.Parse("{6965de18-f744-48f2-8fda-74b0550e5b61}"),
-                    Name = "未知",
-                    Spell = "WZ",
+                    Code = Guid.Parse("{c4fcd57c-126d-4b48-9ae8-ad5227b8385b}"),
+                    Name = "医技",
+                    Spell = "YJ",
                     Sort = 2
+                }, new SysEmpClass
+                {
+                    Code = Guid.Parse("{57e99a9f-7bb9-4cd2-8b3d-54d040d626fe}"),
+                    Name = "门诊",
+                    Spell = "MZ",
+                    Sort = 3
+                }, new SysEmpClass
+                {
+                    Code = Guid.Parse("{c8d0bebe-6d93-45e6-8a78-6c9f56f9ab4e}"),
+                    Name = "下乡",
+                    Spell = "XX",
+                    Sort = 4
+                }, new SysEmpClass
+                {
+                    Code = Guid.Parse("{0dbc8541-087b-456d-9ee8-ff57d5d6895f}"),
+                    Name = "行政",
+                    Spell = "XZ",
+                    Sort = 5
+                }, new SysEmpClass
+                {
+                    Code = Guid.Parse("{9192472f-76d5-456a-8d78-727905c81227}"),
+                    Name = "财务",
+                    Spell = "CW",
+                    Sort = 6
+                }, new SysEmpClass
+                {
+                    Code = Guid.Parse("{3eeb9567-670f-43d4-99f0-51ec51f99e87}"),
+                    Name = "管理",
+                    Spell = "GL",
+                    Sort = 7
+                }, new SysEmpClass
+                {
+                    Code = Guid.Parse("{3ba23c03-ccd0-4ad6-afcf-ee04de4affb1}"),
+                    Name = "计算机",
+                    Spell = "JSJ",
+                    Sort = 8
+                }, new SysEmpClass
+                {
+                    Code = Guid.Parse("{6a5aa9d2-25d7-41d2-8598-0abf6d468c74}"),
+                    Name = "后勤",
+                    Spell = "HQ",
+                    Sort = 9
+                }, new SysEmpClass
+                {
+                    Code = Guid.Parse("{9acc51e4-0e74-4cfc-ba4c-513731c51fbd}"),
+                    Name = "借调",
+                    Spell = "JD",
+                    Sort = 10
+                }, new SysEmpClass
+                {
+                    Code = Guid.Parse("{58f2eb1c-5976-4a7e-9fdf-e6a3a3689534}"),
+                    Name = "内退",
+                    Spell = "NT",
+                    Sort = 11
+                }, new SysEmpClass
+                {
+                    Code = Guid.Parse("{a642f8cd-b5a6-4fe4-b483-e14c5a4fe5b1}"),
+                    Name = "停薪留职",
+                    Spell = "TXLZ",
+                    Sort = 12
+                }, new SysEmpClass
+                {
+                    Code = Guid.Parse("{a4e9fcae-ac9d-4fbd-8a04-a330176c3bf4}"),
+                    Name = "不在岗",
+                    Spell = "BZG",
+                    Sort = 13
                 });
             #endregion
 
-//            医疗
-//护理
-//医技
-//门诊
-//下乡
-//行政
-//财务
-//管理
-//计算机
-//后勤
-//借调
-//内退
-//停薪留职
-//不在岗
+            #region 岗位类别
+            modelBuilder.Entity<ComPostType>(b =>
+            {
+                b.ToTable("ComPostType");
+                b.HasKey(t => t.Code);
+                b.Property(t => t.Code)
+                .HasDefaultValueSql("newid()");
+                b.Property(t => t.Sort)
+                .HasDefaultValue(0);
+            });
+            modelBuilder.Entity<ComPostType>()
+                .HasData(new ComPostType
+                {
+                    Code = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+                    Name = "管理人员",
+                    Spell = "GLRY",
+                    Sort = 0
+                }, new ComPostType
+                {
+                    Code = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Name = "专业技术人员",
+                    Spell = "ZYJSRY",
+                    Sort = 1
+                }, new ComPostType
+                {
+                    Code = Guid.Parse("{654bbfbf-a2d4-464a-9410-0822684eb278}"),
+                    Name = "工勤技能人员",
+                    Spell = "GQJNRY",
+                    Sort = 2
+                }, new ComPostType
+                {
+                    Code = Guid.Parse("{3bacb485-2037-4835-8268-7cec05a8f02f}"),
+                    Name = "其他从业人员",
+                    Spell = "QTCYRY",
+                    Sort = 3
+                });
+            #endregion
+            
+            #region 岗位
+            modelBuilder.Entity<ComPost>(b =>
+            {
+                b.ToTable("ComPost");
+                b.HasKey(t => t.Code);
+                b.Property(t => t.Code)
+                .HasDefaultValueSql("newid()");
+                b.Property(t => t.Sort)
+                .HasDefaultValue(0);
+            });
+            modelBuilder.Entity<ComPost>()
+                .HasData(new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{03ab2e38-ad6d-4ded-b81d-f30188c3ce99}"),
+                    Name = "主任医师",
+                    Spell = "ZRYS",
+                    Sort = 0
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{849957b2-896b-469d-8c6f-fceda4e8d0bf}"),
+                    Name = "副主任医师",
+                    Spell = "FZRYS",
+                    Sort = 1
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{3ed375b5-8384-473d-a4f2-7b0af0a2fb83}"),
+                    Name = "副主任中医师",
+                    Spell = "FZRZYS",
+                    Sort = 2
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{3196870a-8c69-469d-b9f9-0f2cf30ed725}"),
+                    Name = "副主任药师",
+                    Spell = "FZRYS",
+                    Sort = 3
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{eb5aada7-b36a-4481-8913-3cdb0d6c58b1}"),
+                    Name = "副主任护师",
+                    Spell = "FZRHS",
+                    Sort = 4
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{7a877fb5-e5c2-4e7f-98b3-90a8971fa4f2}"),
+                    Name = "副主任技师",
+                    Spell = "FZRJS",
+                    Sort = 5
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{d7ffb990-8f9d-4b22-b3cb-7f5f7866052b}"),
+                    Name = "主治医师",
+                    Spell = "ZYYS",
+                    Sort = 6
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{3a8968ef-8fab-4e13-9d8f-87f8dc6310c3}"),
+                    Name = "主管药师",
+                    Spell = "ZHYS",
+                    Sort = 7
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{81c18332-d2fd-46b1-90d8-da4af2413b8f}"),
+                    Name = "主管护师",
+                    Spell = "ZGHS",
+                    Sort = 8
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{1f04b110-c7ef-46f1-bf64-64dc1d99fa01}"),
+                    Name = "主管技师",
+                    Spell = "ZHJS",
+                    Sort = 9
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{5e1f9469-8024-4e73-bad8-1c4a6960f1e3}"),
+                    Name = "主管检验师",
+                    Spell = "ZGJYS",
+                    Sort = 10
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{5c8d1d42-7f7f-4310-aa81-6506a363afe5}"),
+                    Name = "医师",
+                    Spell = "YS",
+                    Sort = 11
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{0ddc1f8a-5230-4d90-9b5b-46de37de4d94}"),
+                    Name = "药师",
+                    Spell = "YS",
+                    Sort = 12
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{54a4aaea-d563-44cd-9f2d-df074ff29f21}"),
+                    Name = "护师",
+                    Spell = "HS",
+                    Sort = 13
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{525fc200-ceba-4fb8-9428-d0af3e56c0dc}"),
+                    Name = "技师",
+                    Spell = "JS",
+                    Sort = 14
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{dc49d800-e709-4168-a5ae-6bf699a7e457}"),
+                    Name = "康复技师",
+                    Spell = "KFJS",
+                    Sort = 15
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{d7c1ff7a-2a5b-4c03-a89f-2f751668e1ec}"),
+                    Name = "工人技师",
+                    Spell = "GRJS",
+                    Sort = 16
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{622a47d3-6f08-4ed6-b203-bb6f9c35c869}"),
+                    Name = "工程师",
+                    Spell = "GCS",
+                    Sort = 17
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{0ae60efc-8725-430e-b661-df29e489b302}"),
+                    Name = "会计师",
+                    Spell = "KJS",
+                    Sort = 18
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{6833c8ba-7959-4d1f-96f3-b5e6e12f460b}"),
+                    Name = "经济师",
+                    Spell = "JJS",
+                    Sort = 19
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{21ac04c5-7dbd-4cb5-b8eb-099c1938c33b}"),
+                    Name = "统计师",
+                    Spell = "TJS",
+                    Sort = 20
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{fe525ac1-13ac-4dde-a737-73d26f163a16}"),
+                    Name = "政工师",
+                    Spell = "ZGS",
+                    Sort = 21
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{c33dac54-066e-46ca-aa53-f5412e89bb35}"),
+                    Name = "检验师",
+                    Spell = "JYS",
+                    Sort = 22
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{82d40cb9-8e2e-4068-bb1e-2d2f767e0a6c}"),
+                    Name = "助理工程师",
+                    Spell = "ZLGCS",
+                    Sort = 23
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{9f39059c-4402-4812-9b0e-0a6e21707a83}"),
+                    Name = "助理会计师",
+                    Spell = "ZLHJS",
+                    Sort = 24
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{4a289a58-cb42-487a-9664-d3af37591c77}"),
+                    Name = "助理政工师",
+                    Spell = "ZLZGS",
+                    Sort = 25
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{d4d15612-c315-4dff-9df1-ba4da903e175}"),
+                    Name = "医士",
+                    Spell = "YS",
+                    Sort = 26
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{9df8d9a4-8bce-422a-b0ad-45d6624cb8a4}"),
+                    Name = "药士",
+                    Spell = "YS",
+                    Sort = 27
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{0a3333a9-7253-4d62-b6eb-d70af16542b6}"),
+                    Name = "护士",
+                    Spell = "HS",
+                    Sort = 28
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{fe147b9a-afd1-46b9-98bc-293932cbba7f}"),
+                    Name = "技士",
+                    Spell = "JS",
+                    Sort = 29
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{44fd7880-c1bb-411b-94c5-a83b39fe1d70}"),
+                    Name = "检验士",
+                    Spell = "JYS",
+                    Sort = 30
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{ec959e6f-9af0-42d6-b035-65c301b6fc14}"),
+                    Name = "会计员",
+                    Spell = "KJY",
+                    Sort = 31
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{c95e56b0-ca72-46d6-af2e-a61a2396c3db}"),
+                    Name = "经济员",
+                    Spell = "JJY",
+                    Sort = 32
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{5ed553e9-f45c-469f-a5c7-0635f62f6f8c}"),
+                    Name = "馆员",
+                    Spell = "GY",
+                    Sort = 33
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{654bbfbf-a2d4-464a-9410-0822684eb278}"),
+                    Code = Guid.Parse("{75e2ed27-a4f7-4292-997d-b0b9459c4e5c}"),
+                    Name = "高级技师",
+                    Spell = "GJJS",
+                    Sort = 0
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{654bbfbf-a2d4-464a-9410-0822684eb278}"),
+                    Code = Guid.Parse("{f57fab19-f03e-4720-ba03-20b25af72f56}"),
+                    Name = "技师",
+                    Spell = "JS",
+                    Sort = 1
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{654bbfbf-a2d4-464a-9410-0822684eb278}"),
+                    Code = Guid.Parse("{ac0566d1-263a-46a7-8624-9e227963cd82}"),
+                    Name = "高级工",
+                    Spell = "GJG",
+                    Sort = 2
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{654bbfbf-a2d4-464a-9410-0822684eb278}"),
+                    Code = Guid.Parse("{0de14529-b648-4747-80ac-0ff90955c852}"),
+                    Name = "中级工",
+                    Spell = "ZJG",
+                    Sort = 3
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{654bbfbf-a2d4-464a-9410-0822684eb278}"),
+                    Code = Guid.Parse("{dc92af6b-17b7-4589-9fa5-2cd40a557e3f}"),
+                    Name = "初级工",
+                    Spell = "CJG",
+                    Sort = 4
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{654bbfbf-a2d4-464a-9410-0822684eb278}"),
+                    Code = Guid.Parse("{0583a494-3fdf-4c99-a96c-c220ce71c266}"),
+                    Name = "普通工",
+                    Spell = "PTG",
+                    Sort = 5
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+                    Code = Guid.Parse("{90e68bcd-7867-4558-be8e-6c9dea4c4f1a}"),
+                    Name = "一级职员(正部)",
+                    Spell = "YJZYZB",
+                    Sort = 0
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+                    Code = Guid.Parse("{fb9c4306-081c-41f9-8c4c-983e416c1940}"),
+                    Name = "二级职员(副部)",
+                    Spell = "EJZYFB",
+                    Sort = 1
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+                    Code = Guid.Parse("{5d74a866-7316-4251-9d9b-e9dfae651d2e}"),
+                    Name = "三级职员(正厅)",
+                    Spell = "SJZYZT",
+                    Sort = 2
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+                    Code = Guid.Parse("{b94f43c1-c614-4097-9d62-70969078f250}"),
+                    Name = "四级职员(副厅)",
+                    Spell = "SJZYFT",
+                    Sort = 3
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+                    Code = Guid.Parse("{b6cd168e-3bee-4073-a94f-013f61cc9a98}"),
+                    Name = "五级职员(正处)",
+                    Spell = "WJZYZC",
+                    Sort = 4
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+                    Code = Guid.Parse("{0507dfdc-18a6-48e2-8907-55a18bbd9666}"),
+                    Name = "六级职员(副处)",
+                    Spell = "LJZYFC",
+                    Sort = 5
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+                    Code = Guid.Parse("{030f0e56-1b35-4be7-a057-abd6b82999f5}"),
+                    Name = "七级职员(正科)",
+                    Spell = "QJZYZK",
+                    Sort = 6
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+                    Code = Guid.Parse("{f0bdb9b9-c798-49f1-9e4d-cc2786c7ce46}"),
+                    Name = "八级职员(副科)",
+                    Spell = "BJZYFK",
+                    Sort = 7
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+                    Code = Guid.Parse("{7f200f23-fd24-4806-a593-b3fdcfc02aa4}"),
+                    Name = "九级职员(科员)",
+                    Spell = "JZZYKY",
+                    Sort = 8
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+                    Code = Guid.Parse("{22c4a3d6-a13a-412c-b91e-ea9e16e2c85e}"),
+                    Name = "十级职员(办事员)",
+                    Spell = "SJZYBSY",
+                    Sort = 9
+                }, new ComPost
+                {
+                    TypeCode = Guid.Parse("{3bacb485-2037-4835-8268-7cec05a8f02f}"),
+                    Code = Guid.Parse("{ec7ce259-7002-473b-aaf2-23e3f9628710}"),
+                    Name = "未明确职务",
+                    Spell = "WMQZW",
+                    Sort = 0
+                });
+            #endregion
 
+            #region 岗位级别
+            modelBuilder.Entity<ComPostLevel>(b =>
+            {
+                b.ToTable("ComPostLevel");
+                b.HasKey(t => t.Code);
+                b.Property(t => t.Code)
+                .HasDefaultValueSql("newid()");
+                b.Property(t => t.Sort)
+                .HasDefaultValue(0);
+            });
+            modelBuilder.Entity<ComPostLevel>()
+                .HasData(new ComPostLevel
+                {
+                    TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+                    Code = Guid.Parse("{ab66bc18-a2a8-4c72-a2e2-75e10f9a1c07}"),
+                    Name = "一级职员（部级正职）",
+                    Spell = "YJZYBJZZ",
+                    Sort = 0
+                }, new ComPostLevel
+                {
+                    TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+                    Code = Guid.Parse("{7b173701-fd60-49e0-b1bf-155dd8edf287}"),
+                    Name = "二级职员（部级副职）",
+                    Spell = "EJZYBJFZ",
+                    Sort = 1
+                }, new ComPostLevel
+                {
+                    TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+                    Code = Guid.Parse("{b9424c72-2c8a-41ef-a120-7995fac42c08}"),
+                    Name = "三级职员（厅级正职）",
+                    Spell = "SJZYTZYTJZZ",
+                    Sort = 2
+                }, new ComPostLevel
+                {
+                    TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+                    Code = Guid.Parse("{dff6728c-67da-4d2b-a54a-c0477c96d9c5}"),
+                    Name = "四级职员（厅级副职）",
+                    Spell = "SJZYTJFZ",
+                    Sort = 3
+                }, new ComPostLevel
+                {
+                    TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+                    Code = Guid.Parse("{e3d937c0-93e0-43d3-9f8e-6124c6e6a5fc}"),
+                    Name = "五级职员（处级正职）",
+                    Spell = "WJZYCJZZ",
+                    Sort = 4
+                }, new ComPostLevel
+                {
+                    TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+                    Code = Guid.Parse("{3b0e735a-83b9-4331-9133-ec330a696f3c}"),
+                    Name = "六级职员（处级副职）",
+                    Spell = "LJZYCJFZ",
+                    Sort = 5
+                }, new ComPostLevel
+                {
+                    TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+                    Code = Guid.Parse("{ff871fdf-315b-41f8-bbfd-68a1f1cd84e0}"),
+                    Name = "七级职员（科级正职）",
+                    Spell = "QJZYKJZZ",
+                    Sort = 6
+                }, new ComPostLevel
+                {
+                    TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+                    Code = Guid.Parse("{4668379d-3e73-469e-b731-dcd99e1768ac}"),
+                    Name = "八级职员（科级副职）",
+                    Spell = "BJZYKJFZ",
+                    Sort = 7
+                }, new ComPostLevel
+                {
+                    TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+                    Code = Guid.Parse("{22ea8fa3-a3e1-4c06-a04a-174b5efbe1c8}"),
+                    Name = "九级职员（科员）",
+                    Spell = "JJZYKY",
+                    Sort = 8
+                }, new ComPostLevel
+                {
+                    TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+                    Code = Guid.Parse("{efe18ba3-9604-4544-865f-4d3474480149}"),
+                    Name = "十级职员（办事员）",
+                    Spell = "SJZYBSY",
+                    Sort = 9
+                }, new ComPostLevel
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{8b75edbe-8b3f-413c-b92b-2f308084f3dc}"),
+                    Name = "一级",
+                    Spell = "YJ",
+                    Sort = 0
+                }, new ComPostLevel
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{b9824136-b797-456b-a429-565f157f98f6}"),
+                    Name = "二级",
+                    Spell = "EJ",
+                    Sort = 1
+                }, new ComPostLevel
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{0eaec349-c3fc-4cd8-bd0b-a5cfa53861ea}"),
+                    Name = "三级",
+                    Spell = "SJ",
+                    Sort = 2
+                }, new ComPostLevel
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{9c5282ca-c12a-4779-b3e3-3a931bcd1fb9}"),
+                    Name = "四级",
+                    Spell = "SJ",
+                    Sort = 3
+                }, new ComPostLevel
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{beb3b0c1-56d2-4135-b36c-33151b4769f1}"),
+                    Name = "五级",
+                    Spell = "WJ",
+                    Sort = 4
+                }, new ComPostLevel
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{20f8d17b-88e8-4cb5-bd81-4ca77f0a4bb7}"),
+                    Name = "六级",
+                    Spell = "LJ",
+                    Sort = 5
+                }, new ComPostLevel
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{12028e5b-4ebe-4069-8595-9d526d0b9f78}"),
+                    Name = "七级",
+                    Spell = "QJ",
+                    Sort = 6
+                }, new ComPostLevel
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{975ebb9e-5d1e-4139-b806-db62aa8f9ef5}"),
+                    Name = "八级",
+                    Spell = "BJ",
+                    Sort = 7
+                }, new ComPostLevel
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{92a854b0-dd0d-4f62-bb0d-e059d626cc8a}"),
+                    Name = "九级",
+                    Spell = "JJ",
+                    Sort = 8
+                }, new ComPostLevel
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{88bd532a-a76a-4a14-aad7-edc199ac15c2}"),
+                    Name = "十级",
+                    Spell = "SJ",
+                    Sort = 9
+                }, new ComPostLevel
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{904425eb-ddbc-4892-a0f2-28530a13cc6f}"),
+                    Name = "十一级",
+                    Spell = "SYJ",
+                    Sort = 10
+                }, new ComPostLevel
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{cd71e1cb-020d-4dad-b528-49cfa73d7262}"),
+                    Name = "十二级",
+                    Spell = "SEJ",
+                    Sort = 11
+                }, new ComPostLevel
+                {
+                    TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+                    Code = Guid.Parse("{2186f63c-9f6c-40c2-81fb-53dc0341a736}"),
+                    Name = "十三级",
+                    Spell = "SSJ",
+                    Sort = 12
+                }, new ComPostLevel
+                {
+                    TypeCode = Guid.Parse("{654bbfbf-a2d4-464a-9410-0822684eb278}"),
+                    Code = Guid.Parse("{e289d673-b2a3-4856-a29d-ceef8a5e26b2}"),
+                    Name = "一级岗位（高级技师）",
+                    Spell = "YJGWGJJS",
+                    Sort = 0
+                }, new ComPostLevel
+                {
+                    TypeCode = Guid.Parse("{654bbfbf-a2d4-464a-9410-0822684eb278}"),
+                    Code = Guid.Parse("{3cf258fd-e6f3-43f2-9789-ded0a0256ee5}"),
+                    Name = "二级岗位（技师）",
+                    Spell = "EJGWJS",
+                    Sort = 1
+                }, new ComPostLevel
+                {
+                    TypeCode = Guid.Parse("{654bbfbf-a2d4-464a-9410-0822684eb278}"),
+                    Code = Guid.Parse("{36d4d0b7-7fef-46bc-9b17-e094f7629040}"),
+                    Name = "三级岗位（高级工）",
+                    Spell = "SJGWGJG",
+                    Sort = 2
+                }, new ComPostLevel
+                {
+                    TypeCode = Guid.Parse("{654bbfbf-a2d4-464a-9410-0822684eb278}"),
+                    Code = Guid.Parse("{19c9a75c-79bf-4552-8cc4-8b56e4882385}"),
+                    Name = "四级岗位（中级工）",
+                    Spell = "SJGWZJG",
+                    Sort = 3
+                }, new ComPostLevel
+                {
+                    TypeCode = Guid.Parse("{654bbfbf-a2d4-464a-9410-0822684eb278}"),
+                    Code = Guid.Parse("{d44d5a34-78de-44eb-a26e-9930086f793b}"),
+                    Name = "五级岗位（初级工）",
+                    Spell = "WJGWCJG",
+                    Sort = 4
+                }, new ComPostLevel
+                {
+                    TypeCode = Guid.Parse("{654bbfbf-a2d4-464a-9410-0822684eb278}"),
+                    Code = Guid.Parse("{dd765fd9-879f-4fe9-9d41-7b8b6b6ba061}"),
+                    Name = "普通工",
+                    Spell = "PTG",
+                    Sort = 5
+                }, new ComPostLevel
+                {
+                    TypeCode = Guid.Parse("{3bacb485-2037-4835-8268-7cec05a8f02f}"),
+                    Code = Guid.Parse("{6c9c57c3-9cd6-4eba-8b55-3027babbc070}"),
+                    Name = "其他等级人员",
+                    Spell = "QTDJRY",
+                    Sort = 0
+                });
+            #endregion
 
+            #region 学历
+            modelBuilder.Entity<ComEducation>(b =>
+            {
+                b.ToTable("ComEducation");
+                b.HasKey(t => t.Code);
+                b.Property(t => t.Code)
+                .HasDefaultValueSql("newid()");
+                b.Property(t => t.Sort)
+                .HasDefaultValue(0);
+            });
+            modelBuilder.Entity<ComEducation>()
+                .HasData(new ComEducation
+                {
+                    Code = Guid.Parse("{1d8c8090-7bf4-40ce-8a95-c80950dcea7e}"),
+                    Name = "博士研究生",
+                    Spell = "BSYJS",
+                    Sort = 0
+                }, new ComEducation
+                {
+                    Code = Guid.Parse("{dc2fcf03-b3c7-4f14-b294-f9f57302f3dd}"),
+                    Name = "硕士研究生",
+                    Spell = "SSYJS",
+                    Sort = 1
+                }, new ComEducation
+                {
+                    Code = Guid.Parse("{e93ea2c1-6334-4b9d-8074-2d66598f6c7d}"),
+                    Name = "本科",
+                    Spell = "BK",
+                    Sort = 2
+                }, new ComEducation
+                {
+                    Code = Guid.Parse("{66daa3c2-e82b-4f21-aed5-73de21a0105f}"),
+                    Name = "专科",
+                    Spell = "ZK",
+                    Sort = 3
+                }, new ComEducation
+                {
+                    Code = Guid.Parse("{0ef17964-a7ca-4728-82e0-7237efbad498}"),
+                    Name = "中专",
+                    Spell = "ZZ",
+                    Sort = 4
+                }, new ComEducation
+                {
+                    Code = Guid.Parse("{1827e6cf-d98d-444b-a4bd-c487743e41dd}"),
+                    Name = "高中及以下",
+                    Spell = "GZJYX",
+                    Sort = 5
+                }, new ComEducation
+                {
+                    Code = Guid.Parse("{7eff5b7f-f7f6-4a84-8a67-9478ba059db6}"),
+                    Name = "技校",
+                    Spell = "JX",
+                    Sort = 6
+                }, new ComEducation
+                {
+                    Code = Guid.Parse("{8da05d8f-a0bd-40b9-90dc-5e7fa4db5430}"),
+                    Name = "其他",
+                    Spell = "QT",
+                    Sort = 7
+                });
+            #endregion
 
+            #region 学位
+            modelBuilder.Entity<ComDegree>(b =>
+            {
+                b.ToTable("ComDegree");
+                b.HasKey(t => t.Code);
+                b.Property(t => t.Code)
+                .HasDefaultValueSql("newid()");
+                b.Property(t => t.Sort)
+                .HasDefaultValue(0);
+            });
+            modelBuilder.Entity<ComDegree>()
+                .HasData(new ComDegree
+                {
+                    Code = Guid.Parse("{e807cc65-1bf8-4d01-9371-8eebc9810b61}"),
+                    Name = "博士后",
+                    Spell = "BSH",
+                    Sort = 0
+                }, new ComDegree
+                {
+                    Code = Guid.Parse("{68be9abd-3580-4cf3-9eeb-a9715d2b9e11}"),
+                    Name = "博士",
+                    Spell = "BS",
+                    Sort = 1
+                }, new ComDegree
+                {
+                    Code = Guid.Parse("{1fbb0aaa-ea2e-482c-97eb-31d85f5409d9}"),
+                    Name = "硕士",
+                    Spell = "SS",
+                    Sort = 2
+                }, new ComDegree
+                {
+                    Code = Guid.Parse("{68bcc923-b78c-4966-9ffa-a6a53c8cf20b}"),
+                    Name = "学士",
+                    Spell = "XS",
+                    Sort = 3
+                }, new ComDegree
+                {
+                    Code = Guid.Parse("{6e591626-8ec5-4948-ab12-584b931ba8aa}"),
+                    Name = "无",
+                    Spell = "W",
+                    Sort = 4
+                });
+            #endregion
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            #region 婚姻状况
+            modelBuilder.Entity<ComMarriage>(b =>
+            {
+                b.ToTable("ComMarriage");
+                b.HasKey(t => t.Code);
+                b.Property(t => t.Code)
+                .HasDefaultValueSql("newid()");
+                b.Property(t => t.Sort)
+                .HasDefaultValue(0);
+            });
+            modelBuilder.Entity<ComMarriage>()
+                .HasData(new ComMarriage
+                {
+                    Code = Guid.Parse("{bd31cb22-b6e4-40e1-bd94-e18d27f4d2f5}"),
+                    Name = "未婚",
+                    Spell = "WH",
+                    Sort = 0
+                }, new ComMarriage
+                {
+                    Code = Guid.Parse("{92d98cf5-0bda-42f2-bf4c-381272ac7318}"),
+                    Name = "已婚",
+                    Spell = "YH",
+                    Sort = 1
+                }, new ComMarriage
+                {
+                    Code = Guid.Parse("{c08ea67f-14d1-492e-b3c8-15f604e6b683}"),
+                    Name = "初婚",
+                    Spell = "CH",
+                    Sort = 2
+                }, new ComMarriage
+                {
+                    Code = Guid.Parse("{18866208-756b-43ae-a721-3615fcd5ef1b}"),
+                    Name = "再婚",
+                    Spell = "ZH",
+                    Sort = 3
+                }, new ComMarriage
+                {
+                    Code = Guid.Parse("{f35fe309-94cc-4f61-8805-54b8fe0bd496}"),
+                    Name = "复婚",
+                    Spell = "FH",
+                    Sort = 4
+                }, new ComMarriage
+                {
+                    Code = Guid.Parse("{0a9df811-b2d2-4223-a3e6-034c133b9f0d}"),
+                    Name = "丧偶",
+                    Spell = "SO",
+                    Sort = 5
+                }, new ComMarriage
+                {
+                    Code = Guid.Parse("{e931bbf6-3330-4c87-bfbc-af4cd1c77ed5}"),
+                    Name = "离婚",
+                    Spell = "LY",
+                    Sort = 6
+                }, new ComMarriage
+                {
+                    Code = Guid.Parse("{14abcb03-7b94-4fdf-a1f5-52db5147c967}"),
+                    Name = "未说明的婚姻状况",
+                    Spell = "WSMDHYZK",
+                    Sort = 7
+                });
+            #endregion
+            
+            #region 人员
+            modelBuilder.Entity<SysEmp>(b =>
+            {
+                b.ToTable("SysEmp");
+                b.HasKey(t => t.EmpCode);
+                b.Property(t => t.IsPost)
+                .HasDefaultValue(true);
+                b.Property(t => t.IsStop)
+                .HasDefaultValue(false);
+                b.Property(t => t.BirthDate)//出生日期
+                .HasDefaultValueSql("getdate()");
+                b.Property(t => t.HospitalDate)//来院日期
+                .HasDefaultValueSql("getdate()");
+                b.Property(t => t.CreateDate)//创建日期
+                .HasDefaultValueSql("getdate()");
+                b.HasOne(t => t.SysDept)//科室
+                .WithMany(t => t.SysEmps)
+                .HasForeignKey(t => t.DeptCode)
+                .HasConstraintName("FK_DeptCode_SysDept_SysEmp");
+                b.HasOne(t => t.ComGender)//性别
+                .WithMany(t => t.SysEmps)
+                .HasForeignKey(t => t.GenderCode)
+                .HasConstraintName("FK_GenderCode_ComGender_SysEmp");
+                b.HasOne(t => t.ComNation)//民族
+                .WithMany(t => t.SysEmps)
+                .HasForeignKey(t => t.NationCode)
+                .HasConstraintName("FK_NationCode_ComNation_SysEmp");
+                b.HasOne(t => t.ComPolitical)//政治面貌
+                .WithMany(t => t.SysEmps)
+                .HasForeignKey(t => t.PoliticalCode)
+                .HasConstraintName("FK_PoliticalCode_ComPolitical_SysEmp");
+                b.HasOne(t => t.ComProfessionTitleType)//职称系类
+                .WithMany(t => t.SysEmps)
+                .HasForeignKey(t => t.ProfessionTitleTypeCode)
+                .HasConstraintName("FK_PTTCode_ComProfessionTitleType_SysEmp");
+                b.HasOne(t => t.ComProfessionTitle)//职称
+                .WithMany(t => t.SysEmps)
+                .HasForeignKey(t => t.ProfessionTitleCode)
+                .HasConstraintName("FK_PTCode_ComProfessionTitle_SysEmp");
+                b.HasOne(t => t.ComProfessionTitleLevel)//职称级别
+                .WithMany(t => t.SysEmps)
+                .HasForeignKey(t => t.ProfessionTitleLevelCode)
+                .HasConstraintName("FK_PTLCode_ComProfessionTitleLevel_SysEmp");
+                b.HasOne(t => t.ComAdminDuty)//行政职务
+                .WithMany(t => t.SysEmps)
+                .HasForeignKey(t => t.AdminDutyCode)
+                .HasConstraintName("FK_AdminDutyCode_ComAdminDuty_SysEmp");
+                b.HasOne(t => t.ComAdminDuty)//行政职务
+                .WithMany(t => t.SysEmps)
+                .HasForeignKey(t => t.AdminDutyCode)
+                .HasConstraintName("FK_AdminDutyCode_ComAdminDuty_SysEmp");
+                b.HasOne(t => t.SysEmpType)//人员类别
+                .WithMany(t => t.SysEmps)
+                .HasForeignKey(t => t.TypeCode)
+                .HasConstraintName("FK_TypeCode_SysEmpType_SysEmp");
+                b.HasOne(t => t.SysEmpClass)//人员分类
+                .WithMany(t => t.SysEmps)
+                .HasForeignKey(t => t.ClassCode)
+                .HasConstraintName("FK_ClassCode_SysEmpClass_SysEmp");
+                b.HasOne(t => t.SysEmpAttribute)//人员属性
+                .WithMany(t => t.SysEmps)
+                .HasForeignKey(t => t.AttributeCode)
+                .HasConstraintName("FK_AttributeCode_SysEmpAttribute_SysEmp");
+                b.HasOne(t => t.ComPost)//岗位
+                .WithMany(t => t.SysEmps)
+                .HasForeignKey(t => t.PostCode)
+                .HasConstraintName("FK_PostCode_ComPost_SysEmp");
+                b.HasOne(t => t.ComPostType)//岗位类别
+                .WithMany(t => t.SysEmps)
+                .HasForeignKey(t => t.PostTypeCode)
+                .HasConstraintName("FK_PostTypeCode_ComPostType_SysEmp");
+                b.HasOne(t => t.ComPostLevel)//岗位级别
+                .WithMany(t => t.SysEmps)
+                .HasForeignKey(t => t.PostLevelCode)
+                .HasConstraintName("FK_PostLevelCode_ComPostLevel_SysEmp");
+                b.HasOne(t => t.ComEducation)//学历
+                .WithMany(t => t.SysEmps)
+                .HasForeignKey(t => t.EducationCode)
+                .HasConstraintName("FK_EducationCode_ComEducation_SysEmp");
+                b.HasOne(t => t.ComDegree)//学位
+                .WithMany(t => t.SysEmps)
+                .HasForeignKey(t => t.DegreeCode)
+                .HasConstraintName("FK_DegreeCode_ComDegree_SysEmp");
+                b.HasOne(t => t.ComMarriage)//婚姻状况
+                .WithMany(t => t.SysEmps)
+                .HasForeignKey(t => t.MarriageCode)
+                .HasConstraintName("FK_MarriageCode_ComMarriage_SysEmp");
+            });
+            #endregion
 
         }
     }
