@@ -73,6 +73,14 @@ namespace HospitalPersonnelSystem.Data
         /// </summary>
         public DbSet<ComMarriage> ComMarriages { get; set; }
         /// <summary>
+        /// 人员属性
+        /// </summary>
+        public DbSet<SysEmpAttribute> SysEmpAttributes { get; set; }
+        /// <summary>
+        /// 科室
+        /// </summary>
+        public DbSet<SysDept> SysDepts { get; set; }
+        /// <summary>
         /// 人员
         /// </summary>
         public DbSet<SysEmp> SysEmps { get; set; }
@@ -84,6 +92,7 @@ namespace HospitalPersonnelSystem.Data
         {
             //newsequentialid()
             //newid()
+            //Add-Migration 
             base.OnModelCreating(modelBuilder);
 
             #region 性别
@@ -2392,7 +2401,31 @@ namespace HospitalPersonnelSystem.Data
                     Sort = 7
                 });
             #endregion
-            
+
+            #region 人员属性
+            modelBuilder.Entity<SysEmpAttribute>(b =>
+            {
+                b.ToTable("SysEmpAttribute");
+                b.HasKey(t => t.Code);
+                b.Property(t => t.Code)
+                .HasDefaultValueSql("newid()");
+                b.Property(t => t.Sort)
+                .HasDefaultValue(0);
+            });
+            #endregion
+
+            #region 科室
+            modelBuilder.Entity<SysDept>(b =>
+            {
+                b.ToTable("SysDept");
+                b.HasKey(t => t.DeptCode);
+                b.Property(t => t.DeptCode)
+                .HasDefaultValueSql("newid()");
+                b.Property(t => t.Sort)
+                .HasDefaultValue(0);
+            });
+            #endregion
+
             #region 人员
             modelBuilder.Entity<SysEmp>(b =>
             {
@@ -2482,6 +2515,7 @@ namespace HospitalPersonnelSystem.Data
                 .HasConstraintName("FK_MarriageCode_ComMarriage_SysEmp");
             });
             #endregion
+
 
         }
     }
