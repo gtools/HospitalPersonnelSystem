@@ -140,7 +140,6 @@ namespace HospitalPersonnelSystem.Models
         /// 是否在岗
         /// </summary>
         [Display(Name = "是否在岗")]
-        [Required(ErrorMessage = Validate.Required)]
         public bool IsPost { get; set; }
         /// <summary>
         /// 人员类别

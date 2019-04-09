@@ -12,6 +12,7 @@ namespace HospitalPersonnelSystem.Data
         {
         }
 
+        #region 集合
         /// <summary>
         /// 性别
         /// </summary>
@@ -84,15 +85,15 @@ namespace HospitalPersonnelSystem.Data
         /// 人员
         /// </summary>
         public DbSet<SysEmp> SysEmps { get; set; }
-
-
-
+        #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //newsequentialid()
             //newid()
             //Add-Migration 
+            //Remove-Migration
+            //Update-Database
             base.OnModelCreating(modelBuilder);
 
             #region 性别
@@ -598,49 +599,49 @@ namespace HospitalPersonnelSystem.Data
                     Name = "卫生系类",
                     Spell = "WSXL",
                     Sort = 0
-                }, new ComGender
+                }, new ComProfessionTitleType
                 {
                     Code = Guid.Parse("{6dd3009f-2b73-4bc5-a2cf-d9ea18433164}"),
                     Name = "教育系类",
                     Spell = "JYXL",
                     Sort = 1
-                }, new ComGender
+                }, new ComProfessionTitleType
                 {
                     Code = Guid.Parse("{115dd3eb-2a72-42e3-8159-39f1faf17383}"),
                     Name = "科研系类",
                     Spell = "KYXL",
                     Sort = 2
-                }, new ComGender
+                }, new ComProfessionTitleType
                 {
                     Code = Guid.Parse("{c42a2431-f494-4d4a-8630-aa0aadfed732}"),
                     Name = "经济系类",
                     Spell = "JJXL",
                     Sort = 3
-                }, new ComGender
+                }, new ComProfessionTitleType
                 {
                     Code = Guid.Parse("{75e47af6-29cf-4ae4-8196-911421d9bcd7}"),
                     Name = "会计系类",
                     Spell = "KJXL",
                     Sort = 4
-                }, new ComGender
+                }, new ComProfessionTitleType
                 {
                     Code = Guid.Parse("{d0008f26-cb2c-4358-b453-a2db0f6f98eb}"),
                     Name = "统计系类",
                     Spell = "TJXL",
                     Sort = 5
-                }, new ComGender
+                }, new ComProfessionTitleType
                 {
                     Code = Guid.Parse("{926c3d44-be36-40f1-ad89-708b99019be1}"),
                     Name = "图书资料、档案系类",
                     Spell = "TSZLDAXL",
                     Sort = 6
-                }, new ComGender
+                }, new ComProfessionTitleType
                 {
                     Code = Guid.Parse("{c16f3f64-f81d-41b3-b61f-08a23bd6aa73}"),
                     Name = "政工系类",
                     Spell = "ZGXL",
                     Sort = 7
-                }, new ComGender
+                }, new ComProfessionTitleType
                 {
                     Code = Guid.Parse("{7e5750ba-2e20-4725-9681-6ff94d8fdd6a}"),
                     Name = "其他系类",
@@ -1287,104 +1288,104 @@ namespace HospitalPersonnelSystem.Data
                 b.Property(t => t.Sort)
                 .HasDefaultValue(0);
             });
-            modelBuilder.Entity<ComGender>()
-                .HasData(new ComGender
+            modelBuilder.Entity<ComAdminDuty>()
+                .HasData(new ComAdminDuty
                 {
                     Code = Guid.Parse("{d4d91cd2-c266-40b5-9954-667775688c0c}"),
                     Name = "院长",
                     Spell = "YZ",
                     Sort = 0
-                }, new ComGender
+                }, new ComAdminDuty
                 {
                     Code = Guid.Parse("{b014c913-c1aa-4fa3-a605-29f9bf2f0b2a}"),
                     Name = "副院长",
                     Spell = "FYZ",
                     Sort = 1
-                }, new ComGender
+                }, new ComAdminDuty
                 {
                     Code = Guid.Parse("{63696193-1183-43ca-b928-76829cefea8f}"),
                     Name = "书记",
                     Spell = "SJ",
                     Sort = 2
-                }, new ComGender
+                }, new ComAdminDuty
                 {
                     Code = Guid.Parse("{88cc33ab-d2e0-4394-aeca-7518cf0fe271}"),
                     Name = "副书记",
                     Spell = "FSJ",
                     Sort = 3
-                }, new ComGender
+                }, new ComAdminDuty
                 {
                     Code = Guid.Parse("{3255f4c2-d19e-42be-abb9-d94487028c4a}"),
                     Name = "大科主任",
                     Spell = "DKZR",
                     Sort = 4
-                }, new ComGender
+                }, new ComAdminDuty
                 {
                     Code = Guid.Parse("{64af3319-bb44-4e37-babd-14b1f5fc77e2}"),
                     Name = "科主任",
                     Spell = "KZR",
                     Sort = 5
-                }, new ComGender
+                }, new ComAdminDuty
                 {
                     Code = Guid.Parse("{6eda1aa1-6357-4d47-a206-db27bdcc6c9c}"),
                     Name = "副主任",
                     Spell = "FZR",
                     Sort = 6
-                }, new ComGender
+                }, new ComAdminDuty
                 {
                     Code = Guid.Parse("{c96d3c49-52fc-485c-b26d-d6bcbb94a498}"),
                     Name = "护士长",
                     Spell = "HSZ",
                     Sort = 7
-                }, new ComGender
+                }, new ComAdminDuty
                 {
                     Code = Guid.Parse("{d2d44ea1-ed45-4752-888f-7c5160606d7e}"),
                     Name = "副护士长",
                     Spell = "FHSZ",
                     Sort = 8
-                }, new ComGender
+                }, new ComAdminDuty
                 {
                     Code = Guid.Parse("{8a79102f-fc47-4b1f-86a2-b3cdd1390c43}"),
                     Name = "科员",
                     Spell = "KY",
                     Sort = 9
-                }, new ComGender
+                }, new ComAdminDuty
                 {
                     Code = Guid.Parse("{d9336f78-0a8f-4d4c-bbd6-4ad7fa5faf05}"),
                     Name = "书记",
                     Spell = "SJ",
                     Sort = 10
-                }, new ComGender
+                }, new ComAdminDuty
                 {
                     Code = Guid.Parse("{e850c859-13c2-46c0-9099-ce1ec1a5ad8d}"),
                     Name = "科长",
                     Spell = "KZ",
                     Sort = 11
-                }, new ComGender
+                }, new ComAdminDuty
                 {
                     Code = Guid.Parse("{5ce1b9cd-4097-411d-b210-a1199754952f}"),
                     Name = "干事",
                     Spell = "GS",
                     Sort = 12
-                }, new ComGender
+                }, new ComAdminDuty
                 {
                     Code = Guid.Parse("{bcc3c10e-b26f-4896-8994-2b6f5147d99e}"),
                     Name = "团委书记",
                     Spell = "TWSJ",
                     Sort = 13
-                }, new ComGender
+                }, new ComAdminDuty
                 {
                     Code = Guid.Parse("{f6b0611f-a790-4ecd-b525-9d2934f24dad}"),
                     Name = "团委副书记",
                     Spell = "TWFSJ",
                     Sort = 14
-                }, new ComGender
+                }, new ComAdminDuty
                 {
                     Code = Guid.Parse("{7c90c44f-d16c-4325-b650-fac1597e764e}"),
                     Name = "返聘",
                     Spell = "FP",
                     Sort = 15
-                }, new ComGender
+                }, new ComAdminDuty
                 {
                     Code = Guid.Parse("{dc4a63b1-5153-4cac-852c-78f14e06c080}"),
                     Name = "无",

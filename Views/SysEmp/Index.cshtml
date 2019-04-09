@@ -1,0 +1,311 @@
+﻿@model IEnumerable<HospitalPersonnelSystem.Models.SysEmp>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EmpName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Spell)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SysDept)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OldName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComGender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComNation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BirthDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComPolitical)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PoliticalDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdentityCard)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComProfessionTitleType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComProfessionTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComProfessionTitleLevel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComAdminDuty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsPost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SysEmpType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SysEmpClass)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SysEmpAttribute)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HospitalDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComPost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComPostType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComPostLevel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkAge)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HospitalAge)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Practice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PracticeDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OpenBank)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BankCard)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComEducation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EducationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComDegree)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.School)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SchoolMajor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GraduationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telephone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComMarriage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BirthAdd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HomeAdd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdentityAdd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NativePlace)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Photo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsStop)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Remark)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateEmp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmpName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Spell)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SysDept.DeptCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OldName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComGender.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComNation.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirthDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComPolitical.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PoliticalDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdentityCard)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComProfessionTitleType.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComProfessionTitle.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComProfessionTitleLevel.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComAdminDuty.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsPost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SysEmpType.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SysEmpClass.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SysEmpAttribute.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HospitalDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComPost.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComPostType.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComPostLevel.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkAge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HospitalAge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Practice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PracticeDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OpenBank)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BankCard)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComEducation.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EducationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComDegree.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.School)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SchoolMajor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GraduationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telephone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComMarriage.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirthAdd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HomeAdd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdentityAdd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NativePlace)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Photo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsStop)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Remark)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateEmp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EmpCode">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.EmpCode">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.EmpCode">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
