@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace HospitalPersonnelSystem.Models
@@ -11,23 +12,32 @@ namespace HospitalPersonnelSystem.Models
         /// <summary>
         /// 工号
         /// </summary>
-        //[Remote(action: "VerifyEmp_Code", controller: "SYS_Emp")]//验证
+        [Remote(action: "VerifyEmp_Code", controller: "SYS_Emp")]//验证
         [Required(ErrorMessage = Validate.Required)]
         [Display(Name = "工号")]
         public string EmpCode { get; set; }
+        private string name;
         /// <summary>
         /// 姓名
         /// </summary>
         [Required(ErrorMessage = Validate.Required)]
         [Display(Name = "姓名")]
-        public string EmpName { get; set; }
+        public string EmpName
+        {
+            get { return name; }
+            set
+            {
+                name = value;
+                Spell = GTSharp.Core.PinYinHelper.GetFirstPinyin(name);
+            }
+        }
         /// <summary>
         /// 拼音码
         /// </summary>
         [Display(Name = "拼音码")]
         public string Spell { get; set; }
         /// <summary>
-        /// 科室代码
+        /// 科室
         /// </summary>
         [Required(ErrorMessage = Validate.Required)]
         [Display(Name = "科室")]
@@ -43,7 +53,7 @@ namespace HospitalPersonnelSystem.Models
         [Display(Name = "曾用名")]
         public string OldName { get; set; }
         /// <summary>
-        /// 性别，{6965de18-f744-48f2-8fda-74b0550e5b61}
+        /// 性别，f1384219-82c1-47d8-8689-0be7c7f41129
         /// </summary>
         [Display(Name = "性别")]
         [Required(ErrorMessage = Validate.Required)]
@@ -54,7 +64,7 @@ namespace HospitalPersonnelSystem.Models
         [Display(Name = "性别")]
         public ComGender ComGender { get; set; }
         /// <summary>
-        /// 民族，{fa73020a-34c7-4184-b97a-299475a3acf2}
+        /// 民族，ce17f92b-ee53-4aa6-8f3d-c3b13d865e2d
         /// </summary>
         [Display(Name = "民族")]
         public Guid NationCode { get; set; }
@@ -76,7 +86,7 @@ namespace HospitalPersonnelSystem.Models
         [Display(Name = "年龄")]
         public int Age { get; set; }
         /// <summary>
-        /// 政治面貌，{8e871348-b291-44e3-9aff-534cfe8eb4cf}
+        /// 政治面貌，8e871348-b291-44e3-9aff-534cfe8eb4cf
         /// </summary>
         [Display(Name = "政治面貌")]
         public Guid PoliticalCode { get; set; }
@@ -97,25 +107,15 @@ namespace HospitalPersonnelSystem.Models
         [Required(ErrorMessage = Validate.Required)]
         public string IdentityCard { get; set; }
         /// <summary>
-        /// 职称系类
+        /// 职称系列
         /// </summary>
-        [Display(Name = "职称系类")]
+        [Display(Name = "职称系列")]
         public Guid? ProfessionTitleTypeCode { get; set; }
         /// <summary>
-        /// 职称系类
+        /// 职称系列
         /// </summary>
-        [Display(Name = "职称系类")]
+        [Display(Name = "职称系列")]
         public ComProfessionTitleType ComProfessionTitleType { get; set; }
-        /// <summary>
-        /// 职称
-        /// </summary>
-        [Display(Name = "职称")]
-        public Guid? ProfessionTitleCode { get; set; }
-        /// <summary>
-        /// 职称
-        /// </summary>
-        [Display(Name = "职称")]
-        public ComProfessionTitle ComProfessionTitle { get; set; }
         /// <summary>
         /// 职称级别
         /// </summary>
@@ -127,7 +127,17 @@ namespace HospitalPersonnelSystem.Models
         [Display(Name = "职称级别")]
         public ComProfessionTitleLevel ComProfessionTitleLevel { get; set; }
         /// <summary>
-        /// 行政职务
+        /// 职称
+        /// </summary>
+        [Display(Name = "职称")]
+        public Guid? ProfessionTitleCode { get; set; }
+        /// <summary>
+        /// 职称
+        /// </summary>
+        [Display(Name = "职称")]
+        public ComProfessionTitle ComProfessionTitle { get; set; }
+        /// <summary>
+        /// 行政职务，40574e21-beb0-47fd-a754-143abb0a85dd
         /// </summary>
         [Display(Name = "行政职务")]
         public Guid AdminDutyCode { get; set; }
@@ -142,35 +152,35 @@ namespace HospitalPersonnelSystem.Models
         [Display(Name = "是否在岗")]
         public bool IsPost { get; set; }
         /// <summary>
-        /// 人员类别
+        /// 人员类别，440ad1b9-4aa1-4c4f-a42b-00fd4b072323
         /// </summary>
         [Display(Name = "人员类别")]
-        public Guid? TypeCode { get; set; }
+        public Guid TypeCode { get; set; }
         /// <summary>
         /// 人员类别
         /// </summary>
         [Display(Name = "人员类别")]
         public SysEmpType SysEmpType { get; set; }
-        /// <summary>
-        /// 人员分类
-        /// </summary>
-        [Display(Name = "人员分类")]
-        public Guid? ClassCode { get; set; }
-        /// <summary>
-        /// 人员分类
-        /// </summary>
-        [Display(Name = "人员分类")]
-        public SysEmpClass SysEmpClass { get; set; }
-        /// <summary>
-        /// 人员属性
-        /// </summary>
-        [Display(Name = "人员属性")]
-        public Guid? AttributeCode { get; set; }
-        /// <summary>
-        /// 人员属性
-        /// </summary>
-        [Display(Name = "人员属性")]
-        public SysEmpAttribute SysEmpAttribute { get; set; }
+        ///// <summary>
+        ///// 人员分类
+        ///// </summary>
+        //[Display(Name = "人员分类")]
+        //public Guid ClassCode { get; set; }
+        ///// <summary>
+        ///// 人员分类
+        ///// </summary>
+        //[Display(Name = "人员分类")]
+        //public SysEmpClass SysEmpClass { get; set; }
+        ///// <summary>
+        ///// 人员属性
+        ///// </summary>
+        //[Display(Name = "人员属性")]
+        //public Guid AttributeCode { get; set; }
+        ///// <summary>
+        ///// 人员属性
+        ///// </summary>
+        //[Display(Name = "人员属性")]
+        //public SysEmpAttribute SysEmpAttribute { get; set; }
         /// <summary>
         /// 工作日期
         /// </summary>
@@ -182,36 +192,36 @@ namespace HospitalPersonnelSystem.Models
         [Display(Name = "来院日期")]
         [Required(ErrorMessage = Validate.Required)]
         public DateTime HospitalDate { get; set; }
-        /// <summary>
-        /// 岗位
-        /// </summary>
-        [Display(Name = "岗位")]
-        public Guid? PostCode { get; set; }
-        /// <summary>
-        /// 岗位
-        /// </summary>
-        [Display(Name = "岗位")]
-        public ComPost ComPost { get; set; }
-        /// <summary>
-        /// 岗位类别
-        /// </summary>
-        [Display(Name = "岗位类别")]
-        public Guid? PostTypeCode { get; set; }
-        /// <summary>
-        /// 岗位类别
-        /// </summary>
-        [Display(Name = "岗位类别")]
-        public ComPostType ComPostType { get; set; }
-        /// <summary>
-        /// 岗位级别
-        /// </summary>
-        [Display(Name = "岗位级别")]
-        public Guid? PostLevelCode { get; set; }
-        /// <summary>
-        /// 岗位级别
-        /// </summary>
-        [Display(Name = "岗位级别")]
-        public ComPostLevel ComPostLevel { get; set; }
+        ///// <summary>
+        ///// 岗位
+        ///// </summary>
+        //[Display(Name = "岗位")]
+        //public Guid? PostCode { get; set; }
+        ///// <summary>
+        ///// 岗位
+        ///// </summary>
+        //[Display(Name = "岗位")]
+        //public ComPost ComPost { get; set; }
+        ///// <summary>
+        ///// 岗位类别
+        ///// </summary>
+        //[Display(Name = "岗位类别")]
+        //public Guid? PostTypeCode { get; set; }
+        ///// <summary>
+        ///// 岗位类别
+        ///// </summary>
+        //[Display(Name = "岗位类别")]
+        //public ComPostType ComPostType { get; set; }
+        ///// <summary>
+        ///// 岗位级别
+        ///// </summary>
+        //[Display(Name = "岗位级别")]
+        //public Guid? PostLevelCode { get; set; }
+        ///// <summary>
+        ///// 岗位级别
+        ///// </summary>
+        //[Display(Name = "岗位级别")]
+        //public ComPostLevel ComPostLevel { get; set; }
         /// <summary>
         /// 工龄
         /// </summary>
@@ -288,7 +298,7 @@ namespace HospitalPersonnelSystem.Models
         [Display(Name = "联系方式")]
         public string Telephone { get; set; }
         /// <summary>
-        /// 婚姻状况
+        /// 婚姻状况，6cca4dd0-8fa7-46be-90ab-f6ac0379adde
         /// </summary>
         [Display(Name = "婚姻状况")]
         public Guid MarriageCode { get; set; }

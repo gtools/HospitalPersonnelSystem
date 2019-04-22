@@ -58,9 +58,7 @@ namespace HospitalPersonnelSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                //comGender.Code = Guid.NewGuid();
-                comGender.Spell = GTSharp.Core.PinYinHelper.GetFirstPinyin(comGender.Name);
-                comGender.Sort = _context.ComGenders.Count();
+                comGender.Code = Guid.NewGuid();
                 _context.Add(comGender);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -100,8 +98,6 @@ namespace HospitalPersonnelSystem.Controllers
             {
                 try
                 {
-                    comGender.Spell = GTSharp.Core.PinYinHelper.GetFirstPinyin(comGender.Name);
-                    //comGender.Sort = _context.ComGenders.Count();
                     _context.Update(comGender);
                     await _context.SaveChangesAsync();
                 }

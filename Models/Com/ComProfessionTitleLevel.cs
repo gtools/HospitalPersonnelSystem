@@ -13,12 +13,20 @@ namespace HospitalPersonnelSystem.Models
         /// 代码
         /// </summary>
         public Guid Code { get; set; }
+        private string name;
         /// <summary>
         /// 名称
         /// </summary>
-        [Required(ErrorMessage = Validate.Required)]
         [Display(Name = "名称")]
-        public string Name { get; set; }
+        public string Name
+        {
+            get { return name; }
+            set
+            {
+                name = value;
+                Spell = GTSharp.Core.PinYinHelper.GetFirstPinyin(name);
+            }
+        }
         /// <summary>
         /// 拼音码
         /// </summary>
@@ -27,8 +35,12 @@ namespace HospitalPersonnelSystem.Models
         /// <summary>
         /// 序号
         /// </summary>
-        [Display(Name = "序号")]
+        [Display(Name = "排序")]
         public int Sort { get; set; }
+        /// <summary>
+        /// 职称
+        /// </summary>
+        public List<ComProfessionTitle> ComProfessionTitles { get; set; }
         /// <summary>
         /// 人员
         /// </summary>

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<HospitalPersonnelSystem.Models.SysNavbarType>
+@*
+    左侧导航栏
+*@
+@{
+    var NavName = "accordionNav";
+    var NavheadingName = "heading";
+    var NavcollapseName = "collapse";
+    var NavheadingID = "";
+    var NavcollapseID = "";
+    var i = 0;
+    var b = false;
+    var controller = "";
+    var show = "";
+}
+<ul class="nav flex-column col-2 accordion pl-3" id="@NavName">
+    @foreach (var item in Model)
+    {
+        i++;
+        NavheadingID = NavheadingName + i.ToString();
+        NavcollapseID = NavcollapseName + i.ToString();
+        if (ViewData["SysNavbarType"] != null)
+        {
+            b = ViewData["SysNavbarType"].ToString() == item.Name;
+
+        }
+        if (b)
+        {
+            show = "show";
+        }
+        else
+        {
+            show = "";
+        }
+        <li class="nav-item pb-1" id="@NavheadingID">
+            <button type="button" class="btn btn-secondary btn-block" data-toggle="collapse" data-target="#@NavcollapseID" aria-expanded="@b.ToString().ToLower()" aria-controls="@NavcollapseID">@Html.DisplayFor(modelItem => item.Name)</button>
+            <div class="list-group collapse pt-1 text-center @show" id="@NavcollapseID" aria-labelledby="@NavheadingID" data-parent="#@NavName">
+                @foreach (var navitem in item.SysNavbars.OrderBy(t => t.Sort))
+                {
+                    if (ViewData["Controller"] != null)
+                    {
+                        controller = ViewData["Controller"].ToString() == @navitem.Controller ? "active" : "";
+                    }
+                    <a class="list-group-item list-group-item-action @controller" asp-controller="@navitem.Controller" asp-action="@navitem.Action">@Html.DisplayFor(modelItem => navitem.Name)</a>
+                }
+            </div>
+        </li>
+    }
+</ul>

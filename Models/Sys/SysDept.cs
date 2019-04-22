@@ -14,11 +14,20 @@ namespace HospitalPersonnelSystem.Models
         /// </summary>
         [Display(Name = "科室代码")]
         public string DeptCode { get; set; }
+        private string name;
         /// <summary>
         /// 科室名称
         /// </summary>
         [Display(Name = "科室名称")]
-        public string DeptName { get; set; }
+        public string DeptName
+        {
+            get { return name; }
+            set
+            {
+                name = value;
+                Spell = GTSharp.Core.PinYinHelper.GetFirstPinyin(name);
+            }
+        }
         /// <summary>
         /// 拼音码
         /// </summary>
