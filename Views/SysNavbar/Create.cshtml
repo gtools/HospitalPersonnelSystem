@@ -1,12 +1,15 @@
 ﻿@model HospitalPersonnelSystem.Models.SysNavbar
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "菜单 - 创建";
+    ViewData["Controller"] = "SysNavbar";
 }
 
-<h1>Create</h1>
+<h1>@ViewData["Title"]</h1>
 
-<h4>SysNavbar</h4>
+<div>
+    <a asp-action="Index" data-toggle="tooltip" data-placement="left" title="返回"><i class="fa fa-arrow-alt-circle-left fa-lg"></i></a>
+</div>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -24,7 +27,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="TypeCode" class="control-label"></label>
-                <select asp-for="TypeCode" class ="form-control" asp-items="ViewBag.TypeCode"></select>
+                <select asp-for="TypeCode" class="form-control" asp-items="ViewBag.TypeCode"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Controller" class="control-label"></label>
@@ -37,14 +40,10 @@
                 <span asp-validation-for="Action" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="保&nbsp;&nbsp;存" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

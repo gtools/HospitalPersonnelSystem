@@ -8,7 +8,7 @@
 <h1>@ViewData["Title"]</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" data-toggle="tooltip" data-placement="left" title="创建"><i class="fa fa-plus-circle fa-lg"></i></a>
 </p>
 <table class="table" data-sort="table">
     <thead>
@@ -57,8 +57,8 @@
                     @Html.DisplayFor(modelItem => item.Action)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Code">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Code">Details</a> @*|
+                    <a asp-action="Edit" asp-route-id="@item.Code" data-toggle="tooltip" data-placement="left" title="编辑"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a asp-action="Details" asp-route-id="@item.Code" data-toggle="tooltip" data-placement="top" title="查看"><i class="fa fa-info-circle"></i></a> @*|
                         <a asp-action="Delete" asp-route-id="@item.Code">Delete</a>*@
                 </td>
             </tr>
@@ -86,8 +86,8 @@
 @section Scripts {
     <script src="~/lib/jquery.tablesorter/js/jquery.tablesorter.min.js"></script>
     <script src="~/lib/jquery.tablesorter/js/extras/jquery.tablesorter.pager.min.js"></script>
-    <script>
-        $(document).ready(function () {
+    <script type="text/javascript">
+        $(function () {
             $("[data-sort=table]").tablesorter({
                 sortList: [[2, 0]],
                 headers: {

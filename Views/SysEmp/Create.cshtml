@@ -1,12 +1,15 @@
 ﻿@model HospitalPersonnelSystem.Models.SysEmp
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "人员管理 - 创建";
+    ViewData["Controller"] = "SysEmp";
 }
 
-<h1>Create</h1>
+<h1>@ViewData["Title"]</h1>
 
-<h4>SysEmp</h4>
+<div>
+    <a asp-action="Index" data-toggle="tooltip" data-placement="left" title="返回"><i class="fa fa-arrow-alt-circle-left fa-lg"></i></a>
+</div>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -24,7 +27,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="DeptCode" class="control-label"></label>
-                <select asp-for="DeptCode" class ="form-control" asp-items="ViewBag.DeptCode"></select>
+                <select asp-for="DeptCode" class="form-control" asp-items="ViewBag.DeptCode"></select>
             </div>
             <div class="form-group">
                 <label asp-for="OldName" class="control-label"></label>
@@ -33,11 +36,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="GenderCode" class="control-label"></label>
-                <select asp-for="GenderCode" class ="form-control" asp-items="ViewBag.GenderCode"></select>
+                <select asp-for="GenderCode" class="form-control" asp-items="ViewBag.GenderCode"></select>
             </div>
             <div class="form-group">
                 <label asp-for="NationCode" class="control-label"></label>
-                <select asp-for="NationCode" class ="form-control" asp-items="ViewBag.NationCode"></select>
+                <select asp-for="NationCode" class="form-control" asp-items="ViewBag.NationCode"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Age" class="control-label"></label>
@@ -46,7 +49,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="PoliticalCode" class="control-label"></label>
-                <select asp-for="PoliticalCode" class ="form-control" asp-items="ViewBag.PoliticalCode"></select>
+                <select asp-for="PoliticalCode" class="form-control" asp-items="ViewBag.PoliticalCode"></select>
             </div>
             <div class="form-group">
                 <label asp-for="PoliticalDate" class="control-label"></label>
@@ -60,23 +63,23 @@
             </div>
             <div class="form-group">
                 <label asp-for="ProfessionTitleTypeCode" class="control-label"></label>
-                <select asp-for="ProfessionTitleTypeCode" class ="form-control" asp-items="ViewBag.ProfessionTitleTypeCode"></select>
+                <select asp-for="ProfessionTitleTypeCode" class="form-control" asp-items="ViewBag.ProfessionTitleTypeCode"></select>
             </div>
             <div class="form-group">
                 <label asp-for="ProfessionTitleLevelCode" class="control-label"></label>
-                <select asp-for="ProfessionTitleLevelCode" class ="form-control" asp-items="ViewBag.ProfessionTitleLevelCode"></select>
+                <select asp-for="ProfessionTitleLevelCode" class="form-control" asp-items="ViewBag.ProfessionTitleLevelCode"></select>
             </div>
             <div class="form-group">
                 <label asp-for="ProfessionTitleCode" class="control-label"></label>
-                <select asp-for="ProfessionTitleCode" class ="form-control" asp-items="ViewBag.ProfessionTitleCode"></select>
+                <select asp-for="ProfessionTitleCode" class="form-control" asp-items="ViewBag.ProfessionTitleCode"></select>
             </div>
             <div class="form-group">
                 <label asp-for="AdminDutyCode" class="control-label"></label>
-                <select asp-for="AdminDutyCode" class ="form-control" asp-items="ViewBag.AdminDutyCode"></select>
+                <select asp-for="AdminDutyCode" class="form-control" asp-items="ViewBag.AdminDutyCode"></select>
             </div>
             <div class="form-group">
                 <label asp-for="TypeCode" class="control-label"></label>
-                <select asp-for="TypeCode" class ="form-control" asp-items="ViewBag.TypeCode"></select>
+                <select asp-for="TypeCode" class="form-control" asp-items="ViewBag.TypeCode"></select>
             </div>
             <div class="form-group">
                 <label asp-for="WorkDate" class="control-label"></label>
@@ -115,7 +118,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="EducationCode" class="control-label"></label>
-                <select asp-for="EducationCode" class ="form-control" asp-items="ViewBag.EducationCode"></select>
+                <select asp-for="EducationCode" class="form-control" asp-items="ViewBag.EducationCode"></select>
             </div>
             <div class="form-group">
                 <label asp-for="EducationDate" class="control-label"></label>
@@ -124,7 +127,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="DegreeCode" class="control-label"></label>
-                <select asp-for="DegreeCode" class ="form-control" asp-items="ViewBag.DegreeCode"></select>
+                <select asp-for="DegreeCode" class="form-control" asp-items="ViewBag.DegreeCode"></select>
             </div>
             <div class="form-group">
                 <label asp-for="School" class="control-label"></label>
@@ -148,7 +151,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="MarriageCode" class="control-label"></label>
-                <select asp-for="MarriageCode" class ="form-control" asp-items="ViewBag.MarriageCode"></select>
+                <select asp-for="MarriageCode" class="form-control" asp-items="ViewBag.MarriageCode"></select>
             </div>
             <div class="form-group">
                 <label asp-for="BirthAdd" class="control-label"></label>
@@ -186,14 +189,10 @@
                 <span asp-validation-for="CreateEmp" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="保&nbsp;&nbsp;存" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

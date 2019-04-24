@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<HospitalPersonnelSystem.Models.SysEmp>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "人员管理";
     ViewData["Controller"] = "SysEmp";
 }
 
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" data-toggle="tooltip" data-placement="left" title="创建"><i class="fa fa-plus-circle fa-lg"></i></a>
 </p>
 <table class="table">
     <thead>
@@ -272,8 +272,8 @@
                 @Html.DisplayFor(modelItem => item.CreateDate)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.EmpCode">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EmpCode">Details</a> @*|
+                <a asp-action="Edit" asp-route-id="@item.EmpCode" data-toggle="tooltip" data-placement="left" title="编辑"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                <a asp-action="Details" asp-route-id="@item.EmpCode" data-toggle="tooltip" data-placement="top" title="查看"><i class="fa fa-info-circle"></i></a> @*|
                 <a asp-action="Delete" asp-route-id="@item.EmpCode">Delete</a>*@
             </td>
         </tr>
