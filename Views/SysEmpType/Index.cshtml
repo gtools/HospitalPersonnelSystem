@@ -1,16 +1,16 @@
 ﻿@model IEnumerable<HospitalPersonnelSystem.Models.SysEmpType>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "人员类别";
     ViewData["Controller"] = "SysEmpType";
 }
 
-<h1>Index</h1>
+<h1>@ViewData["Title"]</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table" data-sort="table">
     <thead>
         <tr>
             <th>
@@ -26,23 +26,58 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Spell)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sort)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Code">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Code">Details</a> @*|
-                <a asp-action="Delete" asp-route-id="@item.Code">Delete</a>*@
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Spell)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sort)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Code">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Code">Details</a> @*|
+                        <a asp-action="Delete" asp-route-id="@item.Code">Delete</a>*@
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+<div id="pager" class="pager">
+    <form>
+        @*<img src="~/lib/jquery.tablesorter/css/images/first.png" class="first" />
+            <img src="~/lib/jquery.tablesorter/css/images/prev.png" class="prev" />*@
+        <i class="fa fa-fast-backward first"></i>
+        <i class="fa fa-backward prev"></i>
+        <input type="text" class="pagedisplay" />
+        <i class="fa fa-forward next"></i>
+        <i class="fa fa-fast-forward last"></i>
+        @*<img src="~/lib/jquery.tablesorter/css/images/next.png" class="next" />
+            <img src="~/lib/jquery.tablesorter/css/images/last.png" class="last" />*@
+        <select class="pagesize">
+            <option selected="selected" value="10">10</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+        </select>
+    </form>
+</div>
+@section Scripts {
+    <script src="~/lib/jquery.tablesorter/js/jquery.tablesorter.min.js"></script>
+    <script src="~/lib/jquery.tablesorter/js/extras/jquery.tablesorter.pager.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("[data-sort=table]").tablesorter({
+                sortList: [[2, 0]],
+                headers: {
+                    3: { sorter: false }
+                },
+                widthFixed: true,
+                widgets: ['zebra']
+            }).tablesorterPager({ container: $("#pager") });
+        });
+    </script>
+}

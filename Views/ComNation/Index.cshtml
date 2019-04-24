@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<HospitalPersonnelSystem.Models.ComNation>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "民族";
     ViewData["Controller"] = "ComNation";
 }
 
-<h1>Index</h1>
+<h1>@ViewData["Title"]</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -73,7 +73,7 @@
             $("[data-sort=table]").tablesorter({
                 sortList: [[2, 0]],
                 headers: {
-                    6: { sorter: false }
+                    3: { sorter: false }
                 },
                 widthFixed: true,
                 widgets: ['zebra']
