@@ -19,9 +19,4 @@
     <ProjectReference Include="..\..\GTSharp\GTSharp\GTSharp.csproj" />
   </ItemGroup>
 
-
-  <ItemGroup>
-    <Folder Include="Controllers\Sys\" />
-  </ItemGroup>
-
 </Project>

@@ -13,6 +13,14 @@
     {
       "library": "popper.js@1.15.0",
       "destination": "wwwroot/lib/popper.js/"
+    },
+    {
+      "library": "jquery.tablesorter@2.31.1",
+      "destination": "wwwroot/lib/jquery.tablesorter/"
+    },
+    {
+      "library": "font-awesome@5.8.1",
+      "destination": "wwwroot/lib/font-awesome/"
     }
   ]
 }

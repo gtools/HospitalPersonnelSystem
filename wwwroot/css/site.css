@@ -1,1 +1,15 @@
-﻿
+﻿.tablesorter-headerUnSorted .tablesorter-header-inner:after {
+    font-family: "Font Awesome 5 Free";
+    content: "\f0dc";
+}
+.tablesorter-headerAsc .tablesorter-header-inner:after {
+    font-family: "Font Awesome 5 Free";
+    content: "\f0de";
+}
+.tablesorter-headerDesc .tablesorter-header-inner:after {
+    font-family: "Font Awesome 5 Free";
+    content: "\f0dd";
+}
+.sorter-false .tablesorter-header-inner:after {
+    color: #E0E0E0;
+}
