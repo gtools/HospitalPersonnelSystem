@@ -58,7 +58,13 @@ namespace HospitalPersonnelSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                comProfessionTitleType.Code = Guid.NewGuid();
+                //comProfessionTitleType.Code = Guid.NewGuid();
+                //排序MAX加1
+                if (_context.ComProfessionTitleTypes.Count() > 0)
+                    comProfessionTitleType.Sort = _context.ComProfessionTitleTypes.Max(t => t.Sort) + 1;
+                //拼音码没有
+                if (string.IsNullOrWhiteSpace(comProfessionTitleType.Spell))
+                    comProfessionTitleType.Spell = GTSharp.Core.PinYinHelper.GetFirstPinyin(comProfessionTitleType.Name);
                 _context.Add(comProfessionTitleType);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

@@ -13,14 +13,14 @@ namespace HospitalPersonnelSystem.Models
         /// 工号
         /// </summary>
         [Remote(action: "VerifyEmp_Code", controller: "SYS_Emp")]//验证
-        [Required(ErrorMessage = Validate.Required)]
+        [Required(ErrorMessage = GTSharp.Validate.Required)]
         [Display(Name = "工号")]
         public string EmpCode { get; set; }
         private string name;
         /// <summary>
         /// 姓名
         /// </summary>
-        [Required(ErrorMessage = Validate.Required)]
+        [Required(ErrorMessage = GTSharp.Validate.Required)]
         [Display(Name = "姓名")]
         public string EmpName
         {
@@ -39,7 +39,7 @@ namespace HospitalPersonnelSystem.Models
         /// <summary>
         /// 科室
         /// </summary>
-        [Required(ErrorMessage = Validate.Required)]
+        [Required(ErrorMessage = GTSharp.Validate.Required)]
         [Display(Name = "科室")]
         public string DeptCode { get; set; }
         /// <summary>
@@ -56,7 +56,7 @@ namespace HospitalPersonnelSystem.Models
         /// 性别，f1384219-82c1-47d8-8689-0be7c7f41129
         /// </summary>
         [Display(Name = "性别")]
-        [Required(ErrorMessage = Validate.Required)]
+        [Required(ErrorMessage = GTSharp.Validate.Required)]
         public Guid GenderCode { get; set; }
         /// <summary>
         /// 科室
@@ -72,13 +72,13 @@ namespace HospitalPersonnelSystem.Models
         /// 民族
         /// </summary>
         [Display(Name = "民族")]
-        [Required(ErrorMessage = Validate.Required)]
+        [Required(ErrorMessage = GTSharp.Validate.Required)]
         public ComNation ComNation { get; set; }
         /// <summary>
         /// 出生日期
         /// </summary>
         [Display(Name = "出生日期")]
-        [Required(ErrorMessage = Validate.Required)]
+        [Required(ErrorMessage = GTSharp.Validate.Required)]
         public DateTime BirthDate { get; set; }
         /// <summary>
         /// 年龄
@@ -104,7 +104,7 @@ namespace HospitalPersonnelSystem.Models
         /// 身份证
         /// </summary>
         [Display(Name = "身份证号")]
-        [Required(ErrorMessage = Validate.Required)]
+        [Required(ErrorMessage = GTSharp.Validate.Required)]
         public string IdentityCard { get; set; }
         /// <summary>
         /// 职称系列
@@ -190,7 +190,7 @@ namespace HospitalPersonnelSystem.Models
         /// 来院日期
         /// </summary>
         [Display(Name = "来院日期")]
-        [Required(ErrorMessage = Validate.Required)]
+        [Required(ErrorMessage = GTSharp.Validate.Required)]
         public DateTime HospitalDate { get; set; }
         ///// <summary>
         ///// 岗位
@@ -307,11 +307,11 @@ namespace HospitalPersonnelSystem.Models
         /// </summary>
         [Display(Name = "婚姻状况")]
         public ComMarriage ComMarriage { get; set; }
-        /// <summary>
-        /// 出生地
-        /// </summary>
-        [Display(Name = "出生地")]
-        public string BirthAdd { get; set; }
+        ///// <summary>
+        ///// 出生地
+        ///// </summary>
+        //[Display(Name = "出生地")]
+        //public string BirthAdd { get; set; }
         /// <summary>
         /// 家庭住址
         /// </summary>

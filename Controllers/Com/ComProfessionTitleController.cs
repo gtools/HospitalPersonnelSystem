@@ -49,8 +49,8 @@ namespace HospitalPersonnelSystem.Controllers
         // GET: ComProfessionTitle/Create
         public IActionResult Create()
         {
-            ViewData["LevelCode"] = new SelectList(_context.ComProfessionTitleLevels, "Code", "Code");
-            ViewData["TypeCode"] = new SelectList(_context.ComProfessionTitleTypes, "Code", "Code");
+            ViewData["LevelCode"] = new SelectList(_context.ComProfessionTitleLevels.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["TypeCode"] = new SelectList(_context.ComProfessionTitleTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name");
             return View();
         }
 
@@ -63,13 +63,19 @@ namespace HospitalPersonnelSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                comProfessionTitle.Code = Guid.NewGuid();
+                //comProfessionTitle.Code = Guid.NewGuid();
+                //排序MAX加1
+                if (_context.ComProfessionTitles.Count() > 0)
+                    comProfessionTitle.Sort = _context.ComProfessionTitles.Max(t => t.Sort) + 1;
+                //拼音码没有
+                if (string.IsNullOrWhiteSpace(comProfessionTitle.Spell))
+                    comProfessionTitle.Spell = GTSharp.Core.PinYinHelper.GetFirstPinyin(comProfessionTitle.Name);
                 _context.Add(comProfessionTitle);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["LevelCode"] = new SelectList(_context.ComProfessionTitleLevels, "Code", "Code", comProfessionTitle.LevelCode);
-            ViewData["TypeCode"] = new SelectList(_context.ComProfessionTitleTypes, "Code", "Code", comProfessionTitle.TypeCode);
+            ViewData["LevelCode"] = new SelectList(_context.ComProfessionTitleLevels.OrderBy(t => t.Sort).ToList(), "Code", "Name", comProfessionTitle.LevelCode);
+            ViewData["TypeCode"] = new SelectList(_context.ComProfessionTitleTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name", comProfessionTitle.TypeCode);
             return View(comProfessionTitle);
         }
 
@@ -86,8 +92,8 @@ namespace HospitalPersonnelSystem.Controllers
             {
                 return NotFound();
             }
-            ViewData["LevelCode"] = new SelectList(_context.ComProfessionTitleLevels, "Code", "Code", comProfessionTitle.LevelCode);
-            ViewData["TypeCode"] = new SelectList(_context.ComProfessionTitleTypes, "Code", "Code", comProfessionTitle.TypeCode);
+            ViewData["LevelCode"] = new SelectList(_context.ComProfessionTitleLevels.OrderBy(t => t.Sort).ToList(), "Code", "Name", comProfessionTitle.LevelCode);
+            ViewData["TypeCode"] = new SelectList(_context.ComProfessionTitleTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name", comProfessionTitle.TypeCode);
             return View(comProfessionTitle);
         }
 
@@ -123,8 +129,8 @@ namespace HospitalPersonnelSystem.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["LevelCode"] = new SelectList(_context.ComProfessionTitleLevels, "Code", "Code", comProfessionTitle.LevelCode);
-            ViewData["TypeCode"] = new SelectList(_context.ComProfessionTitleTypes, "Code", "Code", comProfessionTitle.TypeCode);
+            ViewData["LevelCode"] = new SelectList(_context.ComProfessionTitleLevels.OrderBy(t => t.Sort).ToList(), "Code", "Name", comProfessionTitle.LevelCode);
+            ViewData["TypeCode"] = new SelectList(_context.ComProfessionTitleTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name", comProfessionTitle.TypeCode);
             return View(comProfessionTitle);
         }
 

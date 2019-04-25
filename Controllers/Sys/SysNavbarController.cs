@@ -48,7 +48,7 @@ namespace HospitalPersonnelSystem.Controllers
         // GET: SysNavbar/Create
         public IActionResult Create()
         {
-            ViewData["TypeCode"] = new SelectList(_context.SysNavbarTypes, "Code", "Code");
+            ViewData["TypeCode"] = new SelectList(_context.SysNavbarTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name");
             return View();
         }
 
@@ -61,12 +61,18 @@ namespace HospitalPersonnelSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                sysNavbar.Code = Guid.NewGuid();
+                //sysNavbar.Code = Guid.NewGuid();
+                //排序MAX加1
+                if (_context.SysNavbars.Count() > 0)
+                    sysNavbar.Sort = _context.SysNavbars.Max(t => t.Sort) + 1;
+                //拼音码没有
+                if (string.IsNullOrWhiteSpace(sysNavbar.Spell))
+                    sysNavbar.Spell = GTSharp.Core.PinYinHelper.GetFirstPinyin(sysNavbar.Name);
                 _context.Add(sysNavbar);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TypeCode"] = new SelectList(_context.SysNavbarTypes, "Code", "Code", sysNavbar.TypeCode);
+            ViewData["TypeCode"] = new SelectList(_context.SysNavbarTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysNavbar.TypeCode);
             return View(sysNavbar);
         }
 
@@ -83,7 +89,7 @@ namespace HospitalPersonnelSystem.Controllers
             {
                 return NotFound();
             }
-            ViewData["TypeCode"] = new SelectList(_context.SysNavbarTypes, "Code", "Code", sysNavbar.TypeCode);
+            ViewData["TypeCode"] = new SelectList(_context.SysNavbarTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysNavbar.TypeCode);
             return View(sysNavbar);
         }
 
@@ -119,7 +125,7 @@ namespace HospitalPersonnelSystem.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TypeCode"] = new SelectList(_context.SysNavbarTypes, "Code", "Code", sysNavbar.TypeCode);
+            ViewData["TypeCode"] = new SelectList(_context.SysNavbarTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysNavbar.TypeCode);
             return View(sysNavbar);
         }
 

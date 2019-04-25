@@ -23,7 +23,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Spell" class="control-label"></label>
-                <input asp-for="Spell" class="form-control" />
+                <input asp-for="Spell" class="form-control" readonly />
                 <span asp-validation-for="Spell" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -180,11 +180,6 @@
                 <label asp-for="MarriageCode" class="control-label"></label>
                 <select asp-for="MarriageCode" class="form-control" asp-items="ViewBag.MarriageCode"></select>
                 <span asp-validation-for="MarriageCode" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BirthAdd" class="control-label"></label>
-                <input asp-for="BirthAdd" class="form-control" />
-                <span asp-validation-for="BirthAdd" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="HomeAdd" class="control-label"></label>

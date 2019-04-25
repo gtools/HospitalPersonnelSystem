@@ -18,6 +18,7 @@ namespace HospitalPersonnelSystem.Models
         /// 名称
         /// </summary>
         [Display(Name = "名称")]
+        [Required(ErrorMessage = GTSharp.Validate.Required)]
         public string Name
         {
             get { return name; }

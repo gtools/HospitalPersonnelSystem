@@ -58,7 +58,13 @@ namespace HospitalPersonnelSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                sysEmpType.Code = Guid.NewGuid();
+                //sysEmpType.Code = Guid.NewGuid();
+                //排序MAX加1
+                if (_context.SysEmpTypes.Count() > 0)
+                    sysEmpType.Sort = _context.SysEmpTypes.Max(t => t.Sort) + 1;
+                //拼音码没有
+                if (string.IsNullOrWhiteSpace(sysEmpType.Spell))
+                    sysEmpType.Spell = GTSharp.Core.PinYinHelper.GetFirstPinyin(sysEmpType.Name);
                 _context.Add(sysEmpType);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

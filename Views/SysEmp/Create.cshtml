@@ -16,13 +16,18 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="EmpCode" class="control-label"></label>
+                <input asp-for="EmpCode" class="form-control" />
+                <span asp-validation-for="EmpCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="EmpName" class="control-label"></label>
                 <input asp-for="EmpName" class="form-control" />
                 <span asp-validation-for="EmpName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Spell" class="control-label"></label>
-                <input asp-for="Spell" class="form-control" />
+                <input asp-for="Spell" class="form-control" readonly />
                 <span asp-validation-for="Spell" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -154,11 +159,6 @@
                 <select asp-for="MarriageCode" class="form-control" asp-items="ViewBag.MarriageCode"></select>
             </div>
             <div class="form-group">
-                <label asp-for="BirthAdd" class="control-label"></label>
-                <input asp-for="BirthAdd" class="form-control" />
-                <span asp-validation-for="BirthAdd" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="HomeAdd" class="control-label"></label>
                 <input asp-for="HomeAdd" class="form-control" />
                 <span asp-validation-for="HomeAdd" class="text-danger"></span>
@@ -197,4 +197,14 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+        $(function () {
+            $("#EmpName").change(function () {
+                var name = $(this).val();
+                $.get("/Home/GetSpell?chinese=" + encodeURI(name), function (result) {
+                    $("#Spell").val(result);
+                });
+            });
+        });
+    </script>
 }

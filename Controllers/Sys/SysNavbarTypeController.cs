@@ -58,7 +58,13 @@ namespace HospitalPersonnelSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                sysNavbarType.Code = Guid.NewGuid();
+                //sysNavbarType.Code = Guid.NewGuid();
+                //排序MAX加1
+                if (_context.SysNavbarTypes.Count() > 0)
+                    sysNavbarType.Sort = _context.SysNavbarTypes.Max(t => t.Sort) + 1;
+                //拼音码没有
+                if (string.IsNullOrWhiteSpace(sysNavbarType.Spell))
+                    sysNavbarType.Spell = GTSharp.Core.PinYinHelper.GetFirstPinyin(sysNavbarType.Name);
                 _context.Add(sysNavbarType);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

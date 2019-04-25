@@ -58,7 +58,13 @@ namespace HospitalPersonnelSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                comMarriage.Code = Guid.NewGuid();
+                //comMarriage.Code = Guid.NewGuid();
+                //排序MAX加1
+                if (_context.ComMarriages.Count() > 0)
+                    comMarriage.Sort = _context.ComMarriages.Max(t => t.Sort) + 1;
+                //拼音码没有
+                if (string.IsNullOrWhiteSpace(comMarriage.Spell))
+                    comMarriage.Spell = GTSharp.Core.PinYinHelper.GetFirstPinyin(comMarriage.Name);
                 _context.Add(comMarriage);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

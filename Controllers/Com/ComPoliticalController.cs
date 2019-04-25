@@ -58,7 +58,13 @@ namespace HospitalPersonnelSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                comPolitical.Code = Guid.NewGuid();
+                //comPolitical.Code = Guid.NewGuid();
+                //排序MAX加1
+                if (_context.ComPoliticals.Count() > 0)
+                    comPolitical.Sort = _context.ComPoliticals.Max(t => t.Sort) + 1;
+                //拼音码没有
+                if (string.IsNullOrWhiteSpace(comPolitical.Spell))
+                    comPolitical.Spell = GTSharp.Core.PinYinHelper.GetFirstPinyin(comPolitical.Name);
                 _context.Add(comPolitical);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

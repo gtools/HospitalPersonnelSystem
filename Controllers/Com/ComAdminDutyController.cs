@@ -10,6 +10,9 @@ using HospitalPersonnelSystem.Models;
 
 namespace HospitalPersonnelSystem.Controllers
 {
+    /// <summary>
+    /// 行政职务
+    /// </summary>
     public class ComAdminDutyController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -58,7 +61,13 @@ namespace HospitalPersonnelSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                comAdminDuty.Code = Guid.NewGuid();
+                //comAdminDuty.Code = Guid.NewGuid();
+                //排序MAX加1
+                if (_context.ComAdminDutys.Count() > 0)
+                    comAdminDuty.Sort = _context.ComAdminDutys.Max(t => t.Sort) + 1;
+                //拼音码没有
+                if (string.IsNullOrWhiteSpace(comAdminDuty.Spell))
+                    comAdminDuty.Spell = GTSharp.Core.PinYinHelper.GetFirstPinyin(comAdminDuty.Name);
                 _context.Add(comAdminDuty);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

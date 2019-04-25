@@ -58,7 +58,13 @@ namespace HospitalPersonnelSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                comDegree.Code = Guid.NewGuid();
+                //comDegree.Code = Guid.NewGuid();
+                //排序MAX加1
+                if (_context.ComDegrees.Count() > 0)
+                    comDegree.Sort = _context.ComDegrees.Max(t => t.Sort) + 1;
+                //拼音码没有
+                if (string.IsNullOrWhiteSpace(comDegree.Spell))
+                    comDegree.Spell = GTSharp.Core.PinYinHelper.GetFirstPinyin(comDegree.Name);
                 _context.Add(comDegree);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

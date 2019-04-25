@@ -59,18 +59,18 @@ namespace HospitalPersonnelSystem.Controllers
         // GET: SysEmp/Create
         public IActionResult Create()
         {
-            ViewData["AdminDutyCode"] = new SelectList(_context.ComAdminDutys, "Code", "Code");
-            ViewData["DegreeCode"] = new SelectList(_context.ComDegrees, "Code", "Code");
-            ViewData["EducationCode"] = new SelectList(_context.ComEducations, "Code", "Code");
-            ViewData["GenderCode"] = new SelectList(_context.ComGenders, "Code", "Code");
-            ViewData["MarriageCode"] = new SelectList(_context.ComMarriages, "Code", "Code");
-            ViewData["NationCode"] = new SelectList(_context.ComNations, "Code", "Code");
-            ViewData["PoliticalCode"] = new SelectList(_context.ComPoliticals, "Code", "Code");
-            ViewData["ProfessionTitleCode"] = new SelectList(_context.ComProfessionTitles, "Code", "Code");
-            ViewData["ProfessionTitleLevelCode"] = new SelectList(_context.ComProfessionTitleLevels, "Code", "Code");
-            ViewData["ProfessionTitleTypeCode"] = new SelectList(_context.ComProfessionTitleTypes, "Code", "Code");
-            ViewData["DeptCode"] = new SelectList(_context.SysDepts, "DeptCode", "DeptCode");
-            ViewData["TypeCode"] = new SelectList(_context.SysEmpTypes, "Code", "Code");
+            ViewData["AdminDutyCode"] = new SelectList(_context.ComAdminDutys.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["DegreeCode"] = new SelectList(_context.ComDegrees.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["EducationCode"] = new SelectList(_context.ComEducations.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["GenderCode"] = new SelectList(_context.ComGenders.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["MarriageCode"] = new SelectList(_context.ComMarriages.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["NationCode"] = new SelectList(_context.ComNations.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["PoliticalCode"] = new SelectList(_context.ComPoliticals.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["ProfessionTitleCode"] = new SelectList(_context.ComProfessionTitles.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["ProfessionTitleLevelCode"] = new SelectList(_context.ComProfessionTitleLevels.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["ProfessionTitleTypeCode"] = new SelectList(_context.ComProfessionTitleTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["DeptCode"] = new SelectList(_context.SysDepts.OrderBy(t => t.Sort).ToList(), "DeptCode", "DeptCode");
+            ViewData["TypeCode"] = new SelectList(_context.SysEmpTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name");
             return View();
         }
 
@@ -79,26 +79,32 @@ namespace HospitalPersonnelSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EmpCode,EmpName,Spell,DeptCode,OldName,GenderCode,NationCode,BirthDate,Age,PoliticalCode,PoliticalDate,IdentityCard,ProfessionTitleTypeCode,ProfessionTitleLevelCode,ProfessionTitleCode,AdminDutyCode,IsPost,TypeCode,WorkDate,HospitalDate,WorkAge,HospitalAge,Practice,PracticeDate,OpenBank,BankCard,EducationCode,EducationDate,DegreeCode,School,SchoolMajor,GraduationDate,Telephone,MarriageCode,BirthAdd,HomeAdd,IdentityAdd,NativePlace,Photo,IsStop,Remark,CreateEmp,CreateDate")] SysEmp sysEmp)
+        public async Task<IActionResult> Create([Bind("EmpCode,EmpName,Spell,DeptCode,OldName,GenderCode,NationCode,BirthDate,Age,PoliticalCode,PoliticalDate,IdentityCard,ProfessionTitleTypeCode,ProfessionTitleLevelCode,ProfessionTitleCode,AdminDutyCode,IsPost,TypeCode,WorkDate,HospitalDate,WorkAge,HospitalAge,Practice,PracticeDate,OpenBank,BankCard,EducationCode,EducationDate,DegreeCode,School,SchoolMajor,GraduationDate,Telephone,MarriageCode,HomeAdd,IdentityAdd,NativePlace,Photo,IsStop,Remark,CreateEmp,CreateDate")] SysEmp sysEmp)
         {
             if (ModelState.IsValid)
             {
+                //排序MAX加1
+                //if (_context.sysEmp.Count() > 0)
+                //sysEmp.Sort = _context.sysEmp.Max(t => t.Sort) + 1;
+                //拼音码没有
+                if (string.IsNullOrWhiteSpace(sysEmp.Spell))
+                    sysEmp.Spell = GTSharp.Core.PinYinHelper.GetFirstPinyin(sysEmp.EmpName);
                 _context.Add(sysEmp);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AdminDutyCode"] = new SelectList(_context.ComAdminDutys, "Code", "Code", sysEmp.AdminDutyCode);
-            ViewData["DegreeCode"] = new SelectList(_context.ComDegrees, "Code", "Code", sysEmp.DegreeCode);
-            ViewData["EducationCode"] = new SelectList(_context.ComEducations, "Code", "Code", sysEmp.EducationCode);
-            ViewData["GenderCode"] = new SelectList(_context.ComGenders, "Code", "Code", sysEmp.GenderCode);
-            ViewData["MarriageCode"] = new SelectList(_context.ComMarriages, "Code", "Code", sysEmp.MarriageCode);
-            ViewData["NationCode"] = new SelectList(_context.ComNations, "Code", "Code", sysEmp.NationCode);
-            ViewData["PoliticalCode"] = new SelectList(_context.ComPoliticals, "Code", "Code", sysEmp.PoliticalCode);
-            ViewData["ProfessionTitleCode"] = new SelectList(_context.ComProfessionTitles, "Code", "Code", sysEmp.ProfessionTitleCode);
-            ViewData["ProfessionTitleLevelCode"] = new SelectList(_context.ComProfessionTitleLevels, "Code", "Code", sysEmp.ProfessionTitleLevelCode);
-            ViewData["ProfessionTitleTypeCode"] = new SelectList(_context.ComProfessionTitleTypes, "Code", "Code", sysEmp.ProfessionTitleTypeCode);
-            ViewData["DeptCode"] = new SelectList(_context.SysDepts, "DeptCode", "DeptCode", sysEmp.DeptCode);
-            ViewData["TypeCode"] = new SelectList(_context.SysEmpTypes, "Code", "Code", sysEmp.TypeCode);
+            ViewData["AdminDutyCode"] = new SelectList(_context.ComAdminDutys.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.AdminDutyCode);
+            ViewData["DegreeCode"] = new SelectList(_context.ComDegrees.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.DegreeCode);
+            ViewData["EducationCode"] = new SelectList(_context.ComEducations.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.EducationCode);
+            ViewData["GenderCode"] = new SelectList(_context.ComGenders.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.GenderCode);
+            ViewData["MarriageCode"] = new SelectList(_context.ComMarriages.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.MarriageCode);
+            ViewData["NationCode"] = new SelectList(_context.ComNations.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.NationCode);
+            ViewData["PoliticalCode"] = new SelectList(_context.ComPoliticals.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.PoliticalCode);
+            ViewData["ProfessionTitleCode"] = new SelectList(_context.ComProfessionTitles.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.ProfessionTitleCode);
+            ViewData["ProfessionTitleLevelCode"] = new SelectList(_context.ComProfessionTitleLevels.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.ProfessionTitleLevelCode);
+            ViewData["ProfessionTitleTypeCode"] = new SelectList(_context.ComProfessionTitleTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.ProfessionTitleTypeCode);
+            ViewData["DeptCode"] = new SelectList(_context.SysDepts.OrderBy(t => t.Sort).ToList(), "DeptCode", "DeptCode", sysEmp.DeptCode);
+            ViewData["TypeCode"] = new SelectList(_context.SysEmpTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.TypeCode);
             return View(sysEmp);
         }
 
@@ -115,18 +121,18 @@ namespace HospitalPersonnelSystem.Controllers
             {
                 return NotFound();
             }
-            ViewData["AdminDutyCode"] = new SelectList(_context.ComAdminDutys, "Code", "Code", sysEmp.AdminDutyCode);
-            ViewData["DegreeCode"] = new SelectList(_context.ComDegrees, "Code", "Code", sysEmp.DegreeCode);
-            ViewData["EducationCode"] = new SelectList(_context.ComEducations, "Code", "Code", sysEmp.EducationCode);
-            ViewData["GenderCode"] = new SelectList(_context.ComGenders, "Code", "Code", sysEmp.GenderCode);
-            ViewData["MarriageCode"] = new SelectList(_context.ComMarriages, "Code", "Code", sysEmp.MarriageCode);
-            ViewData["NationCode"] = new SelectList(_context.ComNations, "Code", "Code", sysEmp.NationCode);
-            ViewData["PoliticalCode"] = new SelectList(_context.ComPoliticals, "Code", "Code", sysEmp.PoliticalCode);
-            ViewData["ProfessionTitleCode"] = new SelectList(_context.ComProfessionTitles, "Code", "Code", sysEmp.ProfessionTitleCode);
-            ViewData["ProfessionTitleLevelCode"] = new SelectList(_context.ComProfessionTitleLevels, "Code", "Code", sysEmp.ProfessionTitleLevelCode);
-            ViewData["ProfessionTitleTypeCode"] = new SelectList(_context.ComProfessionTitleTypes, "Code", "Code", sysEmp.ProfessionTitleTypeCode);
-            ViewData["DeptCode"] = new SelectList(_context.SysDepts, "DeptCode", "DeptCode", sysEmp.DeptCode);
-            ViewData["TypeCode"] = new SelectList(_context.SysEmpTypes, "Code", "Code", sysEmp.TypeCode);
+            ViewData["AdminDutyCode"] = new SelectList(_context.ComAdminDutys.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.AdminDutyCode);
+            ViewData["DegreeCode"] = new SelectList(_context.ComDegrees.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.DegreeCode);
+            ViewData["EducationCode"] = new SelectList(_context.ComEducations.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.EducationCode);
+            ViewData["GenderCode"] = new SelectList(_context.ComGenders.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.GenderCode);
+            ViewData["MarriageCode"] = new SelectList(_context.ComMarriages.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.MarriageCode);
+            ViewData["NationCode"] = new SelectList(_context.ComNations.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.NationCode);
+            ViewData["PoliticalCode"] = new SelectList(_context.ComPoliticals.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.PoliticalCode);
+            ViewData["ProfessionTitleCode"] = new SelectList(_context.ComProfessionTitles.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.ProfessionTitleCode);
+            ViewData["ProfessionTitleLevelCode"] = new SelectList(_context.ComProfessionTitleLevels.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.ProfessionTitleLevelCode);
+            ViewData["ProfessionTitleTypeCode"] = new SelectList(_context.ComProfessionTitleTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.ProfessionTitleTypeCode);
+            ViewData["DeptCode"] = new SelectList(_context.SysDepts.OrderBy(t => t.Sort).ToList(), "DeptCode", "DeptCode", sysEmp.DeptCode);
+            ViewData["TypeCode"] = new SelectList(_context.SysEmpTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.TypeCode);
             return View(sysEmp);
         }
 
@@ -135,7 +141,7 @@ namespace HospitalPersonnelSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("EmpCode,EmpName,Spell,DeptCode,OldName,GenderCode,NationCode,BirthDate,Age,PoliticalCode,PoliticalDate,IdentityCard,ProfessionTitleTypeCode,ProfessionTitleLevelCode,ProfessionTitleCode,AdminDutyCode,IsPost,TypeCode,WorkDate,HospitalDate,WorkAge,HospitalAge,Practice,PracticeDate,OpenBank,BankCard,EducationCode,EducationDate,DegreeCode,School,SchoolMajor,GraduationDate,Telephone,MarriageCode,BirthAdd,HomeAdd,IdentityAdd,NativePlace,Photo,IsStop,Remark,CreateEmp,CreateDate")] SysEmp sysEmp)
+        public async Task<IActionResult> Edit(string id, [Bind("EmpCode,EmpName,Spell,DeptCode,OldName,GenderCode,NationCode,BirthDate,Age,PoliticalCode,PoliticalDate,IdentityCard,ProfessionTitleTypeCode,ProfessionTitleLevelCode,ProfessionTitleCode,AdminDutyCode,IsPost,TypeCode,WorkDate,HospitalDate,WorkAge,HospitalAge,Practice,PracticeDate,OpenBank,BankCard,EducationCode,EducationDate,DegreeCode,School,SchoolMajor,GraduationDate,Telephone,MarriageCode,HomeAdd,IdentityAdd,NativePlace,Photo,IsStop,Remark,CreateEmp,CreateDate")] SysEmp sysEmp)
         {
             if (id != sysEmp.EmpCode)
             {
@@ -162,18 +168,18 @@ namespace HospitalPersonnelSystem.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AdminDutyCode"] = new SelectList(_context.ComAdminDutys, "Code", "Code", sysEmp.AdminDutyCode);
-            ViewData["DegreeCode"] = new SelectList(_context.ComDegrees, "Code", "Code", sysEmp.DegreeCode);
-            ViewData["EducationCode"] = new SelectList(_context.ComEducations, "Code", "Code", sysEmp.EducationCode);
-            ViewData["GenderCode"] = new SelectList(_context.ComGenders, "Code", "Code", sysEmp.GenderCode);
-            ViewData["MarriageCode"] = new SelectList(_context.ComMarriages, "Code", "Code", sysEmp.MarriageCode);
-            ViewData["NationCode"] = new SelectList(_context.ComNations, "Code", "Code", sysEmp.NationCode);
-            ViewData["PoliticalCode"] = new SelectList(_context.ComPoliticals, "Code", "Code", sysEmp.PoliticalCode);
-            ViewData["ProfessionTitleCode"] = new SelectList(_context.ComProfessionTitles, "Code", "Code", sysEmp.ProfessionTitleCode);
-            ViewData["ProfessionTitleLevelCode"] = new SelectList(_context.ComProfessionTitleLevels, "Code", "Code", sysEmp.ProfessionTitleLevelCode);
-            ViewData["ProfessionTitleTypeCode"] = new SelectList(_context.ComProfessionTitleTypes, "Code", "Code", sysEmp.ProfessionTitleTypeCode);
-            ViewData["DeptCode"] = new SelectList(_context.SysDepts, "DeptCode", "DeptCode", sysEmp.DeptCode);
-            ViewData["TypeCode"] = new SelectList(_context.SysEmpTypes, "Code", "Code", sysEmp.TypeCode);
+            ViewData["AdminDutyCode"] = new SelectList(_context.ComAdminDutys.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.AdminDutyCode);
+            ViewData["DegreeCode"] = new SelectList(_context.ComDegrees.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.DegreeCode);
+            ViewData["EducationCode"] = new SelectList(_context.ComEducations.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.EducationCode);
+            ViewData["GenderCode"] = new SelectList(_context.ComGenders.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.GenderCode);
+            ViewData["MarriageCode"] = new SelectList(_context.ComMarriages.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.MarriageCode);
+            ViewData["NationCode"] = new SelectList(_context.ComNations.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.NationCode);
+            ViewData["PoliticalCode"] = new SelectList(_context.ComPoliticals.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.PoliticalCode);
+            ViewData["ProfessionTitleCode"] = new SelectList(_context.ComProfessionTitles.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.ProfessionTitleCode);
+            ViewData["ProfessionTitleLevelCode"] = new SelectList(_context.ComProfessionTitleLevels.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.ProfessionTitleLevelCode);
+            ViewData["ProfessionTitleTypeCode"] = new SelectList(_context.ComProfessionTitleTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.ProfessionTitleTypeCode);
+            ViewData["DeptCode"] = new SelectList(_context.SysDepts.OrderBy(t => t.Sort).ToList(), "DeptCode", "DeptCode", sysEmp.DeptCode);
+            ViewData["TypeCode"] = new SelectList(_context.SysEmpTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.TypeCode);
             return View(sysEmp);
         }
 

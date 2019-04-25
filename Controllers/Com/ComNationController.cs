@@ -58,7 +58,13 @@ namespace HospitalPersonnelSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                comNation.Code = Guid.NewGuid();
+                //comNation.Code = Guid.NewGuid();
+                //排序MAX加1
+                if (_context.ComNations.Count() > 0)
+                    comNation.Sort = _context.ComNations.Max(t => t.Sort) + 1;
+                //拼音码没有
+                if (string.IsNullOrWhiteSpace(comNation.Spell))
+                    comNation.Spell = GTSharp.Core.PinYinHelper.GetFirstPinyin(comNation.Name);
                 _context.Add(comNation);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

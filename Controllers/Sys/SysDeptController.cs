@@ -58,6 +58,12 @@ namespace HospitalPersonnelSystem.Controllers
         {
             if (ModelState.IsValid)
             {
+                //排序MAX加1
+                if (_context.SysDepts.Count() > 0)
+                    sysDept.Sort = _context.SysDepts.Max(t => t.Sort) + 1;
+                //拼音码没有
+                if (string.IsNullOrWhiteSpace(sysDept.Spell))
+                    sysDept.Spell = GTSharp.Core.PinYinHelper.GetFirstPinyin(sysDept.DeptName);
                 _context.Add(sysDept);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

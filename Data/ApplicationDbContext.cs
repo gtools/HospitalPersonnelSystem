@@ -12,6 +12,11 @@ namespace HospitalPersonnelSystem.Data
         {
         }
 
+        //岗位（岗位类别），出生地不要，
+        //职业资格：执业医师，执业护士，无
+        //类别：临床、口腔、公卫、中医
+        //专业技术资格（职称）
+        //
         #region 集合
         /// <summary>
         /// 菜单类别
@@ -1584,7 +1589,7 @@ namespace HospitalPersonnelSystem.Data
             //        Sort = 13
             //    });
             //#endregion
-
+            //岗位 
             //#region 岗位类别
             //modelBuilder.Entity<ComPostType>(b =>
             //{
