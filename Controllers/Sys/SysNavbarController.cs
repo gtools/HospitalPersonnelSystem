@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HospitalPersonnelSystem.Data;
 using HospitalPersonnelSystem.Models;
+using GTSharp;
 
 namespace HospitalPersonnelSystem.Controllers
 {
@@ -48,7 +49,9 @@ namespace HospitalPersonnelSystem.Controllers
         // GET: SysNavbar/Create
         public IActionResult Create()
         {
-            ViewData["TypeCode"] = new SelectList(_context.SysNavbarTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            //ViewData["TypeCode"] = new SelectList(_context.SysNavbarTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            var items = new SelectList(_context.SysNavbarTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["TypeCode"] = items.ToList().GetSelectList();
             return View();
         }
 

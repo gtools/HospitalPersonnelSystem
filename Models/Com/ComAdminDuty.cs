@@ -37,6 +37,7 @@ namespace HospitalPersonnelSystem.Models
         /// 序号
         /// </summary>
         [Display(Name = "排序")]
+        [Required(ErrorMessage = GTSharp.Validate.Required)]
         public int Sort { get; set; }
         /// <summary>
         /// 人员列表

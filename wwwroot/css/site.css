@@ -13,3 +13,7 @@
 .sorter-false .tablesorter-header-inner:after {
     color: #E0E0E0;
 }
+.fa-warning:before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f071";
+}

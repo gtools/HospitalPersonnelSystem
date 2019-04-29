@@ -19,6 +19,7 @@ namespace HospitalPersonnelSystem.Models
         /// 名称
         /// </summary>
         [Display(Name = "名称")]
+        [Required(ErrorMessage = GTSharp.Validate.Required)]
         public string Name
         {
             get { return name; }
@@ -37,6 +38,7 @@ namespace HospitalPersonnelSystem.Models
         /// 排序
         /// </summary>
         [Display(Name = "排序")]
+        [Required(ErrorMessage = GTSharp.Validate.Required)]
         public int Sort { get; set; }
         /// <summary>
         /// 人员列表

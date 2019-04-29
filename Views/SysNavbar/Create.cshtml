@@ -27,7 +27,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="TypeCode" class="control-label"></label>
-                <select asp-for="TypeCode" class="form-control" asp-items="ViewBag.TypeCode"></select>
+                <gt-select asp-for="TypeCode" asp-items="ViewBag.TypeCode"></gt-select>
             </div>
             <div class="form-group">
                 <label asp-for="Controller" class="control-label"></label>
@@ -57,5 +57,11 @@
                 });
             });
         });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            //$("#TypeCode").selectpicker();
+        });
+        
     </script>
 }

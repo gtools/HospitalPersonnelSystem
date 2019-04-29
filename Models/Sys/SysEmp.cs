@@ -20,8 +20,8 @@ namespace HospitalPersonnelSystem.Models
         /// <summary>
         /// 姓名
         /// </summary>
-        [Required(ErrorMessage = GTSharp.Validate.Required)]
         [Display(Name = "姓名")]
+        [Required(ErrorMessage = GTSharp.Validate.Required)]
         public string EmpName
         {
             get { return name; }
@@ -39,7 +39,6 @@ namespace HospitalPersonnelSystem.Models
         /// <summary>
         /// 科室
         /// </summary>
-        [Required(ErrorMessage = GTSharp.Validate.Required)]
         [Display(Name = "科室")]
         public string DeptCode { get; set; }
         /// <summary>
