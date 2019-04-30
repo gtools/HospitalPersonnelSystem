@@ -155,5 +155,33 @@ namespace HospitalPersonnelSystem.Controllers
         {
             return _context.SysDepts.Any(e => e.DeptCode == id);
         }
+
+        private bool DeptCodeExists(string str)
+        {
+            return SysDeptExists(str);
+        }
+
+        private bool DeptNameExists(string str)
+        {
+            return _context.SysDepts.Any(e => e.DeptName == str);
+        }
+
+        [AcceptVerbs("Get", "Post")]
+        public IActionResult VerifyDeptCode(string deptcode)
+        {
+            if (DeptCodeExists(deptcode))
+                return Json($"科室代码 {deptcode} 已经存在.");
+            return Json(true);
+        }
+        [AcceptVerbs("Get", "Post")]
+        public IActionResult VerifyDeptName(string deptname)
+        {
+            if (DeptNameExists(deptname))
+            {
+                return Json($"科室名称 {deptname} 已经存在.");
+            }
+
+            return Json(true);
+        }
     }
 }

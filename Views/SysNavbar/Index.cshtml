@@ -10,8 +10,31 @@
 <p>
     <a asp-action="Create" data-toggle="tooltip" data-placement="left" title="创建"><i class="fa fa-plus-circle fa-lg"></i></a>
 </p>
-<table class="table table-striped" data-sort="table">
-    <thead>
+<table class="table table-bordered table-striped" data-sort="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Spell)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sort)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SysNavbarType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Controller)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Action)
+            </th>
+            <th class="sorter-false filter-false"></th>
+        </tr>
+    </thead>
+    <tfoot>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
@@ -33,7 +56,37 @@
             </th>
             <th></th>
         </tr>
-    </thead>
+        <tr>
+            <th colspan="7" class="ts-pager">
+                <div class="form-inline">
+                    <div class="btn-group btn-group-sm mx-1" role="group">
+                        <button type="button" class="btn btn-secondary first" title="首页">
+                            <i class="fa fa-fast-backward first"></i>
+                        </button>
+                        <button type="button" class="btn btn-secondary prev" title="上一页">
+                            <i class="fa fa-backward prev"></i>
+                        </button>
+                    </div>
+                    <span class="pagedisplay"></span>
+                    <div class="btn-group btn-group-sm mx-1" role="group">
+                        <button type="button" class="btn btn-secondary next" title="下一页">
+                            <i class="fa fa-forward next"></i>
+                        </button>
+                        <button type="button" class="btn btn-secondary last" title="尾页">
+                            <i class="fa fa-fast-forward last"></i>
+                        </button>
+                    </div>
+                    <select class="form-control-sm custom-select pr-4 pagesize" title="选择页面行数">
+                        <option selected="selected" value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="all">全部</option>
+                    </select>
+                    <select class="form-control-sm custom-select px-4 mx-1 pagenum" title="选择页码"></select>
+                </div>
+            </th>
+        </tr>
+    </tfoot>
     <tbody>
         @foreach (var item in Model)
         {
@@ -65,37 +118,11 @@
         }
     </tbody>
 </table>
-<div id="pager" class="pager">
-    <form>
-        @*<img src="~/lib/jquery.tablesorter/css/images/first.png" class="first" />
-        <img src="~/lib/jquery.tablesorter/css/images/prev.png" class="prev" />*@
-        <i class="fa fa-fast-backward first"></i>
-        <i class="fa fa-backward prev"></i>
-        <input type="text" class="pagedisplay" />
-        <i class="fa fa-forward next"></i>
-        <i class="fa fa-fast-forward last"></i>
-        @*<img src="~/lib/jquery.tablesorter/css/images/next.png" class="next" />
-        <img src="~/lib/jquery.tablesorter/css/images/last.png" class="last" />*@
-        <select class="pagesize">
-            <option selected="selected" value="10">10</option>
-            <option value="50">50</option>
-            <option value="100">100</option>
-        </select>
-    </form>
-</div>
 @section Scripts {
-    <script src="~/lib/jquery.tablesorter/js/jquery.tablesorter.min.js"></script>
-    <script src="~/lib/jquery.tablesorter/js/extras/jquery.tablesorter.pager.min.js"></script>
     <script type="text/javascript">
+        //排序
         $(function () {
-            $("[data-sort=table]").tablesorter({
-                sortList: [[2, 0]],
-                headers: {
-                    6: { sorter: false }
-                },
-                widthFixed: true,
-                widgets: ['zebra']
-            }).tablesorterPager({ container: $("#pager") });
+            $('[data-sort="table"]').trigger('sorton', [[[2, 0]]]);
         });
     </script>
 }

@@ -1,30 +1,25 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace HospitalPersonnelSystem.Models
 {
     /// <summary>
-    /// 科室
+    /// 岗位
     /// </summary>
-    public class SysDept
+    public class ComPost
     {
         /// <summary>
-        /// 科室代码
+        /// 代码
         /// </summary>
-        [Remote(action: "VerifyDeptCode", controller: "SysDept")]//验证
-        [Display(Name = "科室代码")]
-        [Required(ErrorMessage = GTSharp.Validate.Required)]
-        public string DeptCode { get; set; }
+        public Guid Code { get; set; }
         private string name;
         /// <summary>
-        /// 科室名称
+        /// 名称
         /// </summary>
-        [Remote(action: "VerifyDeptName", controller: "SysDept")]//验证
-        [Display(Name = "科室名称")]
+        [Display(Name = "名称")]
         [Required(ErrorMessage = GTSharp.Validate.Required)]
-        public string DeptName
+        public string Name
         {
             get { return name; }
             set
@@ -39,12 +34,12 @@ namespace HospitalPersonnelSystem.Models
         [Display(Name = "拼音码")]
         public string Spell { get; set; }
         /// <summary>
-        /// 排序
+        /// 序号
         /// </summary>
         [Display(Name = "排序")]
         public int Sort { get; set; }
         /// <summary>
-        /// 集合导航属性，人员
+        /// 人员
         /// </summary>
         public List<SysEmp> SysEmps { get; set; }
     }

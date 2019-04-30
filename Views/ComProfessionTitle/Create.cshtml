@@ -17,12 +17,12 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
+                <input asp-for="Name" class="form-control" data-spell="name" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Spell" class="control-label"></label>
-                <input asp-for="Spell" class="form-control" readonly />
+                <input asp-for="Spell" class="form-control" data-spell="spell" readonly />
                 <span asp-validation-for="Spell" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -42,14 +42,4 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script type="text/javascript">
-        $(function () {
-            $("#Name").change(function () {
-                var name = $(this).val();
-                $.get("/Home/GetSpell?chinese=" + encodeURI(name), function (result) {
-                    $("#Spell").val(result);
-                });
-            });
-        });
-    </script>
 }

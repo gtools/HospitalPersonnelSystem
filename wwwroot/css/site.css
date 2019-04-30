@@ -1,4 +1,4 @@
-﻿.tablesorter-headerUnSorted .tablesorter-header-inner:after {
+﻿/*.tablesorter-headerUnSorted .tablesorter-header-inner:after {
     font-family: "Font Awesome 5 Free";
     content: "\f0dc";
 }
@@ -12,8 +12,11 @@
 }
 .sorter-false .tablesorter-header-inner:after {
     color: #E0E0E0;
-}
+}*/
 .fa-warning:before {
     font-family: "Font Awesome 5 Free";
     content: "\f071";
+}
+.tablesorter-pager .btn-group-sm .btn {
+    font-size: 1.2em; /* make pager arrows more visible */
 }

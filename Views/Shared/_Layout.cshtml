@@ -7,6 +7,7 @@
     <!-- bootstrap -->
     <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.min.css" />
     <!-- jquery.tablesorter -->
+    <link rel="stylesheet" href="~/lib/jquery.tablesorter/css/theme.bootstrap_4.min.css" />
     <link rel="stylesheet" href="~/lib/jquery.tablesorter/css/jquery.tablesorter.pager.min.css" />
     <!-- bootstrap-select -->
     <link rel="stylesheet" href="~/lib/bootstrap-select/css/bootstrap-select.min.css" />
@@ -39,7 +40,6 @@
     </footer>
 
 
-
     <!-- http://jquery.com -->
     <script src="~/lib/jquery/jquery.min.js"></script>
     <!-- https://popper.js.org -->
@@ -49,12 +49,11 @@
     <!-- https://developer.snapappointments.com/bootstrap-select/ -->
     <script src="~/lib/bootstrap-select/js/bootstrap-select.min.js"></script>
     <script src="~/lib/bootstrap-select/js/i18n/defaults-zh_CN.min.js"></script>
+    <!-- https://mottie.github.io/tablesorter/docs/index.html -->
+    <script src="~/lib/jquery.tablesorter/js/jquery.tablesorter.min.js"></script>
+    <script src="~/lib/jquery.tablesorter/js/jquery.tablesorter.widgets.min.js"></script>
+    <script src="~/lib/jquery.tablesorter/js/extras/jquery.tablesorter.pager.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script type="text/javascript">
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
-    </script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

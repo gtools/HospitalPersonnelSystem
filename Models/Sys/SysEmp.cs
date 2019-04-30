@@ -40,6 +40,7 @@ namespace HospitalPersonnelSystem.Models
         /// 科室
         /// </summary>
         [Display(Name = "科室")]
+        [Required(ErrorMessage = GTSharp.Validate.Required)]
         public string DeptCode { get; set; }
         /// <summary>
         /// 科室
@@ -66,17 +67,18 @@ namespace HospitalPersonnelSystem.Models
         /// 民族，ce17f92b-ee53-4aa6-8f3d-c3b13d865e2d
         /// </summary>
         [Display(Name = "民族")]
+        [Required(ErrorMessage = GTSharp.Validate.Required)]
         public Guid NationCode { get; set; }
         /// <summary>
         /// 民族
         /// </summary>
         [Display(Name = "民族")]
-        [Required(ErrorMessage = GTSharp.Validate.Required)]
         public ComNation ComNation { get; set; }
         /// <summary>
         /// 出生日期
         /// </summary>
         [Display(Name = "出生日期")]
+        [DataType(DataType.Date)]
         [Required(ErrorMessage = GTSharp.Validate.Required)]
         public DateTime BirthDate { get; set; }
         /// <summary>
@@ -98,6 +100,7 @@ namespace HospitalPersonnelSystem.Models
         /// 入党时间
         /// </summary>
         [Display(Name = "入党时间")]
+        [DataType(DataType.Date)]
         public DateTime? PoliticalDate { get; set; }
         /// <summary>
         /// 身份证
@@ -184,23 +187,42 @@ namespace HospitalPersonnelSystem.Models
         /// 工作日期
         /// </summary>
         [Display(Name = "工作日期")]
+        [DataType(DataType.Date)]
         public DateTime? WorkDate { get; set; }
         /// <summary>
         /// 来院日期
         /// </summary>
         [Display(Name = "来院日期")]
+        [DataType(DataType.Date)]
         [Required(ErrorMessage = GTSharp.Validate.Required)]
         public DateTime HospitalDate { get; set; }
-        ///// <summary>
-        ///// 岗位
-        ///// </summary>
-        //[Display(Name = "岗位")]
-        //public Guid? PostCode { get; set; }
-        ///// <summary>
-        ///// 岗位
-        ///// </summary>
-        //[Display(Name = "岗位")]
-        //public ComPost ComPost { get; set; }
+        /// <summary>
+        /// 档案号
+        /// </summary>
+        [Display(Name = "档案号")]
+        public string ArchivesNo { get; set; }
+        /// <summary>
+        /// 公积金号
+        /// </summary>
+        [Display(Name = "公积金号")]
+        public string PublicMoneyNo { get; set; }
+        /// <summary>
+        /// 社保号
+        /// </summary>
+        [Display(Name = "社保号")]
+        public string SocialInsuranceNo { get; set; }
+        //public money
+        //social insurance
+        /// <summary>
+        /// 岗位
+        /// </summary>
+        [Display(Name = "岗位")]
+        public Guid PostCode { get; set; }
+        /// <summary>
+        /// 岗位
+        /// </summary>
+        [Display(Name = "岗位")]
+        public ComPost ComPost { get; set; }
         ///// <summary>
         ///// 岗位类别
         ///// </summary>
@@ -240,6 +262,7 @@ namespace HospitalPersonnelSystem.Models
         /// 执业资格证日期
         /// </summary>
         [Display(Name = "执业资格证日期")]
+        [DataType(DataType.Date)]
         public DateTime? PracticeDate { get; set; }
         /// <summary>
         /// 开户行
@@ -265,6 +288,7 @@ namespace HospitalPersonnelSystem.Models
         /// 取得学历日期
         /// </summary>
         [Display(Name = "取得学历日期")]
+        [DataType(DataType.Date)]
         public DateTime? EducationDate { get; set; }
         /// <summary>
         /// 学位
@@ -290,6 +314,7 @@ namespace HospitalPersonnelSystem.Models
         /// 毕业时间
         /// </summary>
         [Display(Name = "毕业时间")]
+        [DataType(DataType.Date)]
         public DateTime? GraduationDate { get; set; }
         /// <summary>
         /// 联系方式
@@ -317,9 +342,9 @@ namespace HospitalPersonnelSystem.Models
         [Display(Name = "家庭住址")]
         public string HomeAdd { get; set; }
         /// <summary>
-        /// 身份证地址
+        /// 户口所在地址
         /// </summary>
-        [Display(Name = "身份证地址")]
+        [Display(Name = "户口所在地址")]
         public string IdentityAdd { get; set; }
         /// <summary>
         /// 籍贯
@@ -350,6 +375,7 @@ namespace HospitalPersonnelSystem.Models
         /// 创建日期
         /// </summary>
         [Display(Name = "创建日期")]
+        [DataType(DataType.Date)]
         public DateTime CreateDate { get; set; }
 
 

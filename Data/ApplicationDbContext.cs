@@ -66,10 +66,10 @@ namespace HospitalPersonnelSystem.Data
         ///// 岗位类别
         ///// </summary>
         //public DbSet<ComPostType> ComPostTypes { get; set; }
-        ///// <summary>
-        ///// 岗位
-        ///// </summary>
-        //public DbSet<ComPost> ComPosts { get; set; }
+        /// <summary>
+        /// 岗位
+        /// </summary>
+        public DbSet<ComPost> ComPosts { get; set; }
         ///// <summary>
         ///// 岗位级别
         ///// </summary>
@@ -1487,6 +1487,31 @@ namespace HospitalPersonnelSystem.Data
                 .HasForeignKey(t => t.DeptCode)
                 .HasConstraintName("FK_DeptCode_SysDept_SysEmp");
             });
+            #endregion
+
+            #region 岗位
+            modelBuilder.Entity<ComPost>(b =>
+            {
+                b.ToTable("ComPost");
+                b.HasKey(t => t.Code);
+                b.Property(t => t.Code)
+                .HasDefaultValueSql("newid()");
+                b.Property(t => t.Sort)
+                .HasDefaultValue(0);
+            });
+            modelBuilder.Entity<ComPost>()
+                .HasData(new ComPost
+                {
+                    Code = Guid.NewGuid(),
+                    Name = "卫",
+                    Sort = sort++
+                }, new ComPost
+                {
+                    Code = Guid.NewGuid(),
+                    Name = "工",
+                    Sort = sort++
+                });
+            sort = 1;
             #endregion
 
 
