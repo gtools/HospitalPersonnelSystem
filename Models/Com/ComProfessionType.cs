@@ -5,9 +5,9 @@ using System.ComponentModel.DataAnnotations;
 namespace HospitalPersonnelSystem.Models
 {
     /// <summary>
-    /// 职称系列
+    /// 执业类别
     /// </summary>
-    public class ComProfessionTitleType
+    public class ComProfessionType
     {
         /// <summary>
         /// 代码
@@ -39,14 +39,6 @@ namespace HospitalPersonnelSystem.Models
         [Display(Name = "排序")]
         [Required(ErrorMessage = GTSharp.Validate.Required)]
         public int Sort { get; set; }
-        /// <summary>
-        /// 职称
-        /// </summary>
-        public List<ComProfessionTitle> ComProfessionTitles { get; set; }
-        /// <summary>
-        /// 人员
-        /// </summary>
-        public List<SysEmp> SysEmps { get; set; }
         /// <summary>
         /// 职称评定
         /// </summary>

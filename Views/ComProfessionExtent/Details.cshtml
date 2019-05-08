@@ -1,0 +1,36 @@
+﻿@model HospitalPersonnelSystem.Models.ComProfessionExtent
+
+@{
+    ViewData["Title"] = "执业范围 - 查看";
+    ViewData["Controller"] = "ComProfessionExtent";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Code" data-toggle="tooltip" data-placement="left" title="编辑"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+        <a asp-action="Index" data-toggle="tooltip" data-placement="left" title="返回"><i class="fa fa-arrow-alt-circle-left fa-lg"></i></a>
+    </div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Spell)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Spell)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Sort)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Sort)
+        </dd>
+    </dl>
+</div>

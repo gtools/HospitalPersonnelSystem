@@ -4,14 +4,16 @@ using HospitalPersonnelSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HospitalPersonnelSystem.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190508012746_SysProfessionInfos")]
+    partial class SysProfessionInfos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,98 +43,98 @@ namespace HospitalPersonnelSystem.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Code = new Guid("836700ed-6f5e-431f-a3c4-0c2d3a51c09c"),
+                            Code = new Guid("3fec702d-4290-403e-8059-a76cf8b75ac3"),
                             Name = "院长",
                             Sort = 1,
                             Spell = "YC,YZ"
                         },
                         new
                         {
-                            Code = new Guid("8720ac63-1168-43b9-ae73-d9997dcaba7c"),
+                            Code = new Guid("d22b321e-bf7d-42d4-b0fb-83a5453b7049"),
                             Name = "副院长",
                             Sort = 2,
                             Spell = "FYC,FYZ"
                         },
                         new
                         {
-                            Code = new Guid("02baddf4-c358-4287-9f73-fc7e26efc037"),
+                            Code = new Guid("5bdf4b49-780d-4ef9-8b2a-3001127eb556"),
                             Name = "书记",
                             Sort = 3,
                             Spell = "SJ"
                         },
                         new
                         {
-                            Code = new Guid("00c0fb0a-790d-4eb2-98cc-702dab79ea08"),
+                            Code = new Guid("e30f5863-4891-448a-b7d3-9abd0bf62d3a"),
                             Name = "副书记",
                             Sort = 4,
                             Spell = "FSJ"
                         },
                         new
                         {
-                            Code = new Guid("5650c098-4c99-4ed8-a82d-878027b5f50d"),
+                            Code = new Guid("680de19b-b9dd-4e4c-9d33-a21350276507"),
                             Name = "团委书记",
                             Sort = 5,
                             Spell = "TWSJ"
                         },
                         new
                         {
-                            Code = new Guid("783e110b-8dae-4877-a52b-e9e57a9d1da9"),
+                            Code = new Guid("8d56384e-6fd1-4d29-af7b-b92091df2cd2"),
                             Name = "团委副书记",
                             Sort = 6,
                             Spell = "TWFSJ"
                         },
                         new
                         {
-                            Code = new Guid("ea2ce311-d891-4462-8a7e-26e7a378c7ba"),
+                            Code = new Guid("53b18bbb-fa4f-4cbd-8edd-b46a2d016971"),
                             Name = "大科主任",
                             Sort = 7,
                             Spell = "DKZR"
                         },
                         new
                         {
-                            Code = new Guid("477e0415-4b10-4d44-8fff-af7b46818b01"),
+                            Code = new Guid("80b6ca1e-2d1a-4163-ae83-cb22b560718a"),
                             Name = "科主任",
                             Sort = 8,
                             Spell = "KZR"
                         },
                         new
                         {
-                            Code = new Guid("17a9acb7-5538-4217-8334-26159a1444c5"),
+                            Code = new Guid("2127bb90-131e-4552-971c-4601cde0d4fa"),
                             Name = "副主任",
                             Sort = 9,
                             Spell = "FZR"
                         },
                         new
                         {
-                            Code = new Guid("476f6ed6-cb59-4c5a-919f-4d34fdad6cd4"),
+                            Code = new Guid("bc0b0bd2-96c7-42db-bb58-07ff6d18b14d"),
                             Name = "护士长",
                             Sort = 10,
                             Spell = "HSC,HSZ"
                         },
                         new
                         {
-                            Code = new Guid("f83a3a08-7985-454f-a34f-e3683d21d4f4"),
+                            Code = new Guid("bc275333-e563-4631-9463-5a028b67a9b1"),
                             Name = "副护士长",
                             Sort = 11,
                             Spell = "FHSC,FHSZ"
                         },
                         new
                         {
-                            Code = new Guid("74101e58-9957-47b5-8fb6-c69ff448a11d"),
+                            Code = new Guid("06b15f21-b1bb-43ef-9b85-25c5cc7d1896"),
                             Name = "科员",
                             Sort = 12,
                             Spell = "KY"
                         },
                         new
                         {
-                            Code = new Guid("7f50fde9-2e4c-4627-8ae3-c9b2987c2c84"),
+                            Code = new Guid("e7f3a3f2-215f-4a8d-813f-6860164e0734"),
                             Name = "干事",
                             Sort = 13,
                             Spell = "GS"
                         },
                         new
                         {
-                            Code = new Guid("d80b331a-0f8c-4182-bdbe-c02410cff7a5"),
+                            Code = new Guid("d1f707c7-f979-46aa-af12-b073c02e2006"),
                             Name = "返聘",
                             Sort = 14,
                             Spell = "FP"
@@ -168,35 +170,35 @@ namespace HospitalPersonnelSystem.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Code = new Guid("3fd09490-0217-4629-b854-86c1aa08b60d"),
+                            Code = new Guid("ab48042c-bda5-4a90-adf3-5faaaee7b837"),
                             Name = "博士后",
                             Sort = 1,
                             Spell = "BSH"
                         },
                         new
                         {
-                            Code = new Guid("28c874d8-4f22-4ffa-bb9c-a44d3200f7b5"),
+                            Code = new Guid("aa1f8735-4405-4515-92db-40f8c7c2022e"),
                             Name = "博士",
                             Sort = 2,
                             Spell = "BS"
                         },
                         new
                         {
-                            Code = new Guid("e5781fb6-9656-4611-81dd-7dd417cd734e"),
+                            Code = new Guid("fe23815f-bf5b-409f-8193-3e1e8cfd4a95"),
                             Name = "硕士",
                             Sort = 3,
                             Spell = "SS"
                         },
                         new
                         {
-                            Code = new Guid("98ca7720-fdce-4b0b-894a-0a58cbf8bb79"),
+                            Code = new Guid("3e4b550a-5547-4a69-b415-897821663135"),
                             Name = "学士",
                             Sort = 4,
                             Spell = "XS"
                         },
                         new
                         {
-                            Code = new Guid("45ebca26-6683-4c1b-9d2b-6037daeb5ec4"),
+                            Code = new Guid("065f8555-559e-431e-b487-4bf6a1481d7e"),
                             Name = "无",
                             Sort = 5,
                             Spell = "M,W"
@@ -225,56 +227,56 @@ namespace HospitalPersonnelSystem.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Code = new Guid("1841e737-dfba-4638-97a2-3d887e433a65"),
+                            Code = new Guid("af94de61-4372-4c0d-89ea-eed6b641d471"),
                             Name = "博士研究生",
                             Sort = 1,
                             Spell = "BSYJS"
                         },
                         new
                         {
-                            Code = new Guid("2886fc90-4149-480e-8029-35870d1fb60f"),
+                            Code = new Guid("36a55f45-2bf4-49a1-bd79-40557c2fc87c"),
                             Name = "硕士研究生",
                             Sort = 2,
                             Spell = "SSYJS"
                         },
                         new
                         {
-                            Code = new Guid("22903bdd-c22b-476b-b1c1-e5c663714b21"),
+                            Code = new Guid("598c7ada-5b5d-47c7-a412-be4095d2a7e6"),
                             Name = "本科",
                             Sort = 3,
                             Spell = "BK"
                         },
                         new
                         {
-                            Code = new Guid("f7ef9c66-a461-446c-95ec-51c16a3c3c5d"),
+                            Code = new Guid("6525dca8-5ace-4742-8f40-b375dc2c6387"),
                             Name = "专科",
                             Sort = 4,
                             Spell = "ZK"
                         },
                         new
                         {
-                            Code = new Guid("834463f5-0e49-4730-b1b2-45e1e9ff993a"),
+                            Code = new Guid("2f1e73bb-d863-4c09-b454-5650e0f5eee8"),
                             Name = "中专",
                             Sort = 5,
                             Spell = "ZZ"
                         },
                         new
                         {
-                            Code = new Guid("4c54ffa9-59fa-4374-8c14-8d283be7e501"),
+                            Code = new Guid("dd4643ca-51ba-41b5-a3b3-804f68e774e8"),
                             Name = "高中及以下",
                             Sort = 6,
                             Spell = "GZJYX"
                         },
                         new
                         {
-                            Code = new Guid("19e5de04-1d98-4440-be39-35e1ed8291a8"),
+                            Code = new Guid("ebebd4bd-b10d-4299-9dd7-9b1c13a112c3"),
                             Name = "技校",
                             Sort = 7,
                             Spell = "JJ,JX"
                         },
                         new
                         {
-                            Code = new Guid("e3d08f45-b217-4cfa-abda-f0e65cdfde3b"),
+                            Code = new Guid("8dcff26e-1c87-4fc9-bb5c-47a0e0083589"),
                             Name = "其他",
                             Sort = 8,
                             Spell = "JT,QT"
@@ -303,14 +305,14 @@ namespace HospitalPersonnelSystem.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Code = new Guid("e1beb0cc-860a-4406-b548-55b88b44728a"),
+                            Code = new Guid("1cbcbc78-c7cc-4c94-8958-fbc666189eb4"),
                             Name = "男",
                             Sort = 1,
                             Spell = "N"
                         },
                         new
                         {
-                            Code = new Guid("c4997de5-7dfd-41c0-a822-a2eb42d02a74"),
+                            Code = new Guid("39110852-a554-4fda-8e20-26cedb375910"),
                             Name = "女",
                             Sort = 2,
                             Spell = "N"
@@ -346,28 +348,28 @@ namespace HospitalPersonnelSystem.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Code = new Guid("4096da9e-acef-48ef-9a17-5783f0404353"),
+                            Code = new Guid("27c4e2d0-bd62-4610-b03e-e45b79cdaaee"),
                             Name = "未婚",
                             Sort = 1,
                             Spell = "WH"
                         },
                         new
                         {
-                            Code = new Guid("0679549d-ac21-4b70-8207-5a865c62d4f0"),
+                            Code = new Guid("d9c7ebcd-9b3c-410c-be39-684add01eb7c"),
                             Name = "已婚",
                             Sort = 2,
                             Spell = "YH"
                         },
                         new
                         {
-                            Code = new Guid("40b2269a-a2b4-4e49-a846-1fda107f5ad4"),
+                            Code = new Guid("ee4eaf9b-1fed-4957-bc5b-c9f64b1d807e"),
                             Name = "丧偶",
                             Sort = 3,
                             Spell = "SO"
                         },
                         new
                         {
-                            Code = new Guid("80917b34-dfea-4017-88f2-cb1319c1fe64"),
+                            Code = new Guid("81209711-0f91-4e9e-8517-e570a3daa0e3"),
                             Name = "离婚",
                             Sort = 4,
                             Spell = "LH"
@@ -410,399 +412,399 @@ namespace HospitalPersonnelSystem.Data.Migrations
                         },
                         new
                         {
-                            Code = new Guid("107dd205-4c59-4f48-8981-ede79ed0a443"),
+                            Code = new Guid("11cab3ba-e9e7-4993-a515-03b71d6d1587"),
                             Name = "蒙古族",
                             Sort = 2,
                             Spell = "MGZ"
                         },
                         new
                         {
-                            Code = new Guid("345a082e-e839-43dd-959c-fff8a4029aa6"),
+                            Code = new Guid("a1be7c6b-c5ae-4aa0-8fd6-639ca4d1e20c"),
                             Name = "回族",
                             Sort = 3,
                             Spell = "HZ"
                         },
                         new
                         {
-                            Code = new Guid("3f5c6fa7-e1f9-4e7d-967a-51bfe4275f57"),
+                            Code = new Guid("ffcb28c7-5347-47e0-8952-89c882cc7e1d"),
                             Name = "藏族",
                             Sort = 4,
                             Spell = "CZ,ZZ"
                         },
                         new
                         {
-                            Code = new Guid("8110c7f3-79dc-4aee-af2d-bc14ab03da5e"),
+                            Code = new Guid("18c5dada-149b-4c30-868a-025935e83700"),
                             Name = "维吾尔族",
                             Sort = 5,
                             Spell = "WWEZ"
                         },
                         new
                         {
-                            Code = new Guid("5bf5b103-0580-41ab-9d60-34f5cc4bc042"),
+                            Code = new Guid("b6271a27-2898-48b8-a523-2a78a57fcbae"),
                             Name = "苗族",
                             Sort = 6,
                             Spell = "MZ"
                         },
                         new
                         {
-                            Code = new Guid("b51bf4cd-c77c-48b5-b189-5c65865ed42d"),
+                            Code = new Guid("0101fe13-7f5f-4795-a32c-26725480f142"),
                             Name = "彝族",
                             Sort = 7,
                             Spell = "YZ"
                         },
                         new
                         {
-                            Code = new Guid("68846386-efc4-4cc5-b97e-e9710e264bf7"),
+                            Code = new Guid("52fa0e86-db7b-4d30-88ae-64693f5f6d84"),
                             Name = "壮族",
                             Sort = 8,
                             Spell = "ZZ"
                         },
                         new
                         {
-                            Code = new Guid("f80d635c-d191-4040-be72-dd27597c5c13"),
+                            Code = new Guid("214d7404-8154-407a-88e3-074bc886f0e2"),
                             Name = "布依族",
                             Sort = 9,
                             Spell = "BYZ"
                         },
                         new
                         {
-                            Code = new Guid("21b75187-24b2-47d6-8a6c-3154606dbcfa"),
+                            Code = new Guid("0094ae61-da07-40e7-8dd6-05a5ef36b9ea"),
                             Name = "朝鲜族",
                             Sort = 10,
                             Spell = "CXZ,ZXZ"
                         },
                         new
                         {
-                            Code = new Guid("8cb48cb8-4ca5-4ddf-9ed2-bc5ddc82f5f1"),
+                            Code = new Guid("e8107920-ae2a-4b50-888f-aeb3ea389a99"),
                             Name = "满族",
                             Sort = 11,
                             Spell = "MZ"
                         },
                         new
                         {
-                            Code = new Guid("d6a08418-d594-4d87-b611-9d14c0dfc7d2"),
+                            Code = new Guid("451ce873-cad9-4f61-b99c-cbf19dbcd431"),
                             Name = "侗族",
                             Sort = 12,
                             Spell = "DZ,TZ"
                         },
                         new
                         {
-                            Code = new Guid("b9cbc4b1-1f3e-4e41-a8d2-3611ae7c2697"),
+                            Code = new Guid("06f5c961-aad4-4f02-834d-34fcbc01c304"),
                             Name = "瑶族",
                             Sort = 13,
                             Spell = "YZ"
                         },
                         new
                         {
-                            Code = new Guid("bc197037-4838-4256-9dfb-a80dc9f0cfad"),
+                            Code = new Guid("7cca7a8d-42e4-4908-a4f8-6d1b9fb54586"),
                             Name = "白族",
                             Sort = 14,
                             Spell = "BZ"
                         },
                         new
                         {
-                            Code = new Guid("67736ba4-76f5-4f5b-9007-9e628895c228"),
+                            Code = new Guid("0a400814-49ff-44af-8924-d294ed5263dd"),
                             Name = "土家族",
                             Sort = 15,
                             Spell = "TGZ,TJZ"
                         },
                         new
                         {
-                            Code = new Guid("412747bf-9a23-4d68-82dd-d33dc921100c"),
+                            Code = new Guid("25f1245c-3b6f-4c84-adee-d62f78db3c4c"),
                             Name = "哈尼族",
                             Sort = 16,
                             Spell = "HNZ"
                         },
                         new
                         {
-                            Code = new Guid("d6c248f0-817f-42ce-8e74-04ec2c1f35c1"),
+                            Code = new Guid("91cb2100-35e2-40f5-9086-5df0cd8f594d"),
                             Name = "哈萨克族",
                             Sort = 17,
                             Spell = "HSKZ"
                         },
                         new
                         {
-                            Code = new Guid("7b5b1bc0-d833-4bb7-87e1-68562bc8874c"),
+                            Code = new Guid("3ec59f39-6bf8-4052-aeb8-cf5a6d55606b"),
                             Name = "傣族",
                             Sort = 18,
                             Spell = "DZ"
                         },
                         new
                         {
-                            Code = new Guid("da6a04f9-54b4-4604-b804-05269870a1bd"),
+                            Code = new Guid("b31d1d47-9158-4861-bdb6-0218def1dada"),
                             Name = "黎族",
                             Sort = 19,
                             Spell = "LZ"
                         },
                         new
                         {
-                            Code = new Guid("48d9b39c-6445-4e13-b331-374a03fdd2db"),
+                            Code = new Guid("3ab6afdc-24cd-433b-98a3-c22e81a48f7a"),
                             Name = "傈僳族",
                             Sort = 20,
                             Spell = "LSZ"
                         },
                         new
                         {
-                            Code = new Guid("51e95735-0810-40b4-9eee-a2882e60857d"),
+                            Code = new Guid("c44f2064-1e65-4589-b3d2-a8f650a3c78a"),
                             Name = "佤族",
                             Sort = 21,
                             Spell = "WZ"
                         },
                         new
                         {
-                            Code = new Guid("42f0be92-1696-44c6-a02a-ce0cb2677c67"),
+                            Code = new Guid("0004470b-17ad-4f12-ae05-40c338d97e6c"),
                             Name = "畲族",
                             Sort = 22,
                             Spell = "SZ"
                         },
                         new
                         {
-                            Code = new Guid("0aafde19-e376-4024-9c86-701cfd73661a"),
+                            Code = new Guid("63fadaaa-c221-4214-b6cd-4ee8bb0d5130"),
                             Name = "高山族",
                             Sort = 23,
                             Spell = "GSZ"
                         },
                         new
                         {
-                            Code = new Guid("0fd61088-5c57-4a18-bf99-e3c9b93f9bb5"),
+                            Code = new Guid("8978384d-0ff6-4191-a027-3bb6187ae1ba"),
                             Name = "拉祜族",
                             Sort = 24,
                             Spell = "LHZ"
                         },
                         new
                         {
-                            Code = new Guid("8c84f969-5635-4bcc-bd00-a9fa2c64a45f"),
+                            Code = new Guid("dd7a8396-964c-465d-90ea-18043f269a25"),
                             Name = "水族",
                             Sort = 25,
                             Spell = "SZ"
                         },
                         new
                         {
-                            Code = new Guid("c5cb2b10-ecf4-44e4-aee9-36eec15c3491"),
+                            Code = new Guid("d6108846-0cf2-484c-8327-785c63a5b0ec"),
                             Name = "东乡族",
                             Sort = 26,
                             Spell = "DXZ"
                         },
                         new
                         {
-                            Code = new Guid("e6a44627-245c-45db-a3d5-c91b36ea39be"),
+                            Code = new Guid("2229dfc4-2ef4-4a2b-abaf-bb2dde71e5a3"),
                             Name = "纳西族",
                             Sort = 27,
                             Spell = "NXZ"
                         },
                         new
                         {
-                            Code = new Guid("609f4844-4c8d-47ff-836d-06cdbb809258"),
+                            Code = new Guid("2c062c88-e993-43fa-b9ad-4f15ed50d7d3"),
                             Name = "景颇族",
                             Sort = 28,
                             Spell = "JPZ"
                         },
                         new
                         {
-                            Code = new Guid("c436293c-5142-4276-904c-0744270c924e"),
+                            Code = new Guid("a3701e7a-662b-44e3-9f94-80de18c3e367"),
                             Name = "柯尔克孜族",
                             Sort = 29,
                             Spell = "KEKZZ"
                         },
                         new
                         {
-                            Code = new Guid("d5d7dcf4-a80e-4db5-b758-56cdf1d395ff"),
+                            Code = new Guid("3f70ba16-4880-4976-946c-6640a3be8436"),
                             Name = "土族",
                             Sort = 30,
                             Spell = "TZ"
                         },
                         new
                         {
-                            Code = new Guid("ad6a47a0-b8c8-486b-87a6-10f330ca6661"),
+                            Code = new Guid("e4b073ea-eeef-4df8-afc1-026303cb6546"),
                             Name = "达斡尔族",
                             Sort = 31,
                             Spell = "DWEZ"
                         },
                         new
                         {
-                            Code = new Guid("a81176d2-1db1-4c66-b6d0-07a70b7b33ff"),
+                            Code = new Guid("1effed20-217e-4a72-9882-9d77b053fd35"),
                             Name = "仫佬族",
                             Sort = 32,
                             Spell = "MLZ"
                         },
                         new
                         {
-                            Code = new Guid("3b330621-0ae1-4b08-9cdc-7888012c69aa"),
+                            Code = new Guid("820810bd-5ede-4f49-9642-998475b83454"),
                             Name = "羌族",
                             Sort = 33,
                             Spell = "QZ"
                         },
                         new
                         {
-                            Code = new Guid("0ec87847-12b4-4fe4-a4e2-c3635f0e16fe"),
+                            Code = new Guid("9cd0e643-ad5a-4992-9f12-7db858f77633"),
                             Name = "布朗族",
                             Sort = 34,
                             Spell = "BLZ"
                         },
                         new
                         {
-                            Code = new Guid("cf06ff99-65b9-43fa-8c97-5801ea7d4b4e"),
+                            Code = new Guid("0589c66a-031e-4965-ae0b-3c03740a5246"),
                             Name = "撒拉族",
                             Sort = 35,
                             Spell = "SLZ"
                         },
                         new
                         {
-                            Code = new Guid("02a9ea4b-405b-4c92-b679-e44ad61537fe"),
+                            Code = new Guid("f37fccef-028a-4992-8324-202a653f2d2f"),
                             Name = "毛难族",
                             Sort = 36,
                             Spell = "MNZ"
                         },
                         new
                         {
-                            Code = new Guid("2058dcfd-033a-4615-9d03-686293a311de"),
+                            Code = new Guid("a067463b-1b88-4d31-9b60-75a462787c56"),
                             Name = "仡佬族",
                             Sort = 37,
                             Spell = "GLZ,YLZ"
                         },
                         new
                         {
-                            Code = new Guid("6f621ccb-77c5-4ab2-9d09-3d1fee235105"),
+                            Code = new Guid("1dd61069-79fc-4377-953e-ffb103752e41"),
                             Name = "锡伯族",
                             Sort = 38,
                             Spell = "XBZ"
                         },
                         new
                         {
-                            Code = new Guid("98cb5363-c602-43d8-a4eb-262326689ab9"),
+                            Code = new Guid("84834f70-f616-45a3-a99d-1f89f66d5cf6"),
                             Name = "阿昌族",
                             Sort = 39,
                             Spell = "ACZ,ECZ"
                         },
                         new
                         {
-                            Code = new Guid("46fdb393-1002-465e-82e2-6062f65dbb46"),
+                            Code = new Guid("1be8ad52-7ffb-4640-8ddd-bf14c81997d3"),
                             Name = "普米族",
                             Sort = 40,
                             Spell = "PMZ"
                         },
                         new
                         {
-                            Code = new Guid("654cd922-36c0-4092-a460-8f483707e14e"),
+                            Code = new Guid("935ff2e6-a94a-4b4e-8747-3bf03c965598"),
                             Name = "塔吉克族",
                             Sort = 41,
                             Spell = "DJKZ,TJKZ"
                         },
                         new
                         {
-                            Code = new Guid("d6bcb0dd-48da-487f-a3d6-c90dd3e80d60"),
+                            Code = new Guid("416518d7-8d6a-47fa-88e5-982e9841da37"),
                             Name = "怒族",
                             Sort = 42,
                             Spell = "NZ"
                         },
                         new
                         {
-                            Code = new Guid("6d468b7a-d064-4c2e-b310-d27866fcb6c5"),
+                            Code = new Guid("1a996aa2-28af-409b-83ad-ef41db992c35"),
                             Name = "乌孜别克族",
                             Sort = 43,
                             Spell = "WZBKZ"
                         },
                         new
                         {
-                            Code = new Guid("28dddf49-f2a2-4cac-91f6-cc130cb84dd2"),
+                            Code = new Guid("beb67fca-8653-4e10-89eb-062c8c28ad5f"),
                             Name = "俄罗斯族",
                             Sort = 44,
                             Spell = "ELSZ"
                         },
                         new
                         {
-                            Code = new Guid("6c03cb0b-4e91-4ff7-a4b9-a5192de2779a"),
+                            Code = new Guid("c25b7dec-7f8e-4ac6-ae26-25b13933578e"),
                             Name = "鄂温克族",
                             Sort = 45,
                             Spell = "EWKZ"
                         },
                         new
                         {
-                            Code = new Guid("099beb73-00a7-4c57-94d8-94232914da79"),
+                            Code = new Guid("59f237e3-3f63-4283-864b-ff38be3ec7a6"),
                             Name = "崩龙族",
                             Sort = 46,
                             Spell = "BLZ"
                         },
                         new
                         {
-                            Code = new Guid("2a52360b-f7fe-42e5-b060-5482e47b24ce"),
+                            Code = new Guid("59f573e1-d4a9-46c7-a300-5bbcf3153a77"),
                             Name = "保安族",
                             Sort = 47,
                             Spell = "BAZ"
                         },
                         new
                         {
-                            Code = new Guid("c3c7ad0c-7830-4efe-95c7-226a138fae4e"),
+                            Code = new Guid("2212d7bf-d7ce-46c7-831b-432577f36837"),
                             Name = "裕固族",
                             Sort = 48,
                             Spell = "YGZ"
                         },
                         new
                         {
-                            Code = new Guid("68440cd8-ee6f-4cd6-8da8-b4332259aaae"),
+                            Code = new Guid("ee00813f-3401-42e2-8776-78cffa6c51d9"),
                             Name = "京族",
                             Sort = 49,
                             Spell = "JZ"
                         },
                         new
                         {
-                            Code = new Guid("5bf29641-366a-4dc3-a9ff-aed64ba10fdb"),
+                            Code = new Guid("e5a52fdd-aba5-4962-8ce8-5d097f9971fc"),
                             Name = "塔塔尔族",
                             Sort = 50,
                             Spell = "DDEZ,TDEZ,DTEZ,TTEZ"
                         },
                         new
                         {
-                            Code = new Guid("1fa15e3e-8e40-4b24-9407-7c8526443460"),
+                            Code = new Guid("cfb6c6b9-82e0-4519-abf9-6a7319769e2f"),
                             Name = "独龙族",
                             Sort = 51,
                             Spell = "DLZ"
                         },
                         new
                         {
-                            Code = new Guid("a20e2acd-bb92-477e-9393-703655b0b896"),
+                            Code = new Guid("3841088d-340b-4698-9e33-0d0712d1deed"),
                             Name = "鄂伦春族",
                             Sort = 52,
                             Spell = "ELCZ"
                         },
                         new
                         {
-                            Code = new Guid("47c5001b-b9fc-4995-872c-7f9403200191"),
+                            Code = new Guid("76d931a7-5c41-4e29-8876-ce7bc7874aec"),
                             Name = "赫哲族",
                             Sort = 53,
                             Spell = "HZZ"
                         },
                         new
                         {
-                            Code = new Guid("bef03d93-d487-48ff-bb16-58d69d0ac983"),
+                            Code = new Guid("7eca8f40-c45f-468f-84a3-8da870605efb"),
                             Name = "门巴族",
                             Sort = 54,
                             Spell = "MBZ"
                         },
                         new
                         {
-                            Code = new Guid("6b82ca5f-49ba-4658-9ede-b9a1efe3f101"),
+                            Code = new Guid("7a7d33f6-ebed-40ba-ab1c-a227cefc73dc"),
                             Name = "珞巴族",
                             Sort = 55,
                             Spell = "LBZ"
                         },
                         new
                         {
-                            Code = new Guid("392cd28e-4dd1-47f9-a62a-7af9166eba27"),
+                            Code = new Guid("27c80eac-9213-4e13-87c1-31eff1108be0"),
                             Name = "基诺族",
                             Sort = 56,
                             Spell = "JNZ"
                         },
                         new
                         {
-                            Code = new Guid("e5653cbf-d897-4428-8fda-0957e35ae131"),
+                            Code = new Guid("6ebef184-425c-492e-890b-3374f4ab8e7b"),
                             Name = "其他",
                             Sort = 57,
                             Spell = "JT,QT"
                         },
                         new
                         {
-                            Code = new Guid("ee626dea-dc23-4537-9dea-c6a22a20ec37"),
+                            Code = new Guid("66135bba-724f-4147-bc66-3f20f602f04a"),
                             Name = "外国血统中国人士",
                             Sort = 58,
                             Spell = "WGXTZGRS"
@@ -831,84 +833,84 @@ namespace HospitalPersonnelSystem.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Code = new Guid("eeb3fa49-db8f-4e5d-b4e9-c766aa37f916"),
+                            Code = new Guid("4494bcf7-c97f-4351-a322-377853d326f5"),
                             Name = "中共党员",
                             Sort = 1,
                             Spell = "ZGDY"
                         },
                         new
                         {
-                            Code = new Guid("3e214932-54bf-4062-847b-153b8fdbd4d3"),
+                            Code = new Guid("95b9f284-c121-4f74-971e-60899f760429"),
                             Name = "中共预备党员",
                             Sort = 2,
                             Spell = "ZGYBDY"
                         },
                         new
                         {
-                            Code = new Guid("04a66db1-373b-45a6-b85a-2d5ed016a069"),
+                            Code = new Guid("3580ef9e-7125-4e7f-812e-e21d2eaff385"),
                             Name = "共青团员",
                             Sort = 3,
                             Spell = "GQTY"
                         },
                         new
                         {
-                            Code = new Guid("c2e9a0b6-c6cb-45fe-b708-5e467fa44fd1"),
+                            Code = new Guid("a493a95d-3968-40b0-a8d6-2fc5a3e0da1a"),
                             Name = "民革党员",
                             Sort = 4,
                             Spell = "MGDY,MJDY"
                         },
                         new
                         {
-                            Code = new Guid("3d5961ca-def7-4ea3-b211-3a6a8e5bd789"),
+                            Code = new Guid("1d4765c7-d13a-48f7-9e11-33d9c74e4bf5"),
                             Name = "民盟盟员",
                             Sort = 5,
                             Spell = "MMMY"
                         },
                         new
                         {
-                            Code = new Guid("732f83d0-a33f-47ab-81a6-8be55072aba2"),
+                            Code = new Guid("9b8b3378-0284-49c9-97e5-0da1ab7c680c"),
                             Name = "民建会员",
                             Sort = 6,
                             Spell = "MJHY,MJKY"
                         },
                         new
                         {
-                            Code = new Guid("817b6186-3b44-44bc-a53d-452997ada768"),
+                            Code = new Guid("d91b4fbd-640c-4537-b619-b9c7f4652081"),
                             Name = "民进会员",
                             Sort = 7,
                             Spell = "MJHY,MJKY"
                         },
                         new
                         {
-                            Code = new Guid("3c606957-01a5-4f69-8a41-5ce4f61e25ee"),
+                            Code = new Guid("d36d4db7-632f-4ced-bca7-76bce39c6173"),
                             Name = "农工党党员",
                             Sort = 8,
                             Spell = "NGDDY"
                         },
                         new
                         {
-                            Code = new Guid("bdc8dd1c-ffdc-4e4c-b135-98927d6ba720"),
+                            Code = new Guid("cf7f0db9-5c84-4f3c-8483-326a9d2b08a4"),
                             Name = "致公党党员",
                             Sort = 9,
                             Spell = "ZGDDY"
                         },
                         new
                         {
-                            Code = new Guid("09823386-810b-43dd-bfea-d9a265c9d96a"),
+                            Code = new Guid("00575efc-b43b-4a73-b1bf-4858c2f18101"),
                             Name = "九三学社社员",
                             Sort = 10,
                             Spell = "JSXSSY"
                         },
                         new
                         {
-                            Code = new Guid("f955b073-9cd9-4398-a14e-49930792c1ea"),
+                            Code = new Guid("ecfd6bca-2847-4183-95a5-271399c44f86"),
                             Name = "台盟盟员",
                             Sort = 11,
                             Spell = "TMMY"
                         },
                         new
                         {
-                            Code = new Guid("577948c2-f6e8-4bc7-817a-baff537c4aa6"),
+                            Code = new Guid("375bebe3-d412-4497-9356-9fb0ecb33979"),
                             Name = "无党派人士",
                             Sort = 12,
                             Spell = "MDPRS,WDPRS"
@@ -944,14 +946,14 @@ namespace HospitalPersonnelSystem.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Code = new Guid("6729cccb-ec0b-4833-9a6b-cc08c83e80b7"),
+                            Code = new Guid("1d7007dd-7235-4804-a272-12473b05bc8a"),
                             Name = "卫",
                             Sort = 1,
                             Spell = "W"
                         },
                         new
                         {
-                            Code = new Guid("cc4be172-3a70-4527-bb81-85a3d3263902"),
+                            Code = new Guid("c67aa674-a5ac-4776-940d-10c76e3ba5bf"),
                             Name = "工",
                             Sort = 2,
                             Spell = "G"
@@ -980,14 +982,14 @@ namespace HospitalPersonnelSystem.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Code = new Guid("268c2131-45f1-47ed-8dde-16783b1edc17"),
+                            Code = new Guid("d2239660-a82b-4e1f-92fe-6dd7525b026b"),
                             Name = "护理专业",
                             Sort = 1,
                             Spell = "HLZY"
                         },
                         new
                         {
-                            Code = new Guid("16bd271a-455d-4628-b4f8-aafe3aa0975a"),
+                            Code = new Guid("fed126a6-1425-4b9f-a8ab-2f985fbda75f"),
                             Name = "外科专业",
                             Sort = 2,
                             Spell = "WKZY"
@@ -1016,14 +1018,14 @@ namespace HospitalPersonnelSystem.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Code = new Guid("f05b6055-df4f-4553-92df-b370b2098915"),
+                            Code = new Guid("b5c2dfe6-3951-4b79-889c-798228ded7e1"),
                             Name = "执业护士",
                             Sort = 1,
                             Spell = "ZYHS"
                         },
                         new
                         {
-                            Code = new Guid("24a292b7-3f8a-481c-8213-b4746006a66c"),
+                            Code = new Guid("9e8ce404-db80-452e-9292-8b0b703926eb"),
                             Name = "执业医师",
                             Sort = 2,
                             Spell = "ZYYS"
@@ -1067,7 +1069,7 @@ namespace HospitalPersonnelSystem.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Code = new Guid("c7440693-58fa-45ec-8b6d-db61c56c8e25"),
+                            Code = new Guid("e8add0e9-c7fd-4e18-8230-c00f4835c11b"),
                             LevelCode = new Guid("9ee36b90-1e89-4591-b849-9d79badce3a8"),
                             Name = "主任医师",
                             Sort = 1,
@@ -1076,7 +1078,7 @@ namespace HospitalPersonnelSystem.Data.Migrations
                         },
                         new
                         {
-                            Code = new Guid("b17c7f30-898b-44dc-8250-99dd71887801"),
+                            Code = new Guid("61da1618-8db4-4b34-abb0-2fef82bc49a0"),
                             LevelCode = new Guid("9ee36b90-1e89-4591-b849-9d79badce3a8"),
                             Name = "主任药师",
                             Sort = 2,
@@ -1085,7 +1087,7 @@ namespace HospitalPersonnelSystem.Data.Migrations
                         },
                         new
                         {
-                            Code = new Guid("46a8e35c-0b78-413a-a903-8d5168cece09"),
+                            Code = new Guid("b826e1d6-ffd0-41dc-8b54-e55fed35f91c"),
                             LevelCode = new Guid("9ee36b90-1e89-4591-b849-9d79badce3a8"),
                             Name = "主任护师",
                             Sort = 3,
@@ -1094,7 +1096,7 @@ namespace HospitalPersonnelSystem.Data.Migrations
                         },
                         new
                         {
-                            Code = new Guid("d2944a4d-4ffa-4cbe-af8f-f9142404a44c"),
+                            Code = new Guid("71714970-1440-4d6e-8521-3b30d9c0214e"),
                             LevelCode = new Guid("9ee36b90-1e89-4591-b849-9d79badce3a8"),
                             Name = "主任技师",
                             Sort = 4,
@@ -1103,7 +1105,7 @@ namespace HospitalPersonnelSystem.Data.Migrations
                         },
                         new
                         {
-                            Code = new Guid("8ea6e4f8-6572-4399-8868-79ce1177bdc5"),
+                            Code = new Guid("12e1adeb-1169-41e4-933d-5034e1656b05"),
                             LevelCode = new Guid("4ef010d0-5c7e-4e38-bcff-fffcd69627cf"),
                             Name = "副主任医师",
                             Sort = 5,
@@ -1112,7 +1114,7 @@ namespace HospitalPersonnelSystem.Data.Migrations
                         },
                         new
                         {
-                            Code = new Guid("e237376c-3ee8-4f42-9a52-c59f8cdc89c6"),
+                            Code = new Guid("1fb12ef6-3257-448a-972a-497e94fd8fcb"),
                             LevelCode = new Guid("4ef010d0-5c7e-4e38-bcff-fffcd69627cf"),
                             Name = "副主任药师",
                             Sort = 6,
@@ -1121,7 +1123,7 @@ namespace HospitalPersonnelSystem.Data.Migrations
                         },
                         new
                         {
-                            Code = new Guid("427ee48f-3538-46bc-8299-62eb22bdff27"),
+                            Code = new Guid("4ae234ff-9e5b-4731-8d99-3f93c6786a99"),
                             LevelCode = new Guid("4ef010d0-5c7e-4e38-bcff-fffcd69627cf"),
                             Name = "副主任护师",
                             Sort = 7,
@@ -1130,7 +1132,7 @@ namespace HospitalPersonnelSystem.Data.Migrations
                         },
                         new
                         {
-                            Code = new Guid("2c0c89d4-7234-4ec5-9d43-8d383e5f041f"),
+                            Code = new Guid("f1cdae05-ec1f-4900-9251-5d729a0ee8ea"),
                             LevelCode = new Guid("4ef010d0-5c7e-4e38-bcff-fffcd69627cf"),
                             Name = "副主任技师",
                             Sort = 8,
@@ -1139,7 +1141,7 @@ namespace HospitalPersonnelSystem.Data.Migrations
                         },
                         new
                         {
-                            Code = new Guid("40137f92-2d2d-4a11-979e-1eee9880c29c"),
+                            Code = new Guid("28d18652-63d8-42a2-988e-9a40f79aea9f"),
                             LevelCode = new Guid("f469629a-4d6d-4640-804b-f2e5c44f5ca4"),
                             Name = "主治医师",
                             Sort = 9,
@@ -1148,7 +1150,7 @@ namespace HospitalPersonnelSystem.Data.Migrations
                         },
                         new
                         {
-                            Code = new Guid("91c2762b-5106-470b-a48b-c7a30ed56448"),
+                            Code = new Guid("7724bb4a-1105-4cdf-9f7d-b99175351595"),
                             LevelCode = new Guid("f469629a-4d6d-4640-804b-f2e5c44f5ca4"),
                             Name = "主管药师",
                             Sort = 10,
@@ -1157,7 +1159,7 @@ namespace HospitalPersonnelSystem.Data.Migrations
                         },
                         new
                         {
-                            Code = new Guid("90f778f5-afd2-4ba3-8f69-e8f3df0feced"),
+                            Code = new Guid("1a950b6f-1e90-48d8-8d16-68b247209a79"),
                             LevelCode = new Guid("f469629a-4d6d-4640-804b-f2e5c44f5ca4"),
                             Name = "主管护师",
                             Sort = 11,
@@ -1166,7 +1168,7 @@ namespace HospitalPersonnelSystem.Data.Migrations
                         },
                         new
                         {
-                            Code = new Guid("65b4615c-cbf2-4b42-bf10-9db91b017c93"),
+                            Code = new Guid("16304a5d-79ac-490a-9f15-8837636d6523"),
                             LevelCode = new Guid("f469629a-4d6d-4640-804b-f2e5c44f5ca4"),
                             Name = "主管技师",
                             Sort = 12,
@@ -1175,7 +1177,7 @@ namespace HospitalPersonnelSystem.Data.Migrations
                         },
                         new
                         {
-                            Code = new Guid("9269643a-ed6d-48f8-b194-03ed40161047"),
+                            Code = new Guid("2ef6498f-2156-4ae0-86cc-aedeee9ac4cb"),
                             LevelCode = new Guid("4e8d76cd-5bc0-4281-8e68-446a8b649b82"),
                             Name = "医师",
                             Sort = 13,
@@ -1184,7 +1186,7 @@ namespace HospitalPersonnelSystem.Data.Migrations
                         },
                         new
                         {
-                            Code = new Guid("e4687b51-9b24-4ee7-8e46-5e9bdeda6ae4"),
+                            Code = new Guid("18c4334c-6701-4d40-a3a2-7387d520e609"),
                             LevelCode = new Guid("4e8d76cd-5bc0-4281-8e68-446a8b649b82"),
                             Name = "医士",
                             Sort = 14,
@@ -1193,7 +1195,7 @@ namespace HospitalPersonnelSystem.Data.Migrations
                         },
                         new
                         {
-                            Code = new Guid("40d4048c-4adb-4a6a-ae23-d1d100283ddf"),
+                            Code = new Guid("f982fd67-6584-4da9-89aa-5d9579224592"),
                             LevelCode = new Guid("4e8d76cd-5bc0-4281-8e68-446a8b649b82"),
                             Name = "药师",
                             Sort = 15,
@@ -1202,7 +1204,7 @@ namespace HospitalPersonnelSystem.Data.Migrations
                         },
                         new
                         {
-                            Code = new Guid("a7dd45a6-ed8f-418b-a6ec-b958639857ef"),
+                            Code = new Guid("ce3a3816-6e96-4dd7-a363-a7f41335621e"),
                             LevelCode = new Guid("4e8d76cd-5bc0-4281-8e68-446a8b649b82"),
                             Name = "药士",
                             Sort = 16,
@@ -1211,7 +1213,7 @@ namespace HospitalPersonnelSystem.Data.Migrations
                         },
                         new
                         {
-                            Code = new Guid("d2fc5f48-53ff-475d-a409-6b02df3e06d9"),
+                            Code = new Guid("52264a28-9d61-438f-8aa0-63240ce993b4"),
                             LevelCode = new Guid("4e8d76cd-5bc0-4281-8e68-446a8b649b82"),
                             Name = "护师",
                             Sort = 17,
@@ -1220,7 +1222,7 @@ namespace HospitalPersonnelSystem.Data.Migrations
                         },
                         new
                         {
-                            Code = new Guid("de35c520-6a4d-44e5-8b61-698450aaa8c8"),
+                            Code = new Guid("dd3f18e5-f6ff-4c0b-9a4e-6c72847655c6"),
                             LevelCode = new Guid("4e8d76cd-5bc0-4281-8e68-446a8b649b82"),
                             Name = "护士",
                             Sort = 18,
@@ -1229,7 +1231,7 @@ namespace HospitalPersonnelSystem.Data.Migrations
                         },
                         new
                         {
-                            Code = new Guid("db8385a8-a7ba-47a6-96d5-f65bd8614754"),
+                            Code = new Guid("334e733d-f743-491d-b135-ba58f356165b"),
                             LevelCode = new Guid("4e8d76cd-5bc0-4281-8e68-446a8b649b82"),
                             Name = "技师",
                             Sort = 19,
@@ -1238,7 +1240,7 @@ namespace HospitalPersonnelSystem.Data.Migrations
                         },
                         new
                         {
-                            Code = new Guid("60f9436c-1759-45b7-a769-8e0b470c8157"),
+                            Code = new Guid("fa618b39-ab46-45d1-b9af-dcf930dd4859"),
                             LevelCode = new Guid("4e8d76cd-5bc0-4281-8e68-446a8b649b82"),
                             Name = "技士",
                             Sort = 20,
@@ -1247,7 +1249,7 @@ namespace HospitalPersonnelSystem.Data.Migrations
                         },
                         new
                         {
-                            Code = new Guid("31bcdad8-e042-4eda-849c-ef16e0ee9866"),
+                            Code = new Guid("bb3efbc8-8195-4911-b109-e8dc25b6f211"),
                             LevelCode = new Guid("2d9f5ae2-a9b1-497f-97f4-e31cfe6f0ba0"),
                             Name = "无职称",
                             Sort = 21,
@@ -1342,210 +1344,210 @@ namespace HospitalPersonnelSystem.Data.Migrations
                         },
                         new
                         {
-                            Code = new Guid("cad66d6e-44f6-41a9-bb7b-73416438cb1b"),
+                            Code = new Guid("a7b20501-2da0-4099-ae55-bda79381ac36"),
                             Name = "高等学校教师",
                             Sort = 2,
                             Spell = "GDXJJS,GDXXJS"
                         },
                         new
                         {
-                            Code = new Guid("734e5891-782e-441f-bbbb-0451c5a46e49"),
+                            Code = new Guid("09ea9c13-2639-4bd9-9431-30fcda21f800"),
                             Name = "中等专业学校教师",
                             Sort = 3,
                             Spell = "ZDZYXJJS,ZDZYXXJS"
                         },
                         new
                         {
-                            Code = new Guid("a0d81440-ac53-49de-9d9f-dfe20a6f0d4e"),
+                            Code = new Guid("2ceb2a55-6609-4602-9ae8-9a46978bed8d"),
                             Name = "技工学校教师",
                             Sort = 4,
                             Spell = "JGXJJS,JGXXJS"
                         },
                         new
                         {
-                            Code = new Guid("f7856921-aa48-400b-bc64-160377736e8c"),
+                            Code = new Guid("997dffc8-4904-4f63-8a5a-fb115e3edae2"),
                             Name = "中学教师",
                             Sort = 5,
                             Spell = "ZXJS"
                         },
                         new
                         {
-                            Code = new Guid("c564f2a7-f9ed-4c27-924b-6540a599eb08"),
+                            Code = new Guid("16751b23-8f72-4d40-a60c-e5e75e19e32c"),
                             Name = "小学（幼儿园）教师",
                             Sort = 6,
                             Spell = "XX（YEY）JS"
                         },
                         new
                         {
-                            Code = new Guid("57a01456-ccbf-447a-9de5-da9786e5acfa"),
+                            Code = new Guid("403c3b08-c9e5-474e-b2b9-526954ca96b3"),
                             Name = "自然科学研究人员",
                             Sort = 7,
                             Spell = "ZRKXYJRY"
                         },
                         new
                         {
-                            Code = new Guid("50507d36-3b7f-4f75-8482-8bb19c676c6f"),
+                            Code = new Guid("3b613654-324b-4a8c-a752-ec55005b3981"),
                             Name = "社会科学研究人员",
                             Sort = 8,
                             Spell = "SHKXYJRY,SKKXYJRY"
                         },
                         new
                         {
-                            Code = new Guid("4af2b1d3-8534-417f-8c72-d87c15b13054"),
+                            Code = new Guid("cd001c66-1045-4571-a609-43cfe032b1df"),
                             Name = "工程技术人员",
                             Sort = 9,
                             Spell = "GCJSRY,GCJZRY"
                         },
                         new
                         {
-                            Code = new Guid("4be3223e-d59b-48ec-872c-f255a45dbebb"),
+                            Code = new Guid("453551dd-d672-4221-b4a4-d446e10b1354"),
                             Name = "实验技术人员",
                             Sort = 10,
                             Spell = "SYJSRY,SYJZRY"
                         },
                         new
                         {
-                            Code = new Guid("f4d7f217-c9d4-44fc-819f-4f9b76bf1251"),
+                            Code = new Guid("646585d8-115a-447e-af48-1cfeb7614643"),
                             Name = "农业技术人员",
                             Sort = 11,
                             Spell = "NYJSRY,NYJZRY"
                         },
                         new
                         {
-                            Code = new Guid("459e9951-dbab-4cba-b3dc-a40d21597653"),
+                            Code = new Guid("76494471-894c-433a-972a-642ed1d05929"),
                             Name = "经济专业人员",
                             Sort = 12,
                             Spell = "JJZYRY"
                         },
                         new
                         {
-                            Code = new Guid("97809a94-375a-4ff3-8425-3db31dbb6e25"),
+                            Code = new Guid("6f87fa29-dbc0-4cd1-b99e-5cd28c844d35"),
                             Name = "会计专业人员",
                             Sort = 13,
                             Spell = "HJZYRY,KJZYRY"
                         },
                         new
                         {
-                            Code = new Guid("eb024f2b-b71d-40b6-8f78-c159da68aeb8"),
+                            Code = new Guid("a432ebaf-1398-401e-815d-ab94ff674ee4"),
                             Name = "审计专业人员",
                             Sort = 14,
                             Spell = "SJZYRY"
                         },
                         new
                         {
-                            Code = new Guid("1fc4162a-71a1-4d81-8968-6cb984eeda49"),
+                            Code = new Guid("f22a5b51-0a54-47c7-a396-e88b9b3bf66e"),
                             Name = "统计专业人员",
                             Sort = 15,
                             Spell = "TJZYRY"
                         },
                         new
                         {
-                            Code = new Guid("4df9751c-794d-4bd2-b5d1-f6172aae0bf6"),
+                            Code = new Guid("5df5a1e4-bda8-4b8f-a5e8-83a598fc7a37"),
                             Name = "新闻专业人员",
                             Sort = 16,
                             Spell = "XWZYRY"
                         },
                         new
                         {
-                            Code = new Guid("696c46ef-9c2d-4162-95b3-c3dc4682f6b8"),
+                            Code = new Guid("3ab98224-31ad-4184-8def-c2d6bc57f41c"),
                             Name = "出版专业人员",
                             Sort = 17,
                             Spell = "CBZYRY"
                         },
                         new
                         {
-                            Code = new Guid("171859a0-8cdf-48ae-b5a9-ea402d49d833"),
+                            Code = new Guid("6c30e2c3-55d9-49ec-8f2e-7ceb85a95ab1"),
                             Name = "图书资料专业人员",
                             Sort = 18,
                             Spell = "TSZLZYRY"
                         },
                         new
                         {
-                            Code = new Guid("8a14987a-bb5a-4ffd-bb79-b5e42b331ddf"),
+                            Code = new Guid("a509bf10-d072-48e6-98a8-c0626a0b6bc9"),
                             Name = "文物博物专业人员",
                             Sort = 19,
                             Spell = "WWBWZYRY"
                         },
                         new
                         {
-                            Code = new Guid("5a9d5634-9a87-448b-874a-0d789e48279e"),
+                            Code = new Guid("238b9d42-6d10-4523-9c15-57e9d0d453fb"),
                             Name = "档案专业人员",
                             Sort = 20,
                             Spell = "DAZYRY"
                         },
                         new
                         {
-                            Code = new Guid("f82eea27-c506-4a06-bbff-d35fa4727337"),
+                            Code = new Guid("a2bd6753-e7b0-4300-9932-3e4ca886e38f"),
                             Name = "广播电视播音人员",
                             Sort = 21,
                             Spell = "ABDSBYRY,GBDSBYRY"
                         },
                         new
                         {
-                            Code = new Guid("8269bc07-59fa-49aa-b98e-a9fd292d260b"),
+                            Code = new Guid("a6e0eb8f-6bb5-4c5a-91f1-5d7f9cad4cb7"),
                             Name = "翻译人员",
                             Sort = 22,
                             Spell = "FYRY"
                         },
                         new
                         {
-                            Code = new Guid("a6092819-ec93-43fb-9ac0-a1efc165686c"),
+                            Code = new Guid("86ac6438-543a-4c19-8d59-aa103a6ac5b8"),
                             Name = "律师",
                             Sort = 23,
                             Spell = "LS"
                         },
                         new
                         {
-                            Code = new Guid("baf4d991-e4e1-4505-808a-93291d1adc1f"),
+                            Code = new Guid("6be12002-d489-405a-be90-c4350d675db2"),
                             Name = "公证员",
                             Sort = 24,
                             Spell = "GZY"
                         },
                         new
                         {
-                            Code = new Guid("17154a18-d356-4f70-beb4-1ea48e64165a"),
+                            Code = new Guid("f7ee47bd-ce17-4151-9309-fff8fa8534f2"),
                             Name = "海关人员",
                             Sort = 25,
                             Spell = "HGRY"
                         },
                         new
                         {
-                            Code = new Guid("353564d2-88f1-4048-9311-ab1bad850505"),
+                            Code = new Guid("632fa798-e852-4ce1-91a0-b2e3734ba01e"),
                             Name = "船舶技术人员",
                             Sort = 26,
                             Spell = "CBJSRY,CBJZRY"
                         },
                         new
                         {
-                            Code = new Guid("b8fdbfb5-e8f2-4236-b610-b6ee23d6f9da"),
+                            Code = new Guid("2800c85e-eef2-49b9-86da-a1610e1c8bf4"),
                             Name = "民用航空飞行技术人员",
                             Sort = 27,
                             Spell = "MYHKFHJSRY,MYHKFXJSRY,MYHKFHJZRY,MYHKFXJZRY"
                         },
                         new
                         {
-                            Code = new Guid("16b33dca-63fd-42fa-b78e-1e6928f519bf"),
+                            Code = new Guid("942622db-41e1-456e-aef8-87e19adfebf8"),
                             Name = "艺术专业人员",
                             Sort = 28,
                             Spell = "YSZYRY,YZZYRY"
                         },
                         new
                         {
-                            Code = new Guid("32cf3bd3-d24d-45cc-8d6e-6543871f81ab"),
+                            Code = new Guid("62ea2e20-89f9-4b16-a78e-b7c43cc7bac8"),
                             Name = "工艺美术专业人员",
                             Sort = 29,
                             Spell = "GYMSZYRY,GYMZZYRY"
                         },
                         new
                         {
-                            Code = new Guid("98a639d3-06dd-4544-a10b-2bef36d6edd9"),
+                            Code = new Guid("a875771f-d030-45a7-a3f2-22428ba31d1b"),
                             Name = "体育教练员",
                             Sort = 30,
                             Spell = "TYJLY"
                         },
                         new
                         {
-                            Code = new Guid("23633498-581b-4389-8ae9-15b3bced2213"),
+                            Code = new Guid("f3452967-8456-4996-8c70-0c3127daffbc"),
                             Name = "思想政治工作人员",
                             Sort = 31,
                             Spell = "SXZZGZRY"
@@ -1581,28 +1583,28 @@ namespace HospitalPersonnelSystem.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Code = new Guid("c866b73d-e175-48ba-a4b8-3966c3b3060a"),
+                            Code = new Guid("80b9200a-99e1-4ee9-a7c9-cade73d73654"),
                             Name = "临床",
                             Sort = 1,
                             Spell = "LC"
                         },
                         new
                         {
-                            Code = new Guid("19584e5b-2a59-4455-a1fb-0b4b4261bac2"),
+                            Code = new Guid("6db24fe9-1d97-449d-9637-8c31a45ab991"),
                             Name = "口腔",
                             Sort = 2,
                             Spell = "KQ"
                         },
                         new
                         {
-                            Code = new Guid("1df24171-b9d9-4561-8ac9-58ff375c6171"),
+                            Code = new Guid("d3f15955-b585-418d-8391-28495dfb47f1"),
                             Name = "公卫",
                             Sort = 3,
                             Spell = "GW"
                         },
                         new
                         {
-                            Code = new Guid("3889c8fa-ae75-49cc-a6ad-40cc15a24daa"),
+                            Code = new Guid("049aca76-a429-4945-952b-cd792823fcf4"),
                             Name = "中医",
                             Sort = 4,
                             Spell = "ZY"
@@ -1792,105 +1794,105 @@ namespace HospitalPersonnelSystem.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Code = new Guid("bf66b173-e71d-45c4-8f24-aaf1002cf0d2"),
+                            Code = new Guid("32058174-22f0-4aeb-9bc6-385599c173af"),
                             Name = "在编人员",
                             Sort = 1,
                             Spell = "ZBRY"
                         },
                         new
                         {
-                            Code = new Guid("ef5ed46a-35dd-4b70-88ac-c4d63ef854c7"),
+                            Code = new Guid("4a3210d3-67db-4463-ad79-468e0a358dad"),
                             Name = "人事代理",
                             Sort = 2,
                             Spell = "RSDL"
                         },
                         new
                         {
-                            Code = new Guid("a9f4f196-9002-4fac-b26b-0ca93e672399"),
+                            Code = new Guid("f6e19408-3016-42d2-9945-74d7690009ed"),
                             Name = "临时人员",
                             Sort = 3,
                             Spell = "LSRY"
                         },
                         new
                         {
-                            Code = new Guid("c9ae695a-7c89-4134-a4ca-701bc9ac23f7"),
+                            Code = new Guid("e0e97799-2ea7-410b-9073-ecc4cdc70fdc"),
                             Name = "离退人员",
                             Sort = 4,
                             Spell = "LTRY"
                         },
                         new
                         {
-                            Code = new Guid("c22c2d00-988c-4a4d-85ee-7e1589998aa4"),
+                            Code = new Guid("d3e60eb3-cc44-476b-850a-fa167166f824"),
                             Name = "辞职人员",
                             Sort = 5,
                             Spell = "CZRY"
                         },
                         new
                         {
-                            Code = new Guid("322689f2-887f-48d7-a3d3-3c56ab44e654"),
+                            Code = new Guid("db4e3706-ccde-433a-8356-def5451273a6"),
                             Name = "返聘人员",
                             Sort = 6,
                             Spell = "FPRY"
                         },
                         new
                         {
-                            Code = new Guid("2882b1e2-201d-4fdb-9ad6-44c577e1268d"),
+                            Code = new Guid("ff97d6d5-09db-4a55-9542-c2103e015241"),
                             Name = "调出人员",
                             Sort = 7,
                             Spell = "DCRY,TCRY"
                         },
                         new
                         {
-                            Code = new Guid("1a545a94-8962-4a2e-ac80-ed0dd2a128a1"),
+                            Code = new Guid("3df65b5c-d0f1-4643-9677-d3d982269c96"),
                             Name = "除名人员",
                             Sort = 8,
                             Spell = "CMRY"
                         },
                         new
                         {
-                            Code = new Guid("3618b688-81ea-491b-8d52-d4c0395205ff"),
+                            Code = new Guid("e8450549-1d3d-44fa-998e-d04480e5af0d"),
                             Name = "实习进修",
                             Sort = 9,
                             Spell = "SXJX"
                         },
                         new
                         {
-                            Code = new Guid("faa980e5-fe9c-4d8f-8790-443d623bbc03"),
+                            Code = new Guid("fd863878-e499-47e0-a06d-def8e936642e"),
                             Name = "借出人员",
                             Sort = 10,
                             Spell = "JCRY"
                         },
                         new
                         {
-                            Code = new Guid("94d24c8f-de05-4478-9868-6f975a5a8106"),
+                            Code = new Guid("50d55a83-529d-4bb5-a31a-6e617e3aa294"),
                             Name = "长期出国人员",
                             Sort = 11,
                             Spell = "CJCGRY,ZJCGRY,CQCGRY,ZQCGRY"
                         },
                         new
                         {
-                            Code = new Guid("75cb1ed5-8f58-4674-b10a-5f7b41650a78"),
+                            Code = new Guid("3739ca89-ba4c-49e0-a669-8ee9801ce02f"),
                             Name = "自动离职人员",
                             Sort = 12,
                             Spell = "ZDLZRY"
                         },
                         new
                         {
-                            Code = new Guid("85c4d797-ae34-412c-8b39-35e20a8e1d9a"),
+                            Code = new Guid("3c750202-5964-406e-a207-36125fe66f96"),
                             Name = "停薪留职人员",
                             Sort = 13,
                             Spell = "TXLZRY"
                         },
                         new
                         {
-                            Code = new Guid("9b8a3003-364e-480d-a30d-1fe40c48c03e"),
+                            Code = new Guid("40198c10-ad88-4810-b55b-cbcefe6e11d4"),
                             Name = "编外离岗人员",
                             Sort = 14,
                             Spell = "BWLGRY"
                         },
                         new
                         {
-                            Code = new Guid("bb43bbfd-e941-452d-86aa-d1bb130b1b73"),
+                            Code = new Guid("4191fa72-007e-474a-9177-316963c09e8a"),
                             Name = "内部退养",
                             Sort = 15,
                             Spell = "NBTY"
@@ -1934,7 +1936,7 @@ namespace HospitalPersonnelSystem.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Code = new Guid("6788ca66-14bc-4db3-a6e6-7be3987159a4"),
+                            Code = new Guid("de74243f-4389-4765-b89c-771dd8718b63"),
                             Action = "Index",
                             Controller = "SysNavbarType",
                             Name = "菜单类别",
@@ -1944,7 +1946,7 @@ namespace HospitalPersonnelSystem.Data.Migrations
                         },
                         new
                         {
-                            Code = new Guid("7e8df3ef-a890-4190-98b1-f321cc08c553"),
+                            Code = new Guid("466863a1-c2c4-47b0-b668-1f1cc3e044de"),
                             Action = "Index",
                             Controller = "SysNavbar",
                             Name = "菜单",
@@ -1954,7 +1956,7 @@ namespace HospitalPersonnelSystem.Data.Migrations
                         },
                         new
                         {
-                            Code = new Guid("44c91c33-e155-4bdd-9576-8f4a958cd561"),
+                            Code = new Guid("42782c5e-59f8-4608-80fc-8ca87ed9470c"),
                             Action = "Index",
                             Controller = "ComGender",
                             Name = "性别",
@@ -1964,161 +1966,131 @@ namespace HospitalPersonnelSystem.Data.Migrations
                         },
                         new
                         {
-                            Code = new Guid("0653fc1f-0aa7-4f25-8054-809177ff0168"),
-                            Action = "Index",
-                            Controller = "ComPost",
-                            Name = "岗位",
-                            Sort = 4,
-                            Spell = "GW",
-                            TypeCode = new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc")
-                        },
-                        new
-                        {
-                            Code = new Guid("cc93f42f-3f72-41a0-b960-0fc280ae12f7"),
+                            Code = new Guid("ea54d9f5-5ba4-40d3-9804-e5547c0b64dc"),
                             Action = "Index",
                             Controller = "ComNation",
                             Name = "民族",
-                            Sort = 5,
+                            Sort = 4,
                             Spell = "MZ",
                             TypeCode = new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc")
                         },
                         new
                         {
-                            Code = new Guid("85804855-ee8f-42a1-a411-522a41eda690"),
+                            Code = new Guid("0e411a24-4fc2-4c9a-a60c-d5e88421c80e"),
                             Action = "Index",
                             Controller = "ComPolitical",
                             Name = "政治面貌",
-                            Sort = 6,
+                            Sort = 5,
                             Spell = "ZZMM",
                             TypeCode = new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc")
                         },
                         new
                         {
-                            Code = new Guid("d5c4dbee-58e1-47fb-b701-28715799ea15"),
-                            Action = "Index",
-                            Controller = "ComProfessionTitle",
-                            Name = "职称",
-                            Sort = 7,
-                            Spell = "ZC",
-                            TypeCode = new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc")
-                        },
-                        new
-                        {
-                            Code = new Guid("ccb7a3ec-389d-45d9-ab6d-b660c3909f3d"),
-                            Action = "Index",
-                            Controller = "ComProfessionTitleLevel",
-                            Name = "职称级别",
-                            Sort = 8,
-                            Spell = "ZCJB",
-                            TypeCode = new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc")
-                        },
-                        new
-                        {
-                            Code = new Guid("3e337836-0ef4-46a3-9850-999565b16d0d"),
+                            Code = new Guid("0affccb2-ff6d-431d-82a6-36b3ab7e405f"),
                             Action = "Index",
                             Controller = "ComProfessionTitleType",
                             Name = "职称系列",
-                            Sort = 9,
+                            Sort = 6,
                             Spell = "ZCJL,ZCXL",
                             TypeCode = new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc")
                         },
                         new
                         {
-                            Code = new Guid("0c611254-e79f-44d4-bc66-9093cbe04dd3"),
+                            Code = new Guid("2feee364-c732-467c-a0a3-e516f30f0356"),
                             Action = "Index",
-                            Controller = "ComProfessionRegister",
-                            Name = "执业资格",
-                            Sort = 10,
-                            Spell = "ZYZG",
+                            Controller = "ComProfessionTitleLevel",
+                            Name = "职称级别",
+                            Sort = 7,
+                            Spell = "ZCJB",
                             TypeCode = new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc")
                         },
                         new
                         {
-                            Code = new Guid("e91d9a58-b7e8-4e4d-aa54-e11f91cc2f0e"),
+                            Code = new Guid("8f582a69-04c1-44c2-8d00-9c301c007b1d"),
                             Action = "Index",
-                            Controller = "ComProfessionExtent",
-                            Name = "执业范围",
-                            Sort = 11,
-                            Spell = "ZYFW",
+                            Controller = "ComProfessionTitle",
+                            Name = "职称",
+                            Sort = 8,
+                            Spell = "ZC",
                             TypeCode = new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc")
                         },
                         new
                         {
-                            Code = new Guid("7cc0cad2-1699-4b52-be52-15c34bbb7d70"),
-                            Action = "Index",
-                            Controller = "ComProfessionType",
-                            Name = "执业类别",
-                            Sort = 12,
-                            Spell = "ZYLB",
-                            TypeCode = new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc")
-                        },
-                        new
-                        {
-                            Code = new Guid("9749c47b-add7-4fd1-8bbf-ee42525b3ad5"),
+                            Code = new Guid("639e945c-ffc7-47d5-b248-267167e423b1"),
                             Action = "Index",
                             Controller = "ComAdminDuty",
                             Name = "行政职务",
-                            Sort = 13,
+                            Sort = 9,
                             Spell = "HZZW,XZZW",
                             TypeCode = new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc")
                         },
                         new
                         {
-                            Code = new Guid("060e9524-063f-43a6-bc96-5758b02db582"),
+                            Code = new Guid("a66f30d0-fa30-4a50-b865-913da3751dfc"),
                             Action = "Index",
                             Controller = "SysEmpType",
                             Name = "人员类别",
-                            Sort = 14,
+                            Sort = 10,
                             Spell = "RYLB",
                             TypeCode = new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc")
                         },
                         new
                         {
-                            Code = new Guid("171c4970-a8bf-4b9a-9203-3632be6b5825"),
+                            Code = new Guid("db7bb185-ca7c-4996-8a81-92b6e7f9ee68"),
                             Action = "Index",
                             Controller = "ComEducation",
                             Name = "学历",
-                            Sort = 15,
+                            Sort = 11,
                             Spell = "XL",
                             TypeCode = new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc")
                         },
                         new
                         {
-                            Code = new Guid("f794757c-b9de-4085-868f-fae969e45c23"),
+                            Code = new Guid("9896efad-210a-44de-a367-6ecba6d749ee"),
                             Action = "Index",
                             Controller = "ComDegree",
                             Name = "学位",
-                            Sort = 16,
+                            Sort = 12,
                             Spell = "XW",
                             TypeCode = new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc")
                         },
                         new
                         {
-                            Code = new Guid("92976039-acb0-4720-87b9-b95a1d8f8b7c"),
+                            Code = new Guid("747b47e8-453f-461a-bfa0-35055dcdb870"),
+                            Action = "Index",
+                            Controller = "ComMarriage",
+                            Name = "婚姻状况",
+                            Sort = 13,
+                            Spell = "HYZK",
+                            TypeCode = new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc")
+                        },
+                        new
+                        {
+                            Code = new Guid("ce5b8299-120a-4a39-a760-a18b89a79056"),
                             Action = "Index",
                             Controller = "SysDept",
                             Name = "科室信息",
-                            Sort = 17,
+                            Sort = 14,
                             Spell = "KSXX",
                             TypeCode = new Guid("c4aa85c9-bd15-47e7-bc1f-b7fd24c7a52e")
                         },
                         new
                         {
-                            Code = new Guid("8ff3e5db-d5f3-4a2b-ad42-f7e5ed6d83e4"),
+                            Code = new Guid("ad136c8c-9398-4d1e-af3a-bbc75f6c4c16"),
                             Action = "Index",
                             Controller = "SysEmp",
                             Name = "人员管理",
-                            Sort = 18,
+                            Sort = 15,
                             Spell = "RYGL",
                             TypeCode = new Guid("f356c105-78d1-4d16-bb8d-a48fc1072993")
                         },
                         new
                         {
-                            Code = new Guid("29a6b3ff-2d9a-44ce-87ab-2604c48a45cf"),
+                            Code = new Guid("fb676bcd-a480-4893-8eba-a92e8f7f089d"),
                             Action = "Index",
                             Controller = "SysProfessionInfo",
                             Name = "职称评定",
-                            Sort = 19,
+                            Sort = 16,
                             Spell = "ZCPD",
                             TypeCode = new Guid("f356c105-78d1-4d16-bb8d-a48fc1072993")
                         });

@@ -47,5 +47,9 @@ namespace HospitalPersonnelSystem.Models
         /// 人员
         /// </summary>
         public List<SysEmp> SysEmps { get; set; }
+        /// <summary>
+        /// 职称评定
+        /// </summary>
+        public List<SysProfessionInfo> SysProfessionInfos { get; set; }
     }
 }

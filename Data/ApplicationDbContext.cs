@@ -98,6 +98,22 @@ namespace HospitalPersonnelSystem.Data
         /// 人员
         /// </summary>
         public DbSet<SysEmp> SysEmps { get; set; }
+        /// <summary>
+        /// 执业资格
+        /// </summary>
+        public DbSet<ComProfessionRegister> ComProfessionRegisters { get; set; }
+        /// <summary>
+        /// 执业类别
+        /// </summary>
+        public DbSet<ComProfessionType> ComProfessionTypes { get; set; }
+        /// <summary>
+        /// 执业范围
+        /// </summary>
+        public DbSet<ComProfessionExtent> ComProfessionExtents { get; set; }
+        /// <summary>
+        /// 职称评定
+        /// </summary>
+        public DbSet<SysProfessionInfo> SysProfessionInfos { get; set; }
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -180,6 +196,13 @@ namespace HospitalPersonnelSystem.Data
                 {
                     TypeCode = new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
                     Code = Guid.NewGuid(),
+                    Name = "岗位",
+                    Controller = "ComPost",
+                    Sort = sort++
+                }, new SysNavbar
+                {
+                    TypeCode = new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
+                    Code = Guid.NewGuid(),
                     Name = "民族",
                     Controller = "ComNation",
                     Sort = sort++
@@ -194,8 +217,8 @@ namespace HospitalPersonnelSystem.Data
                 {
                     TypeCode = new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
                     Code = Guid.NewGuid(),
-                    Name = "职称系列",
-                    Controller = "ComProfessionTitleType",
+                    Name = "职称",
+                    Controller = "ComProfessionTitle",
                     Sort = sort++
                 }, new SysNavbar
                 {
@@ -208,8 +231,29 @@ namespace HospitalPersonnelSystem.Data
                 {
                     TypeCode = new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
                     Code = Guid.NewGuid(),
-                    Name = "职称",
-                    Controller = "ComProfessionTitle",
+                    Name = "职称系列",
+                    Controller = "ComProfessionTitleType",
+                    Sort = sort++
+                }, new SysNavbar
+                {
+                    TypeCode = new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
+                    Code = Guid.NewGuid(),
+                    Name = "执业资格",
+                    Controller = "ComProfessionRegister",
+                    Sort = sort++
+                }, new SysNavbar
+                {
+                    TypeCode = new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
+                    Code = Guid.NewGuid(),
+                    Name = "执业范围",
+                    Controller = "ComProfessionExtent",
+                    Sort = sort++
+                }, new SysNavbar
+                {
+                    TypeCode = new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
+                    Code = Guid.NewGuid(),
+                    Name = "执业类别",
+                    Controller = "ComProfessionType",
                     Sort = sort++
                 }, new SysNavbar
                 {
@@ -239,13 +283,13 @@ namespace HospitalPersonnelSystem.Data
                     Name = "学位",
                     Controller = "ComDegree",
                     Sort = sort++
-                }, new SysNavbar
-                {
-                    TypeCode = new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
-                    Code = Guid.NewGuid(),
-                    Name = "婚姻状况",
-                    Controller = "ComMarriage",
-                    Sort = sort++
+                    //}, new SysNavbar
+                    //{
+                    //    TypeCode = new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
+                    //    Code = Guid.NewGuid(),
+                    //    Name = "婚姻状况",
+                    //    Controller = "ComMarriage",
+                    //    Sort = sort++
                 }, new SysNavbar
                 {
                     TypeCode = new Guid("c4aa85c9-bd15-47e7-bc1f-b7fd24c7a52e"),
@@ -260,7 +304,15 @@ namespace HospitalPersonnelSystem.Data
                     Name = "人员管理",
                     Controller = "SysEmp",
                     Sort = sort++
+                }, new SysNavbar
+                {
+                    TypeCode = new Guid("f356c105-78d1-4d16-bb8d-a48fc1072993"),
+                    Code = Guid.NewGuid(),
+                    Name = "职称评定",
+                    Controller = "SysProfessionInfo",
+                    Sort = sort++
                 });
+            //
             sort = 1;
             #endregion
 
@@ -289,6 +341,31 @@ namespace HospitalPersonnelSystem.Data
                 {
                     Code = new Guid("f1384219-82c1-47d8-8689-0be7c7f41129"),
                     Name = "未知",
+                    Sort = sort++
+                });
+            sort = 1;
+            #endregion
+
+            #region 岗位
+            modelBuilder.Entity<ComPost>(b =>
+            {
+                b.ToTable("ComPost");
+                b.HasKey(t => t.Code);
+                b.Property(t => t.Code)
+                .HasDefaultValueSql("newid()");
+                b.Property(t => t.Sort)
+                .HasDefaultValue(0);
+            });
+            modelBuilder.Entity<ComPost>()
+                .HasData(new ComPost
+                {
+                    Code = Guid.NewGuid(),
+                    Name = "卫",
+                    Sort = sort++
+                }, new ComPost
+                {
+                    Code = Guid.NewGuid(),
+                    Name = "工",
                     Sort = sort++
                 });
             sort = 1;
@@ -1489,30 +1566,142 @@ namespace HospitalPersonnelSystem.Data
             });
             #endregion
 
-            #region 岗位
-            modelBuilder.Entity<ComPost>(b =>
+
+            #region 执业资格
+            modelBuilder.Entity<ComProfessionRegister>(b =>
             {
-                b.ToTable("ComPost");
+                b.ToTable("ComProfessionRegister");
                 b.HasKey(t => t.Code);
                 b.Property(t => t.Code)
                 .HasDefaultValueSql("newid()");
                 b.Property(t => t.Sort)
                 .HasDefaultValue(0);
             });
-            modelBuilder.Entity<ComPost>()
-                .HasData(new ComPost
+            modelBuilder.Entity<ComProfessionRegister>()
+                .HasData(new ComProfessionRegister
                 {
                     Code = Guid.NewGuid(),
-                    Name = "卫",
+                    Name = "执业护士",
                     Sort = sort++
-                }, new ComPost
+                }, new ComProfessionRegister
                 {
                     Code = Guid.NewGuid(),
-                    Name = "工",
+                    Name = "执业医师",
+                    Sort = sort++
+                }, new ComProfessionRegister
+                {
+                    Code = new Guid("77aa99bd-d60b-4294-b8ad-fae4ff12c4d8"),
+                    Name = "无",
                     Sort = sort++
                 });
             sort = 1;
             #endregion
+
+            #region 执业类别
+            modelBuilder.Entity<ComProfessionType>(b =>
+            {
+                b.ToTable("ComProfessionType");
+                b.HasKey(t => t.Code);
+                b.Property(t => t.Code)
+                .HasDefaultValueSql("newid()");
+                b.Property(t => t.Sort)
+                .HasDefaultValue(0);
+            });
+            modelBuilder.Entity<ComProfessionType>()
+                .HasData(new ComProfessionType
+                {
+                    Code = Guid.NewGuid(),
+                    Name = "临床",
+                    Sort = sort++
+                }, new ComProfessionType
+                {
+                    Code = Guid.NewGuid(),
+                    Name = "口腔",
+                    Sort = sort++
+                }, new ComProfessionType
+                {
+                    Code = Guid.NewGuid(),
+                    Name = "公卫",
+                    Sort = sort++
+                }, new ComProfessionType
+                {
+                    Code = Guid.NewGuid(),
+                    Name = "中医",
+                    Sort = sort++
+                });
+            sort = 1;
+            #endregion
+
+            #region 执业范围
+            modelBuilder.Entity<ComProfessionExtent>(b =>
+            {
+                b.ToTable("ComProfessionExtent");
+                b.HasKey(t => t.Code);
+                b.Property(t => t.Code)
+                .HasDefaultValueSql("newid()");
+                b.Property(t => t.Sort)
+                .HasDefaultValue(0);
+            });
+            modelBuilder.Entity<ComProfessionExtent>()
+                .HasData(new ComProfessionExtent
+                {
+                    Code = Guid.NewGuid(),
+                    Name = "护理专业",
+                    Sort = sort++
+                }, new ComProfessionExtent
+                {
+                    Code = Guid.NewGuid(),
+                    Name = "外科专业",
+                    Sort = sort++
+                });
+            sort = 1;
+            #endregion
+
+            #region 职称评定
+            modelBuilder.Entity<SysProfessionInfo>(b =>
+            {
+                b.ToTable("SysProfessionInfo");
+                b.HasKey(t => t.Code);
+                b.Property(t => t.Code)
+                .HasDefaultValueSql("newid()");
+                b.Property(t => t.IsEngage)//是否聘用
+                .HasDefaultValue(false);
+                b.Property(t => t.UpDate)//来晋升日期
+                .HasDefaultValueSql("getdate()");
+                b.Property(t => t.CreateDate)//创建日期
+                .HasDefaultValueSql("getdate()");
+                b.HasOne(t => t.ComProfessionExtent)//职业范围
+                 .WithMany(t => t.SysProfessionInfos)
+                 .HasForeignKey(t => t.ProfessionTypeCode)
+                 .HasConstraintName("FK_TypeCode_Extent_SysProfessionInfo");
+                b.HasOne(t => t.ComProfessionRegister)//职业资格
+                 .WithMany(t => t.SysProfessionInfos)
+                 .HasForeignKey(t => t.ProfessionRegisterCode)
+                 .HasConstraintName("FK_RegisterCode_Register_SysProfessionInfo");
+                b.HasOne(t => t.ComProfessionTitle)//职称
+                 .WithMany(t => t.SysProfessionInfos)
+                 .HasForeignKey(t => t.ProfessionTitleCode)
+                 .HasConstraintName("FK_TitleCode_Title_SysProfessionInfo");
+                b.HasOne(t => t.ComProfessionTitleLevel)//职称级别
+                 .WithMany(t => t.SysProfessionInfos)
+                 .HasForeignKey(t => t.ProfessionTitleLevelCode)
+                 .HasConstraintName("FK_LevelCode_TitleLevel_SysProfessionInfo");
+                b.HasOne(t => t.ComProfessionTitleType)//职称系列
+                 .WithMany(t => t.SysProfessionInfos)
+                 .HasForeignKey(t => t.ProfessionTitleTypeCode)
+                 .HasConstraintName("FK_TypeCode_TitleType_SysProfessionInfo");
+                b.HasOne(t => t.ComProfessionType)//执业类别
+                 .WithMany(t => t.SysProfessionInfos)
+                 .HasForeignKey(t => t.ProfessionTypeCode)
+                 .HasConstraintName("FK_TypeCode_Type_SysProfessionInfo");
+                b.HasOne(t => t.SysEmp)//人员
+                 .WithMany(t => t.SysProfessionInfos)
+                 .HasForeignKey(t => t.EmpCode)
+                 .HasConstraintName("FK_EmpCode_SysEmp_SysProfessionInfo");
+            });
+            sort = 1;
+            #endregion
+            
 
 
             #region 注释

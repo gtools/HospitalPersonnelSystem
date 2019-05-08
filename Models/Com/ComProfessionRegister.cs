@@ -1,28 +1,25 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace HospitalPersonnelSystem.Models
 {
     /// <summary>
-    /// 职称评定
+    /// 执业资格
     /// </summary>
-    public class SysProfessionTitleInfo
+    public class ComProfessionRegister
     {
         /// <summary>
-        /// 代码
+        /// 代码77aa99bd-d60b-4294-b8ad-fae4ff12c4d8
         /// </summary>
-        [Required(ErrorMessage = GTSharp.Validate.Required)]
         public Guid Code { get; set; }
         private string name;
         /// <summary>
-        /// 科室名称
+        /// 名称
         /// </summary>
-        [Remote(action: "VerifyDeptName", controller: "SysDept")]//验证
-        [Display(Name = "科室名称")]
+        [Display(Name = "名称")]
         [Required(ErrorMessage = GTSharp.Validate.Required)]
-        public string DeptName
+        public string Name
         {
             get { return name; }
             set
@@ -37,13 +34,14 @@ namespace HospitalPersonnelSystem.Models
         [Display(Name = "拼音码")]
         public string Spell { get; set; }
         /// <summary>
-        /// 排序
+        /// 序号
         /// </summary>
         [Display(Name = "排序")]
+        [Required(ErrorMessage = GTSharp.Validate.Required)]
         public int Sort { get; set; }
         /// <summary>
-        /// 集合导航属性，人员
+        /// 职称评定
         /// </summary>
-        public List<SysEmp> SysEmps { get; set; }
+        public List<SysProfessionInfo> SysProfessionInfos { get; set; }
     }
 }

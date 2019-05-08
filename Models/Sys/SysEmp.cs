@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace HospitalPersonnelSystem.Models
@@ -379,5 +380,9 @@ namespace HospitalPersonnelSystem.Models
         [Display(Name = "创建日期")]
         [DataType(DataType.Date)]
         public DateTime CreateDate { get; set; }
+        /// <summary>
+        /// 职称评定
+        /// </summary>
+        public List<SysProfessionInfo> SysProfessionInfos { get; set; }
     }
 }
