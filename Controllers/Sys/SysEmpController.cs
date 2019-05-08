@@ -22,7 +22,7 @@ namespace HospitalPersonnelSystem.Controllers
         // GET: SysEmp
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.SysEmps.Include(s => s.ComAdminDuty).Include(s => s.ComDegree).Include(s => s.ComEducation).Include(s => s.ComGender).Include(s => s.ComMarriage).Include(s => s.ComNation).Include(s => s.ComPolitical).Include(s => s.ComProfessionTitle).Include(s => s.ComProfessionTitleLevel).Include(s => s.ComProfessionTitleType).Include(s => s.SysDept).Include(s => s.SysEmpType);
+            var applicationDbContext = _context.SysEmps.Include(s => s.ComAdminDuty).Include(s => s.ComDegree).Include(s => s.ComEducation).Include(s => s.ComGender).Include(s => s.ComMarriage).Include(s => s.ComNation).Include(s => s.ComPolitical).Include(s => s.ComProfessionTitle).Include(s => s.ComProfessionTitleLevel).Include(s => s.ComProfessionTitleType).Include(s => s.SysDept).Include(s => s.SysEmpType).Include(s => s.ComPost);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -47,6 +47,7 @@ namespace HospitalPersonnelSystem.Controllers
                 .Include(s => s.ComProfessionTitleType)
                 .Include(s => s.SysDept)
                 .Include(s => s.SysEmpType)
+                .Include(s => s.ComPost)
                 .FirstOrDefaultAsync(m => m.EmpCode == id);
             if (sysEmp == null)
             {
@@ -62,15 +63,19 @@ namespace HospitalPersonnelSystem.Controllers
             ViewData["AdminDutyCode"] = new SelectList(_context.ComAdminDutys.OrderBy(t => t.Sort).ToList(), "Code", "Name");
             ViewData["DegreeCode"] = new SelectList(_context.ComDegrees.OrderBy(t => t.Sort).ToList(), "Code", "Name");
             ViewData["EducationCode"] = new SelectList(_context.ComEducations.OrderBy(t => t.Sort).ToList(), "Code", "Name");
-            ViewData["GenderCode"] = new SelectList(_context.ComGenders.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            //性别默认未知f1384219-82c1-47d8-8689-0be7c7f41129
+            ViewData["GenderCode"] = new SelectList(_context.ComGenders.OrderBy(t => t.Sort).ToList(), "Code", "Name", "f1384219-82c1-47d8-8689-0be7c7f41129");
             ViewData["MarriageCode"] = new SelectList(_context.ComMarriages.OrderBy(t => t.Sort).ToList(), "Code", "Name");
-            ViewData["NationCode"] = new SelectList(_context.ComNations.OrderBy(t => t.Sort).ToList(), "Code", "Name");
-            ViewData["PoliticalCode"] = new SelectList(_context.ComPoliticals.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            //民族默认汉族ce17f92b-ee53-4aa6-8f3d-c3b13d865e2d
+            ViewData["NationCode"] = new SelectList(_context.ComNations.OrderBy(t => t.Sort).ToList(), "Code", "Name", "ce17f92b-ee53-4aa6-8f3d-c3b13d865e2d");
+            //政治面貌默认群众8e871348-b291-44e3-9aff-534cfe8eb4cf
+            ViewData["PoliticalCode"] = new SelectList(_context.ComPoliticals.OrderBy(t => t.Sort).ToList(), "Code", "Name", "8e871348-b291-44e3-9aff-534cfe8eb4cf");
             ViewData["ProfessionTitleCode"] = new SelectList(_context.ComProfessionTitles.OrderBy(t => t.Sort).ToList(), "Code", "Name");
             ViewData["ProfessionTitleLevelCode"] = new SelectList(_context.ComProfessionTitleLevels.OrderBy(t => t.Sort).ToList(), "Code", "Name");
             ViewData["ProfessionTitleTypeCode"] = new SelectList(_context.ComProfessionTitleTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name");
-            ViewData["DeptCode"] = new SelectList(_context.SysDepts.OrderBy(t => t.Sort).ToList(), "DeptCode", "DeptCode");
+            ViewData["DeptCode"] = new SelectList(_context.SysDepts.OrderBy(t => t.Sort).ToList(), "DeptCode", "DeptName");
             ViewData["TypeCode"] = new SelectList(_context.SysEmpTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["PostCode"] = new SelectList(_context.ComPosts.OrderBy(t => t.Sort).ToList(), "Code", "Name");
             return View();
         }
 
@@ -93,18 +98,22 @@ namespace HospitalPersonnelSystem.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AdminDutyCode"] = new SelectList(_context.ComAdminDutys.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.AdminDutyCode);
-            ViewData["DegreeCode"] = new SelectList(_context.ComDegrees.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.DegreeCode);
-            ViewData["EducationCode"] = new SelectList(_context.ComEducations.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.EducationCode);
-            ViewData["GenderCode"] = new SelectList(_context.ComGenders.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.GenderCode);
-            ViewData["MarriageCode"] = new SelectList(_context.ComMarriages.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.MarriageCode);
-            ViewData["NationCode"] = new SelectList(_context.ComNations.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.NationCode);
-            ViewData["PoliticalCode"] = new SelectList(_context.ComPoliticals.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.PoliticalCode);
-            ViewData["ProfessionTitleCode"] = new SelectList(_context.ComProfessionTitles.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.ProfessionTitleCode);
-            ViewData["ProfessionTitleLevelCode"] = new SelectList(_context.ComProfessionTitleLevels.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.ProfessionTitleLevelCode);
-            ViewData["ProfessionTitleTypeCode"] = new SelectList(_context.ComProfessionTitleTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.ProfessionTitleTypeCode);
-            ViewData["DeptCode"] = new SelectList(_context.SysDepts.OrderBy(t => t.Sort).ToList(), "DeptCode", "DeptCode", sysEmp.DeptCode);
-            ViewData["TypeCode"] = new SelectList(_context.SysEmpTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.TypeCode);
+            ViewData["AdminDutyCode"] = new SelectList(_context.ComAdminDutys.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["DegreeCode"] = new SelectList(_context.ComDegrees.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["EducationCode"] = new SelectList(_context.ComEducations.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            //性别默认未知f1384219-82c1-47d8-8689-0be7c7f41129
+            ViewData["GenderCode"] = new SelectList(_context.ComGenders.OrderBy(t => t.Sort).ToList(), "Code", "Name", "f1384219-82c1-47d8-8689-0be7c7f41129");
+            ViewData["MarriageCode"] = new SelectList(_context.ComMarriages.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            //民族默认汉族ce17f92b-ee53-4aa6-8f3d-c3b13d865e2d
+            ViewData["NationCode"] = new SelectList(_context.ComNations.OrderBy(t => t.Sort).ToList(), "Code", "Name", "ce17f92b-ee53-4aa6-8f3d-c3b13d865e2d");
+            //政治面貌默认群众8e871348-b291-44e3-9aff-534cfe8eb4cf
+            ViewData["PoliticalCode"] = new SelectList(_context.ComPoliticals.OrderBy(t => t.Sort).ToList(), "Code", "Name", "8e871348-b291-44e3-9aff-534cfe8eb4cf");
+            ViewData["ProfessionTitleCode"] = new SelectList(_context.ComProfessionTitles.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["ProfessionTitleLevelCode"] = new SelectList(_context.ComProfessionTitleLevels.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["ProfessionTitleTypeCode"] = new SelectList(_context.ComProfessionTitleTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["DeptCode"] = new SelectList(_context.SysDepts.OrderBy(t => t.Sort).ToList(), "DeptCode", "DeptName");
+            ViewData["TypeCode"] = new SelectList(_context.SysEmpTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["PostCode"] = new SelectList(_context.ComPosts.OrderBy(t => t.Sort).ToList(), "Code", "Name");
             return View(sysEmp);
         }
 
@@ -121,18 +130,22 @@ namespace HospitalPersonnelSystem.Controllers
             {
                 return NotFound();
             }
-            ViewData["AdminDutyCode"] = new SelectList(_context.ComAdminDutys.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.AdminDutyCode);
-            ViewData["DegreeCode"] = new SelectList(_context.ComDegrees.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.DegreeCode);
-            ViewData["EducationCode"] = new SelectList(_context.ComEducations.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.EducationCode);
-            ViewData["GenderCode"] = new SelectList(_context.ComGenders.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.GenderCode);
-            ViewData["MarriageCode"] = new SelectList(_context.ComMarriages.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.MarriageCode);
-            ViewData["NationCode"] = new SelectList(_context.ComNations.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.NationCode);
-            ViewData["PoliticalCode"] = new SelectList(_context.ComPoliticals.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.PoliticalCode);
-            ViewData["ProfessionTitleCode"] = new SelectList(_context.ComProfessionTitles.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.ProfessionTitleCode);
-            ViewData["ProfessionTitleLevelCode"] = new SelectList(_context.ComProfessionTitleLevels.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.ProfessionTitleLevelCode);
-            ViewData["ProfessionTitleTypeCode"] = new SelectList(_context.ComProfessionTitleTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.ProfessionTitleTypeCode);
-            ViewData["DeptCode"] = new SelectList(_context.SysDepts.OrderBy(t => t.Sort).ToList(), "DeptCode", "DeptCode", sysEmp.DeptCode);
-            ViewData["TypeCode"] = new SelectList(_context.SysEmpTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.TypeCode);
+            ViewData["AdminDutyCode"] = new SelectList(_context.ComAdminDutys.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["DegreeCode"] = new SelectList(_context.ComDegrees.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["EducationCode"] = new SelectList(_context.ComEducations.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            //性别默认未知f1384219-82c1-47d8-8689-0be7c7f41129
+            ViewData["GenderCode"] = new SelectList(_context.ComGenders.OrderBy(t => t.Sort).ToList(), "Code", "Name", "f1384219-82c1-47d8-8689-0be7c7f41129");
+            ViewData["MarriageCode"] = new SelectList(_context.ComMarriages.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            //民族默认汉族ce17f92b-ee53-4aa6-8f3d-c3b13d865e2d
+            ViewData["NationCode"] = new SelectList(_context.ComNations.OrderBy(t => t.Sort).ToList(), "Code", "Name", "ce17f92b-ee53-4aa6-8f3d-c3b13d865e2d");
+            //政治面貌默认群众8e871348-b291-44e3-9aff-534cfe8eb4cf
+            ViewData["PoliticalCode"] = new SelectList(_context.ComPoliticals.OrderBy(t => t.Sort).ToList(), "Code", "Name", "8e871348-b291-44e3-9aff-534cfe8eb4cf");
+            ViewData["ProfessionTitleCode"] = new SelectList(_context.ComProfessionTitles.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["ProfessionTitleLevelCode"] = new SelectList(_context.ComProfessionTitleLevels.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["ProfessionTitleTypeCode"] = new SelectList(_context.ComProfessionTitleTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["DeptCode"] = new SelectList(_context.SysDepts.OrderBy(t => t.Sort).ToList(), "DeptCode", "DeptName");
+            ViewData["TypeCode"] = new SelectList(_context.SysEmpTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["PostCode"] = new SelectList(_context.ComPosts.OrderBy(t => t.Sort).ToList(), "Code", "Name");
             return View(sysEmp);
         }
 
@@ -168,18 +181,22 @@ namespace HospitalPersonnelSystem.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AdminDutyCode"] = new SelectList(_context.ComAdminDutys.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.AdminDutyCode);
-            ViewData["DegreeCode"] = new SelectList(_context.ComDegrees.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.DegreeCode);
-            ViewData["EducationCode"] = new SelectList(_context.ComEducations.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.EducationCode);
-            ViewData["GenderCode"] = new SelectList(_context.ComGenders.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.GenderCode);
-            ViewData["MarriageCode"] = new SelectList(_context.ComMarriages.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.MarriageCode);
-            ViewData["NationCode"] = new SelectList(_context.ComNations.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.NationCode);
-            ViewData["PoliticalCode"] = new SelectList(_context.ComPoliticals.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.PoliticalCode);
-            ViewData["ProfessionTitleCode"] = new SelectList(_context.ComProfessionTitles.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.ProfessionTitleCode);
-            ViewData["ProfessionTitleLevelCode"] = new SelectList(_context.ComProfessionTitleLevels.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.ProfessionTitleLevelCode);
-            ViewData["ProfessionTitleTypeCode"] = new SelectList(_context.ComProfessionTitleTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.ProfessionTitleTypeCode);
-            ViewData["DeptCode"] = new SelectList(_context.SysDepts.OrderBy(t => t.Sort).ToList(), "DeptCode", "DeptCode", sysEmp.DeptCode);
-            ViewData["TypeCode"] = new SelectList(_context.SysEmpTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysEmp.TypeCode);
+            ViewData["AdminDutyCode"] = new SelectList(_context.ComAdminDutys.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["DegreeCode"] = new SelectList(_context.ComDegrees.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["EducationCode"] = new SelectList(_context.ComEducations.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            //性别默认未知f1384219-82c1-47d8-8689-0be7c7f41129
+            ViewData["GenderCode"] = new SelectList(_context.ComGenders.OrderBy(t => t.Sort).ToList(), "Code", "Name", "f1384219-82c1-47d8-8689-0be7c7f41129");
+            ViewData["MarriageCode"] = new SelectList(_context.ComMarriages.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            //民族默认汉族ce17f92b-ee53-4aa6-8f3d-c3b13d865e2d
+            ViewData["NationCode"] = new SelectList(_context.ComNations.OrderBy(t => t.Sort).ToList(), "Code", "Name", "ce17f92b-ee53-4aa6-8f3d-c3b13d865e2d");
+            //政治面貌默认群众8e871348-b291-44e3-9aff-534cfe8eb4cf
+            ViewData["PoliticalCode"] = new SelectList(_context.ComPoliticals.OrderBy(t => t.Sort).ToList(), "Code", "Name", "8e871348-b291-44e3-9aff-534cfe8eb4cf");
+            ViewData["ProfessionTitleCode"] = new SelectList(_context.ComProfessionTitles.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["ProfessionTitleLevelCode"] = new SelectList(_context.ComProfessionTitleLevels.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["ProfessionTitleTypeCode"] = new SelectList(_context.ComProfessionTitleTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["DeptCode"] = new SelectList(_context.SysDepts.OrderBy(t => t.Sort).ToList(), "DeptCode", "DeptName");
+            ViewData["TypeCode"] = new SelectList(_context.SysEmpTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["PostCode"] = new SelectList(_context.ComPosts.OrderBy(t => t.Sort).ToList(), "Code", "Name");
             return View(sysEmp);
         }
 
@@ -227,6 +244,14 @@ namespace HospitalPersonnelSystem.Controllers
         private bool SysEmpExists(string id)
         {
             return _context.SysEmps.Any(e => e.EmpCode == id);
+        }
+
+        [AcceptVerbs("Get", "Post")]
+        public IActionResult VerifyEmpCode(string empcode)
+        {
+            if (SysEmpExists(empcode))
+                return Json($"工号 {empcode} 已经存在.");
+            return Json(true);
         }
     }
 }

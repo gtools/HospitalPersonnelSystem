@@ -12,7 +12,7 @@ namespace HospitalPersonnelSystem.Models
         /// <summary>
         /// 工号
         /// </summary>
-        [Remote(action: "VerifyEmp_Code", controller: "SYS_Emp")]//验证
+        [Remote(action: "VerifyEmpCode", controller: "SysEmp")]//验证
         [Required(ErrorMessage = GTSharp.Validate.Required)]
         [Display(Name = "工号")]
         public string EmpCode { get; set; }
@@ -20,7 +20,7 @@ namespace HospitalPersonnelSystem.Models
         /// <summary>
         /// 姓名
         /// </summary>
-        [Display(Name = "姓名")]
+        [Display(Name = "姓名　")]
         [Required(ErrorMessage = GTSharp.Validate.Required)]
         public string EmpName
         {
@@ -59,7 +59,7 @@ namespace HospitalPersonnelSystem.Models
         [Required(ErrorMessage = GTSharp.Validate.Required)]
         public Guid GenderCode { get; set; }
         /// <summary>
-        /// 科室
+        /// 性别
         /// </summary>
         [Display(Name = "性别")]
         public ComGender ComGender { get; set; }
@@ -90,6 +90,7 @@ namespace HospitalPersonnelSystem.Models
         /// 政治面貌，8e871348-b291-44e3-9aff-534cfe8eb4cf
         /// </summary>
         [Display(Name = "政治面貌")]
+        [Required(ErrorMessage = GTSharp.Validate.Required)]
         public Guid PoliticalCode { get; set; }
         /// <summary>
         /// 政治面貌
@@ -142,7 +143,7 @@ namespace HospitalPersonnelSystem.Models
         /// 行政职务，40574e21-beb0-47fd-a754-143abb0a85dd
         /// </summary>
         [Display(Name = "行政职务")]
-        public Guid AdminDutyCode { get; set; }
+        public Guid? AdminDutyCode { get; set; }
         /// <summary>
         /// 行政职务
         /// </summary>
@@ -157,7 +158,7 @@ namespace HospitalPersonnelSystem.Models
         /// 人员类别，440ad1b9-4aa1-4c4f-a42b-00fd4b072323
         /// </summary>
         [Display(Name = "人员类别")]
-        public Guid TypeCode { get; set; }
+        public Guid? TypeCode { get; set; }
         /// <summary>
         /// 人员类别
         /// </summary>
@@ -217,6 +218,7 @@ namespace HospitalPersonnelSystem.Models
         /// 岗位
         /// </summary>
         [Display(Name = "岗位")]
+        [Required(ErrorMessage = GTSharp.Validate.Required)]
         public Guid PostCode { get; set; }
         /// <summary>
         /// 岗位
@@ -319,13 +321,13 @@ namespace HospitalPersonnelSystem.Models
         /// <summary>
         /// 联系方式
         /// </summary>
-        [Display(Name = "联系方式")]
+        [Display(Name = "手机")]
         public string Telephone { get; set; }
         /// <summary>
         /// 婚姻状况，6cca4dd0-8fa7-46be-90ab-f6ac0379adde
         /// </summary>
         [Display(Name = "婚姻状况")]
-        public Guid MarriageCode { get; set; }
+        public Guid? MarriageCode { get; set; }
         /// <summary>
         /// 婚姻状况
         /// </summary>
@@ -377,11 +379,5 @@ namespace HospitalPersonnelSystem.Models
         [Display(Name = "创建日期")]
         [DataType(DataType.Date)]
         public DateTime CreateDate { get; set; }
-
-
-
-
-
-
     }
 }

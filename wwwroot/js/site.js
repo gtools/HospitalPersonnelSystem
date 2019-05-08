@@ -36,6 +36,16 @@ $(function () {
                 'form-control',
                 'form-control',
                 'form-control',
+                'form-control',
+                'form-control',
+                'form-control',
+                'form-control custom-select',
+                'form-control',
+                'form-control',
+                'form-control',
+                'form-control',
+                'form-control',
+                'form-control custom-select',
                 'form-control'
             ]
         }

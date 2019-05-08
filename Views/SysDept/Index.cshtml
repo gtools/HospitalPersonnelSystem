@@ -45,7 +45,7 @@
             <th></th>
         </tr>
         <tr>
-            <th colspan="4" class="ts-pager">
+            <th colspan="5" class="ts-pager">
                 <div class="form-inline">
                     <div class="btn-group btn-group-sm mx-1" role="group">
                         <button type="button" class="btn btn-secondary first" title="首页">
@@ -78,22 +78,25 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DeptName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Spell)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Sort)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.DeptCode" data-toggle="tooltip" data-placement="left" title="编辑"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;
-                    <a asp-action="Details" asp-route-id="@item.DeptCode" data-toggle="tooltip" data-placement="top" title="查看"><i class="fa fa-info-circle"></i></a> @*|
-                        <a asp-action="Delete" asp-route-id="@item.DeptCode">Delete</a>*@
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeptCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeptName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Spell)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sort)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.DeptCode" data-toggle="tooltip" data-placement="left" title="编辑"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                <a asp-action="Details" asp-route-id="@item.DeptCode" data-toggle="tooltip" data-placement="top" title="查看"><i class="fa fa-info-circle"></i></a> @*|
+            <a asp-action="Delete" asp-route-id="@item.DeptCode">Delete</a>*@
+            </td>
+        </tr>
         }
     </tbody>
 </table>

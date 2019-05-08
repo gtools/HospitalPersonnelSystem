@@ -5,12 +5,12 @@
     ViewData["Controller"] = "SysEmp";
 }
 
-<h1>Index</h1>
+<h1>@ViewData["Title"]</h1>
 
 <p>
     <a asp-action="Create" data-toggle="tooltip" data-placement="left" title="创建"><i class="fa fa-plus-circle fa-lg"></i></a>
 </p>
-<table class="table table-bordered table-striped">
+<table class="table table-bordered table-striped" data-sort="table">
     <thead class="thead-dark">
         <tr>
             <th>
@@ -26,19 +26,10 @@
                 @Html.DisplayNameFor(model => model.SysDept)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OldName)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.ComGender)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ComNation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BirthDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Age)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ComPolitical)
@@ -49,95 +40,17 @@
             <th>
                 @Html.DisplayNameFor(model => model.IdentityCard)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ComProfessionTitleType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ComProfessionTitleLevel)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ComProfessionTitle)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ComAdminDuty)
-            </th>
-            <th>
+            <th class="filter-select filter-exact" data-placeholder="请选择">
                 @Html.DisplayNameFor(model => model.IsPost)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SysEmpType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WorkDate)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.HospitalDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.WorkAge)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HospitalAge)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Practice)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PracticeDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OpenBank)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BankCard)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ComEducation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EducationDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ComDegree)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.School)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SchoolMajor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GraduationDate)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Telephone)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ComMarriage)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HomeAdd)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdentityAdd)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NativePlace)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Photo)
-            </th>
-            <th>
+            <th class="filter-select filter-exact" data-placeholder="请选择">
                 @Html.DisplayNameFor(model => model.IsStop)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Remark)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreateEmp)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreateDate)
             </th>
             <th class="sorter-false filter-false"></th>
         </tr>
@@ -157,19 +70,10 @@
                 @Html.DisplayNameFor(model => model.SysDept)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OldName)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.ComGender)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ComNation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BirthDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Age)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ComPolitical)
@@ -181,99 +85,21 @@
                 @Html.DisplayNameFor(model => model.IdentityCard)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ComProfessionTitleType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ComProfessionTitleLevel)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ComProfessionTitle)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ComAdminDuty)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.IsPost)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SysEmpType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WorkDate)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.HospitalDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.WorkAge)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HospitalAge)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Practice)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PracticeDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OpenBank)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BankCard)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ComEducation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EducationDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ComDegree)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.School)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SchoolMajor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GraduationDate)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Telephone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ComMarriage)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HomeAdd)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdentityAdd)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NativePlace)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Photo)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.IsStop)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Remark)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreateEmp)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreateDate)
-            </th>
             <th></th>
         </tr>
         <tr>
-            <th colspan="4" class="ts-pager">
+            <th colspan="17" class="ts-pager">
                 <div class="form-inline">
                     <div class="btn-group btn-group-sm mx-1" role="group">
                         <button type="button" class="btn btn-secondary first" title="首页">
@@ -317,25 +143,16 @@
                     @Html.DisplayFor(modelItem => item.Spell)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.SysDept.DeptCode)
+                    @Html.DisplayFor(modelItem => item.SysDept.DeptName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.OldName)
+                    @Html.DisplayFor(modelItem => item.ComGender.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ComGender.Code)
+                    @Html.DisplayFor(modelItem => item.ComNation.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ComNation.Code)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BirthDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Age)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ComPolitical.Code)
+                    @Html.DisplayFor(modelItem => item.ComPolitical.Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.PoliticalDate)
@@ -344,94 +161,16 @@
                     @Html.DisplayFor(modelItem => item.IdentityCard)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ComProfessionTitleType.Code)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ComProfessionTitleLevel.Code)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ComProfessionTitle.Code)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ComAdminDuty.Code)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsPost)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SysEmpType.Code)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.WorkDate)
+                    @item.IsPost.ToString()
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.HospitalDate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.WorkAge)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HospitalAge)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Practice)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PracticeDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OpenBank)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BankCard)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ComEducation.Code)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EducationDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ComDegree.Code)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.School)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SchoolMajor)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.GraduationDate)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Telephone)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ComMarriage.Code)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HomeAdd)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdentityAdd)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NativePlace)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Photo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsStop)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Remark)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreateEmp)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreateDate)
+                    @item.IsStop.ToString()
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.EmpCode" data-toggle="tooltip" data-placement="left" title="编辑"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;
