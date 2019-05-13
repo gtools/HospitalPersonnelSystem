@@ -18,6 +18,7 @@ namespace HospitalPersonnelSystem.TagHelpers
         private const string SelectTagName = "gt-select";
         private const string ForAttributeName = "asp-for";
         private const string ItemsAttributeName = "asp-items";
+        private const string ValueAttributeName = "is-value";
         /// <summary>
         /// 控件
         /// </summary>
@@ -29,6 +30,11 @@ namespace HospitalPersonnelSystem.TagHelpers
         [HtmlAttributeName(ItemsAttributeName)]
         //public IEnumerable<SelectListItem> Items { get; set; }
         public IEnumerable<GTSharp.SelectListItemEx> Items { get; set; }
+        /// <summary>
+        /// 是否查询value
+        /// </summary>
+        [HtmlAttributeName(ValueAttributeName)]
+        public bool IsValue { get; set; }
         /// <summary>
         /// 不清楚
         /// </summary>
@@ -59,7 +65,11 @@ namespace HospitalPersonnelSystem.TagHelpers
                 // TagBuilder帮助创建具有属性的html元素
                 var option = new TagBuilder("option");
                 option.Attributes["value"] = item.Value;
-                option.Attributes["data-tokens"] = item.Spell;
+                if (IsValue)
+                    option.Attributes["data-tokens"] = item.Spell + item.Text + item.Value;
+                else
+                    option.Attributes["data-tokens"] = item.Spell + item.Text;
+                //option.Attributes["data-tokens"] = item.Spell;
                 //option.TagRenderMode = TagRenderMode.SelfClosing;
                 option.InnerHtml.Append(item.Text);
                 output.Content.AppendHtml(option);

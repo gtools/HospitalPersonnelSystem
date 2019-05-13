@@ -58,7 +58,13 @@ namespace HospitalPersonnelSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                comPost.Code = Guid.NewGuid();
+                //comPost.Code = Guid.NewGuid();
+                //排序MAX加1
+                if (_context.ComPosts.Count() > 0)
+                    comPost.Sort = _context.ComPosts.Max(t => t.Sort) + 1;
+                //拼音码没有
+                if (string.IsNullOrWhiteSpace(comPost.Spell))
+                    comPost.Spell = GTSharp.Core.PinYinHelper.GetFirstPinyin(comPost.Name);
                 _context.Add(comPost);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -117,34 +123,34 @@ namespace HospitalPersonnelSystem.Controllers
             return View(comPost);
         }
 
-        // GET: ComPost/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //// GET: ComPost/Delete/5
+        //public async Task<IActionResult> Delete(Guid? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var comPost = await _context.ComPosts
-                .FirstOrDefaultAsync(m => m.Code == id);
-            if (comPost == null)
-            {
-                return NotFound();
-            }
+        //    var comPost = await _context.ComPosts
+        //        .FirstOrDefaultAsync(m => m.Code == id);
+        //    if (comPost == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(comPost);
-        }
+        //    return View(comPost);
+        //}
 
-        // POST: ComPost/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
-        {
-            var comPost = await _context.ComPosts.FindAsync(id);
-            _context.ComPosts.Remove(comPost);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        //// POST: ComPost/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(Guid id)
+        //{
+        //    var comPost = await _context.ComPosts.FindAsync(id);
+        //    _context.ComPosts.Remove(comPost);
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
 
         private bool ComPostExists(Guid id)
         {

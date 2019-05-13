@@ -1666,14 +1666,14 @@ namespace HospitalPersonnelSystem.Data
                 .HasDefaultValueSql("newid()");
                 b.Property(t => t.IsEngage)//是否聘用
                 .HasDefaultValue(false);
-                b.Property(t => t.UpDate)//来晋升日期
-                .HasDefaultValueSql("getdate()");
+                //b.Property(t => t.UpDate)//来晋升日期
+                //.HasDefaultValueSql("getdate()");
                 b.Property(t => t.CreateDate)//创建日期
                 .HasDefaultValueSql("getdate()");
                 b.HasOne(t => t.ComProfessionExtent)//职业范围
                  .WithMany(t => t.SysProfessionInfos)
-                 .HasForeignKey(t => t.ProfessionTypeCode)
-                 .HasConstraintName("FK_TypeCode_Extent_SysProfessionInfo");
+                 .HasForeignKey(t => t.ProfessionExtentCode)
+                 .HasConstraintName("FK_ExtentCode_Extent_SysProfessionInfo");
                 b.HasOne(t => t.ComProfessionRegister)//职业资格
                  .WithMany(t => t.SysProfessionInfos)
                  .HasForeignKey(t => t.ProfessionRegisterCode)

@@ -1,0 +1,263 @@
+﻿@model IEnumerable<HospitalPersonnelSystem.Models.SysProfessionInfo>
+
+@{
+    ViewData["Title"] = "职称评定";
+    ViewData["Controller"] = "SysProfessionInfo";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create" data-toggle="tooltip" data-placement="left" title="创建"><i class="fa fa-plus-circle fa-lg"></i></a>
+</p>
+<table class="table table-bordered table-striped" data-sort="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SysEmp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComProfessionRegister)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProfessionExtentCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComProfessionExtent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComProfessionTitleType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComProfessionTitleLevel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComProfessionTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsEngage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EngageDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComProfessionType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProfessionalName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.No1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.No2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.No3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.No4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.No5)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Remark)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateEmp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+            <th class="sorter-false filter-false"></th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SysEmp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComProfessionRegister)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProfessionExtentCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComProfessionExtent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComProfessionTitleType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComProfessionTitleLevel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComProfessionTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsEngage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EngageDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComProfessionType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProfessionalName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.No1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.No2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.No3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.No4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.No5)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Remark)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateEmp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+            <th></th>
+        </tr>
+        <tr>
+            <th colspan="21" class="ts-pager">
+                <div class="form-inline">
+                    <div class="btn-group btn-group-sm mx-1" role="group">
+                        <button type="button" class="btn btn-secondary first" title="首页">
+                            <i class="fa fa-fast-backward first"></i>
+                        </button>
+                        <button type="button" class="btn btn-secondary prev" title="上一页">
+                            <i class="fa fa-backward prev"></i>
+                        </button>
+                    </div>
+                    <span class="pagedisplay"></span>
+                    <div class="btn-group btn-group-sm mx-1" role="group">
+                        <button type="button" class="btn btn-secondary next" title="下一页">
+                            <i class="fa fa-forward next"></i>
+                        </button>
+                        <button type="button" class="btn btn-secondary last" title="尾页">
+                            <i class="fa fa-fast-forward last"></i>
+                        </button>
+                    </div>
+                    <select class="form-control-sm custom-select pr-4 pagesize" title="选择页面行数">
+                        <option selected="selected" value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="all">全部</option>
+                    </select>
+                    <select class="form-control-sm custom-select px-4 mx-1 pagenum" title="选择页码"></select>
+                </div>
+            </th>
+        </tr>
+    </tfoot>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SysEmp.EmpCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ComProfessionRegister.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypeCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProfessionExtentCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ComProfessionExtent.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ComProfessionTitleType.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ComProfessionTitleLevel.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ComProfessionTitle.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsEngage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EngageDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ComProfessionType.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProfessionalName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.No1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.No2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.No3)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.No4)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.No5)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Remark)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateEmp)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateDate)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.EmpCode" data-toggle="tooltip" data-placement="left" title="编辑"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a asp-action="Details" asp-route-id="@item.EmpCode" data-toggle="tooltip" data-placement="top" title="查看"><i class="fa fa-info-circle"></i></a> @*|
+                        <a asp-action="Delete" asp-route-id="@item.EmpCode">Delete</a>*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts {
+    <script type="text/javascript">
+        //排序
+        $(function () {
+            $('[data-sort="table"]').trigger('sorton', [[[0, 0]]]);
+        });
+    </script>
+}

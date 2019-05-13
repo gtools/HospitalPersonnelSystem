@@ -58,7 +58,13 @@ namespace HospitalPersonnelSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                comProfessionExtent.Code = Guid.NewGuid();
+                //comProfessionExtent.Code = Guid.NewGuid();
+                //排序MAX加1
+                if (_context.ComProfessionExtents.Count() > 0)
+                    comProfessionExtent.Sort = _context.ComProfessionExtents.Max(t => t.Sort) + 1;
+                //拼音码没有
+                if (string.IsNullOrWhiteSpace(comProfessionExtent.Spell))
+                    comProfessionExtent.Spell = GTSharp.Core.PinYinHelper.GetFirstPinyin(comProfessionExtent.Name);
                 _context.Add(comProfessionExtent);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -117,34 +123,34 @@ namespace HospitalPersonnelSystem.Controllers
             return View(comProfessionExtent);
         }
 
-        // GET: ComProfessionExtent/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //// GET: ComProfessionExtent/Delete/5
+        //public async Task<IActionResult> Delete(Guid? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var comProfessionExtent = await _context.ComProfessionExtents
-                .FirstOrDefaultAsync(m => m.Code == id);
-            if (comProfessionExtent == null)
-            {
-                return NotFound();
-            }
+        //    var comProfessionExtent = await _context.ComProfessionExtents
+        //        .FirstOrDefaultAsync(m => m.Code == id);
+        //    if (comProfessionExtent == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(comProfessionExtent);
-        }
+        //    return View(comProfessionExtent);
+        //}
 
-        // POST: ComProfessionExtent/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
-        {
-            var comProfessionExtent = await _context.ComProfessionExtents.FindAsync(id);
-            _context.ComProfessionExtents.Remove(comProfessionExtent);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        //// POST: ComProfessionExtent/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(Guid id)
+        //{
+        //    var comProfessionExtent = await _context.ComProfessionExtents.FindAsync(id);
+        //    _context.ComProfessionExtents.Remove(comProfessionExtent);
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
 
         private bool ComProfessionExtentExists(Guid id)
         {

@@ -44,7 +44,7 @@ namespace HospitalPersonnelSystem.Models
         /// 执业范围
         /// </summary>
         [Display(Name = "执业范围")]
-        public Guid? ExtentCode { get; set; }
+        public Guid? ProfessionExtentCode { get; set; }
         /// <summary>
         /// 执业范围
         /// </summary>
@@ -73,7 +73,7 @@ namespace HospitalPersonnelSystem.Models
         /// <summary>
         /// 职称
         /// </summary>
-        [Display(Name = "职称")]
+        [Display(Name = "职称　　")]
         public Guid? ProfessionTitleCode { get; set; }
         /// <summary>
         /// 职称
@@ -84,11 +84,13 @@ namespace HospitalPersonnelSystem.Models
         /// 是否聘任
         /// </summary>
         [Display(Name = "是否聘任")]
+        [Remote(action: "VerifyEngage", controller: "SysProfessionInfo", AdditionalFields = nameof(IsEngage))]
         public bool IsEngage { get; set; }
         /// <summary>
         /// 聘任日期
         /// </summary>
         [Display(Name = "聘任日期")]
+        [Remote(action: "VerifyEngage", controller: "SysProfessionInfo", AdditionalFields = nameof(EngageDate))]
         [DataType(DataType.Date)]
         public DateTime? EngageDate { get; set; }
         /// <summary>
