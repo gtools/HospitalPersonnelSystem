@@ -76,7 +76,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.CreateDate)
             </th>
-            <th class="sorter-false filter-false"></th>
+            <th class="sorter-false filter-false">操作</th>
         </tr>
     </thead>
     <tfoot>
@@ -245,9 +245,9 @@
                     @Html.DisplayFor(modelItem => item.CreateDate)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.EmpCode" data-toggle="tooltip" data-placement="left" title="编辑"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;
-                    <a asp-action="Details" asp-route-id="@item.EmpCode" data-toggle="tooltip" data-placement="top" title="查看"><i class="fa fa-info-circle"></i></a> @*|
-                        <a asp-action="Delete" asp-route-id="@item.EmpCode">Delete</a>*@
+                    <a asp-action="Edit" asp-route-id="@item.Code" data-toggle="tooltip" data-placement="left" title="编辑"><i class="fa fa-edit"></i></a>@*&nbsp;&nbsp;|&nbsp;&nbsp;
+        <a asp-action="Details" asp-route-id="@item.Code" data-toggle="tooltip" data-placement="top" title="查看"><i class="fa fa-info-circle"></i></a> |
+            <a asp-action="Delete" asp-route-id="@item.EmpCode">Delete</a>*@
                 </td>
             </tr>
         }

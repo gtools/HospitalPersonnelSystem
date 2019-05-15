@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HospitalPersonnelSystem.Data;
 using HospitalPersonnelSystem.Models;
+using GTSharp;
 
 namespace HospitalPersonnelSystem.Controllers
 {
@@ -62,6 +63,7 @@ namespace HospitalPersonnelSystem.Controllers
             ViewData["ProfessionTypeCode"] = new SelectList(_context.ComProfessionTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name");
             ViewData["EmpCode"] = new SelectList(_context.SysEmps.OrderBy(t => t.EmpCode).ToList(), "EmpCode", "EmpName");
             ViewData["ProfessionExtentCode"] = new SelectList(_context.ComProfessionExtents.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["EmpCode"] = ((SelectList)ViewData["EmpCode"]).ToList().GetSelectList();
             return View();
         }
 
@@ -76,6 +78,13 @@ namespace HospitalPersonnelSystem.Controllers
             {
                 //sysProfessionInfo.Code = Guid.NewGuid();
                 _context.Add(sysProfessionInfo);
+                //更新SysEmps数据
+                var sysEmps = await _context.SysEmps.FindAsync(sysProfessionInfo.EmpCode);
+                sysEmps.ProfessionTitleCode = sysProfessionInfo.ProfessionTitleCode;
+                sysEmps.ProfessionTitleLevelCode = sysProfessionInfo.ProfessionTitleLevelCode;
+                sysEmps.ProfessionTitleTypeCode = sysProfessionInfo.ProfessionTitleTypeCode;
+                _context.Update(sysEmps);
+
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -87,6 +96,7 @@ namespace HospitalPersonnelSystem.Controllers
             ViewData["ProfessionTypeCode"] = new SelectList(_context.ComProfessionTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysProfessionInfo.ProfessionTypeCode);
             ViewData["EmpCode"] = new SelectList(_context.SysEmps.OrderBy(t => t.EmpCode).ToList(), "EmpCode", "EmpName", sysProfessionInfo.EmpCode);
             ViewData["ProfessionExtentCode"] = new SelectList(_context.ComProfessionExtents.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysProfessionInfo.ProfessionExtentCode);
+            ViewData["EmpCode"] = ((SelectList)ViewData["EmpCode"]).ToList().GetSelectList();
             return View(sysProfessionInfo);
         }
 
@@ -111,6 +121,7 @@ namespace HospitalPersonnelSystem.Controllers
             ViewData["ProfessionTypeCode"] = new SelectList(_context.ComProfessionTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysProfessionInfo.ProfessionTypeCode);
             ViewData["EmpCode"] = new SelectList(_context.SysEmps.OrderBy(t => t.EmpCode).ToList(), "EmpCode", "EmpName", sysProfessionInfo.EmpCode);
             ViewData["ProfessionExtentCode"] = new SelectList(_context.ComProfessionExtents.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysProfessionInfo.ProfessionExtentCode);
+            ViewData["EmpCode"] = ((SelectList)ViewData["EmpCode"]).ToList().GetSelectList();
             return View(sysProfessionInfo);
         }
 
@@ -154,6 +165,7 @@ namespace HospitalPersonnelSystem.Controllers
             ViewData["ProfessionTypeCode"] = new SelectList(_context.ComProfessionTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysProfessionInfo.ProfessionTypeCode);
             ViewData["EmpCode"] = new SelectList(_context.SysEmps.OrderBy(t => t.EmpCode).ToList(), "EmpCode", "EmpName", sysProfessionInfo.EmpCode);
             ViewData["ProfessionExtentCode"] = new SelectList(_context.ComProfessionExtents.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysProfessionInfo.ProfessionExtentCode);
+            ViewData["EmpCode"] = ((SelectList)ViewData["EmpCode"]).ToList().GetSelectList();
             return View(sysProfessionInfo);
         }
 
@@ -198,18 +210,18 @@ namespace HospitalPersonnelSystem.Controllers
             return _context.SysProfessionInfos.Any(e => e.Code == id);
         }
 
-        /// <summary>
-        /// 聘任验证
-        /// </summary>
-        /// <param name="isEngage">是否聘用</param>
-        /// <param name="engageDate">聘用日期</param>
-        /// <returns></returns>
-        [AcceptVerbs("Get", "Post")]
-        public IActionResult VerifyEngage(bool isEngage, DateTime engageDate)
-        {
-            if (isEngage && (engageDate == null ||DateTime.MinValue == engageDate))
-                return Json(data: $"【聘任日期】不能为空。");
-            return Json(data: true);
-        }
+        ///// <summary>
+        ///// 聘任验证
+        ///// </summary>
+        ///// <param name="isEngage">是否聘用</param>
+        ///// <param name="engageDate">聘用日期</param>
+        ///// <returns></returns>
+        //[AcceptVerbs("Get", "Post")]
+        //public IActionResult VerifyEngage(bool isEngage, DateTime engageDate)
+        //{
+        //    if (isEngage && DateTime.MinValue == engageDate)
+        //        return Json(data: $"【聘任日期】不能为空。");
+        //    return Json(data: true);
+        //}
     }
 }

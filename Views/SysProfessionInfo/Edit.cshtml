@@ -17,107 +17,133 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Code" />
             <div class="form-group">
-                <label asp-for="EmpCode" class="control-label"></label>
-                <select asp-for="EmpCode" class="form-control" asp-items="ViewBag.EmpCode"></select>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label asp-for="EmpCode" class="input-group-text font-weight-bold"></label>
+                    </div>
+                    <gt-select asp-for="EmpCode" asp-items="ViewBag.EmpCode" is-value="true"></gt-select>
+                    <div class="input-group-prepend">
+                        <label asp-for="TypeCode" class="input-group-text"></label>
+                    </div>
+                    <input asp-for="TypeCode" class="form-control" />
+
+                </div>
                 <span asp-validation-for="EmpCode" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProfessionRegisterCode" class="control-label"></label>
-                <select asp-for="ProfessionRegisterCode" class="form-control" asp-items="ViewBag.ProfessionRegisterCode"></select>
-                <span asp-validation-for="ProfessionRegisterCode" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TypeCode" class="control-label"></label>
-                <input asp-for="TypeCode" class="form-control" />
                 <span asp-validation-for="TypeCode" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ProfessionExtentCode" class="control-label"></label>
-                <select asp-for="ProfessionTitleTypeCode" class="form-control" asp-items="ViewBag.ProfessionExtentCode"></select>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label asp-for="ProfessionRegisterCode" class="input-group-text font-weight-bold"></label>
+                    </div>
+                    <select asp-for="ProfessionRegisterCode" class="form-control" asp-items="ViewBag.ProfessionRegisterCode"></select>
+                    <div class="input-group-prepend">
+                        <label asp-for="ProfessionExtentCode" class="input-group-text font-weight-bold"></label>
+                    </div>
+                    <select asp-for="ProfessionExtentCode" class="form-control" asp-items="ViewBag.ProfessionExtentCode"></select>
+                </div>
                 <span asp-validation-for="ProfessionExtentCode" class="text-danger"></span>
+                <span asp-validation-for="ProfessionRegisterCode" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ProfessionTitleTypeCode" class="control-label"></label>
-                <select asp-for="ProfessionTitleTypeCode" class="form-control" asp-items="ViewBag.ProfessionTitleTypeCode"></select>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label asp-for="ProfessionTitleTypeCode" class="input-group-text font-weight-bold"></label>
+                    </div>
+                    <select asp-for="ProfessionTitleTypeCode" class="form-control" asp-items="ViewBag.ProfessionTitleTypeCode"></select>
+                    <div class="input-group-prepend">
+                        <label asp-for="ProfessionTitleLevelCode" class="input-group-text font-weight-bold"></label>
+                    </div>
+                    <select asp-for="ProfessionTitleLevelCode" class="form-control" asp-items="ViewBag.ProfessionTitleLevelCode"></select>
+                </div>
                 <span asp-validation-for="ProfessionTitleTypeCode" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProfessionTitleLevelCode" class="control-label"></label>
-                <select asp-for="ProfessionTitleLevelCode" class="form-control" asp-items="ViewBag.ProfessionTitleLevelCode"></select>
                 <span asp-validation-for="ProfessionTitleLevelCode" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ProfessionTitleCode" class="control-label"></label>
-                <select asp-for="ProfessionTitleCode" class="form-control" asp-items="ViewBag.ProfessionTitleCode"></select>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label asp-for="ProfessionTitleCode" class="input-group-text font-weight-bold"></label>
+                    </div>
+                    <select asp-for="ProfessionTitleCode" class="form-control" asp-items="ViewBag.ProfessionTitleCode"></select>
+                    <div class="input-group-prepend">
+                        <label asp-for="ProfessionTypeCode" class="input-group-text font-weight-bold"></label>
+                    </div>
+                    <select asp-for="ProfessionTypeCode" class="form-control" asp-items="ViewBag.ProfessionTypeCode"></select>
+                </div>
                 <span asp-validation-for="ProfessionTitleCode" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsEngage" /> @Html.DisplayNameFor(model => model.IsEngage)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="EngageDate" class="control-label"></label>
-                <input asp-for="EngageDate" class="form-control" />
-                <span asp-validation-for="EngageDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProfessionTypeCode" class="control-label"></label>
-                <select asp-for="ProfessionTypeCode" class="form-control" asp-items="ViewBag.ProfessionTypeCode"></select>
                 <span asp-validation-for="ProfessionTypeCode" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ProfessionalName" class="control-label"></label>
-                <input asp-for="ProfessionalName" class="form-control" />
-                <span asp-validation-for="ProfessionalName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UpDate" class="control-label"></label>
-                <input asp-for="UpDate" class="form-control" />
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label asp-for="EngageDate" class="input-group-text"></label>
+                    </div>
+                    <input asp-for="EngageDate" class="form-control" />
+                    <div class="input-group-prepend">
+                        <label asp-for="UpDate" class="input-group-text font-weight-bold"></label>
+                    </div>
+                    <input asp-for="UpDate" class="form-control" />
+                </div>
+                <span asp-validation-for="EngageDate" class="text-danger"></span>
                 <span asp-validation-for="UpDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="No1" class="control-label"></label>
-                <input asp-for="No1" class="form-control" />
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label asp-for="No1" class="input-group-text"></label>
+                    </div>
+                    <input asp-for="No1" class="form-control" />
+                </div>
                 <span asp-validation-for="No1" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="No2" class="control-label"></label>
-                <input asp-for="No2" class="form-control" />
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label asp-for="No2" class="input-group-text"></label>
+                    </div>
+                    <input asp-for="No2" class="form-control" />
+                </div>
                 <span asp-validation-for="No2" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="No3" class="control-label"></label>
-                <input asp-for="No3" class="form-control" />
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label asp-for="No3" class="input-group-text"></label>
+                    </div>
+                    <input asp-for="No3" class="form-control" />
+                </div>
                 <span asp-validation-for="No3" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="No4" class="control-label"></label>
-                <input asp-for="No4" class="form-control" />
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label asp-for="No4" class="input-group-text"></label>
+                    </div>
+                    <input asp-for="No4" class="form-control" />
+                </div>
                 <span asp-validation-for="No4" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="No5" class="control-label"></label>
-                <input asp-for="No5" class="form-control" />
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label asp-for="No5" class="input-group-text"></label>
+                    </div>
+                    <input asp-for="No5" class="form-control" />
+                </div>
                 <span asp-validation-for="No5" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Remark" class="control-label"></label>
-                <input asp-for="Remark" class="form-control" />
-                <span asp-validation-for="Remark" class="text-danger"></span>
+                <div class="input-group">
+                    <div class="custom-control custom-switch">
+                        <input asp-for="IsEngage" class="custom-control-input" />
+                        <label asp-for="IsEngage" class="custom-control-label"></label>
+                    </div>
+                </div>
+                <span asp-validation-for="IsEngage" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CreateEmp" class="control-label"></label>
-                <input asp-for="CreateEmp" class="form-control" />
-                <span asp-validation-for="CreateEmp" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreateDate" class="control-label"></label>
-                <input asp-for="CreateDate" class="form-control" />
-                <span asp-validation-for="CreateDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="保&nbsp;&nbsp;存" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -125,4 +151,24 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+        //选中
+        $(function () {
+            $("#EngageDate").change(function () {
+                var engagedate = $(this).val();
+                if (engagedate == "" || engagedate == null) {
+                    $("#IsEngage").attr("checked", false);
+                }
+                else {
+                    $("#IsEngage").attr("checked", true);
+                }
+            });
+            $("#IsEngage").click(function () {
+                var isengage = $(this).prop("checked");
+                if (isengage == false) {
+                    $("#EngageDate").val("");
+                }
+            });
+        });
+    </script>
 }

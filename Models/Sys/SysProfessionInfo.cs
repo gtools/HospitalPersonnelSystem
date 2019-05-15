@@ -84,13 +84,13 @@ namespace HospitalPersonnelSystem.Models
         /// 是否聘任
         /// </summary>
         [Display(Name = "是否聘任")]
-        [Remote(action: "VerifyEngage", controller: "SysProfessionInfo", AdditionalFields = nameof(IsEngage))]
+        //[Remote(action: "VerifyEngage", controller: "SysProfessionInfo", AdditionalFields = nameof(IsEngage))]
         public bool IsEngage { get; set; }
         /// <summary>
         /// 聘任日期
         /// </summary>
         [Display(Name = "聘任日期")]
-        [Remote(action: "VerifyEngage", controller: "SysProfessionInfo", AdditionalFields = nameof(EngageDate))]
+        //[Remote(action: "VerifyEngage", controller: "SysProfessionInfo", AdditionalFields = nameof(EngageDate))]
         [DataType(DataType.Date)]
         public DateTime? EngageDate { get; set; }
         /// <summary>
@@ -111,8 +111,9 @@ namespace HospitalPersonnelSystem.Models
         /// <summary>
         /// 晋升时间
         /// </summary>
-        [Display(Name = "晋升时间")]
+        [Display(Name = "晋升日期")]
         [DataType(DataType.Date)]
+        [Required(ErrorMessage = GTSharp.Validate.Required)]
         public DateTime UpDate { get; set; }
         /// <summary>
         /// 专业技术资格证书编号
@@ -153,7 +154,6 @@ namespace HospitalPersonnelSystem.Models
         /// 创建日期
         /// </summary>
         [Display(Name = "创建日期")]
-        [DataType(DataType.Date)]
-        public DateTime CreateDate { get; set; }
+        public DateTime? CreateDate { get; set; }
     }
 }

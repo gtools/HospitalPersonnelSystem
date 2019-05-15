@@ -62,3 +62,14 @@ $(function () {
         output: '{startRow} - {endRow} / {filteredRows} ({totalRows})'
     });
 });
+// 默认值当前时间
+function getdate() {
+    var now = new Date();
+    //alert(now.getDate() + '-' + now.getMonth());
+    //格式化日，如果小于9，前面补0
+    var day = ("0" + now.getDate()).slice(-2);
+    //格式化月，如果小于9，前面补0
+    var month = ("0" + (now.getMonth() + 1)).slice(-2);
+    //拼装完整日期格式
+    return now.getFullYear() + "-" + (month) + "-" + (day);
+}

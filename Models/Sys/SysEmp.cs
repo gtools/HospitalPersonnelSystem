@@ -379,10 +379,14 @@ namespace HospitalPersonnelSystem.Models
         /// </summary>
         [Display(Name = "创建日期")]
         [DataType(DataType.Date)]
-        public DateTime CreateDate { get; set; }
+        public DateTime? CreateDate { get; set; }
         /// <summary>
         /// 职称评定
         /// </summary>
         public List<SysProfessionInfo> SysProfessionInfos { get; set; }
+        /// <summary>
+        /// 学历评定
+        /// </summary>
+        public List<SysEducation> SysEducations { get; set; }
     }
 }

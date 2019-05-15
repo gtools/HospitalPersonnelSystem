@@ -114,6 +114,10 @@ namespace HospitalPersonnelSystem.Data
         /// 职称评定
         /// </summary>
         public DbSet<SysProfessionInfo> SysProfessionInfos { get; set; }
+        /// <summary>
+        /// 学历
+        /// </summary>
+        public DbSet<SysEducation> SysEducations { get; set; }
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -310,6 +314,13 @@ namespace HospitalPersonnelSystem.Data
                     Code = Guid.NewGuid(),
                     Name = "职称评定",
                     Controller = "SysProfessionInfo",
+                    Sort = sort++
+                }, new SysNavbar
+                {
+                    TypeCode = new Guid("f356c105-78d1-4d16-bb8d-a48fc1072993"),
+                    Code = Guid.NewGuid(),
+                    Name = "学历评定",
+                    Controller = "SysEducation",
                     Sort = sort++
                 });
             //
@@ -1701,7 +1712,19 @@ namespace HospitalPersonnelSystem.Data
             });
             sort = 1;
             #endregion
-            
+
+            #region 学历评定
+            modelBuilder.Entity<SysEducation>(b =>
+            {
+                b.ToTable("SysEducation");
+                b.HasKey(t => t.EmpCode);
+                b.HasOne(t => t.SysEmp)//人员
+                 .WithMany(t => t.SysEducations)
+                 .HasForeignKey(t => t.EmpCode)
+                 .HasConstraintName("FK_EmpCode_SysEmp_SysEducation");
+            });
+            sort = 1;
+            #endregion
 
 
             #region 注释

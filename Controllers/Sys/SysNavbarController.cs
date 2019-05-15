@@ -49,9 +49,10 @@ namespace HospitalPersonnelSystem.Controllers
         // GET: SysNavbar/Create
         public IActionResult Create()
         {
-            //ViewData["TypeCode"] = new SelectList(_context.SysNavbarTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name");
-            var items = new SelectList(_context.SysNavbarTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name");
-            ViewData["TypeCode"] = items.ToList().GetSelectList();
+            ViewData["TypeCode"] = new SelectList(_context.SysNavbarTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            ViewData["TypeCode"] = ((SelectList)ViewData["TypeCode"]).ToList().GetSelectList();
+            //var items = new SelectList(_context.SysNavbarTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name");
+            //ViewData["TypeCode"] = items.ToList().GetSelectList();
             return View();
         }
 
@@ -76,6 +77,7 @@ namespace HospitalPersonnelSystem.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["TypeCode"] = new SelectList(_context.SysNavbarTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysNavbar.TypeCode);
+            ViewData["TypeCode"] = ((SelectList)ViewData["TypeCode"]).ToList().GetSelectList();
             return View(sysNavbar);
         }
 
@@ -93,6 +95,7 @@ namespace HospitalPersonnelSystem.Controllers
                 return NotFound();
             }
             ViewData["TypeCode"] = new SelectList(_context.SysNavbarTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysNavbar.TypeCode);
+            ViewData["TypeCode"] = ((SelectList)ViewData["TypeCode"]).ToList().GetSelectList();
             return View(sysNavbar);
         }
 
@@ -129,6 +132,7 @@ namespace HospitalPersonnelSystem.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["TypeCode"] = new SelectList(_context.SysNavbarTypes.OrderBy(t => t.Sort).ToList(), "Code", "Name", sysNavbar.TypeCode);
+            ViewData["TypeCode"] = ((SelectList)ViewData["TypeCode"]).ToList().GetSelectList();
             return View(sysNavbar);
         }
 
