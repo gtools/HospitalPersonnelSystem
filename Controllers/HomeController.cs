@@ -18,7 +18,7 @@ namespace HospitalPersonnelSystem.Controllers
         {
             _context = context;
         }
-        [Authorize]
+        //[Authorize]
         public IActionResult Index()
         {
             return View();

@@ -1,4 +1,4 @@
-@using Microsoft.AspNetCore.Identity
+ï»¿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<HPSUser> SignInManager
 @inject UserManager<HPSUser> UserManager
 
@@ -6,13 +6,13 @@
 {
     <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
     <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-        <button type="submit" class="nav-link btn btn-link text-white">µÇ³ö</button>
+        <button type="submit" class="nav-link btn btn-link text-white">ç™»å‡º</button>
     </form>
 }
 else
 {
-    @*<a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">×¢²á</a>*@
-    <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/Login">µÇÂ¼</a>
+    @*<a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">æ³¨å†Œ</a>*@
+    <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/Login">ç™»å½•</a>
 }
 
 
