@@ -1,0 +1,165 @@
+﻿@model HospitalPersonnelSystem.Models.SysEducation
+
+@{
+    ViewData["Title"] = "学历评定 - 编辑";
+    ViewData["Controller"] = "SysEducation";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <a asp-action="Index" data-toggle="tooltip" data-placement="left" title="返回"><i class="fa fa-arrow-alt-circle-left fa-lg"></i></a>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-11">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="EmpCode" />
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label asp-for="EmpCode" class="input-group-text"></label>
+                    </div>
+                    <input class="form-control" value="@Html.DisplayFor(model => model.SysEmp.EmpCode)" readonly />
+                    <div class="input-group-prepend">
+                        <label asp-for="SysEmp.EmpName" class="input-group-text"></label>
+                    </div>
+                    <input class="form-control" value="@Html.DisplayFor(model => model.SysEmp.EmpName)" readonly />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label asp-for="MaxEducation" class="input-group-text"></label>
+                    </div>
+                    <input asp-for="MaxEducation" class="form-control" />
+                    <div class="input-group-prepend">
+                        <label asp-for="MaxSubject" class="input-group-text"></label>
+                    </div>
+                    <input asp-for="MaxSubject" class="form-control" />
+                    <div class="input-group-prepend">
+                        <label asp-for="MaxForm" class="input-group-text"></label>
+                    </div>
+                    <input asp-for="MaxForm" class="form-control" />
+                </div>
+                <span asp-validation-for="MaxEducation" class="text-danger"></span>
+                <span asp-validation-for="MaxSubject" class="text-danger"></span>
+                <span asp-validation-for="MaxForm" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label asp-for="MaxSchool" class="input-group-text"></label>
+                    </div>
+                    <input asp-for="MaxSchool" class="form-control" />
+                    <div class="input-group-prepend">
+                        <label asp-for="MaxDate" class="input-group-text"></label>
+                    </div>
+                    <input asp-for="MaxDate" class="form-control" />
+                    <div class="input-group-prepend">
+                        <label asp-for="MaxSys" class="input-group-text"></label>
+                    </div>
+                    <input asp-for="MaxSys" class="form-control" />
+                </div>
+                <span asp-validation-for="MaxSchool" class="text-danger"></span>
+                <span asp-validation-for="MaxDate" class="text-danger"></span>
+                <span asp-validation-for="MaxSys" class="text-danger"></span>
+            </div>
+            <hr />
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label asp-for="FirstEducation" class="input-group-text"></label>
+                    </div>
+                    <input asp-for="FirstEducation" class="form-control" />
+                    <div class="input-group-prepend">
+                        <label asp-for="FirstSubject" class="input-group-text"></label>
+                    </div>
+                    <input asp-for="FirstSubject" class="form-control" />
+                    <div class="input-group-prepend">
+                        <label asp-for="FirstForm" class="input-group-text"></label>
+                    </div>
+                    <input asp-for="FirstForm" class="form-control" />
+                </div>
+                <span asp-validation-for="FirstEducation" class="text-danger"></span>
+                <span asp-validation-for="FirstSubject" class="text-danger"></span>
+                <span asp-validation-for="FirstForm" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label asp-for="FirstSchool" class="input-group-text"></label>
+                    </div>
+                    <input asp-for="FirstSchool" class="form-control" />
+                    <div class="input-group-prepend">
+                        <label asp-for="FirstDate" class="input-group-text"></label>
+                    </div>
+                    <input asp-for="FirstDate" class="form-control" />
+                    <div class="input-group-prepend">
+                        <label asp-for="FirstSys" class="input-group-text"></label>
+                    </div>
+                    <input asp-for="FirstSys" class="form-control" />
+                </div>
+                <span asp-validation-for="FirstSchool" class="text-danger"></span>
+                <span asp-validation-for="FirstDate" class="text-danger"></span>
+                <span asp-validation-for="FirstSys" class="text-danger"></span>
+            </div>
+            <hr />
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label asp-for="SecondEducation" class="input-group-text"></label>
+                    </div>
+                    <input asp-for="SecondEducation" class="form-control" />
+                    <div class="input-group-prepend">
+                        <label asp-for="SecondSubject" class="input-group-text"></label>
+                    </div>
+                    <input asp-for="SecondSubject" class="form-control" />
+                    <div class="input-group-prepend">
+                        <label asp-for="SecondForm" class="input-group-text"></label>
+                    </div>
+                    <input asp-for="SecondForm" class="form-control" />
+                </div>
+                <span asp-validation-for="SecondEducation" class="text-danger"></span>
+                <span asp-validation-for="SecondSubject" class="text-danger"></span>
+                <span asp-validation-for="SecondForm" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label asp-for="SecondSchool" class="input-group-text"></label>
+                    </div>
+                    <input asp-for="SecondSchool" class="form-control" />
+                    <div class="input-group-prepend">
+                        <label asp-for="SecondDate" class="input-group-text"></label>
+                    </div>
+                    <input asp-for="SecondDate" class="form-control" />
+                    <div class="input-group-prepend">
+                        <label asp-for="SecondSys" class="input-group-text"></label>
+                    </div>
+                    <input asp-for="SecondSys" class="form-control" />
+                </div>
+                <span asp-validation-for="SecondSchool" class="text-danger"></span>
+                <span asp-validation-for="SecondDate" class="text-danger"></span>
+                <span asp-validation-for="SecondSys" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label asp-for="Remark" class="input-group-text"></label>
+                    </div>
+                    <input asp-for="Remark" class="form-control" />
+                </div>
+                <span asp-validation-for="Remark" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="保&nbsp;&nbsp;存" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

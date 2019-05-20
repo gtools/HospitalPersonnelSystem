@@ -12,6 +12,7 @@
     var b = false;
     var controller = "";
     var show = "";
+    var ico = "fas fa-plus-square float-right mt-1";
 }
 <ul class="nav flex-column col-2 accordion pl-3" id="@NavName">
     @foreach (var item in Model)
@@ -27,13 +28,15 @@
         if (b)
         {
             show = "show";
+            ico = "fas fa-minus-square float-right mt-1";
         }
         else
         {
             show = "";
+            ico = "fas fa-plus-square float-right mt-1";
         }
         <li class="nav-item pb-1" id="@NavheadingID">
-            <button type="button" class="btn btn-secondary btn-block" data-toggle="collapse" data-target="#@NavcollapseID" aria-expanded="@b.ToString().ToLower()" aria-controls="@NavcollapseID">@Html.DisplayFor(modelItem => item.Name)</button>
+            <button type="button" class="btn btn-secondary btn-block" data-toggle="collapse" data-target="#@NavcollapseID" aria-expanded="@b.ToString().ToLower()" aria-controls="@NavcollapseID">@Html.DisplayFor(modelItem => item.Name)&nbsp;<i class="@ico"></i></button>
             <div class="list-group collapse pt-1 text-center @show" id="@NavcollapseID" aria-labelledby="@NavheadingID" data-parent="#@NavName">
                 @foreach (var navitem in item.SysNavbars.OrderBy(t => t.Sort))
                 {

@@ -31,7 +31,7 @@ namespace HospitalPersonnelSystem.Models
         /// 学制(最高)
         /// </summary>
         [Display(Name = "学制")]
-        public int MaxSys { get; set; }
+        public int? MaxSys { get; set; }
         /// <summary>
         /// 方式(最高)
         /// </summary>
@@ -46,7 +46,7 @@ namespace HospitalPersonnelSystem.Models
         /// 毕业时间(最高)
         /// </summary>
         [Display(Name = "毕业时间")]
-        public DateTime MaxDate { get; set; }
+        public DateTime? MaxDate { get; set; }
         /// <summary>
         /// 毕业院校(最高)
         /// </summary>
@@ -61,7 +61,7 @@ namespace HospitalPersonnelSystem.Models
         /// 学制(第一)
         /// </summary>
         [Display(Name = "学制")]
-        public int FirstSys { get; set; }
+        public int? FirstSys { get; set; }
         /// <summary>
         /// 方式(第一)
         /// </summary>
@@ -76,7 +76,7 @@ namespace HospitalPersonnelSystem.Models
         /// 毕业时间(第一)
         /// </summary>
         [Display(Name = "毕业时间")]
-        public DateTime FirstDate { get; set; }
+        public DateTime? FirstDate { get; set; }
         /// <summary>
         /// 毕业院校(第一)
         /// </summary>
@@ -91,7 +91,7 @@ namespace HospitalPersonnelSystem.Models
         /// 学制(第二)
         /// </summary>
         [Display(Name = "学制")]
-        public int SecondSys { get; set; }
+        public int? SecondSys { get; set; }
         /// <summary>
         /// 方式(第二)
         /// </summary>
@@ -106,7 +106,7 @@ namespace HospitalPersonnelSystem.Models
         /// 毕业时间(第二)
         /// </summary>
         [Display(Name = "毕业时间")]
-        public DateTime SecondDate { get; set; }
+        public DateTime? SecondDate { get; set; }
         /// <summary>
         /// 毕业院校(第二)
         /// </summary>

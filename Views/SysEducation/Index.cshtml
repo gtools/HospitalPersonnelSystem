@@ -1,0 +1,254 @@
+﻿@model IEnumerable<HospitalPersonnelSystem.Models.SysEducation>
+
+@{
+    ViewData["Title"] = "学历评定";
+    ViewData["Controller"] = "SysEducation";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create" data-toggle="tooltip" data-placement="left" title="创建"><i class="fa fa-plus-circle fa-lg"></i></a>
+</p>
+<table class="table table-bordered table-striped" data-sort="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SysEmp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxEducation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxSys)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxForm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxSubject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxSchool)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstEducation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstSys)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstForm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstSubject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstSchool)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SecondEducation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SecondSys)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SecondForm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SecondSubject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SecondDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SecondSchool)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Remark)
+            </th>
+            <th class="sorter-false filter-false">操作</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SysEmp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxEducation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxSys)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxForm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxSubject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxSchool)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstEducation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstSys)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstForm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstSubject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstSchool)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SecondEducation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SecondSys)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SecondForm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SecondSubject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SecondDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SecondSchool)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Remark)
+            </th>
+            <th></th>
+        </tr>
+        <tr>
+            <th colspan="21" class="ts-pager">
+                <div class="form-inline">
+                    <div class="btn-group btn-group-sm mx-1" role="group">
+                        <button type="button" class="btn btn-secondary first" title="首页">
+                            <i class="fa fa-fast-backward first"></i>
+                        </button>
+                        <button type="button" class="btn btn-secondary prev" title="上一页">
+                            <i class="fa fa-backward prev"></i>
+                        </button>
+                    </div>
+                    <span class="pagedisplay"></span>
+                    <div class="btn-group btn-group-sm mx-1" role="group">
+                        <button type="button" class="btn btn-secondary next" title="下一页">
+                            <i class="fa fa-forward next"></i>
+                        </button>
+                        <button type="button" class="btn btn-secondary last" title="尾页">
+                            <i class="fa fa-fast-forward last"></i>
+                        </button>
+                    </div>
+                    <select class="form-control-sm custom-select pr-4 pagesize" title="选择页面行数">
+                        <option selected="selected" value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="all">全部</option>
+                    </select>
+                    <select class="form-control-sm custom-select px-4 mx-1 pagenum" title="选择页码"></select>
+                </div>
+            </th>
+        </tr>
+    </tfoot>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SysEmp.EmpCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaxEducation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaxSys)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaxForm)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaxSubject)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaxDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaxSchool)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstEducation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstSys)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstForm)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstSubject)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstSchool)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SecondEducation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SecondSys)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SecondForm)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SecondSubject)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SecondDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SecondSchool)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Remark)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.EmpCode" data-toggle="tooltip" data-placement="left" title="编辑"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a asp-action="Details" asp-route-id="@item.EmpCode" data-toggle="tooltip" data-placement="top" title="查看"><i class="fa fa-info-circle"></i></a> @*|
+                        <a asp-action="Delete" asp-route-id="@item.EmpCode">Delete</a>*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts {
+    <script type="text/javascript">
+        //排序
+        $(function () {
+            $('[data-sort="table"]').trigger('sorton', [[[2, 0]]]);
+        });
+    </script>
+}

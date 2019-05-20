@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using HospitalPersonnelSystem.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using HospitalPersonnelSystem.Models;
 
 namespace HospitalPersonnelSystem
 {
@@ -40,9 +41,41 @@ namespace HospitalPersonnelSystem
             //    Configuration.GetConnectionString("OracleConnection")));
             options.UseSqlServer(
                 Configuration.GetConnectionString("MSSqlConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
+            //services.AddDefaultIdentity<IdentityUser>()
+            //    .AddDefaultUI(UIFramework.Bootstrap4)
+            //    .AddEntityFrameworkStores<ApplicationDbContext>();
+            //替换默认标识
+            services.AddDefaultIdentity<HPSUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            //https://docs.microsoft.com/zh-cn/aspnet/core/security/authentication/identity-configuration?view=aspnetcore-2.2
+            //身份验证配置
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings.
+                options.Password.RequireDigit = false;//包含数字
+                options.Password.RequireLowercase = false;//包含小写字符
+                options.Password.RequireNonAlphanumeric = false;//包含非字母数字字符
+                options.Password.RequireUppercase = false;//包含大写字符
+                options.Password.RequiredLength = 1;//长度
+                options.Password.RequiredUniqueChars = 1;//必需的唯一字符
+
+                // Lockout settings.
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);//默认锁定时间
+                options.Lockout.MaxFailedAccessAttempts = 5;//最大访问失败尝试
+                options.Lockout.AllowedForNewUsers = true;//允许新用户
+
+                // User settings.
+                //options.User.AllowedUserNameCharacters =
+                //"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+                options.User.AllowedUserNameCharacters =
+                "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";//在用户名中允许的字符。
+                options.User.RequireUniqueEmail = false;//要求每个用户必须拥有唯一的电子邮件。
+
+                // Default SignIn settings.
+                options.SignIn.RequireConfirmedEmail = false;//需要已确认的电子邮件，登录。
+                options.SignIn.RequireConfirmedPhoneNumber = false;//需要确认的电话号码进行登录。
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

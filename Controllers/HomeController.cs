@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using HospitalPersonnelSystem.Models;
 using HospitalPersonnelSystem.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HospitalPersonnelSystem.Controllers
 {
@@ -17,7 +18,7 @@ namespace HospitalPersonnelSystem.Controllers
         {
             _context = context;
         }
-
+        [Authorize]
         public IActionResult Index()
         {
             return View();

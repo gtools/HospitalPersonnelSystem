@@ -19,6 +19,7 @@ namespace HospitalPersonnelSystem.TagHelpers
         private const string ForAttributeName = "asp-for";
         private const string ItemsAttributeName = "asp-items";
         private const string ValueAttributeName = "is-value";
+        private const string TextAttributeName = "is-text";
         /// <summary>
         /// 控件
         /// </summary>
@@ -35,6 +36,11 @@ namespace HospitalPersonnelSystem.TagHelpers
         /// </summary>
         [HtmlAttributeName(ValueAttributeName)]
         public bool IsValue { get; set; }
+        /// <summary>
+        /// 是否显示Text中value
+        /// </summary>
+        [HtmlAttributeName(TextAttributeName)]
+        public bool IsText { get; set; }
         /// <summary>
         /// 不清楚
         /// </summary>
@@ -59,7 +65,9 @@ namespace HospitalPersonnelSystem.TagHelpers
             output.Attributes.Add("id", inputName);
             output.Attributes.Add("name", inputName);
             output.Attributes.Add("data-live-search", "true");
-            output.Attributes.Add("class", "form-control selectpicker");
+            //output.Attributes.Add("class", "form-control selectpicker");
+            output.Attributes.Add("data-select", "selectpicker");
+            output.Attributes.Add("class", "form-control");
             foreach (var item in Items)
             {
                 // TagBuilder帮助创建具有属性的html元素
@@ -71,7 +79,10 @@ namespace HospitalPersonnelSystem.TagHelpers
                     option.Attributes["data-tokens"] = item.Spell + item.Text;
                 //option.Attributes["data-tokens"] = item.Spell;
                 //option.TagRenderMode = TagRenderMode.SelfClosing;
-                option.InnerHtml.Append(item.Text);
+                if (IsText)
+                    option.InnerHtml.Append($"({item.Value}){item.Text}");
+                else
+                    option.InnerHtml.Append(item.Text);
                 output.Content.AppendHtml(option);
             }
         }

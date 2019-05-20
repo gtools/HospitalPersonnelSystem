@@ -24,17 +24,11 @@
     <header>
         <nav class="navbar navbar-dark bg-dark mb-2">
             <a class="navbar-brand" asp-controller="Home" asp-action="Index">@ViewData["SYSTitle"]</a>
-            <partial name="_LoginPartial" />
         </nav>
     </header>
-    <div class="container-fluid">
+    <div class="container">
         <partial name="_CookieConsentPartial" />
-        <div class="row">
-            @await Component.InvokeAsync("Navbar")
-            <main role="main" class="col-10 ml-sm-auto">
-                @RenderBody()
-            </main>
-        </div>
+        @RenderBody()
     </div>
 
     <partial name="_Footer" />

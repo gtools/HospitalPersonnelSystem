@@ -1,4 +1,8 @@
-﻿//拼音码
+﻿//下拉框筛选
+$(function () {
+    $('[data-select="selectpicker"]').selectpicker();
+});
+//拼音码
 $(function () {
     $('[data-spell="name"]').change(function () {
         var name = $(this).val();

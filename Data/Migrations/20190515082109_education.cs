@@ -3,10 +3,15 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HospitalPersonnelSystem.Data.Migrations
 {
-    public partial class sysprofessioninfo : Migration
+    public partial class education : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AddColumn<string>(
+                name: "EmpCode",
+                table: "AspNetUsers",
+                nullable: true);
+
             migrationBuilder.CreateTable(
                 name: "ComAdminDuty",
                 columns: table => new
@@ -332,7 +337,7 @@ namespace HospitalPersonnelSystem.Data.Migrations
                     IsStop = table.Column<bool>(nullable: false, defaultValue: false),
                     Remark = table.Column<string>(nullable: true),
                     CreateEmp = table.Column<string>(nullable: true),
-                    CreateDate = table.Column<DateTime>(nullable: false, defaultValueSql: "getdate()")
+                    CreateDate = table.Column<DateTime>(nullable: true, defaultValueSql: "getdate()")
                 },
                 constraints: table =>
                 {
@@ -418,6 +423,42 @@ namespace HospitalPersonnelSystem.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "SysEducation",
+                columns: table => new
+                {
+                    EmpCode = table.Column<string>(nullable: false),
+                    MaxEducation = table.Column<string>(nullable: true),
+                    MaxSys = table.Column<int>(nullable: true),
+                    MaxForm = table.Column<string>(nullable: true),
+                    MaxSubject = table.Column<string>(nullable: true),
+                    MaxDate = table.Column<DateTime>(nullable: true),
+                    MaxSchool = table.Column<string>(nullable: true),
+                    FirstEducation = table.Column<string>(nullable: true),
+                    FirstSys = table.Column<int>(nullable: true),
+                    FirstForm = table.Column<string>(nullable: true),
+                    FirstSubject = table.Column<string>(nullable: true),
+                    FirstDate = table.Column<DateTime>(nullable: true),
+                    FirstSchool = table.Column<string>(nullable: true),
+                    SecondEducation = table.Column<string>(nullable: true),
+                    SecondSys = table.Column<int>(nullable: true),
+                    SecondForm = table.Column<string>(nullable: true),
+                    SecondSubject = table.Column<string>(nullable: true),
+                    SecondDate = table.Column<DateTime>(nullable: true),
+                    SecondSchool = table.Column<string>(nullable: true),
+                    Remark = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SysEducation", x => x.EmpCode);
+                    table.ForeignKey(
+                        name: "FK_EmpCode_SysEmp_SysEducation",
+                        column: x => x.EmpCode,
+                        principalTable: "SysEmp",
+                        principalColumn: "EmpCode",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "SysProfessionInfo",
                 columns: table => new
                 {
@@ -433,7 +474,7 @@ namespace HospitalPersonnelSystem.Data.Migrations
                     EngageDate = table.Column<DateTime>(nullable: true),
                     ProfessionTypeCode = table.Column<Guid>(nullable: true),
                     ProfessionalName = table.Column<string>(nullable: true),
-                    UpDate = table.Column<DateTime>(nullable: false, defaultValueSql: "getdate()"),
+                    UpDate = table.Column<DateTime>(nullable: false),
                     No1 = table.Column<string>(nullable: true),
                     No2 = table.Column<string>(nullable: true),
                     No3 = table.Column<string>(nullable: true),
@@ -441,7 +482,7 @@ namespace HospitalPersonnelSystem.Data.Migrations
                     No5 = table.Column<string>(nullable: true),
                     Remark = table.Column<string>(nullable: true),
                     CreateEmp = table.Column<string>(nullable: true),
-                    CreateDate = table.Column<DateTime>(nullable: false, defaultValueSql: "getdate()")
+                    CreateDate = table.Column<DateTime>(nullable: true, defaultValueSql: "getdate()")
                 },
                 constraints: table =>
                 {
@@ -495,21 +536,21 @@ namespace HospitalPersonnelSystem.Data.Migrations
                 columns: new[] { "Code", "Name", "Sort", "Spell" },
                 values: new object[,]
                 {
-                    { new Guid("f800b24b-fc43-427d-9d90-a56f52d4265b"), "院长", 1, "YC,YZ" },
+                    { new Guid("15e26d40-69c9-4c45-aed7-28ddd118d0ac"), "院长", 1, "YC,YZ" },
                     { new Guid("40574e21-beb0-47fd-a754-143abb0a85dd"), "无", 15, "M,W" },
-                    { new Guid("bb456397-4673-49a5-9526-7572b4d5ee5d"), "返聘", 14, "FP" },
-                    { new Guid("09d44606-3aa4-4367-b5fb-dbebac08b08c"), "干事", 13, "GS" },
-                    { new Guid("5f8604ec-34ff-4b43-8bd6-8d611d0a5388"), "科员", 12, "KY" },
-                    { new Guid("320279c7-bbb9-4262-9a43-7fa85356335c"), "副护士长", 11, "FHSC,FHSZ" },
-                    { new Guid("ece3c907-8057-413d-985a-f2584a8def24"), "护士长", 10, "HSC,HSZ" },
-                    { new Guid("2024eba6-ac7f-45ad-b21a-cd5b336b058f"), "副主任", 9, "FZR" },
-                    { new Guid("2fa3b120-a4cb-4f9c-ac31-4ecc630b719a"), "大科主任", 7, "DKZR" },
-                    { new Guid("c7ca203c-c15f-4dec-b503-d3f3c1c99001"), "团委副书记", 6, "TWFSJ" },
-                    { new Guid("aec03cba-6bac-4c96-88c5-6ec2e88becb6"), "团委书记", 5, "TWSJ" },
-                    { new Guid("fa561b31-d4a4-4b6a-962e-1947c5c1eaf0"), "副书记", 4, "FSJ" },
-                    { new Guid("4b387d33-f311-4cb9-abb5-2727c61ad2ad"), "书记", 3, "SJ" },
-                    { new Guid("ac0f0d91-6b03-47be-a0f2-820831c9d326"), "副院长", 2, "FYC,FYZ" },
-                    { new Guid("286a86d9-2ab4-45d5-920f-be3dc60e0173"), "科主任", 8, "KZR" }
+                    { new Guid("4f10ca3d-01d6-490f-8ec5-f9c470b985d7"), "返聘", 14, "FP" },
+                    { new Guid("b9e5bfd3-0a9d-4b7e-b5f8-bf260f430d4d"), "干事", 13, "GS" },
+                    { new Guid("c4e7bb33-9b50-403f-afe1-57d8c1b0985a"), "科员", 12, "KY" },
+                    { new Guid("adb9206f-c60e-4b2a-8710-2ca206a67b8f"), "副护士长", 11, "FHSC,FHSZ" },
+                    { new Guid("7f978b1d-bd3c-4597-918f-34b9dd98b709"), "护士长", 10, "HSC,HSZ" },
+                    { new Guid("8d59a3df-b632-4933-a374-37da1ba78bf2"), "副主任", 9, "FZR" },
+                    { new Guid("44044bf2-579c-4990-acfb-fbc10a66f7d2"), "大科主任", 7, "DKZR" },
+                    { new Guid("642a3ab6-754e-4576-883a-60e7eeac1331"), "团委副书记", 6, "TWFSJ" },
+                    { new Guid("f6a7eca4-08e6-46e3-a431-f6eb66d44242"), "团委书记", 5, "TWSJ" },
+                    { new Guid("fc8a10aa-7b48-4486-be71-eeb5e7a70e96"), "副书记", 4, "FSJ" },
+                    { new Guid("b066badb-467b-4dc2-8dd7-f81483a5cfb6"), "书记", 3, "SJ" },
+                    { new Guid("16536c03-2ed5-441b-8c61-dddf7d613586"), "副院长", 2, "FYC,FYZ" },
+                    { new Guid("29e86610-5218-4c0d-8d39-2ec82ac85cd0"), "科主任", 8, "KZR" }
                 });
 
             migrationBuilder.InsertData(
@@ -517,11 +558,11 @@ namespace HospitalPersonnelSystem.Data.Migrations
                 columns: new[] { "Code", "Name", "Sort", "Spell" },
                 values: new object[,]
                 {
-                    { new Guid("6cc978d3-8cbb-4c8d-bdb1-48023dd64add"), "无", 5, "M,W" },
-                    { new Guid("5d852860-dfa1-4708-b432-cc8810a6eb29"), "学士", 4, "XS" },
-                    { new Guid("85c5b5d4-ea36-4042-a755-a0ce02dd9a39"), "博士", 2, "BS" },
-                    { new Guid("554d2c3b-e7c7-4b9a-893a-9e2180343389"), "博士后", 1, "BSH" },
-                    { new Guid("f100668c-222e-4681-9d36-af0c93b85850"), "硕士", 3, "SS" }
+                    { new Guid("62a25a12-7501-422a-852b-727d85b99e30"), "无", 5, "M,W" },
+                    { new Guid("58b23fd8-131f-4fd3-b2d7-672c40197703"), "学士", 4, "XS" },
+                    { new Guid("c010283c-7e1b-4633-90c1-c8570210c298"), "博士", 2, "BS" },
+                    { new Guid("1f4aaf56-db9e-45ef-a917-236a7a09b909"), "博士后", 1, "BSH" },
+                    { new Guid("a43f6076-ead4-425d-b618-9bf123d6cb9d"), "硕士", 3, "SS" }
                 });
 
             migrationBuilder.InsertData(
@@ -529,14 +570,14 @@ namespace HospitalPersonnelSystem.Data.Migrations
                 columns: new[] { "Code", "Name", "Sort", "Spell" },
                 values: new object[,]
                 {
-                    { new Guid("6dac8482-92a1-4f57-bc6d-89c21549720a"), "博士研究生", 1, "BSYJS" },
-                    { new Guid("db9e701b-3b09-4a7b-9d39-84ca17e240d3"), "硕士研究生", 2, "SSYJS" },
-                    { new Guid("bd1c32fa-48ab-4899-83c0-a35be8a3bef3"), "本科", 3, "BK" },
-                    { new Guid("b171ef51-4722-40c2-a685-1919399bac96"), "专科", 4, "ZK" },
-                    { new Guid("9f9f5c22-d510-441b-86be-d06179d9ed1e"), "中专", 5, "ZZ" },
-                    { new Guid("5669eb3e-5360-4827-9a4d-ea93f108c478"), "高中及以下", 6, "GZJYX" },
-                    { new Guid("2a385ff2-8529-4438-8694-3993df4732cf"), "技校", 7, "JJ,JX" },
-                    { new Guid("c633c4a8-781c-42ae-bac1-5fe71d6e1ad4"), "其他", 8, "JT,QT" }
+                    { new Guid("fda338f1-d526-4448-a6fc-ab3c93adb618"), "博士研究生", 1, "BSYJS" },
+                    { new Guid("1b4c5076-16c3-4c78-aca3-f975880403f5"), "硕士研究生", 2, "SSYJS" },
+                    { new Guid("cfa3c390-d686-4ccf-8e12-06d3bc55ba25"), "本科", 3, "BK" },
+                    { new Guid("3fe824ec-552b-45f7-b645-58c2056939c6"), "专科", 4, "ZK" },
+                    { new Guid("77fecfb7-5c67-4e00-b76b-7121f402b9b1"), "中专", 5, "ZZ" },
+                    { new Guid("9ceb7bf9-8e80-4280-925d-c0d96571f85b"), "高中及以下", 6, "GZJYX" },
+                    { new Guid("ba19d445-db01-454c-aae6-f5f84923e1a7"), "技校", 7, "JJ,JX" },
+                    { new Guid("c789347d-e391-45b1-b305-db24ab7ff5c8"), "其他", 8, "JT,QT" }
                 });
 
             migrationBuilder.InsertData(
@@ -544,8 +585,8 @@ namespace HospitalPersonnelSystem.Data.Migrations
                 columns: new[] { "Code", "Name", "Sort", "Spell" },
                 values: new object[,]
                 {
-                    { new Guid("234787a3-434e-4df5-9d28-e46c074450bf"), "男", 1, "N" },
-                    { new Guid("465e560c-0b4c-4a86-92b5-7ca0b1f35b41"), "女", 2, "N" },
+                    { new Guid("aa34ed0e-9476-4866-a3f4-e4e5715992e1"), "男", 1, "N" },
+                    { new Guid("4f9df203-1db6-4a7e-8d1a-63df949955d9"), "女", 2, "N" },
                     { new Guid("f1384219-82c1-47d8-8689-0be7c7f41129"), "未知", 3, "WZ" }
                 });
 
@@ -555,10 +596,10 @@ namespace HospitalPersonnelSystem.Data.Migrations
                 values: new object[,]
                 {
                     { new Guid("6cca4dd0-8fa7-46be-90ab-f6ac0379adde"), "未说明的婚姻状况", 5, "WSMDHYZK,WYMDHYZK" },
-                    { new Guid("7a722c59-5109-4b90-bb9f-6d6ab02efd7c"), "离婚", 4, "LH" },
-                    { new Guid("00f91eff-9ba4-41ba-a3bf-acfd9ff56347"), "未婚", 1, "WH" },
-                    { new Guid("22224e56-f836-4c87-8d27-e74027a4db00"), "已婚", 2, "YH" },
-                    { new Guid("68e0e6ae-b40c-49d8-9760-38339e8d72a7"), "丧偶", 3, "SO" }
+                    { new Guid("c89eaf2d-af88-4c37-be9d-2a8786eda072"), "离婚", 4, "LH" },
+                    { new Guid("78ec60fc-b367-46cc-9785-fe7d54f13a41"), "未婚", 1, "WH" },
+                    { new Guid("1a35167f-6f9f-4b8e-9521-f9787d0103fc"), "已婚", 2, "YH" },
+                    { new Guid("c680acce-7ed3-4c2c-8c65-e5923a881327"), "丧偶", 3, "SO" }
                 });
 
             migrationBuilder.InsertData(
@@ -566,64 +607,64 @@ namespace HospitalPersonnelSystem.Data.Migrations
                 columns: new[] { "Code", "Name", "Sort", "Spell" },
                 values: new object[,]
                 {
-                    { new Guid("53630487-63fa-428a-88b4-d6e6bac460ee"), "仫佬族", 32, "MLZ" },
-                    { new Guid("05ec5d06-c629-49ed-a3bd-b71a123a3a35"), "羌族", 33, "QZ" },
-                    { new Guid("d80ab5dc-7b8d-47ee-b6c8-9ca8cf57ee1c"), "布朗族", 34, "BLZ" },
-                    { new Guid("b3ae22af-4665-4be1-918b-5fe01e051410"), "撒拉族", 35, "SLZ" },
-                    { new Guid("77faece3-2bca-41c3-9cae-7f8af9bf5edd"), "毛难族", 36, "MNZ" },
-                    { new Guid("4fb34841-b4de-40f9-b365-18c0557676a2"), "仡佬族", 37, "GLZ,YLZ" },
-                    { new Guid("f9818ca3-7fea-43af-9b5b-f35d905d0df0"), "锡伯族", 38, "XBZ" },
-                    { new Guid("ed6f817b-15c4-42cb-97c8-3d117b47ed99"), "阿昌族", 39, "ACZ,ECZ" },
-                    { new Guid("8719e87f-6514-4449-82ca-d6d7051e0ca7"), "普米族", 40, "PMZ" },
-                    { new Guid("e32aafb9-278f-4a8a-99ea-20b0d50115b9"), "塔吉克族", 41, "DJKZ,TJKZ" },
-                    { new Guid("f9b16030-1d52-4db5-8074-8e5c55a6ebba"), "怒族", 42, "NZ" },
-                    { new Guid("6afe203d-321c-4ccc-8bae-415b138e044b"), "乌孜别克族", 43, "WZBKZ" },
-                    { new Guid("35ecd349-5907-4365-9c5b-88852bbd4e98"), "俄罗斯族", 44, "ELSZ" },
-                    { new Guid("253c0ffb-98ae-4ce9-9fa2-81f5ebffdd77"), "鄂温克族", 45, "EWKZ" },
-                    { new Guid("5bea2367-4330-4214-acf3-acef955e25f3"), "保安族", 47, "BAZ" },
-                    { new Guid("3c7e9eec-7d4c-4aa6-beb7-5506a0e07be4"), "裕固族", 48, "YGZ" },
-                    { new Guid("4274e477-8f25-4019-9254-3eb0ab53eeff"), "京族", 49, "JZ" },
-                    { new Guid("436ae831-a80f-42c4-a914-f25e0cee9838"), "塔塔尔族", 50, "DDEZ,TDEZ,DTEZ,TTEZ" },
-                    { new Guid("6288f040-b496-47dd-8cb3-c09637b05b53"), "鄂伦春族", 52, "ELCZ" },
-                    { new Guid("7336ded3-59df-41ed-a3e9-6f5e6c57306f"), "赫哲族", 53, "HZZ" },
-                    { new Guid("5214254f-29f3-47a9-af69-85f8ada1baf5"), "门巴族", 54, "MBZ" },
-                    { new Guid("9a1a1f53-e95f-49f4-99e0-e6c407384936"), "珞巴族", 55, "LBZ" },
-                    { new Guid("358a9a11-8246-4690-855f-6776037782a0"), "基诺族", 56, "JNZ" },
-                    { new Guid("ac274152-d226-4429-a900-9866b664ba8f"), "其他", 57, "JT,QT" },
-                    { new Guid("a32f7f6c-3352-4430-a95e-1a843390a4a2"), "外国血统中国人士", 58, "WGXTZGRS" },
-                    { new Guid("dc267b1f-cb70-4ccb-bc39-748b6c991dc6"), "达斡尔族", 31, "DWEZ" },
-                    { new Guid("80bbb5cc-0145-4da8-af4c-68fa9c191c33"), "崩龙族", 46, "BLZ" },
-                    { new Guid("66555381-4ce2-49b7-8d12-26ebe58ab62b"), "土族", 30, "TZ" },
-                    { new Guid("f7781123-a3da-4920-aa1b-174ef903e2c1"), "独龙族", 51, "DLZ" },
-                    { new Guid("28ed9f87-21b4-4b03-b3e7-8c20130ddc86"), "景颇族", 28, "JPZ" },
+                    { new Guid("c0f7f944-7c9c-4c3f-bfed-1b26969f6fda"), "仫佬族", 32, "MLZ" },
+                    { new Guid("1839ce83-832e-4f92-a671-333d1590bb8d"), "羌族", 33, "QZ" },
+                    { new Guid("569ee6d6-4fce-4fe8-8b68-4589efd84986"), "布朗族", 34, "BLZ" },
+                    { new Guid("96852b0e-bcfa-4096-b0b8-eaa01135d85c"), "撒拉族", 35, "SLZ" },
+                    { new Guid("7a5c87d8-5aa2-4af7-83c2-94ad1adde49a"), "毛难族", 36, "MNZ" },
+                    { new Guid("d58f9ad8-8ec8-4000-8cdd-f46a65c5d87d"), "仡佬族", 37, "GLZ,YLZ" },
+                    { new Guid("5cbd8eb4-db86-4bb9-85af-9b024625dc8b"), "锡伯族", 38, "XBZ" },
+                    { new Guid("07228aac-9de6-4a5b-87f1-b809bc81dfaf"), "阿昌族", 39, "ACZ,ECZ" },
+                    { new Guid("3b1b58ff-1d62-43ad-bf73-5b3304f034e0"), "普米族", 40, "PMZ" },
+                    { new Guid("df7b16c0-35c0-434b-8cf5-ec114485418e"), "塔吉克族", 41, "DJKZ,TJKZ" },
+                    { new Guid("ce380886-08aa-456d-9fd5-0e107e55e842"), "怒族", 42, "NZ" },
+                    { new Guid("5bf3000f-79b4-4614-8eda-371cf6343f81"), "乌孜别克族", 43, "WZBKZ" },
+                    { new Guid("f53250d8-4600-4507-9155-4878fcefbfca"), "俄罗斯族", 44, "ELSZ" },
+                    { new Guid("52330e79-f1b8-4f01-aa8c-4a50c0f20954"), "鄂温克族", 45, "EWKZ" },
+                    { new Guid("4e31543e-c301-4a5c-8b7f-ca7e69b55adc"), "保安族", 47, "BAZ" },
+                    { new Guid("96d5a8ce-75b3-4098-b8f8-26b70b99c566"), "裕固族", 48, "YGZ" },
+                    { new Guid("35a8c0c0-07a1-4e7a-8497-7b92137e3aa9"), "京族", 49, "JZ" },
+                    { new Guid("0745b1d4-498d-490f-b623-2eb07ef5dc40"), "塔塔尔族", 50, "DDEZ,TDEZ,DTEZ,TTEZ" },
+                    { new Guid("ba8b7cb8-5334-4a71-91c6-8cf69503dd97"), "鄂伦春族", 52, "ELCZ" },
+                    { new Guid("960bfe8e-2193-4b6f-853d-41ebee3cc334"), "赫哲族", 53, "HZZ" },
+                    { new Guid("78841b22-c6c0-4b6e-8c9b-3ba4def0e2b2"), "门巴族", 54, "MBZ" },
+                    { new Guid("cee64d2c-71f9-4a38-98bf-490db605ef4e"), "珞巴族", 55, "LBZ" },
+                    { new Guid("f71283e7-3948-4d2f-8017-2c43339bfde6"), "基诺族", 56, "JNZ" },
+                    { new Guid("0523f3fe-7106-488b-832e-1d399778f1cb"), "其他", 57, "JT,QT" },
+                    { new Guid("7f647fef-c490-4009-baec-8a02bff35d0d"), "外国血统中国人士", 58, "WGXTZGRS" },
+                    { new Guid("933b09a5-da7a-4549-968e-0b3057afe7af"), "达斡尔族", 31, "DWEZ" },
+                    { new Guid("a1714750-2b04-4083-b147-c014cba09e45"), "崩龙族", 46, "BLZ" },
+                    { new Guid("5aec5936-2f50-4fc6-932b-ebe38e1441c0"), "土族", 30, "TZ" },
+                    { new Guid("b9fe03ec-68c9-4b6c-9135-b94fbd9fe08a"), "独龙族", 51, "DLZ" },
+                    { new Guid("6f5f8a18-69c4-4829-b401-5d7cb08339a6"), "景颇族", 28, "JPZ" },
                     { new Guid("ce17f92b-ee53-4aa6-8f3d-c3b13d865e2d"), "汉族", 1, "HZ" },
-                    { new Guid("8d99f97d-2d8c-4071-b4c3-d9e9d8bae9c7"), "蒙古族", 2, "MGZ" },
-                    { new Guid("aec05b85-f859-49b6-8b7b-1848ab10867c"), "回族", 3, "HZ" },
-                    { new Guid("5d28ef7e-c289-4504-89e8-c255815f3711"), "藏族", 4, "CZ,ZZ" },
-                    { new Guid("96c5c71b-48a5-490d-9426-2f669ce91115"), "维吾尔族", 5, "WWEZ" },
-                    { new Guid("bfba1095-d528-4dc1-a2c0-56d538fd0741"), "苗族", 6, "MZ" },
-                    { new Guid("5a4c50a1-10bf-4d8c-aad7-244b91a77928"), "彝族", 7, "YZ" },
-                    { new Guid("365160cf-aa14-40df-aeea-9063ca544f1a"), "柯尔克孜族", 29, "KEKZZ" },
-                    { new Guid("e912911e-8693-487d-8144-e6a29a722135"), "壮族", 8, "ZZ" },
-                    { new Guid("83ba89ae-17ac-4ce4-95f1-8ab7cd49efab"), "布依族", 9, "BYZ" },
-                    { new Guid("fd57b633-3cd7-45a2-8c98-a2ae094955ef"), "朝鲜族", 10, "CXZ,ZXZ" },
-                    { new Guid("fc5f5357-6fb2-4f3a-a162-35ca43a2ba8a"), "侗族", 12, "DZ,TZ" },
-                    { new Guid("47c9ef38-b342-45a8-88eb-4a3dd4d6a404"), "瑶族", 13, "YZ" },
-                    { new Guid("0aff322c-b25f-4f53-a087-04925a131bbc"), "满族", 11, "MZ" },
-                    { new Guid("f9ba51a4-bdcb-497d-82d4-4863f530c2f9"), "土家族", 15, "TGZ,TJZ" },
-                    { new Guid("b2fe0952-cc28-412e-ba5a-75e2336e13ea"), "纳西族", 27, "NXZ" },
-                    { new Guid("eb4ecdde-354f-42bb-82cd-6946e53e3383"), "东乡族", 26, "DXZ" },
-                    { new Guid("aa1f110a-481d-4942-8783-f9a507432334"), "水族", 25, "SZ" },
-                    { new Guid("99681f1a-bdaf-459a-87e4-b47f330544b5"), "拉祜族", 24, "LHZ" },
-                    { new Guid("5ca35e9a-dcfe-4ce9-aa6c-6dfb0fadbc10"), "白族", 14, "BZ" },
-                    { new Guid("c94e76f5-a711-4761-be5c-18a24d77f34c"), "畲族", 22, "SZ" },
-                    { new Guid("e9fc1d27-02ae-40b1-87a7-daa9d0863160"), "高山族", 23, "GSZ" },
-                    { new Guid("dfc60a4f-3548-4b51-95a2-0b48a36fdb88"), "傈僳族", 20, "LSZ" },
-                    { new Guid("9f0b0010-41ce-48dd-8b22-5a0616291289"), "黎族", 19, "LZ" },
-                    { new Guid("5ba6b87a-fc50-40e6-9970-7f8cf7e44eb3"), "傣族", 18, "DZ" },
-                    { new Guid("8f23cb48-ce7c-428a-b287-97f3fcd61d14"), "哈萨克族", 17, "HSKZ" },
-                    { new Guid("6e24f333-0e61-47ff-9b33-96b0888481dd"), "哈尼族", 16, "HNZ" },
-                    { new Guid("679a4a94-4f2a-4c8b-87e6-5622297488fc"), "佤族", 21, "WZ" }
+                    { new Guid("df3f6023-eefe-46d4-bb27-22a68490811a"), "蒙古族", 2, "MGZ" },
+                    { new Guid("74ea325a-6959-4492-b098-dfe8c4e0eadd"), "回族", 3, "HZ" },
+                    { new Guid("2ebceeb9-324d-4e1f-9230-70ac835acdb7"), "藏族", 4, "CZ,ZZ" },
+                    { new Guid("f514fdd7-51d4-41c0-a929-8e1ae1597fe0"), "维吾尔族", 5, "WWEZ" },
+                    { new Guid("a7bfa064-325e-4cdc-b4d1-a9136ebb38f5"), "苗族", 6, "MZ" },
+                    { new Guid("ea0ef78e-ab1b-416b-9f89-ff1d27684927"), "彝族", 7, "YZ" },
+                    { new Guid("91125fa1-2139-4294-bfca-ad5af7484b50"), "柯尔克孜族", 29, "KEKZZ" },
+                    { new Guid("3b082784-9253-4322-93e7-17694bbde498"), "壮族", 8, "ZZ" },
+                    { new Guid("7924741a-0d64-4550-bf1b-4386e0d7c270"), "布依族", 9, "BYZ" },
+                    { new Guid("116b2502-8384-4180-bb8e-bcaea8d1c37c"), "朝鲜族", 10, "CXZ,ZXZ" },
+                    { new Guid("7b4dc616-e2ca-45dc-bbf9-479393e68142"), "侗族", 12, "DZ,TZ" },
+                    { new Guid("215a80a0-4327-4a42-9786-4cbfbbe51b6f"), "瑶族", 13, "YZ" },
+                    { new Guid("40076430-0c0f-41fc-8993-3f092a1301d3"), "满族", 11, "MZ" },
+                    { new Guid("08260920-7938-4b20-8ba7-2148d7501a29"), "土家族", 15, "TGZ,TJZ" },
+                    { new Guid("23c6bd01-a11c-4d6b-adec-cdaf2ad2dcc9"), "纳西族", 27, "NXZ" },
+                    { new Guid("92db426e-728a-49b1-88dc-d7694babc550"), "东乡族", 26, "DXZ" },
+                    { new Guid("740a9785-b940-4e78-8c25-447779b9248b"), "水族", 25, "SZ" },
+                    { new Guid("065bd3db-dfc3-4b4f-abdb-bcfac37c7c48"), "拉祜族", 24, "LHZ" },
+                    { new Guid("42415a34-ea43-4f6e-8ce0-67a8b6e1bd2b"), "白族", 14, "BZ" },
+                    { new Guid("1ff3f119-f85a-4376-a9d2-199d905e996c"), "畲族", 22, "SZ" },
+                    { new Guid("be780db8-3cf4-4c96-861a-f446945da63f"), "高山族", 23, "GSZ" },
+                    { new Guid("158b8554-72af-4eb4-9143-abe205f185fe"), "傈僳族", 20, "LSZ" },
+                    { new Guid("3fb9192c-1f45-411f-9965-835724c8766e"), "黎族", 19, "LZ" },
+                    { new Guid("dc5a1b3a-e3d2-41db-a1a9-960650119ec8"), "傣族", 18, "DZ" },
+                    { new Guid("7d4c2e40-63ea-431f-8616-069a824a1409"), "哈萨克族", 17, "HSKZ" },
+                    { new Guid("a84f77c8-d932-498b-b5b2-410ff4cb065b"), "哈尼族", 16, "HNZ" },
+                    { new Guid("b2a28cb2-0696-4bba-948d-1ba25c2cf839"), "佤族", 21, "WZ" }
                 });
 
             migrationBuilder.InsertData(
@@ -631,19 +672,19 @@ namespace HospitalPersonnelSystem.Data.Migrations
                 columns: new[] { "Code", "Name", "Sort", "Spell" },
                 values: new object[,]
                 {
-                    { new Guid("74b6f438-bb44-4c01-afdb-73a582554115"), "致公党党员", 9, "ZGDDY" },
+                    { new Guid("5d2638f6-f71c-4ab0-8957-0cafc4637717"), "致公党党员", 9, "ZGDDY" },
                     { new Guid("8e871348-b291-44e3-9aff-534cfe8eb4cf"), "群众", 13, "QZ" },
-                    { new Guid("37249887-a399-403d-956c-6f3a1194e815"), "无党派人士", 12, "MDPRS,WDPRS" },
-                    { new Guid("94937f1a-46a6-430e-8ada-6e331aa5b6bc"), "台盟盟员", 11, "TMMY" },
-                    { new Guid("8ecfd8cd-6663-4c44-bb63-0b90567d5c89"), "九三学社社员", 10, "JSXSSY" },
-                    { new Guid("700bb7cc-9593-476e-baf7-f4172cdd50f6"), "农工党党员", 8, "NGDDY" },
-                    { new Guid("09031b4b-54b5-476f-a9f9-09943c11db61"), "民建会员", 6, "MJHY,MJKY" },
-                    { new Guid("224b452e-343e-4113-bd9a-f3c7425fed84"), "民盟盟员", 5, "MMMY" },
-                    { new Guid("480a29d2-2fb7-41e4-9a3f-f1ac5b363a8e"), "民革党员", 4, "MGDY,MJDY" },
-                    { new Guid("a82a84ba-5c4e-463d-ad02-1614addb2da7"), "共青团员", 3, "GQTY" },
-                    { new Guid("05c75d7a-a5f9-44ef-98d7-a42414b89663"), "中共预备党员", 2, "ZGYBDY" },
-                    { new Guid("ca5a7f6a-9a27-4d24-a3d7-ae1db3bc69a0"), "中共党员", 1, "ZGDY" },
-                    { new Guid("178a6a1c-d760-42a6-9195-a7523506f2d6"), "民进会员", 7, "MJHY,MJKY" }
+                    { new Guid("a4538294-9f2a-446f-b1ba-eb16a3cfc5d6"), "无党派人士", 12, "MDPRS,WDPRS" },
+                    { new Guid("00621ace-803d-4fe5-af8a-50498394cfcc"), "台盟盟员", 11, "TMMY" },
+                    { new Guid("f64916c0-9354-4c08-b5f0-718ff728fc2d"), "九三学社社员", 10, "JSXSSY" },
+                    { new Guid("019a2158-f4f7-4b3d-bb28-2c8f6857eb72"), "农工党党员", 8, "NGDDY" },
+                    { new Guid("69047a02-8836-4fb1-88b2-867be7909cf2"), "民建会员", 6, "MJHY,MJKY" },
+                    { new Guid("701b353e-93a6-4971-91c4-6f0659d936a4"), "民盟盟员", 5, "MMMY" },
+                    { new Guid("de6319db-e1d4-4dd7-a405-c99da0f61ba5"), "民革党员", 4, "MGDY,MJDY" },
+                    { new Guid("cf398d3c-2d34-4d9c-a704-cc4dafab9873"), "共青团员", 3, "GQTY" },
+                    { new Guid("6c85ae88-80cc-4fca-98bb-86de65403b54"), "中共预备党员", 2, "ZGYBDY" },
+                    { new Guid("15298025-1e68-4ecf-858d-cf7e3d1832e5"), "中共党员", 1, "ZGDY" },
+                    { new Guid("1ceeb87c-715f-4a91-92ab-b6b1e04ee01c"), "民进会员", 7, "MJHY,MJKY" }
                 });
 
             migrationBuilder.InsertData(
@@ -651,8 +692,8 @@ namespace HospitalPersonnelSystem.Data.Migrations
                 columns: new[] { "Code", "Name", "Sort", "Spell" },
                 values: new object[,]
                 {
-                    { new Guid("d66743da-5026-4497-80eb-ff43bf8107a2"), "卫", 1, "W" },
-                    { new Guid("b7ce2a10-4ed1-4812-8945-1d297b9d6c3d"), "工", 2, "G" }
+                    { new Guid("79442565-250b-4927-aee1-e95da76596bf"), "卫", 1, "W" },
+                    { new Guid("98e2fc14-6bda-4805-8b02-29aba01c3457"), "工", 2, "G" }
                 });
 
             migrationBuilder.InsertData(
@@ -660,8 +701,8 @@ namespace HospitalPersonnelSystem.Data.Migrations
                 columns: new[] { "Code", "Name", "Sort", "Spell" },
                 values: new object[,]
                 {
-                    { new Guid("34a13030-a065-4799-a307-ea9938eef90c"), "护理专业", 1, "HLZY" },
-                    { new Guid("88b2cdfa-f391-4bf8-b6c8-4cfcd7e7041b"), "外科专业", 2, "WKZY" }
+                    { new Guid("d42a0a86-b615-42e7-99e5-9d621eff367b"), "护理专业", 1, "HLZY" },
+                    { new Guid("214826eb-4690-4966-b4ac-d86ac5a9aa40"), "外科专业", 2, "WKZY" }
                 });
 
             migrationBuilder.InsertData(
@@ -670,8 +711,8 @@ namespace HospitalPersonnelSystem.Data.Migrations
                 values: new object[,]
                 {
                     { new Guid("77aa99bd-d60b-4294-b8ad-fae4ff12c4d8"), "无", 3, "M,W" },
-                    { new Guid("36b4846b-b378-491b-a3a6-af39c5ed8a93"), "执业护士", 1, "ZYHS" },
-                    { new Guid("8e92185f-985a-439c-bd7e-f87efe6de9fd"), "执业医师", 2, "ZYYS" }
+                    { new Guid("53608a31-e776-441a-ae89-63344c7bc208"), "执业护士", 1, "ZYHS" },
+                    { new Guid("4e2d1d63-ea21-4900-ac49-e23f3a92d7a9"), "执业医师", 2, "ZYYS" }
                 });
 
             migrationBuilder.InsertData(
@@ -691,38 +732,38 @@ namespace HospitalPersonnelSystem.Data.Migrations
                 columns: new[] { "Code", "Name", "Sort", "Spell" },
                 values: new object[,]
                 {
-                    { new Guid("f7babd0b-9f5d-43b0-9013-a7eb06fa5e4d"), "公证员", 24, "GZY" },
-                    { new Guid("98589976-6f49-4c4f-a15d-f73ad3da5cf1"), "文物博物专业人员", 19, "WWBWZYRY" },
-                    { new Guid("b5c9cfc3-8deb-4b36-9c88-d1b4973d1eca"), "档案专业人员", 20, "DAZYRY" },
-                    { new Guid("ddbf729e-6831-4342-9ea8-83361656d89f"), "广播电视播音人员", 21, "ABDSBYRY,GBDSBYRY" },
-                    { new Guid("995c1385-df05-4aaa-a491-eadd9cc641e9"), "翻译人员", 22, "FYRY" },
-                    { new Guid("673a911a-3a72-4cfd-ba8c-00d2133cf6c1"), "律师", 23, "LS" },
-                    { new Guid("681eac44-bc34-4d40-8e7b-a7088d5d0e2e"), "海关人员", 25, "HGRY" },
-                    { new Guid("dbc07db1-6ba2-4770-a388-3793d2a086f4"), "图书资料专业人员", 18, "TSZLZYRY" },
-                    { new Guid("64c2fb07-7bc9-4243-92e9-6275c3fc389d"), "民用航空飞行技术人员", 27, "MYHKFHJSRY,MYHKFXJSRY,MYHKFHJZRY,MYHKFXJZRY" },
-                    { new Guid("8d1e6660-db76-4506-8d9d-efd7cb849263"), "艺术专业人员", 28, "YSZYRY,YZZYRY" },
-                    { new Guid("26df2ba3-50ff-4a84-aa05-58b1a0bb5980"), "工艺美术专业人员", 29, "GYMSZYRY,GYMZZYRY" },
-                    { new Guid("aae4c713-ae8a-49cf-9b4b-e3f64f97ac4c"), "体育教练员", 30, "TYJLY" },
-                    { new Guid("5ec590b1-c671-4fd1-b23a-96d1d3121e2e"), "思想政治工作人员", 31, "SXZZGZRY" },
+                    { new Guid("1d3ca329-5b49-40fd-9a15-1878d3c368c5"), "公证员", 24, "GZY" },
+                    { new Guid("a3ad7cfb-6dac-4435-86db-b630fb15dda2"), "文物博物专业人员", 19, "WWBWZYRY" },
+                    { new Guid("c0ffb314-2029-413b-87ec-4a46731abd0e"), "档案专业人员", 20, "DAZYRY" },
+                    { new Guid("127ccfd1-0fe6-4217-9d58-bb11d5a87e09"), "广播电视播音人员", 21, "ABDSBYRY,GBDSBYRY" },
+                    { new Guid("278a5a5d-5417-4f91-9293-ea4d2f7316d4"), "翻译人员", 22, "FYRY" },
+                    { new Guid("d7e270c4-48b7-472f-bd56-4fb8889a5088"), "律师", 23, "LS" },
+                    { new Guid("b07bd53d-421b-4467-808b-bb9cf771d670"), "海关人员", 25, "HGRY" },
+                    { new Guid("755dacc0-ceda-4580-8986-e54771c4e18c"), "图书资料专业人员", 18, "TSZLZYRY" },
+                    { new Guid("03ce302b-49fb-4dad-a866-cc417f97e787"), "民用航空飞行技术人员", 27, "MYHKFHJSRY,MYHKFXJSRY,MYHKFHJZRY,MYHKFXJZRY" },
+                    { new Guid("cc4dd828-e9da-453b-a0b1-f6a927948e66"), "艺术专业人员", 28, "YSZYRY,YZZYRY" },
+                    { new Guid("583c9795-b0ef-4455-949e-c5dda637c55b"), "工艺美术专业人员", 29, "GYMSZYRY,GYMZZYRY" },
+                    { new Guid("e4a05dda-30a7-4521-8f5a-8c074de8952e"), "体育教练员", 30, "TYJLY" },
+                    { new Guid("f35b9904-58b1-401e-b025-d7082f263e1e"), "思想政治工作人员", 31, "SXZZGZRY" },
                     { new Guid("f20164e3-99ce-42ba-ac19-f6bd740ed46c"), "无", 32, "M,W" },
-                    { new Guid("4ed0edf8-d5ca-415c-bcb2-3a82cc23feab"), "船舶技术人员", 26, "CBJSRY,CBJZRY" },
-                    { new Guid("c8d1d14e-4041-4147-ba55-60b7c6ceeda0"), "出版专业人员", 17, "CBZYRY" },
+                    { new Guid("708d2878-b506-4ef3-8c40-788ba06ca882"), "船舶技术人员", 26, "CBJSRY,CBJZRY" },
+                    { new Guid("f445a1ab-c592-41b0-a624-deb7bea07eb3"), "出版专业人员", 17, "CBZYRY" },
                     { new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768"), "卫生技术人员", 1, "WSJSRY,WSJZRY" },
-                    { new Guid("91b918ee-1285-4841-b194-95bb18140b5a"), "统计专业人员", 15, "TJZYRY" },
-                    { new Guid("3b4c0478-962a-4ba0-986e-5fffbd29a37d"), "审计专业人员", 14, "SJZYRY" },
-                    { new Guid("dd2594b7-6578-47ff-9452-2e30a8da5cb0"), "会计专业人员", 13, "HJZYRY,KJZYRY" },
-                    { new Guid("599fe444-7311-4021-bdc8-6b7a67dd5035"), "经济专业人员", 12, "JJZYRY" },
-                    { new Guid("95c29787-fa91-4584-8923-3e1cd3bde425"), "农业技术人员", 11, "NYJSRY,NYJZRY" },
-                    { new Guid("36e21dae-7b9c-4a79-9252-b5251f7b8e25"), "实验技术人员", 10, "SYJSRY,SYJZRY" },
-                    { new Guid("be83c8e3-5f01-4b57-9074-1609ec9d9c01"), "工程技术人员", 9, "GCJSRY,GCJZRY" },
-                    { new Guid("1d589043-bf83-450d-b5e9-9d60df8c2562"), "社会科学研究人员", 8, "SHKXYJRY,SKKXYJRY" },
-                    { new Guid("c9537aae-ae32-4347-89db-c898de080636"), "自然科学研究人员", 7, "ZRKXYJRY" },
-                    { new Guid("6aefd430-ad80-4a8f-a070-5334be7980f2"), "小学（幼儿园）教师", 6, "XX（YEY）JS" },
-                    { new Guid("9c9523b5-229c-476d-8e21-e11cc2c66d38"), "中学教师", 5, "ZXJS" },
-                    { new Guid("78e50585-50a2-45d1-91b2-65707b588093"), "技工学校教师", 4, "JGXJJS,JGXXJS" },
-                    { new Guid("e197f9a9-0a8c-45ad-ae03-c6259fb35999"), "中等专业学校教师", 3, "ZDZYXJJS,ZDZYXXJS" },
-                    { new Guid("40dbc973-2eb8-49f5-9c15-921a7bf95524"), "高等学校教师", 2, "GDXJJS,GDXXJS" },
-                    { new Guid("a1c0bf8f-3127-4690-83ac-098bf5030cc4"), "新闻专业人员", 16, "XWZYRY" }
+                    { new Guid("c331e825-4929-4b5f-9d8a-9424d3099c25"), "统计专业人员", 15, "TJZYRY" },
+                    { new Guid("35f9d093-ae18-4fb9-aafe-ee1670de364a"), "审计专业人员", 14, "SJZYRY" },
+                    { new Guid("7a2d9196-9d25-4eca-b8c5-09f9c7e0b58e"), "会计专业人员", 13, "HJZYRY,KJZYRY" },
+                    { new Guid("1a7a172a-4aa2-4702-8764-4a4506988b8a"), "经济专业人员", 12, "JJZYRY" },
+                    { new Guid("a8d9da55-8d7e-4e9a-a414-2692bb54cf49"), "农业技术人员", 11, "NYJSRY,NYJZRY" },
+                    { new Guid("eff8387d-f752-4bbb-a34e-353a8b8b5072"), "实验技术人员", 10, "SYJSRY,SYJZRY" },
+                    { new Guid("bfc96cd5-7748-426b-aaa5-841349e059a2"), "工程技术人员", 9, "GCJSRY,GCJZRY" },
+                    { new Guid("a4924b96-3361-46fb-84a5-499a98e6f0f7"), "社会科学研究人员", 8, "SHKXYJRY,SKKXYJRY" },
+                    { new Guid("8328343e-dbab-4bfd-9575-9e0a6fa19100"), "自然科学研究人员", 7, "ZRKXYJRY" },
+                    { new Guid("32a1c0cb-e639-4c2f-baa1-4084742546ba"), "小学（幼儿园）教师", 6, "XX（YEY）JS" },
+                    { new Guid("adfca99d-ff25-4a5c-a907-5a492309830e"), "中学教师", 5, "ZXJS" },
+                    { new Guid("9237091c-4cf2-4da6-ae8e-b7216817a3b5"), "技工学校教师", 4, "JGXJJS,JGXXJS" },
+                    { new Guid("9e41ffeb-4cfe-43c4-ba66-88f41721de66"), "中等专业学校教师", 3, "ZDZYXJJS,ZDZYXXJS" },
+                    { new Guid("507633ce-e08e-450d-88a2-412c51c736be"), "高等学校教师", 2, "GDXJJS,GDXXJS" },
+                    { new Guid("e14f1c81-ca3c-4157-8584-74d430feae0d"), "新闻专业人员", 16, "XWZYRY" }
                 });
 
             migrationBuilder.InsertData(
@@ -730,10 +771,10 @@ namespace HospitalPersonnelSystem.Data.Migrations
                 columns: new[] { "Code", "Name", "Sort", "Spell" },
                 values: new object[,]
                 {
-                    { new Guid("151ff3c8-45dc-4f2f-9e15-1d4596aa8cc1"), "公卫", 3, "GW" },
-                    { new Guid("39708d18-d96e-452a-b45d-305c0b01012e"), "中医", 4, "ZY" },
-                    { new Guid("722f37e4-9aa0-46f9-93ae-e4d006a65f18"), "临床", 1, "LC" },
-                    { new Guid("e7daea22-52c4-4344-8c2e-9d227cf8664d"), "口腔", 2, "KQ" }
+                    { new Guid("21ea0a48-17df-4e0b-ab02-1fef2bcf903f"), "公卫", 3, "GW" },
+                    { new Guid("fb49af75-12d0-4940-aa8a-e4eaeaa52345"), "中医", 4, "ZY" },
+                    { new Guid("658b6922-fb94-43f6-b22f-15fa0be08a76"), "临床", 1, "LC" },
+                    { new Guid("1a9f6446-acc5-48b0-b419-2b1fcd074573"), "口腔", 2, "KQ" }
                 });
 
             migrationBuilder.InsertData(
@@ -742,21 +783,21 @@ namespace HospitalPersonnelSystem.Data.Migrations
                 values: new object[,]
                 {
                     { new Guid("440ad1b9-4aa1-4c4f-a42b-00fd4b072323"), "试用人员", 16, "SYRY" },
-                    { new Guid("0569922c-a4e0-4325-aa97-306fa963ae7b"), "内部退养", 15, "NBTY" },
-                    { new Guid("dd0aff53-bdf1-48e3-9d31-2e4893ddaafa"), "编外离岗人员", 14, "BWLGRY" },
-                    { new Guid("8f0e6cf0-9771-496e-bccf-8f9914048c79"), "停薪留职人员", 13, "TXLZRY" },
-                    { new Guid("a9b0c6fc-4455-46cd-a72d-6581c52ae737"), "自动离职人员", 12, "ZDLZRY" },
-                    { new Guid("daa5c488-440d-492a-a07f-42528bf3c702"), "长期出国人员", 11, "CJCGRY,ZJCGRY,CQCGRY,ZQCGRY" },
-                    { new Guid("57fc6d99-d361-451f-84a8-f5abe8ed12a6"), "借出人员", 10, "JCRY" },
-                    { new Guid("fcbca461-8a0a-444b-b897-ae40f6d2fb08"), "实习进修", 9, "SXJX" },
-                    { new Guid("4f200f88-b616-4e45-8de4-715cb3d53414"), "调出人员", 7, "DCRY,TCRY" },
-                    { new Guid("3739b8e5-51ca-4f24-b807-8102640f7a2f"), "返聘人员", 6, "FPRY" },
-                    { new Guid("ea1071a4-4882-4b78-9b2d-01ce7314b3a5"), "辞职人员", 5, "CZRY" },
-                    { new Guid("ada3bfd5-8514-4134-a12f-ff26ceb51b8c"), "离退人员", 4, "LTRY" },
-                    { new Guid("0e74da0b-8a42-4235-9155-acf1fa05631b"), "临时人员", 3, "LSRY" },
-                    { new Guid("a01cc9b6-274d-4349-9a8f-2876ef42b9b7"), "人事代理", 2, "RSDL" },
-                    { new Guid("2ac49c65-f5d8-45d2-95d7-329bc04ec9a8"), "在编人员", 1, "ZBRY" },
-                    { new Guid("a8a5a161-d807-43a6-8ba1-0709cfc4dad8"), "除名人员", 8, "CMRY" }
+                    { new Guid("63dffcc7-1566-42a9-8271-d034a79797d6"), "内部退养", 15, "NBTY" },
+                    { new Guid("356b44d9-d578-4785-b49c-cbbf3cb27696"), "编外离岗人员", 14, "BWLGRY" },
+                    { new Guid("023be8ef-c42e-422f-8f51-3d155ac0709c"), "停薪留职人员", 13, "TXLZRY" },
+                    { new Guid("c3c4395d-864b-4aa6-9363-b13c11441330"), "自动离职人员", 12, "ZDLZRY" },
+                    { new Guid("84dbe481-473e-4b00-878d-a2885367b438"), "长期出国人员", 11, "CJCGRY,ZJCGRY,CQCGRY,ZQCGRY" },
+                    { new Guid("25fc9450-ca20-499c-a1fd-e8b88d6b1057"), "借出人员", 10, "JCRY" },
+                    { new Guid("dacc934a-4079-48b9-943d-751a911ab31e"), "实习进修", 9, "SXJX" },
+                    { new Guid("be0cbcb8-6be2-440a-8ce4-a1371204831c"), "调出人员", 7, "DCRY,TCRY" },
+                    { new Guid("03fe1f70-9037-4ddb-882d-91cf8bc41d8a"), "返聘人员", 6, "FPRY" },
+                    { new Guid("2c0385d2-b6b6-405c-9e85-b9ddf9b0e1fa"), "辞职人员", 5, "CZRY" },
+                    { new Guid("367e9354-733c-494f-b0be-43b46b581d1a"), "离退人员", 4, "LTRY" },
+                    { new Guid("f8a46c8c-e214-4a60-98f7-97e858a82a58"), "临时人员", 3, "LSRY" },
+                    { new Guid("358f4830-92ed-47d5-8a14-60ae0a2c1a9f"), "人事代理", 2, "RSDL" },
+                    { new Guid("69b93d12-c392-43e2-93a6-263b2110e135"), "在编人员", 1, "ZBRY" },
+                    { new Guid("bfa39b7c-ab88-4bbf-9eb5-4a309f3513b6"), "除名人员", 8, "CMRY" }
                 });
 
             migrationBuilder.InsertData(
@@ -774,27 +815,27 @@ namespace HospitalPersonnelSystem.Data.Migrations
                 columns: new[] { "Code", "LevelCode", "Name", "Sort", "Spell", "TypeCode" },
                 values: new object[,]
                 {
-                    { new Guid("ef724365-0936-4f05-a514-32a5fc0c4f16"), new Guid("9ee36b90-1e89-4591-b849-9d79badce3a8"), "主任医师", 1, "ZRYS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
-                    { new Guid("efcd26a4-083b-4065-af68-a70569c827a2"), new Guid("2d9f5ae2-a9b1-497f-97f4-e31cfe6f0ba0"), "无职称", 21, "MZC,WZC", new Guid("f20164e3-99ce-42ba-ac19-f6bd740ed46c") },
-                    { new Guid("4ab1a14d-8862-42d6-b958-50317c0cacb3"), new Guid("4e8d76cd-5bc0-4281-8e68-446a8b649b82"), "技师", 19, "JS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
-                    { new Guid("cbcc32d4-e9e8-49b4-a3c2-b52839551cf7"), new Guid("4e8d76cd-5bc0-4281-8e68-446a8b649b82"), "护士", 18, "HS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
-                    { new Guid("ebf53274-3824-4fe2-97b0-aeddbef5a400"), new Guid("4e8d76cd-5bc0-4281-8e68-446a8b649b82"), "护师", 17, "HS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
-                    { new Guid("bb435c19-721b-47c2-a295-9f9f93aff4a6"), new Guid("4e8d76cd-5bc0-4281-8e68-446a8b649b82"), "药士", 16, "YS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
-                    { new Guid("babe1eb4-0b20-45cf-96a3-2e73556cd030"), new Guid("4e8d76cd-5bc0-4281-8e68-446a8b649b82"), "药师", 15, "YS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
-                    { new Guid("03ba6f16-f26c-4539-a51e-e8aa5ccb54c9"), new Guid("4e8d76cd-5bc0-4281-8e68-446a8b649b82"), "医士", 14, "YS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
-                    { new Guid("6b2865dc-026b-4f22-9540-f2cdc48689cf"), new Guid("4e8d76cd-5bc0-4281-8e68-446a8b649b82"), "医师", 13, "YS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
-                    { new Guid("33f23837-3159-4641-93f7-d2cece34d474"), new Guid("f469629a-4d6d-4640-804b-f2e5c44f5ca4"), "主管技师", 12, "ZGJS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
-                    { new Guid("301129ca-7765-427d-abc9-23ecc758a21c"), new Guid("4e8d76cd-5bc0-4281-8e68-446a8b649b82"), "技士", 20, "JS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
-                    { new Guid("dc50d875-82d7-4260-8bd9-dd6d3809317e"), new Guid("f469629a-4d6d-4640-804b-f2e5c44f5ca4"), "主管药师", 10, "ZGYS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
-                    { new Guid("77d517d5-40fc-4b1e-87b4-217e9d113e33"), new Guid("f469629a-4d6d-4640-804b-f2e5c44f5ca4"), "主治医师", 9, "ZZYS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
-                    { new Guid("09157ba1-de45-46a1-bd10-5fd851e76c82"), new Guid("4ef010d0-5c7e-4e38-bcff-fffcd69627cf"), "副主任技师", 8, "FZRJS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
-                    { new Guid("000a5829-0547-4266-b616-ac46f17690fe"), new Guid("4ef010d0-5c7e-4e38-bcff-fffcd69627cf"), "副主任护师", 7, "FZRHS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
-                    { new Guid("8cae3ef1-5c1d-46bd-a05e-4d0ac17f3ecf"), new Guid("4ef010d0-5c7e-4e38-bcff-fffcd69627cf"), "副主任药师", 6, "FZRYS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
-                    { new Guid("f60e8312-aecd-4f02-b380-2885f71b714c"), new Guid("4ef010d0-5c7e-4e38-bcff-fffcd69627cf"), "副主任医师", 5, "FZRYS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
-                    { new Guid("9cc75689-0e1e-4012-9d07-3d3581997a35"), new Guid("9ee36b90-1e89-4591-b849-9d79badce3a8"), "主任技师", 4, "ZRJS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
-                    { new Guid("d834d5cc-e111-46af-af78-49d2c72a8b73"), new Guid("9ee36b90-1e89-4591-b849-9d79badce3a8"), "主任护师", 3, "ZRHS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
-                    { new Guid("973a4395-9220-4aac-bba6-f86748bbb085"), new Guid("9ee36b90-1e89-4591-b849-9d79badce3a8"), "主任药师", 2, "ZRYS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
-                    { new Guid("292e5904-db7c-462b-b4a0-792bb0bd757a"), new Guid("f469629a-4d6d-4640-804b-f2e5c44f5ca4"), "主管护师", 11, "ZGHS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") }
+                    { new Guid("773e4ded-96e7-4879-950b-1a113baa4b81"), new Guid("9ee36b90-1e89-4591-b849-9d79badce3a8"), "主任医师", 1, "ZRYS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
+                    { new Guid("be357d15-4a21-4ef2-8892-c99b5afd4500"), new Guid("4e8d76cd-5bc0-4281-8e68-446a8b649b82"), "技士", 20, "JS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
+                    { new Guid("0f291598-f584-42f8-99f1-c9821b6adda3"), new Guid("4e8d76cd-5bc0-4281-8e68-446a8b649b82"), "技师", 19, "JS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
+                    { new Guid("0b7fa4de-d555-4e3e-8b85-e39649587d8a"), new Guid("4e8d76cd-5bc0-4281-8e68-446a8b649b82"), "护士", 18, "HS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
+                    { new Guid("37cf6d32-e95c-4f20-99d6-0c88b9603b1d"), new Guid("4e8d76cd-5bc0-4281-8e68-446a8b649b82"), "护师", 17, "HS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
+                    { new Guid("9ac5f264-5ecc-4d19-814e-f84d1fac84cc"), new Guid("4e8d76cd-5bc0-4281-8e68-446a8b649b82"), "药士", 16, "YS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
+                    { new Guid("2e60d9a7-856b-4fd5-989f-f8898bc79138"), new Guid("4e8d76cd-5bc0-4281-8e68-446a8b649b82"), "药师", 15, "YS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
+                    { new Guid("40e95cc3-eec2-4c85-978b-05a35ba210d0"), new Guid("4e8d76cd-5bc0-4281-8e68-446a8b649b82"), "医士", 14, "YS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
+                    { new Guid("6e26fd8c-2ca9-4481-9b2e-8121f4c95053"), new Guid("4e8d76cd-5bc0-4281-8e68-446a8b649b82"), "医师", 13, "YS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
+                    { new Guid("3cb41995-d4d5-437c-8af5-9d7b5e314440"), new Guid("f469629a-4d6d-4640-804b-f2e5c44f5ca4"), "主管技师", 12, "ZGJS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
+                    { new Guid("e8dc6d06-2759-406a-aa91-49fe24238ce5"), new Guid("2d9f5ae2-a9b1-497f-97f4-e31cfe6f0ba0"), "无职称", 21, "MZC,WZC", new Guid("f20164e3-99ce-42ba-ac19-f6bd740ed46c") },
+                    { new Guid("1c924c9f-1d7b-4082-9153-fa0964e36f07"), new Guid("f469629a-4d6d-4640-804b-f2e5c44f5ca4"), "主管药师", 10, "ZGYS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
+                    { new Guid("d4962f06-55ec-4552-98e2-8ecb106a85ab"), new Guid("f469629a-4d6d-4640-804b-f2e5c44f5ca4"), "主治医师", 9, "ZZYS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
+                    { new Guid("32fae2ed-b16c-47be-b565-988318c54ce1"), new Guid("4ef010d0-5c7e-4e38-bcff-fffcd69627cf"), "副主任技师", 8, "FZRJS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
+                    { new Guid("64d8fa60-bd26-4d7f-8fae-aa5940175b34"), new Guid("4ef010d0-5c7e-4e38-bcff-fffcd69627cf"), "副主任护师", 7, "FZRHS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
+                    { new Guid("74583e12-e79b-4466-82e0-36000682d00f"), new Guid("4ef010d0-5c7e-4e38-bcff-fffcd69627cf"), "副主任药师", 6, "FZRYS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
+                    { new Guid("0ab33680-811a-4930-a417-69b9765f1564"), new Guid("4ef010d0-5c7e-4e38-bcff-fffcd69627cf"), "副主任医师", 5, "FZRYS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
+                    { new Guid("d2224594-b7ac-4068-a5db-8df49107d96e"), new Guid("9ee36b90-1e89-4591-b849-9d79badce3a8"), "主任技师", 4, "ZRJS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
+                    { new Guid("816cd696-c722-4c14-bc55-0a77421ed5ae"), new Guid("9ee36b90-1e89-4591-b849-9d79badce3a8"), "主任护师", 3, "ZRHS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
+                    { new Guid("46ce6ba7-6a9e-48d5-91e0-6298e9bc6b34"), new Guid("9ee36b90-1e89-4591-b849-9d79badce3a8"), "主任药师", 2, "ZRYS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") },
+                    { new Guid("c9967c38-685a-4dfa-a825-132f13d3e5d2"), new Guid("f469629a-4d6d-4640-804b-f2e5c44f5ca4"), "主管护师", 11, "ZGHS", new Guid("b9bbcf12-f2c7-48e1-9ece-12068ac58768") }
                 });
 
             migrationBuilder.InsertData(
@@ -802,26 +843,32 @@ namespace HospitalPersonnelSystem.Data.Migrations
                 columns: new[] { "Code", "Action", "Controller", "Name", "Sort", "Spell", "TypeCode" },
                 values: new object[,]
                 {
-                    { new Guid("924ea9fc-c495-450d-929d-31d7b73ee5f1"), "Index", "ComProfessionType", "执业类别", 12, "ZYLB", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
-                    { new Guid("a593f37a-0dfa-4630-b9f5-1976c817e565"), "Index", "ComAdminDuty", "行政职务", 13, "HZZW,XZZW", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
-                    { new Guid("b2e6861b-d7ba-49ee-b086-e0a6a0e18ab5"), "Index", "SysDept", "科室信息", 17, "KSXX", new Guid("c4aa85c9-bd15-47e7-bc1f-b7fd24c7a52e") },
-                    { new Guid("80ef68f8-e79a-47bb-a083-4d6d9da59a24"), "Index", "ComEducation", "学历", 15, "XL", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
-                    { new Guid("270831a9-b086-498f-b2a3-c7d74641f280"), "Index", "ComDegree", "学位", 16, "XW", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
-                    { new Guid("bdaeef5d-1135-469f-8afd-4e123a3307dc"), "Index", "ComProfessionExtent", "执业范围", 11, "ZYFW", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
-                    { new Guid("e589ad6a-662e-4aab-8d5d-b437e7a06989"), "Index", "SysEmpType", "人员类别", 14, "RYLB", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
-                    { new Guid("6804dc66-f38b-4c66-a7ea-40aa14c331b2"), "Index", "ComProfessionRegister", "执业资格", 10, "ZYZG", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
-                    { new Guid("eaa9f1f3-eb57-4d36-92e1-c159829813e3"), "Index", "ComNation", "民族", 5, "MZ", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
-                    { new Guid("f80dd01a-7241-4841-8718-185e18c308c9"), "Index", "ComProfessionTitleLevel", "职称级别", 8, "ZCJB", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
-                    { new Guid("3d054230-1c76-43bd-9567-4e89f8a8fbbe"), "Index", "ComProfessionTitle", "职称", 7, "ZC", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
-                    { new Guid("a672faab-4fd5-4384-a35c-233693716b78"), "Index", "ComPolitical", "政治面貌", 6, "ZZMM", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
-                    { new Guid("cd0de0d2-aea3-4041-b49e-c288c511fa12"), "Index", "ComPost", "岗位", 4, "GW", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
-                    { new Guid("909a6329-e081-4ccf-b1e5-661b168cdd81"), "Index", "ComGender", "性别", 3, "XB", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
-                    { new Guid("adec8b92-afbc-4611-af78-0af171087c3b"), "Index", "SysNavbar", "菜单", 2, "CC,CD,CS", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
-                    { new Guid("926b6469-e6c3-485d-bde2-67a74b40b158"), "Index", "SysNavbarType", "菜单类别", 1, "CCLB,CDLB,CSLB", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
-                    { new Guid("0b502b34-eefd-42b4-9b3d-12306ba1947b"), "Index", "SysEmp", "人员管理", 18, "RYGL", new Guid("f356c105-78d1-4d16-bb8d-a48fc1072993") },
-                    { new Guid("49b6f718-4c65-4a86-8b70-760963d7a194"), "Index", "ComProfessionTitleType", "职称系列", 9, "ZCJL,ZCXL", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
-                    { new Guid("96af7e39-a390-4b47-82f7-9ca0b119308f"), "Index", "SysProfessionInfo", "职称评定", 19, "ZCPD", new Guid("f356c105-78d1-4d16-bb8d-a48fc1072993") }
+                    { new Guid("07ce62fc-88ec-463f-8e4d-afb204666127"), "Index", "ComProfessionType", "执业类别", 12, "ZYLB", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
+                    { new Guid("6f4396b3-a58c-45a9-823e-aaf5275918fd"), "Index", "ComAdminDuty", "行政职务", 13, "HZZW,XZZW", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
+                    { new Guid("4dc9f202-2a10-4c06-b328-d8dd183e92a3"), "Index", "SysEmpType", "人员类别", 14, "RYLB", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
+                    { new Guid("adde56fd-2682-4af9-940b-4348f8c0a66a"), "Index", "SysEmp", "人员管理", 18, "RYGL", new Guid("f356c105-78d1-4d16-bb8d-a48fc1072993") },
+                    { new Guid("6d7b1a09-127e-4149-9841-441d166a98b6"), "Index", "ComDegree", "学位", 16, "XW", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
+                    { new Guid("1ec827b5-3d28-4a92-8d0f-3f852111d463"), "Index", "SysDept", "科室信息", 17, "KSXX", new Guid("c4aa85c9-bd15-47e7-bc1f-b7fd24c7a52e") },
+                    { new Guid("58a749b5-ff8a-4852-bef8-0e8c63ffaca4"), "Index", "ComProfessionExtent", "执业范围", 11, "ZYFW", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
+                    { new Guid("a906d1b6-15df-4dcf-a410-a02f567523e7"), "Index", "ComEducation", "学历", 15, "XL", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
+                    { new Guid("6d38c1a9-91d0-4e29-be00-09428c8c185c"), "Index", "ComProfessionRegister", "执业资格", 10, "ZYZG", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
+                    { new Guid("858033bb-1f82-433e-bfbc-8a58c2ecca9c"), "Index", "ComNation", "民族", 5, "MZ", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
+                    { new Guid("3dc6752e-a7de-4593-a789-995862635fad"), "Index", "ComProfessionTitleLevel", "职称级别", 8, "ZCJB", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
+                    { new Guid("4c2e1c2d-600b-4c5a-ae8b-6f9e16a700a8"), "Index", "ComProfessionTitle", "职称", 7, "ZC", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
+                    { new Guid("f23215d3-2437-4e1a-a3cc-3bf28e77e5c1"), "Index", "ComPolitical", "政治面貌", 6, "ZZMM", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
+                    { new Guid("e5824870-d78a-4f4b-a86d-9c3a16b916b8"), "Index", "ComPost", "岗位", 4, "GW", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
+                    { new Guid("940d85d4-f3e9-4854-94de-374320aefb26"), "Index", "ComGender", "性别", 3, "XB", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
+                    { new Guid("afd5d978-54ea-4b7d-9902-ecbfaee29035"), "Index", "SysNavbar", "菜单", 2, "CC,CD,CS", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
+                    { new Guid("966a5fb7-23e9-4f82-bf94-442dcfd0a400"), "Index", "SysNavbarType", "菜单类别", 1, "CCLB,CDLB,CSLB", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
+                    { new Guid("527bba39-46dd-4c85-b5b2-4db556409042"), "Index", "SysProfessionInfo", "职称评定", 19, "ZCPD", new Guid("f356c105-78d1-4d16-bb8d-a48fc1072993") },
+                    { new Guid("4641bdc3-aca3-4f4a-a372-5cd63dd2533a"), "Index", "ComProfessionTitleType", "职称系列", 9, "ZCJL,ZCXL", new Guid("4d3c3953-fd9e-4df1-aa18-3285e020d4bc") },
+                    { new Guid("60d7f19f-b99f-4356-b691-dec78826b19d"), "Index", "SysEducation", "学历评定", 20, "XLPD", new Guid("f356c105-78d1-4d16-bb8d-a48fc1072993") }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_EmpCode",
+                table: "AspNetUsers",
+                column: "EmpCode");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ComProfessionTitle_LevelCode",
@@ -937,10 +984,25 @@ namespace HospitalPersonnelSystem.Data.Migrations
                 name: "IX_SysProfessionInfo_ProfessionTypeCode",
                 table: "SysProfessionInfo",
                 column: "ProfessionTypeCode");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_AspNetUsers_SysEmp_EmpCode",
+                table: "AspNetUsers",
+                column: "EmpCode",
+                principalTable: "SysEmp",
+                principalColumn: "EmpCode",
+                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_AspNetUsers_SysEmp_EmpCode",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "SysEducation");
+
             migrationBuilder.DropTable(
                 name: "SysNavbar");
 
@@ -1000,6 +1062,14 @@ namespace HospitalPersonnelSystem.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "ComProfessionTitleType");
+
+            migrationBuilder.DropIndex(
+                name: "IX_AspNetUsers_EmpCode",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
+                name: "EmpCode",
+                table: "AspNetUsers");
         }
     }
 }
