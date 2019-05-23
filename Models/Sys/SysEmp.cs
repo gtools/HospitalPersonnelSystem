@@ -389,5 +389,9 @@ namespace HospitalPersonnelSystem.Models
         /// 学历评定
         /// </summary>
         public List<SysEducation> SysEducations { get; set; }
+        /// <summary>
+        /// 合同
+        /// </summary>
+        public List<SysContract> SysContracts { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace HospitalPersonnelSystem.Models
     /// <summary>
     /// 向标识数据库中添加自定义用户数据
     /// </summary>
-    public class HPSUser : IdentityUser
+    public class HPSUser : IdentityUser<Guid>
     {
         /// <summary>
         /// 工号

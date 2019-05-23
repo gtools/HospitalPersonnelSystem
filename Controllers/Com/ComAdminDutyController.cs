@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HospitalPersonnelSystem.Data;
 using HospitalPersonnelSystem.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HospitalPersonnelSystem.Controllers
 {
+
+    [Authorize]
     /// <summary>
     /// 行政职务
     /// </summary>

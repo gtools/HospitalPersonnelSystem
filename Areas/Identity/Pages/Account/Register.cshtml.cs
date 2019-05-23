@@ -42,6 +42,7 @@ namespace HospitalPersonnelSystem.Areas.Identity.Pages.Account
         {
             [Required]
             [Display(Name = "用户账号")]
+            [DataType(DataType.Text)]
             [StringLength(6, ErrorMessage = GTSharp.Validate.StringLength, MinimumLength = 3)]
             public string UserName { get; set; }
 

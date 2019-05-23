@@ -43,5 +43,15 @@ namespace HospitalPersonnelSystem.Models
         /// 职称评定
         /// </summary>
         public List<SysProfessionInfo> SysProfessionInfos { get; set; }
+
+        public ComProfessionType(string code, string name, int sort, string spell)
+        {
+            Code = new Guid(code);
+            this.name = name;
+            Sort = sort;
+            Spell = spell;
+        }
+
+        public ComProfessionType() { }
     }
 }

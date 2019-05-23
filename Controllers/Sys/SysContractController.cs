@@ -8,27 +8,28 @@ using Microsoft.EntityFrameworkCore;
 using HospitalPersonnelSystem.Data;
 using HospitalPersonnelSystem.Models;
 using Microsoft.AspNetCore.Authorization;
+using GTSharp;
 
 namespace HospitalPersonnelSystem.Controllers
 {
-
     [Authorize]
-    public class SysDeptController : Controller
+    public class SysContractController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public SysDeptController(ApplicationDbContext context)
+        public SysContractController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: SysDept
+        // GET: SysContract
         public async Task<IActionResult> Index()
         {
-            return View(await _context.SysDepts.ToListAsync());
+            var applicationDbContext = _context.SysContracts.Include(s => s.SysEmp);
+            return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: SysDept/Details/5
+        // GET: SysContract/Details/5
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -36,45 +37,44 @@ namespace HospitalPersonnelSystem.Controllers
                 return NotFound();
             }
 
-            var sysDept = await _context.SysDepts
-                .FirstOrDefaultAsync(m => m.DeptCode == id);
-            if (sysDept == null)
+            var sysContract = await _context.SysContracts
+                .Include(s => s.SysEmp)
+                .FirstOrDefaultAsync(m => m.EmpCode == id);
+            if (sysContract == null)
             {
                 return NotFound();
             }
 
-            return View(sysDept);
+            return View(sysContract);
         }
 
-        // GET: SysDept/Create
+        // GET: SysContract/Create
         public IActionResult Create()
         {
+            ViewData["EmpCode"] = new SelectList(_context.SysEmps, "EmpCode", "EmpName");
+            ViewData["EmpCode"] = ((SelectList)ViewData["EmpCode"]).ToList().GetSelectList();
             return View();
         }
 
-        // POST: SysDept/Create
+        // POST: SysContract/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DeptCode,DeptName,Spell,Sort")] SysDept sysDept)
+        public async Task<IActionResult> Create([Bind("Code,EmpCode,YearLimit,EndDate,SN,Remark,CreateEmp,CreateDate")] SysContract sysContract)
         {
             if (ModelState.IsValid)
             {
-                //排序MAX加1
-                if (_context.SysDepts.Count() > 0)
-                    sysDept.Sort = _context.SysDepts.Max(t => t.Sort) + 1;
-                //拼音码没有
-                if (string.IsNullOrWhiteSpace(sysDept.Spell))
-                    sysDept.Spell = GTSharp.Core.PinYinHelper.GetFirstPinyin(sysDept.DeptName);
-                _context.Add(sysDept);
+                _context.Add(sysContract);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(sysDept);
+            ViewData["EmpCode"] = new SelectList(_context.SysEmps, "EmpCode", "EmpName", sysContract.EmpCode);
+            ViewData["EmpCode"] = ((SelectList)ViewData["EmpCode"]).ToList().GetSelectList();
+            return View(sysContract);
         }
 
-        // GET: SysDept/Edit/5
+        // GET: SysContract/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -82,22 +82,24 @@ namespace HospitalPersonnelSystem.Controllers
                 return NotFound();
             }
 
-            var sysDept = await _context.SysDepts.FindAsync(id);
-            if (sysDept == null)
+            var sysContract = await _context.SysContracts.FindAsync(id);
+            if (sysContract == null)
             {
                 return NotFound();
             }
-            return View(sysDept);
+            ViewData["EmpCode"] = new SelectList(_context.SysEmps, "EmpCode", "EmpName", sysContract.EmpCode);
+            ViewData["EmpCode"] = ((SelectList)ViewData["EmpCode"]).ToList().GetSelectList();
+            return View(sysContract);
         }
 
-        // POST: SysDept/Edit/5
+        // POST: SysContract/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("DeptCode,DeptName,Spell,Sort")] SysDept sysDept)
+        public async Task<IActionResult> Edit(string id, [Bind("Code,EmpCode,YearLimit,EndDate,SN,Remark,CreateEmp,CreateDate")] SysContract sysContract)
         {
-            if (id != sysDept.DeptCode)
+            if (id != sysContract.EmpCode)
             {
                 return NotFound();
             }
@@ -106,12 +108,12 @@ namespace HospitalPersonnelSystem.Controllers
             {
                 try
                 {
-                    _context.Update(sysDept);
+                    _context.Update(sysContract);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SysDeptExists(sysDept.DeptCode))
+                    if (!SysContractExists(sysContract.EmpCode))
                     {
                         return NotFound();
                     }
@@ -122,10 +124,12 @@ namespace HospitalPersonnelSystem.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(sysDept);
+            ViewData["EmpCode"] = new SelectList(_context.SysEmps, "EmpCode", "EmpName", sysContract.EmpCode);
+            ViewData["EmpCode"] = ((SelectList)ViewData["EmpCode"]).ToList().GetSelectList();
+            return View(sysContract);
         }
 
-        //// GET: SysDept/Delete/5
+        //// GET: SysContract/Delete/5
         //public async Task<IActionResult> Delete(string id)
         //{
         //    if (id == null)
@@ -133,58 +137,31 @@ namespace HospitalPersonnelSystem.Controllers
         //        return NotFound();
         //    }
 
-        //    var sysDept = await _context.SysDepts
-        //        .FirstOrDefaultAsync(m => m.DeptCode == id);
-        //    if (sysDept == null)
+        //    var sysContract = await _context.SysContracts
+        //        .Include(s => s.SysEmp)
+        //        .FirstOrDefaultAsync(m => m.EmpCode == id);
+        //    if (sysContract == null)
         //    {
         //        return NotFound();
         //    }
 
-        //    return View(sysDept);
+        //    return View(sysContract);
         //}
 
-        //// POST: SysDept/Delete/5
+        //// POST: SysContract/Delete/5
         //[HttpPost, ActionName("Delete")]
         //[ValidateAntiForgeryToken]
         //public async Task<IActionResult> DeleteConfirmed(string id)
         //{
-        //    var sysDept = await _context.SysDepts.FindAsync(id);
-        //    _context.SysDepts.Remove(sysDept);
+        //    var sysContract = await _context.SysContracts.FindAsync(id);
+        //    _context.SysContracts.Remove(sysContract);
         //    await _context.SaveChangesAsync();
         //    return RedirectToAction(nameof(Index));
         //}
 
-        private bool SysDeptExists(string id)
+        private bool SysContractExists(string id)
         {
-            return _context.SysDepts.Any(e => e.DeptCode == id);
-        }
-
-        private bool DeptCodeExists(string str)
-        {
-            return SysDeptExists(str);
-        }
-
-        private bool DeptNameExists(string str)
-        {
-            return _context.SysDepts.Any(e => e.DeptName == str);
-        }
-
-        [AcceptVerbs("Get", "Post")]
-        public IActionResult VerifyDeptCode(string deptcode)
-        {
-            if (DeptCodeExists(deptcode))
-                return Json($"科室代码 {deptcode} 已经存在.");
-            return Json(true);
-        }
-        [AcceptVerbs("Get", "Post")]
-        public IActionResult VerifyDeptName(string deptname)
-        {
-            if (DeptNameExists(deptname))
-            {
-                return Json($"科室名称 {deptname} 已经存在.");
-            }
-
-            return Json(true);
+            return _context.SysContracts.Any(e => e.EmpCode == id);
         }
     }
 }

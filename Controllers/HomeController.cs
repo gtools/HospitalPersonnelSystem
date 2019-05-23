@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace HospitalPersonnelSystem.Controllers
 {
+    //权限
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -18,7 +20,7 @@ namespace HospitalPersonnelSystem.Controllers
         {
             _context = context;
         }
-        //[Authorize]
+        
         public IActionResult Index()
         {
             return View();

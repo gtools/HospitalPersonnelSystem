@@ -8,9 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using HospitalPersonnelSystem.Data;
 using HospitalPersonnelSystem.Models;
 using GTSharp;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HospitalPersonnelSystem.Controllers
 {
+
+    [Authorize]
     public class SysNavbarController : Controller
     {
         private readonly ApplicationDbContext _context;

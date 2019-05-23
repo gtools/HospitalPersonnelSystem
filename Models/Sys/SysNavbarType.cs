@@ -44,5 +44,15 @@ namespace HospitalPersonnelSystem.Models
         /// 菜单列表
         /// </summary>
         public List<SysNavbar> SysNavbars { get; set; }
+
+        public SysNavbarType(string code, string name, int sort, string spell)
+        {
+            Code = new Guid(code);
+            this.name = name;
+            Spell = spell;
+            Sort = sort;
+        }
+
+        public SysNavbarType() { }
     }
 }

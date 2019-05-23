@@ -42,5 +42,15 @@ namespace HospitalPersonnelSystem.Models
         /// 人员
         /// </summary>
         public List<SysEmp> SysEmps { get; set; }
+
+        public ComPost(string code, string name, int sort, string spell)
+        {
+            Code = new Guid(code);
+            this.name = name;
+            Sort = sort;
+            Spell = spell;
+        }
+
+        public ComPost() { }
     }
 }

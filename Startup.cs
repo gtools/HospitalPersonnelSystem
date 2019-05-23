@@ -14,6 +14,7 @@ using HospitalPersonnelSystem.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using HospitalPersonnelSystem.Models;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace HospitalPersonnelSystem
 {
@@ -45,9 +46,12 @@ namespace HospitalPersonnelSystem
             //    .AddDefaultUI(UIFramework.Bootstrap4)
             //    .AddEntityFrameworkStores<ApplicationDbContext>();
             //替换默认标识
-            services.AddDefaultIdentity<HPSUser>()
+            //services.AddDefaultIdentity<HPSUser>()
+            //services.AddDefaultIdentity<HPSUser<Guid>>()
+            services.AddIdentity<HPSUser, HPSRole>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
             //https://docs.microsoft.com/zh-cn/aspnet/core/security/authentication/identity-configuration?view=aspnetcore-2.2
             //身份验证配置
             services.Configure<IdentityOptions>(options =>
@@ -77,7 +81,21 @@ namespace HospitalPersonnelSystem
                 options.SignIn.RequireConfirmedPhoneNumber = false;//需要确认的电话号码进行登录。
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddRazorPagesOptions(options =>
+            {
+                options.AllowAreas = true;
+                options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
+                options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
+            });
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = $"/Identity/Account/Login";
+                options.LogoutPath = $"/Identity/Account/Logout";
+                options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+            });
+            //services.AddSingleton<IEmailSender, EmailSender>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

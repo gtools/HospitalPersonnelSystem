@@ -69,5 +69,17 @@ namespace HospitalPersonnelSystem.Models
         /// </summary>
         [Display(Name = "动作")]
         public string Action { get; set; }
+
+        public SysNavbar(string code, string action, string controller, string name, int sort, string spell, string typecode)
+        {
+            Code = new Guid(code);
+            Action = action;
+            Controller = controller;
+            this.name = name;
+            Sort = sort;
+            Spell = spell;
+            TypeCode = new Guid(typecode);
+        }
+        public SysNavbar() { }
     }
 }
