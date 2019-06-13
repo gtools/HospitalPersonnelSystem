@@ -12,7 +12,7 @@ using GTSharp;
 
 namespace HospitalPersonnelSystem.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "SysContract")]
     public class SysContractController : Controller
     {
         private readonly ApplicationDbContext _context;

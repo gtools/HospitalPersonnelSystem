@@ -11,8 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace HospitalPersonnelSystem.Controllers
 {
-
-    [Authorize]
+    [Authorize(Roles = "SysEmp")]
     public class SysEmpController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -23,6 +22,7 @@ namespace HospitalPersonnelSystem.Controllers
         }
 
         // GET: SysEmp
+        //[Authorize(Roles = "test")]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.SysEmps.Include(s => s.ComAdminDuty).Include(s => s.ComDegree).Include(s => s.ComEducation).Include(s => s.ComGender).Include(s => s.ComMarriage).Include(s => s.ComNation).Include(s => s.ComPolitical).Include(s => s.ComProfessionTitle).Include(s => s.ComProfessionTitleLevel).Include(s => s.ComProfessionTitleType).Include(s => s.SysDept).Include(s => s.SysEmpType).Include(s => s.ComPost);
@@ -60,6 +60,7 @@ namespace HospitalPersonnelSystem.Controllers
             return View(sysEmp);
         }
 
+        //[Authorize(Roles = "MyRole")]
         // GET: SysEmp/Create
         public IActionResult Create()
         {

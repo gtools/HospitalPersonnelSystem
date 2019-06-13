@@ -24,7 +24,7 @@
     <header>
         <nav class="navbar navbar-dark bg-dark mb-2">
             <a class="navbar-brand" asp-controller="Home" asp-action="Index">@ViewData["SYSTitle"]</a>
-            <partial name="_LoginPartial" />
+            @await Component.InvokeAsync("LoginPartial")
         </nav>
     </header>
     <div class="container-fluid">

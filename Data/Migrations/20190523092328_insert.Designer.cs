@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HospitalPersonnelSystem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190523024148_insert")]
+    [Migration("20190523092328_insert")]
     partial class insert
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -1688,6 +1688,22 @@ namespace HospitalPersonnelSystem.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("4ca79414-5489-404a-7ac4-08d6df31b211"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "3783128b-53a9-468a-abc2-91455199afa6",
+                            EmailConfirmed = false,
+                            LockoutEnabled = true,
+                            NormalizedUserName = "000000",
+                            PasswordHash = "AQAAAAEAACcQAAAAEARZ8jMz2+qN/rrs7sDf2XBgq8O6Hbo3hGjgxHoH52TPH7IpJpVxHmtTU71fv2PTbA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "7KBN6UCWNAYM5JVWMUIJNDE3JYEODR5J",
+                            TwoFactorEnabled = false,
+                            UserName = "000000"
+                        });
                 });
 
             modelBuilder.Entity("HospitalPersonnelSystem.Models.SysContract", b =>
@@ -2287,11 +2303,21 @@ namespace HospitalPersonnelSystem.Migrations
                         },
                         new
                         {
+                            Code = new Guid("0dc5856b-2399-4334-a790-a00385b5b285"),
+                            Action = "Index",
+                            Controller = "SysContract",
+                            Name = "合同",
+                            Sort = 21,
+                            Spell = "HT",
+                            TypeCode = new Guid("f356c105-78d1-4d16-bb8d-a48fc1072993")
+                        },
+                        new
+                        {
                             Code = new Guid("1ba40056-ff15-4fba-b064-636e57235ab7"),
                             Action = "Index",
                             Controller = "Account",
                             Name = "用户注册",
-                            Sort = 21,
+                            Sort = 22,
                             Spell = "YHZC",
                             TypeCode = new Guid("49b247e4-33bb-4793-a23f-ef86ebc5f654")
                         });

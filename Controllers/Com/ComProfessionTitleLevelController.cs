@@ -11,8 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace HospitalPersonnelSystem.Controllers
 {
-
-    [Authorize]
+    [Authorize(Roles = "ComProfessionTitleLevel")]
     public class ComProfessionTitleLevelController : Controller
     {
         private readonly ApplicationDbContext _context;

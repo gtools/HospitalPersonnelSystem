@@ -1,0 +1,69 @@
+﻿@model HospitalPersonnelSystem.Models.RoleCreateModel
+@using System.Linq;
+@using System.Security.Claims;
+
+@{
+    ViewData["Title"] = $"账号管理 - 权限编辑 - {ViewData["RoleUserName"]} - {ViewData["RoleEmpName"]}";
+    ViewData["Controller"] = "Admin";
+    var i = 0;
+    var itemtypename = "itemtype";
+    var itemtypenames = "itemtype";
+    var chtrue = "checked=\"checked\"";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <a asp-action="UserIndex" data-toggle="tooltip" data-placement="left" title="返回"><i class="fa fa-arrow-alt-circle-left fa-lg"></i></a>
+</div>
+<br />
+<form asp-action="RoleCreate" method="post">
+    <input type="hidden" asp-for="UserId" />
+    <div class="card-columns">
+        @foreach (var itemtype in Model.SysNavbarTypes.OrderBy(t => t.Sort))
+        {
+            <div class="card">
+                <div class="card-header">
+                    <div class="custom-control custom-checkbox mr-sm-2">
+                        <input type="checkbox" class="custom-control-input" id="@itemtype.Code" name="@itemtype.Code">
+                        <label class="custom-control-label" for="@itemtype.Code" data-toggle="tooltip" data-placement="top" title="全选&取消全选">@itemtype.Name</label>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        @foreach (var item in itemtype.SysNavbars.OrderBy(t => t.Sort))
+                        {
+                            if (item.Checked) { chtrue = "checked=\"checked\""; }
+                            else { chtrue = ""; }
+                            <div class="col-4 my-1">
+                                <div class="custom-control custom-checkbox mr-sm-2">
+                                    <input type="checkbox" class="custom-control-input" id="@item.Code" name="Claims" name-data="@itemtype.Code" value="@item.Controller" @chtrue>
+                                    <label class="custom-control-label" for="@item.Code">@item.Name</label>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="form-group">
+        <input type="submit" value="保&nbsp;&nbsp;存" class="btn btn-primary" />
+    </div>
+</form>
+
+@section Scripts {
+    @foreach (var itemtype in Model.SysNavbarTypes.OrderBy(t => t.Sort))
+    {
+        <script type="text/javascript">
+        @{i = i + 1;}
+        @{itemtypenames = itemtypename + i.ToString();}
+        var @itemtypenames = true;
+        //全选
+        $("#@itemtype.Code").click(function () {
+            $(':checkbox[name-data="@itemtype.Code"]').attr("checked", @itemtypenames);
+            @itemtypenames = !@itemtypenames;
+        });
+        </script>
+    }
+}

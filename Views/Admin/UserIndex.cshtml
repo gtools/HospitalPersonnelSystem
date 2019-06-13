@@ -1,0 +1,101 @@
+﻿@model IEnumerable<HospitalPersonnelSystem.Models.HPSUser>
+
+@{
+    ViewData["Title"] = "账号管理";
+    ViewData["Controller"] = "Admin";
+}
+
+<h1>@ViewData["Title"]</h1>
+<p>
+    <a asp-action="Register" data-toggle="tooltip" data-placement="left" title="账号注册"><i class="fa fa-user-plus fa-lg"></i></a>
+</p>
+<table class="table table-bordered table-striped" data-sort="table">
+    <thead class="thead-dark">
+        <!-- add class="thead-light" for a light header -->
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SysEmp.EmpCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SysEmp.EmpName)
+            </th>
+            <th class="sorter-false filter-false">操作</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SysEmp.EmpCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SysEmp.EmpName)
+            </th>
+            <th></th>
+        </tr>
+        <tr>
+            <th colspan="4" class="ts-pager">
+                <div class="form-inline">
+                    <div class="btn-group btn-group-sm mx-1" role="group">
+                        <button type="button" class="btn btn-secondary first" title="首页">
+                            <i class="fa fa-fast-backward first"></i>
+                        </button>
+                        <button type="button" class="btn btn-secondary prev" title="上一页">
+                            <i class="fa fa-backward prev"></i>
+                        </button>
+                    </div>
+                    <span class="pagedisplay"></span>
+                    <div class="btn-group btn-group-sm mx-1" role="group">
+                        <button type="button" class="btn btn-secondary next" title="下一页">
+                            <i class="fa fa-forward next"></i>
+                        </button>
+                        <button type="button" class="btn btn-secondary last" title="尾页">
+                            <i class="fa fa-fast-forward last"></i>
+                        </button>
+                    </div>
+                    <select class="form-control-sm custom-select pr-4 pagesize" title="选择页面行数">
+                        <option selected="selected" value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="all">全部</option>
+                    </select>
+                    <select class="form-control-sm custom-select px-4 mx-1 pagenum" title="选择页码"></select>
+                </div>
+            </th>
+        </tr>
+    </tfoot>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SysEmp.EmpCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SysEmp.EmpName)
+                </td>
+                <td>
+                    <a asp-action="ResetPassword" asp-route-id="@item.Id" data-toggle="tooltip" data-placement="top" title="密码重置"><i class="fa fa-asterisk"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a asp-action="RoleDetails" asp-route-id="@item.Id" data-toggle="tooltip" data-placement="top" title="权限查看"><i class="fas fa-id-card-alt"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a asp-action="RoleEdit" asp-route-id="@item.Id" data-toggle="tooltip" data-placement="top" title="权限编辑"><i class="fas fa-id-card"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts {
+    <script type="text/javascript">
+        //排序
+        $(function () {
+            $('[data-sort="table"]').trigger('sorton', [[[1, 0]]]);
+        });
+    </script>
+}

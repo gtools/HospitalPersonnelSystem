@@ -20,7 +20,7 @@ namespace HospitalPersonnelSystem.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var items = await _context.SysNavbarTypes.Include(t => t.SysNavbars).OrderBy(t => t.Sort).ToListAsync();
-            if (ViewData["Controller"] != null)
+            if (ViewData["Controller"] != null && !string.IsNullOrWhiteSpace(ViewData["Controller"].ToString()))
             {
                 var item = await _context.SysNavbars.Where(t => t.Controller == ViewData["Controller"].ToString()).FirstAsync();
                 ViewData["SysNavbarType"] = item.SysNavbarType.Name;

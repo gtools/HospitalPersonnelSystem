@@ -136,7 +136,7 @@ namespace HospitalPersonnelSystem.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            int sort = 1;
+            //int sort = 1;
 
             #region 菜单类别
             modelBuilder.Entity<SysNavbarType>(b =>
@@ -334,7 +334,6 @@ namespace HospitalPersonnelSystem.Data
                 b.Property(t => t.Sort)
                 .HasDefaultValue(0);
             });
-            sort = 1;
             #endregion
 
             #region 人员
@@ -501,7 +500,6 @@ namespace HospitalPersonnelSystem.Data
                  .HasForeignKey(t => t.EmpCode)
                  .HasConstraintName("FK_EmpCode_SysEmp_SysProfessionInfo");
             });
-            sort = 1;
             #endregion
 
             #region 学历评定
@@ -514,7 +512,6 @@ namespace HospitalPersonnelSystem.Data
                  .HasForeignKey(t => t.EmpCode)
                  .HasConstraintName("FK_EmpCode_SysEmp_SysEducation");
             });
-            sort = 1;
             #endregion
 
             #region 合同
@@ -529,8 +526,9 @@ namespace HospitalPersonnelSystem.Data
                 b.Property(t => t.CreateDate)//创建日期
                 .HasDefaultValueSql("getdate()");
             });
-            sort = 1;
             #endregion
+            
+
 
 
             #region 注释
@@ -1296,35 +1294,47 @@ namespace HospitalPersonnelSystem.Data
         {
             #region 菜单类别
             modelBuilder.Entity<SysNavbarType>().HasData(
-                new SysNavbarType("f356c105-78d1-4d16-bb8d-a48fc1072993", "人事档案", 1, "RSDA"),
-                new SysNavbarType("c4aa85c9-bd15-47e7-bc1f-b7fd24c7a52e", "机构管理", 2, "JGGL"),
-                new SysNavbarType("4d3c3953-fd9e-4df1-aa18-3285e020d4bc", "基础数据维护", 3, "JCSJWH"),
-                new SysNavbarType("49b247e4-33bb-4793-a23f-ef86ebc5f654", "系统配置", 4, "JTPZ,XTPZ"));
+                new SysNavbarType("49b247e4-33bb-4793-a23f-ef86ebc5f654", 1, "系统设置",  "JTSZ"),
+                new SysNavbarType("f356c105-78d1-4d16-bb8d-a48fc1072993", 2, "人事档案",  "RSDA"),
+                new SysNavbarType("c4aa85c9-bd15-47e7-bc1f-b7fd24c7a52e", 3, "机构管理",  "JGGL"),
+                new SysNavbarType("4d3c3953-fd9e-4df1-aa18-3285e020d4bc", 4, "基础数据维护",  "JCSJWH"));
             #endregion
 
             #region 菜单
             modelBuilder.Entity<SysNavbar>().HasData(
-                new SysNavbar("84694a3e-bd02-4c7b-809a-13b03179ec47", "Index", "SysNavbarType", "菜单类别", 1, "CCLB,CDLB,CSLB", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
-                new SysNavbar("b5c4e0db-5fe3-45e8-ae94-66b451509232", "Index", "SysNavbar", "菜单", 2, "CC,CD,CS", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
-                new SysNavbar("766ba75a-cc1d-47c4-b81f-896fcbd50192", "Index", "ComGender", "性别", 3, "XB", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
-                new SysNavbar("46864280-4032-40f2-997d-ff4bd91e940c", "Index", "ComPost", "岗位", 4, "GW", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
-                new SysNavbar("1a2260db-c848-4355-aaa2-16f5bab953be", "Index", "ComNation", "民族", 5, "MZ", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
-                new SysNavbar("7bcff967-fed2-4568-86e9-a7bd8a72b792", "Index", "ComPolitical", "政治面貌", 6, "ZZMM", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
-                new SysNavbar("c5fe9b01-e255-4c0b-902b-eb05b9668f14", "Index", "ComProfessionTitle", "职称", 7, "ZC", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
-                new SysNavbar("bf9643b4-66f9-4bf5-824f-e3d24a7c6e1a", "Index", "ComProfessionTitleLevel", "职称级别", 8, "ZCJB", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
-                new SysNavbar("f9b26629-8847-43a5-8294-3fe1933b575c", "Index", "ComProfessionTitleType", "职称系列", 9, "ZCJL,ZCXL", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
-                new SysNavbar("af3efd75-fb74-4558-8df5-68bb475f96e7", "Index", "ComProfessionRegister", "执业资格", 10, "ZYZG", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
-                new SysNavbar("dfa8acb3-f106-4c82-b1e3-8795bf8e9db2", "Index", "ComProfessionExtent", "执业范围", 11, "ZYFW", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
-                new SysNavbar("461bcde9-fcb8-4aa7-9922-36515446e2e3", "Index", "ComProfessionType", "执业类别", 12, "ZYLB", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
-                new SysNavbar("4c518faf-feef-4b78-a29a-81e82c1de9d6", "Index", "ComAdminDuty", "行政职务", 13, "HZZW,XZZW", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
-                new SysNavbar("c3b0c898-9365-406a-8df0-a57ab94d4f19", "Index", "SysEmpType", "人员类别", 14, "RYLB", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
-                new SysNavbar("3127a184-7bb8-4005-8f50-f525ab6ac2c5", "Index", "ComEducation", "学历", 15, "XL", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
-                new SysNavbar("49ffea21-b9be-4d82-9116-1e06975a91d4", "Index", "ComDegree", "学位", 16, "XW", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
-                new SysNavbar("a91f758f-b5b7-429a-b5be-a3b09b63fde3", "Index", "SysDept", "科室信息", 17, "KSXX", "c4aa85c9-bd15-47e7-bc1f-b7fd24c7a52e"),
-                new SysNavbar("8c0a45fb-6b72-474e-974a-fbf100ecfeef", "Index", "SysEmp", "人员管理", 18, "RYGL", "f356c105-78d1-4d16-bb8d-a48fc1072993"),
-                new SysNavbar("34121d7c-15d1-4488-8158-7bb6885521cc", "Index", "SysProfessionInfo", "职称评定", 19, "ZCPD", "f356c105-78d1-4d16-bb8d-a48fc1072993"),
-                new SysNavbar("fa1db30f-fbe0-4ebf-ba6e-90bac56deb11", "Index", "SysEducation", "学历评定", 20, "XLPD", "f356c105-78d1-4d16-bb8d-a48fc1072993"),
-                new SysNavbar("1ba40056-ff15-4fba-b064-636e57235ab7", "Register", "Account", "用户注册", 21, "YHZC", "49b247e4-33bb-4793-a23f-ef86ebc5f654"));
+                new SysNavbar("43155cdf-69c5-4610-9578-711a8830e39c", "49b247e4-33bb-4793-a23f-ef86ebc5f654",  1, "账号管理", "Admin", "UserIndex", "ZHGL"),
+                new SysNavbar("c5307fac-a8e4-461e-aeb0-947b91343391", "49b247e4-33bb-4793-a23f-ef86ebc5f654",  2, "权限管理", "Admin", "RoleIndex", "QXGL"),
+                new SysNavbar("84694a3e-bd02-4c7b-809a-13b03179ec47", "49b247e4-33bb-4793-a23f-ef86ebc5f654",  3, "菜单类别", "SysNavbarType", "Index", "CDLB"),
+                new SysNavbar("b5c4e0db-5fe3-45e8-ae94-66b451509232", "49b247e4-33bb-4793-a23f-ef86ebc5f654",  4, "菜单", "SysNavbar", "Index", "CD"));
+
+
+
+
+
+
+                //new SysNavbar("84694a3e-bd02-4c7b-809a-13b03179ec47", "Index", "SysNavbarType", "菜单类别", 1, "CCLB,CDLB,CSLB", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
+                //new SysNavbar("b5c4e0db-5fe3-45e8-ae94-66b451509232", "Index", "SysNavbar", "菜单", 2, "CC,CD,CS", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
+                //new SysNavbar("766ba75a-cc1d-47c4-b81f-896fcbd50192", "Index", "ComGender", "性别", 3, "XB", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
+                //new SysNavbar("46864280-4032-40f2-997d-ff4bd91e940c", "Index", "ComPost", "岗位", 4, "GW", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
+                //new SysNavbar("1a2260db-c848-4355-aaa2-16f5bab953be", "Index", "ComNation", "民族", 5, "MZ", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
+                //new SysNavbar("7bcff967-fed2-4568-86e9-a7bd8a72b792", "Index", "ComPolitical", "政治面貌", 6, "ZZMM", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
+                //new SysNavbar("c5fe9b01-e255-4c0b-902b-eb05b9668f14", "Index", "ComProfessionTitle", "职称", 7, "ZC", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
+                //new SysNavbar("bf9643b4-66f9-4bf5-824f-e3d24a7c6e1a", "Index", "ComProfessionTitleLevel", "职称级别", 8, "ZCJB", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
+                //new SysNavbar("f9b26629-8847-43a5-8294-3fe1933b575c", "Index", "ComProfessionTitleType", "职称系列", 9, "ZCJL,ZCXL", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
+                //new SysNavbar("af3efd75-fb74-4558-8df5-68bb475f96e7", "Index", "ComProfessionRegister", "执业资格", 10, "ZYZG", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
+                //new SysNavbar("dfa8acb3-f106-4c82-b1e3-8795bf8e9db2", "Index", "ComProfessionExtent", "执业范围", 11, "ZYFW", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
+                //new SysNavbar("461bcde9-fcb8-4aa7-9922-36515446e2e3", "Index", "ComProfessionType", "执业类别", 12, "ZYLB", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
+                //new SysNavbar("4c518faf-feef-4b78-a29a-81e82c1de9d6", "Index", "ComAdminDuty", "行政职务", 13, "HZZW,XZZW", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
+                //new SysNavbar("c3b0c898-9365-406a-8df0-a57ab94d4f19", "Index", "SysEmpType", "人员类别", 14, "RYLB", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
+                //new SysNavbar("3127a184-7bb8-4005-8f50-f525ab6ac2c5", "Index", "ComEducation", "学历", 15, "XL", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
+                //new SysNavbar("49ffea21-b9be-4d82-9116-1e06975a91d4", "Index", "ComDegree", "学位", 16, "XW", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
+                //new SysNavbar("a91f758f-b5b7-429a-b5be-a3b09b63fde3", "Index", "SysDept", "科室信息", 17, "KSXX", "c4aa85c9-bd15-47e7-bc1f-b7fd24c7a52e"),
+                //new SysNavbar("8c0a45fb-6b72-474e-974a-fbf100ecfeef", "Index", "SysEmp", "人员管理", 18, "RYGL", "f356c105-78d1-4d16-bb8d-a48fc1072993"),
+                //new SysNavbar("34121d7c-15d1-4488-8158-7bb6885521cc", "Index", "SysProfessionInfo", "职称评定", 19, "ZCPD", "f356c105-78d1-4d16-bb8d-a48fc1072993"),
+                //new SysNavbar("fa1db30f-fbe0-4ebf-ba6e-90bac56deb11", "Index", "SysEducation", "学历评定", 20, "XLPD", "f356c105-78d1-4d16-bb8d-a48fc1072993"),
+                //new SysNavbar("0dc5856b-2399-4334-a790-a00385b5b285", "Index", "SysContract", "合同", 21, "HT", "f356c105-78d1-4d16-bb8d-a48fc1072993"),
+                //new SysNavbar("1ba40056-ff15-4fba-b064-636e57235ab7", "Register", "Admin", "用户注册", 22, "YHZC", "49b247e4-33bb-4793-a23f-ef86ebc5f654"),
+                //new SysNavbar("43155cdf-69c5-4610-9578-711a8830e39c", "UserIndex", "Admin", "用户管理", 23, "YHZC", "49b247e4-33bb-4793-a23f-ef86ebc5f654"));
             #endregion
 
             #region 性别
@@ -1577,6 +1587,24 @@ namespace HospitalPersonnelSystem.Data
             modelBuilder.Entity<ComProfessionExtent>().HasData(
                 new ComProfessionExtent("81dc3ba0-c02b-46ca-88e1-169cfdcdaf28", "护理专业", 1, "HLZY"),
                 new ComProfessionExtent("057361fe-d658-4870-a9aa-6d4b3d588a3e", "外科专业", 2, "WKZY"));
+            #endregion
+
+            #region 默认用户
+            modelBuilder.Entity<HPSUser>().HasData(
+                new HPSUser()
+                {
+                    Id = new Guid("4CA79414-5489-404A-7AC4-08D6DF31B211"),
+                    UserName = "000000",
+                    NormalizedUserName= "000000",
+                    EmailConfirmed=false,
+                    PasswordHash= "AQAAAAEAACcQAAAAEARZ8jMz2+qN/rrs7sDf2XBgq8O6Hbo3hGjgxHoH52TPH7IpJpVxHmtTU71fv2PTbA==",
+                    SecurityStamp= "7KBN6UCWNAYM5JVWMUIJNDE3JYEODR5J",
+                    ConcurrencyStamp= "3783128b-53a9-468a-abc2-91455199afa6",
+                    PhoneNumberConfirmed= false,
+                    TwoFactorEnabled= false,
+                    LockoutEnabled=true,
+                    AccessFailedCount= 0
+                });
             #endregion
         }
     }

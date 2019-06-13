@@ -45,12 +45,12 @@ namespace HospitalPersonnelSystem.Models
         /// </summary>
         public List<SysNavbar> SysNavbars { get; set; }
 
-        public SysNavbarType(string code, string name, int sort, string spell)
+        public SysNavbarType(string code, int sort, string name, string spell)
         {
             Code = new Guid(code);
+            Sort = sort;
             this.name = name;
             Spell = spell;
-            Sort = sort;
         }
 
         public SysNavbarType() { }

@@ -1,0 +1,41 @@
+﻿@*@using Microsoft.AspNetCore.Authentication*@
+
+@*<h2>HttpContext.User.Claims</h2>*@
+
+@{
+    ViewData["Title"] = $"账号管理 - 权限查看 - {ViewData["RoleUserName"]} - {ViewData["RoleEmpName"]}";
+    ViewData["Controller"] = "Admin";
+}
+
+<h1>@ViewData["Title"]</h1>
+<div>
+    <a asp-action="UserIndex" data-toggle="tooltip" data-placement="left" title="返回"><i class="fa fa-arrow-alt-circle-left fa-lg"></i></a>
+</div>
+<hr />
+<dl>
+    @foreach (var claim in ViewBag.Claims)
+    {
+        <dd>@claim.Value</dd>
+    }
+</dl>
+
+@*@using Microsoft.AspNetCore.Authentication
+<h2>HttpContext.User.Claims</h2>
+
+    <dl>
+        @foreach (var claim in User.Claims)
+        {
+            <dt>@claim.Type</dt>
+            <dd>@claim.Value</dd>
+        }
+    </dl>
+
+    <h2>AuthenticationProperties</h2>
+
+    <dl>
+        @foreach (var prop in (await Context.AuthenticateAsync()).Properties.Items)
+        {
+            <dt>@prop.Key</dt>
+            <dd>@prop.Value</dd>
+        }
+    </dl>*@

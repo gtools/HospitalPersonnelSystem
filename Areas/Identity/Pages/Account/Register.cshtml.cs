@@ -69,6 +69,7 @@ namespace HospitalPersonnelSystem.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new HPSUser { UserName = Input.UserName};
+                //注册用户
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
@@ -83,7 +84,7 @@ namespace HospitalPersonnelSystem.Areas.Identity.Pages.Account
 
                     //await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                     //    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
+                    //登录用户，无密码
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return LocalRedirect(returnUrl);
                 }

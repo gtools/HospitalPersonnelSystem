@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HospitalPersonnelSystem.Models
 {
@@ -69,16 +70,22 @@ namespace HospitalPersonnelSystem.Models
         /// </summary>
         [Display(Name = "动作")]
         public string Action { get; set; }
+        
+        /// <summary>
+        /// 是否选择，排除属性
+        /// </summary>
+        [NotMapped]
+        public bool Checked { get; set; }
 
-        public SysNavbar(string code, string action, string controller, string name, int sort, string spell, string typecode)
+        public SysNavbar(string code, string typecode, int sort, string name, string controller, string action, string spell)
         {
             Code = new Guid(code);
-            Action = action;
-            Controller = controller;
-            this.name = name;
-            Sort = sort;
-            Spell = spell;
             TypeCode = new Guid(typecode);
+            Sort = sort;
+            this.name = name;
+            Controller = controller;
+            Action = action;
+            Spell = spell;
         }
         public SysNavbar() { }
     }

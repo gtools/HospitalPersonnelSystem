@@ -94,6 +94,8 @@ namespace HospitalPersonnelSystem
                 options.LoginPath = $"/Identity/Account/Login";
                 options.LogoutPath = $"/Identity/Account/Logout";
                 options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+                //过期时间Cookie
+                options.ExpireTimeSpan = TimeSpan.FromHours(1);
             });
             //services.AddSingleton<IEmailSender, EmailSender>();
         }
