@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Claims;
 using HospitalPersonnelSystem.Data;
 using HospitalPersonnelSystem.Models;
 using Microsoft.AspNetCore.Identity;
@@ -9,21 +10,33 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using GTSharp;
-using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using GTSharp;
 
-namespace HospitalPersonnelSystem.Controllers
+//区域匹配机制
+//Areas/<Area-Name>/Views/<Controller-Name>/<Action-Name>.cshtml
+//Areas/<Area-Name>/Views/Shared/<Action-Name>.cshtml
+//Views/Shared/<Action-Name>.cshtml
+//Pages/Shared/<Action-Name>.cshtml
+//<a asp-area="Products" asp-controller="Home" asp-action="About">
+//Products/Home/About
+//</a>
+
+namespace HospitalPersonnelSystem.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin")]
-    public class AdminController : Controller
+    /// <summary>
+    /// 账号管理
+    /// </summary>
+    //[Authorize(Roles = "Account")]//权限
+    //[Area("Admin")]//区域
+    public class AccountController : Controller
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<HPSUser> _userManager;
         private readonly RoleManager<HPSRole> _roleManager;
-        private readonly ILogger<AdminController> _logger;
+        private readonly ILogger<AccountController> _logger;
 
-        public AdminController(ApplicationDbContext context, UserManager<HPSUser> userManager, RoleManager<HPSRole> roleManager, ILogger<AdminController> logger)
+        public AccountController(ApplicationDbContext context, UserManager<HPSUser> userManager, RoleManager<HPSRole> roleManager, ILogger<AccountController> logger)
         {
             _context = context;
             _userManager = userManager;
@@ -32,7 +45,7 @@ namespace HospitalPersonnelSystem.Controllers
         }
 
         // GET: Admin/User/Index 账号管理
-        public async Task<IActionResult> UserIndex()
+        public async Task<IActionResult> Index()
         {
             return View(await _context.Users.Include(t => t.SysEmp).ToListAsync());
         }
@@ -79,7 +92,7 @@ namespace HospitalPersonnelSystem.Controllers
                     //return LocalRedirect(returnUrl);
 
                     //返回用户列表
-                    return RedirectToAction(nameof(UserIndex));
+                    return RedirectToAction(nameof(Index));
                 }
                 foreach (var error in result.Errors)
                 {
@@ -130,7 +143,7 @@ namespace HospitalPersonnelSystem.Controllers
                     var result = await _userManager.ResetPasswordAsync(user, reset.Code, reset.Password);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction(nameof(UserIndex));
+                        return RedirectToAction(nameof(Index));
                     }
 
                     foreach (var error in result.Errors)
@@ -149,7 +162,7 @@ namespace HospitalPersonnelSystem.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(UserIndex));
+                return RedirectToAction(nameof(Index));
             }
             return View(reset);
         }

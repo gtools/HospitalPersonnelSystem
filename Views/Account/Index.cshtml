@@ -2,12 +2,14 @@
 
 @{
     ViewData["Title"] = "账号管理";
-    ViewData["Controller"] = "Admin";
+    ViewData["Area"] = "";
+    ViewData["Controller"] = "User";
+    ViewData["Action"] = "Index";
 }
 
 <h1>@ViewData["Title"]</h1>
 <p>
-    <a asp-action="Register" data-toggle="tooltip" data-placement="left" title="账号注册"><i class="fa fa-user-plus fa-lg"></i></a>
+    <a asp-controller="User" asp-action="Register" data-toggle="tooltip" data-placement="left" title="账号注册"><i class="fa fa-user-plus fa-lg"></i></a>
 </p>
 <table class="table table-bordered table-striped" data-sort="table">
     <thead class="thead-dark">

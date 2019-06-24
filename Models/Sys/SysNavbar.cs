@@ -70,6 +70,12 @@ namespace HospitalPersonnelSystem.Models
         /// </summary>
         [Display(Name = "动作")]
         public string Action { get; set; }
+
+        /// <summary>
+        /// 区域
+        /// </summary>
+        [Display(Name = "区域")]
+        public string Area { get; set; }
         
         /// <summary>
         /// 是否选择，排除属性

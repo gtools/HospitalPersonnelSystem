@@ -9,6 +9,12 @@
   <ItemGroup>
     <Compile Remove="Data\Migrations\00000000000000_CreateIdentitySchema.cs" />
     <Compile Remove="Data\Migrations\20190521020014_000.cs" />
+    <Compile Remove="Data\Migrations\20190523092328_insert.cs" />
+    <Compile Remove="Data\Migrations\20190613092717_account.cs" />
+    <Compile Remove="Data\Migrations\20190613092825_account.cs" />
+    <Compile Remove="Data\Migrations\20190613092927_account.cs" />
+    <Compile Remove="Data\Migrations\20190613093314_account1.cs" />
+    <Compile Remove="Data\Migrations\20190613093359_account1.cs" />
   </ItemGroup>
 
 
@@ -23,6 +29,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\GTSharp\GTSharp\GTSharp.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Areas\HR\Controllers\" />
+    <Folder Include="Areas\HR\Models\" />
+    <Folder Include="Data\Migrations\" />
   </ItemGroup>
 
 </Project>

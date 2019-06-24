@@ -1,0 +1,67 @@
+﻿@{
+    ViewData["Title"] = "数据初始化";
+    ViewData["SYSTitle"] = "人力资源管理系统";
+    Layout = "";
+
+}
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.min.css" />
+
+    <title>@ViewData["Title"] - @ViewData["SYSTitle"]</title>
+</head>
+<body>
+    <!-- <h1>@ViewData["Title"]</h1> -->
+
+    <div class="container">
+        <!-- Content here -->
+        <div class="row align-items-center" style="height:200px;">
+            <div class="col"></div>
+            <div class="col">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                    @ViewData["Title"]
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalCenterTitle">数据初始化</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                是否确定初始化数据？
+                            </div>
+                            <div class="modal-footer">
+                                <form asp-action="Initialize">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                                    <button type="submit" class="btn btn-primary" asp-route-str="@(new { str="OK" }}">确定</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- http://jquery.com -->
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <!-- https://popper.js.org -->
+    <script src="~/lib/popper.js/umd/popper.min.js"></script>
+    <!-- https://getbootstrap.com -->
+    <script src="~/lib/twitter-bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

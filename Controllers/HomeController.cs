@@ -20,8 +20,14 @@ namespace HospitalPersonnelSystem.Controllers
         {
             _context = context;
         }
-        
+
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public IActionResult Initialize()
         {
             return View();
         }
