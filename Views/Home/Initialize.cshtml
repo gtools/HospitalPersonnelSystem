@@ -6,7 +6,7 @@
 }
 
 <!DOCTYPE html>
-<html lang="zh">
+<html>
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -44,7 +44,8 @@
                             <div class="modal-footer">
                                 <form asp-action="Initialize">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                                    <button type="submit" class="btn btn-primary" asp-route-str="@(new { str="OK" }}">确定</button>
+                                    <button type="submit" class="btn btn-primary" asp-route-clear="@false">初始化数据</button>
+                                    <button type="submit" class="btn btn-primary" asp-route-clear="@true">清空数据</button>
                                 </form>
                             </div>
                         </div>

@@ -30,6 +30,8 @@ namespace HospitalPersonnelSystem
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //《通用数据保护条例》（General Data Protection Regulation，简称GDPR）为欧洲联盟于2018年5月25日出台的条例，前身是欧盟在1995年制定的《计算机数据保护法》。
+            //_CookieConsentPartial
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.

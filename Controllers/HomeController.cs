@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using HospitalPersonnelSystem.Models;
 using HospitalPersonnelSystem.Data;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace HospitalPersonnelSystem.Controllers
 {
@@ -15,10 +16,12 @@ namespace HospitalPersonnelSystem.Controllers
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<HPSUser> _userManager;
 
-        public HomeController(ApplicationDbContext context)
+        public HomeController(ApplicationDbContext context, UserManager<HPSUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
@@ -26,10 +29,22 @@ namespace HospitalPersonnelSystem.Controllers
             return View();
         }
 
+        [Route("Initialize")]
+        [Route("Home/Initialize")]
         [AllowAnonymous]
         public IActionResult Initialize()
         {
             return View();
+        }
+
+        [Route("Initialize")]
+        [Route("Home/Initialize")]
+        [AllowAnonymous]
+        [HttpPost]
+        public IActionResult Initialize(bool clear)
+        {
+            SeedData.Initialize(_context, _userManager, clear);
+            return Json("OK");
         }
 
         public IActionResult Privacy()

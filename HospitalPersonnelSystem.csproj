@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -7,14 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Data\Migrations\00000000000000_CreateIdentitySchema.cs" />
-    <Compile Remove="Data\Migrations\20190521020014_000.cs" />
-    <Compile Remove="Data\Migrations\20190523092328_insert.cs" />
-    <Compile Remove="Data\Migrations\20190613092717_account.cs" />
-    <Compile Remove="Data\Migrations\20190613092825_account.cs" />
-    <Compile Remove="Data\Migrations\20190613092927_account.cs" />
-    <Compile Remove="Data\Migrations\20190613093314_account1.cs" />
-    <Compile Remove="Data\Migrations\20190613093359_account1.cs" />
+    <Compile Remove="Models\Del\ComPostLevel.cs" />
+    <Compile Remove="Models\Del\ComPostType.cs" />
+    <Compile Remove="Models\Del\SysEmpAttribute.cs" />
+    <Compile Remove="Models\Del\SysEmpClass.cs" />
   </ItemGroup>
 
 
@@ -35,7 +31,7 @@
   <ItemGroup>
     <Folder Include="Areas\HR\Controllers\" />
     <Folder Include="Areas\HR\Models\" />
-    <Folder Include="Data\Migrations\" />
+    <Folder Include="Models\Del\" />
   </ItemGroup>
 
 </Project>

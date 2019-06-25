@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HospitalPersonnelSystem.Models
 {
@@ -47,5 +47,15 @@ namespace HospitalPersonnelSystem.Models
         /// 集合导航属性，人员
         /// </summary>
         public List<SysEmp> SysEmps { get; set; }
+
+        public SysDept(string code, int sort, string name, string spell)
+        {
+            DeptCode = code;
+            Sort = sort;
+            this.name = name;
+            Spell = spell;
+        }
+
+        public SysDept() { }
     }
 }

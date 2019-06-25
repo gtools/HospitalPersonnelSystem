@@ -83,12 +83,13 @@ namespace HospitalPersonnelSystem.Models
         [NotMapped]
         public bool Checked { get; set; }
 
-        public SysNavbar(string code, string typecode, int sort, string name, string controller, string action, string spell)
+        public SysNavbar(string code, string typecode, int sort, string name, string area, string controller, string action, string spell)
         {
             Code = new Guid(code);
             TypeCode = new Guid(typecode);
             Sort = sort;
             this.name = name;
+            Area = area;
             Controller = controller;
             Action = action;
             Spell = spell;
