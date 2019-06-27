@@ -1,14 +1,12 @@
 ﻿@model IEnumerable<HospitalPersonnelSystem.Models.SysNavbar>
 
 @{
-    ViewData["Title"] = "菜单";
-    ViewData["Controller"] = "SysNavbar";
+    ViewData["Title"] = "菜单管理";
 }
-
-<h1>@ViewData["Title"]</h1>
-
+<h1>@ViewData["Title"] <a asp-action="Index" asp-controller="SysNavbarType" class="badge badge-secondary">类别设置</a></h1>
 <p>
-    <a asp-action="Create" data-toggle="tooltip" data-placement="left" title="创建"><i class="fa fa-plus-circle fa-lg"></i></a>
+    @*<a asp-action="Index" asp-controller="SysNavbarType" data-toggle="tooltip" data-placement="top" title="菜单类别设置"><i class="fas fa-cog fa-lg"></i></a>*@
+    <a asp-action="Create" data-toggle="tooltip" data-placement="top" title="创建"><i class="fa fa-plus-circle fa-lg"></i></a>
 </p>
 <table class="table table-bordered table-striped" data-sort="table">
     <thead class="thead-dark">

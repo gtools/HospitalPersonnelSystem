@@ -149,9 +149,8 @@ namespace HospitalPersonnelSystem.Models
             return new List<SysNavbarType>
             {
                 new SysNavbarType("49b247e4-33bb-4793-a23f-ef86ebc5f654", 1, "系统设置", "JTSZ"),
-                new SysNavbarType("f356c105-78d1-4d16-bb8d-a48fc1072993", 2, "人事档案", "RSDA"),
-                new SysNavbarType("c4aa85c9-bd15-47e7-bc1f-b7fd24c7a52e", 3, "机构管理", "JGGL"),
-                new SysNavbarType("4d3c3953-fd9e-4df1-aa18-3285e020d4bc", 4, "基础数据维护", "JCSJWH")
+                new SysNavbarType("c4aa85c9-bd15-47e7-bc1f-b7fd24c7a52e", 2, "组织机构管理", "ZZJGGL"),
+                new SysNavbarType("f356c105-78d1-4d16-bb8d-a48fc1072993", 3, "人事档案", "RSDA")
             };
         }
 
@@ -164,7 +163,12 @@ namespace HospitalPersonnelSystem.Models
             return new List<SysNavbar>()
             {
                 new SysNavbar("43155cdf-69c5-4610-9578-711a8830e39c", SysNavbarTypes()[0].Code.ToString(), 1, "账号&权限管理", null, "Account", null, "ZHQXGL"),
-                new SysNavbar("84694a3e-bd02-4c7b-809a-13b03179ec47", SysNavbarTypes()[0].Code.ToString(), 2, "菜单管理", null, "SysNavbar", null, "CDGL")
+                new SysNavbar("84694a3e-bd02-4c7b-809a-13b03179ec47", SysNavbarTypes()[0].Code.ToString(), 2, "菜单管理", null, "SysNavbar", null, "CDGL"),
+                new SysNavbar("806f6f52-0a4c-4921-a22a-f5fbece20df0", SysNavbarTypes()[0].Code.ToString(), 3, "基础信息管理", null, "Basic", null, "JCXXGL"),
+                new SysNavbar("093cdc6b-b746-4126-9205-38e997d1957c", SysNavbarTypes()[1].Code.ToString(), 4, "科室管理", null, "SysDept", null, "KSGL"),
+                new SysNavbar("99a41871-4f8a-4211-98e0-8cf7c78ca2ce", SysNavbarTypes()[1].Code.ToString(), 5, "人员管理", null, "SysEmp", null, "RYGL")
+
+                //Basic
             };
         }
 

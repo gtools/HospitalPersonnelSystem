@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "基础信息管理";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="card-columns">
+    <div class="card">
+        <div class="card-header">
+            <div class="custom-control custom-checkbox mr-md-2">
+                基础字典
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="list-group text-center">
+                <a asp-controller="ComGender" asp-action="Index" class="list-group-item list-group-item-action">性别字典</a>
+                <a asp-controller="ComPost" asp-action="Index" class="list-group-item list-group-item-action">岗位字典</a>
+                <a asp-controller="ComNation" asp-action="Index" class="list-group-item list-group-item-action">民族字典</a>
+                <a asp-controller="ComPolitical" asp-action="Index" class="list-group-item list-group-item-action">政治面貌字典</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace HospitalPersonnelSystem.Controllers
 {
-    [Authorize(Roles = "SysNavbarType")]
+    [Authorize(Roles = "000000,SysNavbarType")]
     public class SysNavbarTypeController : Controller
     {
         private readonly ApplicationDbContext _context;

@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace HospitalPersonnelSystem.Controllers
 {
-    [Authorize(Roles = "ComPost")]
+    [Authorize(Roles = "000000,ComPost")]
     public class ComPostController : Controller
     {
         private readonly ApplicationDbContext _context;

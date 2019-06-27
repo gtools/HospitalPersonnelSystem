@@ -25,7 +25,7 @@ using GTSharp;
 namespace HospitalPersonnelSystem.Areas.Admin.Controllers
 {
     /// <summary>
-    /// 账号管理
+    /// 账号管理权限管理
     /// </summary>
     //[Authorize(Roles = "Account")]//权限
     //[Area("Admin")]//区域
