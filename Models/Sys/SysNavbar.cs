@@ -91,7 +91,10 @@ namespace HospitalPersonnelSystem.Models
             this.name = name;
             Area = area;
             Controller = controller;
-            Action = action;
+            if (string.IsNullOrWhiteSpace(action))
+                Action = "Index";
+            else
+                Action = action;
             Spell = spell;
         }
         public SysNavbar() { }

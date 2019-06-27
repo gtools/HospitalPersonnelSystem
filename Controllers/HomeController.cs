@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace HospitalPersonnelSystem.Controllers
 {
-    //权限
+    //任何经过身份验证的用户
     [Authorize]
     public class HomeController : Controller
     {
@@ -29,9 +29,10 @@ namespace HospitalPersonnelSystem.Controllers
             return View();
         }
 
+        //允许未经身份验证的用户
+        [AllowAnonymous]
         [Route("Initialize")]
         [Route("Home/Initialize")]
-        [AllowAnonymous]
         public IActionResult Initialize()
         {
             return View();
@@ -43,8 +44,27 @@ namespace HospitalPersonnelSystem.Controllers
         [HttpPost]
         public IActionResult Initialize(bool clear)
         {
-            SeedData.Initialize(_context, _userManager, clear);
+            if (clear)
+                SeedData.Clear(_context, _userManager);
+            else
+                SeedData.Initialize(_context, _userManager);
             return Json("OK");
+        }
+
+        [Route("Login")]
+        [Route("Home/Login")]
+        [AllowAnonymous]
+        public IActionResult Login()
+        {
+            return Redirect("~/Identity/Account/Login");
+        }
+
+        [Route("Logout")]
+        [Route("Home/Logout")]
+        [AllowAnonymous]
+        public IActionResult Logout()
+        {
+            return Redirect("~/Identity/Account/Logout");
         }
 
         public IActionResult Privacy()
@@ -52,6 +72,7 @@ namespace HospitalPersonnelSystem.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

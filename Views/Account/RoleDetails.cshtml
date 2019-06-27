@@ -3,13 +3,12 @@
 @*<h2>HttpContext.User.Claims</h2>*@
 
 @{
-    ViewData["Title"] = $"账号管理 - 权限查看 - {ViewData["RoleUserName"]} - {ViewData["RoleEmpName"]}";
-    ViewData["Controller"] = "Admin";
+    ViewData["Title"] = $"账号管理 - 权限查看 - {ViewData["EmpCode"]} - {ViewData["EmpName"]}";
 }
 
 <h1>@ViewData["Title"]</h1>
 <div>
-    <a asp-action="UserIndex" data-toggle="tooltip" data-placement="left" title="返回"><i class="fa fa-arrow-alt-circle-left fa-lg"></i></a>
+    <a asp-action="Index" data-toggle="tooltip" data-placement="left" title="返回"><i class="fa fa-arrow-alt-circle-left fa-lg"></i></a>
 </div>
 <hr />
 <dl>

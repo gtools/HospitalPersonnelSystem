@@ -3,7 +3,7 @@
 @using System.Security.Claims;
 
 @{
-    ViewData["Title"] = $"账号管理 - 权限编辑 - {ViewData["RoleUserName"]} - {ViewData["RoleEmpName"]}";
+    ViewData["Title"] = $"账号管理 - 权限编辑 - {ViewData["EmpCode"]} - {ViewData["EmpName"]}";
     ViewData["Controller"] = "Admin";
     var i = 0;
     var itemtypename = "itemtype";
@@ -14,7 +14,7 @@
 <h1>@ViewData["Title"]</h1>
 
 <div>
-    <a asp-action="UserIndex" data-toggle="tooltip" data-placement="left" title="返回"><i class="fa fa-arrow-alt-circle-left fa-lg"></i></a>
+    <a asp-action="Index" data-toggle="tooltip" data-placement="left" title="返回"><i class="fa fa-arrow-alt-circle-left fa-lg"></i></a>
 </div>
 <br />
 <form asp-action="RoleCreate" method="post">
@@ -24,7 +24,7 @@
         {
             <div class="card">
                 <div class="card-header">
-                    <div class="custom-control custom-checkbox mr-sm-2">
+                    <div class="custom-control custom-checkbox mr-md-2">
                         <input type="checkbox" class="custom-control-input" id="@itemtype.Code" name="@itemtype.Code">
                         <label class="custom-control-label" for="@itemtype.Code" data-toggle="tooltip" data-placement="top" title="全选&取消全选">@itemtype.Name</label>
                     </div>
@@ -35,8 +35,8 @@
                         {
                             if (item.Checked) { chtrue = "checked=\"checked\""; }
                             else { chtrue = ""; }
-                            <div class="col-4 my-1">
-                                <div class="custom-control custom-checkbox mr-sm-2">
+                            <div class="col-md-4 my-1">
+                                <div class="custom-control custom-checkbox mr-md-2">
                                     <input type="checkbox" class="custom-control-input" id="@item.Code" name="Claims" name-data="@itemtype.Code" value="@item.Controller" @chtrue>
                                     <label class="custom-control-label" for="@item.Code">@item.Name</label>
                                 </div>

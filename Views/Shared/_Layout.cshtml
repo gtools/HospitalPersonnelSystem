@@ -1,12 +1,12 @@
 ﻿@{
-    ViewData["SYSTitle"] = "人力资源管理系统";
+    ViewData["CorporateName"] = "洛阳市第六人民医院信息系统";
 }
 <!DOCTYPE html>
 <html lang="zh">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - @ViewData["SYSTitle"]</title>
+    <title>@ViewData["Title"] - @ViewData["CorporateName"]</title>
     <!-- bootstrap -->
     <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.min.css" />
     <!-- jquery.tablesorter -->
@@ -22,16 +22,12 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-dark bg-dark mb-2">
-            <a class="navbar-brand" asp-controller="Home" asp-action="Index">@ViewData["SYSTitle"]</a>
-            @await Component.InvokeAsync("LoginPartial")
-        </nav>
+        @await Component.InvokeAsync("Navbar")
     </header>
     <div class="container-fluid">
         @*<partial name="_CookieConsentPartial" />*@
         <div class="row">
-            @await Component.InvokeAsync("Navbar")
-            <main role="main" class="col-10 ml-sm-auto">
+            <main role="main" class="col ml-sm-auto">
                 @RenderBody()
             </main>
         </div>

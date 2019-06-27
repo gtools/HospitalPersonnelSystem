@@ -1,52 +1,57 @@
 ﻿@model IEnumerable<HospitalPersonnelSystem.Models.SysNavbarType>
-@*
-    左侧导航栏
-*@
+@using System.Linq;
 @{
-    var NavName = "accordionNav";
-    var NavheadingName = "heading";
-    var NavcollapseName = "collapse";
-    var NavheadingID = "";
-    var NavcollapseID = "";
-    var i = 0;
-    var b = false;
-    var controller = "";
-    var show = "";
-    var ico = "fas fa-plus-square float-right mt-1";
+    //导航栏
 }
-<ul class="nav flex-column col-2 accordion pl-3" id="@NavName">
-    @foreach (var item in Model)
-    {
-        i++;
-        NavheadingID = NavheadingName + i.ToString();
-        NavcollapseID = NavcollapseName + i.ToString();
-        if (ViewData["SysNavbarType"] != null)
-        {
-            b = ViewData["SysNavbarType"].ToString() == item.Name;
 
-        }
-        if (b)
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a asp-controller="Home" asp-action="Index" class="navbar-brand">@ViewData["CorporateName"]</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a asp-controller="Home" asp-action="Index" class="nav-link">首页 <span class="sr-only">(current)</span></a>
+            </li>
+            @if ((bool)ViewData["IsSignedIn"])
+            {
+                foreach (var type in Model)
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="@type.Code" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @type.Name
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="@type.Code">
+                            @foreach (var item in type.SysNavbars.OrderBy(t => t.Sort).ToList())
+                            {
+                                <a asp-controller="@item.Controller" asp-action="@item.Action" class="dropdown-item">@item.Name</a>
+                            }
+                            @*<div class="dropdown-divider"></div>*@
+                        </div>
+                    </li>
+                }
+            }
+        </ul>
+        @*<span class="navbar-text">
+                Navbar text with an inline element
+            </span>*@
+        @if ((bool)ViewData["IsSignedIn"])
         {
-            show = "show";
-            ico = "fas fa-minus-square float-right mt-1";
+            <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">欢迎 @ViewData["EmpName"] ！</a>
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link btn btn-link text-white">退出</button>
+            </form>
         }
         else
         {
-            show = "";
-            ico = "fas fa-plus-square float-right mt-1";
+            <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/Login">登录</a>
         }
-        <li class="nav-item pb-1" id="@NavheadingID">
-            <button type="button" class="btn btn-secondary btn-block" data-toggle="collapse" data-target="#@NavcollapseID" aria-expanded="@b.ToString().ToLower()" aria-controls="@NavcollapseID">@Html.DisplayFor(modelItem => item.Name)&nbsp;<i class="@ico"></i></button>
-            <div class="list-group collapse pt-1 text-center @show" id="@NavcollapseID" aria-labelledby="@NavheadingID" data-parent="#@NavName">
-                @foreach (var navitem in item.SysNavbars.OrderBy(t => t.Sort))
-                {
-                    if (ViewData["Controller"] != null)
-                    {
-                        controller = ViewData["Controller"].ToString() == @navitem.Controller ? "active" : "";
-                    }
-                    <a class="list-group-item list-group-item-action @controller" asp-controller="@navitem.Controller" asp-action="@navitem.Action">@Html.DisplayFor(modelItem => navitem.Name)</a>
-                }
-            </div>
-        </li>
-    }
-</ul>
+        @*<form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+            </form>*@
+    </div>
+</nav>
+<br />

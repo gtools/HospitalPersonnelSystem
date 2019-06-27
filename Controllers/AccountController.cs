@@ -47,7 +47,7 @@ namespace HospitalPersonnelSystem.Areas.Admin.Controllers
         // GET: Admin/User/Index 账号管理
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Users.Include(t => t.SysEmp).ToListAsync());
+            return View(await _context.Users.Include(t => t.SysEmp).OrderBy(t => t.EmpCode).ToListAsync());
         }
 
         // GET: Admin/User/Register 注册
@@ -112,8 +112,9 @@ namespace HospitalPersonnelSystem.Areas.Admin.Controllers
                 return NotFound();
             }
             var user = await _context.Users.FindAsync(id);
-            ViewData["ResetUserName"] = user.UserName;
-            ViewData["ResetEmpName"] = user.SysEmp != null ? user.SysEmp.EmpName : "";
+            //用户名
+            ViewData["EmpCode"] = user.EmpCode;
+            ViewData["EmpName"] = _context.SysEmps.Where(t => t.EmpCode == user.EmpCode).First().EmpName;
             //密码重置口令
             var code = await _userManager.GeneratePasswordResetTokenAsync(user);
             if (user == null)
@@ -137,8 +138,9 @@ namespace HospitalPersonnelSystem.Areas.Admin.Controllers
                 try
                 {
                     var user = await _context.Users.FindAsync(id);
-                    ViewData["ResetUserName"] = user.UserName;
-                    ViewData["ResetEmpName"] = user.SysEmp != null ? user.SysEmp.EmpName : "";
+                    //用户名
+                    ViewData["EmpCode"] = user.EmpCode;
+                    ViewData["EmpName"] = _context.SysEmps.Where(t => t.EmpCode == user.EmpCode).First().EmpName;
                     //重置密码
                     var result = await _userManager.ResetPasswordAsync(user, reset.Code, reset.Password);
                     if (result.Succeeded)
@@ -175,8 +177,9 @@ namespace HospitalPersonnelSystem.Areas.Admin.Controllers
 
             var user = await _context.Users.FindAsync(id);
             ViewData["Claims"] = await _userManager.GetClaimsAsync(user);
-            ViewData["RoleUserName"] = user.UserName;
-            ViewData["RoleEmpName"] = user.SysEmp != null ? user.SysEmp.EmpName : "";
+            //用户名
+            ViewData["EmpCode"] = user.EmpCode;
+            ViewData["EmpName"] = _context.SysEmps.Where(t => t.EmpCode == user.EmpCode).First().EmpName;
             return View();
         }
 
@@ -186,6 +189,9 @@ namespace HospitalPersonnelSystem.Areas.Admin.Controllers
             //查询菜单
             RoleCreateModel model = new RoleCreateModel() { UserId = id, SysNavbarTypes = await _context.SysNavbarTypes.Include(t => t.SysNavbars).ToListAsync() };
             var user = await _context.Users.FindAsync(id);
+            //用户名
+            ViewData["EmpCode"] = user.EmpCode;
+            ViewData["EmpName"] = _context.SysEmps.Where(t => t.EmpCode == user.EmpCode).First().EmpName;
             var claims = await _userManager.GetClaimsAsync(user);
             foreach (var itemtype in model.SysNavbarTypes)
             {
@@ -195,8 +201,6 @@ namespace HospitalPersonnelSystem.Areas.Admin.Controllers
                         item.Checked = true;
                 }
             }
-            ViewData["RoleUserName"] = user.UserName;
-            ViewData["RoleEmpName"] = user.SysEmp != null ? user.SysEmp.EmpName : "未关联账号名称";
             return View(model);
         }
 
@@ -205,9 +209,12 @@ namespace HospitalPersonnelSystem.Areas.Admin.Controllers
         public async Task<IActionResult> RoleCreate(RoleCreateModel data)
         {
             var user = await _context.Users.FindAsync(data.UserId);
+            //管理员不更改权限
+            if (user.EmpCode == "000000")
+                return RedirectToAction(nameof(Index));
             await _userManager.RemoveClaimsAsync(user, await _userManager.GetClaimsAsync(user));
             List<Claim> claims = new List<Claim>();
-            if (data.Claims == null)
+            if (data.Claims == null || data.Claims.Count == 0)
                 return RedirectToAction(nameof(RoleEdit), new { id = data.UserId });
             foreach (var item in data.Claims)
             {
@@ -223,6 +230,11 @@ namespace HospitalPersonnelSystem.Areas.Admin.Controllers
             return _context.Users.Any(e => e.Id == id);
         }
 
+        /// <summary>
+        /// 验证用户名
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         [AcceptVerbs("Get", "Post")]
         public IActionResult VerifyUserName(string username)
         {
@@ -243,10 +255,7 @@ namespace HospitalPersonnelSystem.Areas.Admin.Controllers
         //}
 
 
-        public IActionResult Login()
-        {
-            return Redirect("~/Identity/Account/Login");
-        }
+        
 
         //public IActionResult Index()
         //{

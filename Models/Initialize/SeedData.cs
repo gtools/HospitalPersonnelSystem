@@ -4,6 +4,9 @@ using HospitalPersonnelSystem.Data;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace HospitalPersonnelSystem.Models
 {
@@ -16,74 +19,115 @@ namespace HospitalPersonnelSystem.Models
         /// 初始化数据
         /// </summary>
         /// <param name="context">EF</param>
-        /// <param name="clear">是否重置初始化数据</param>
-        public static void Initialize(ApplicationDbContext context, UserManager<HPSUser> userManager, bool clear)
+        public static void Initialize(ApplicationDbContext context, UserManager<HPSUser> userManager)
         {
-            #region 菜单类别
-            if (context.SysNavbarTypes.Any() && clear)//判断是否有数据//判断是否重置
-                context.SysNavbarTypes.RemoveRange(context.SysNavbarTypes.Include(b => b.SysNavbars).ToList());
-            else
+            //菜单类别
+            if (!context.SysNavbarTypes.Any())//判断是否有数据
                 context.SysNavbarTypes.AddRange(SysNavbarTypes());
-            #endregion
 
-            #region 菜单
-            if (context.SysNavbars.Any() && clear)
-                context.SysNavbars.RemoveRange(context.SysNavbars.ToList());
-            else
+            //菜单
+            if (!context.SysNavbars.Any())
                 context.SysNavbars.AddRange(SysNavbars());
-            #endregion
 
-            #region 性别
-            if (context.ComGenders.Any() && clear)
-                context.ComGenders.RemoveRange(context.ComGenders.ToList());
-            else
+            //性别
+            if (!context.ComGenders.Any())
                 context.ComGenders.AddRange(ComGenders());
-            #endregion
 
-            #region 民族
-            if (context.ComNations.Any() && clear)
-                context.ComNations.RemoveRange(context.ComNations.ToList());
-            else
+            //民族
+            if (!context.ComNations.Any())
                 context.ComNations.AddRange(ComNations());
-            #endregion
 
-            #region 政治面貌
-            if (context.ComPoliticals.Any() && clear)
-                context.ComPoliticals.RemoveRange(context.ComPoliticals.ToList());
-            else
+            //政治面貌
+            if (!context.ComPoliticals.Any())
                 context.ComPoliticals.AddRange(ComPoliticals());
-            #endregion
 
-            #region 岗位
-            if (context.ComPosts.Any() && clear)
-                context.ComPosts.RemoveRange(context.ComPosts.ToList());
-            else
+            //岗位
+            if (!context.ComPosts.Any())
                 context.ComPosts.AddRange(ComPosts());
-            #endregion
 
-            #region 科室
-            if (context.SysDepts.Any() && clear)
-                context.SysDepts.RemoveRange(context.SysDepts.ToList());
-            else
+            //科室
+            if (!context.SysDepts.Any())
                 context.SysDepts.AddRange(SysDepts());
-            #endregion
 
-            #region 人员
-            if (context.SysEmps.Any() && clear)
-                context.SysEmps.RemoveRange(context.SysEmps.ToList());
-            else
+            //人员
+            if (!context.SysEmps.Any())
                 context.SysEmps.AddRange(SysEmps());
-            #endregion
 
-            #region 默认用户
-            if (context.Users.Any() && clear)
-                context.Users.RemoveRange(context.Users.ToList());
-            else
-                userManager.CreateAsync(HPSUsers(), HPSUsers().UserName);
-            #endregion
+            context.SaveChanges();
 
-            //估计userManager.CreateAsync方法提交过了，再次提交会报错。
-            //context.SaveChanges();
+            //管理员用户
+            if (!context.Users.Any())
+            {
+                var result = userManager.CreateAsync(HPSUsers(), HPSUsers().UserName);
+                while (!result.IsCompleted)//判断异步执行完成
+                {
+                    Thread.Sleep(100);
+                }
+                context.SaveChanges();
+            }
+
+            //管理员权限
+            if (!context.UserClaims.Any())
+            {
+                var result = userManager.AddClaimAsync(context.Users.First(), UserClaims());
+                while (!result.IsCompleted)
+                {
+                    Thread.Sleep(100);
+                }
+                context.SaveChanges();
+            }
+
+        }
+
+
+        /// <summary>
+        /// 清空数据
+        /// </summary>
+        /// <param name="context">EF</param>
+        public static void Clear(ApplicationDbContext context, UserManager<HPSUser> userManager)
+        {
+            //管理员用户
+            if (context.Users.Any())//判断是否清空
+                context.Users.RemoveRange(context.Users.Include(t => t.SysEmp).ToList());
+
+            //菜单类别
+            if (context.SysNavbarTypes.Any())
+                context.SysNavbarTypes.RemoveRange(context.SysNavbarTypes.Include(t => t.SysNavbars).ToList());
+
+            //菜单
+            if (context.SysNavbars.Any())
+                context.SysNavbars.RemoveRange(context.SysNavbars.ToList());
+
+            //性别
+            if (context.ComGenders.Any())
+                context.ComGenders.RemoveRange(context.ComGenders.ToList());
+
+            //民族
+            if (context.ComNations.Any())
+                context.ComNations.RemoveRange(context.ComNations.ToList());
+
+            //政治面貌
+            if (context.ComPoliticals.Any())
+                context.ComPoliticals.RemoveRange(context.ComPoliticals.ToList());
+
+            //岗位
+            if (context.ComPosts.Any())
+                context.ComPosts.RemoveRange(context.ComPosts.ToList());
+
+            //科室
+            if (context.SysDepts.Any())
+                context.SysDepts.RemoveRange(context.SysDepts.ToList());
+
+            //人员
+            if (context.SysEmps.Any())
+                context.SysEmps.RemoveRange(context.SysEmps.ToList());
+
+            //管理员权限
+            if (context.UserClaims.Any())
+                context.UserClaims.RemoveRange(context.UserClaims.ToList());
+
+            context.SaveChanges();
+
         }
 
         /// <summary>
@@ -93,7 +137,7 @@ namespace HospitalPersonnelSystem.Models
         /// <param name="userManager"></param>
         public static void InitializeTest(ApplicationDbContext context, UserManager<HPSUser> userManager)
         {
-
+            userManager.AddClaimAsync(context.Users.First(), UserClaims());
         }
 
         /// <summary>
@@ -119,8 +163,8 @@ namespace HospitalPersonnelSystem.Models
         {
             return new List<SysNavbar>()
             {
-                new SysNavbar("43155cdf-69c5-4610-9578-711a8830e39c", SysNavbarTypes()[0].Code.ToString(), 1, "账号&权限管理", null, "Admin", "UserIndex", "ZHQXGL"),
-                new SysNavbar("84694a3e-bd02-4c7b-809a-13b03179ec47", SysNavbarTypes()[0].Code.ToString(), 2, "菜单管理", null, "SysNavbar", "Index", "CDGL")
+                new SysNavbar("43155cdf-69c5-4610-9578-711a8830e39c", SysNavbarTypes()[0].Code.ToString(), 1, "账号&权限管理", null, "Account", null, "ZHQXGL"),
+                new SysNavbar("84694a3e-bd02-4c7b-809a-13b03179ec47", SysNavbarTypes()[0].Code.ToString(), 2, "菜单管理", null, "SysNavbar", null, "CDGL")
             };
         }
 
@@ -289,10 +333,16 @@ namespace HospitalPersonnelSystem.Models
             return new HPSUser() { UserName = "000000", EmpCode = "000000" };
         }
 
+        /// <summary>
+        /// 管理员权限
+        /// </summary>
+        /// <returns></returns>
+        static Claim UserClaims()
+        {
+            return new Claim(ClaimTypes.Role, "000000");
+        }
 
-
-
-
+        //new Claim(ClaimTypes.Role, item)
 
 
 
@@ -341,11 +391,11 @@ namespace HospitalPersonnelSystem.Models
 
 
 
-        
 
-        
 
-        
+
+
+
 
         //    #region 职称系列
         //    modelBuilder.Entity<ComProfessionTitleType>().HasData(

@@ -25,6 +25,9 @@ namespace HospitalPersonnelSystem.Areas.Identity.Pages.Account
 
         public void OnGet()
         {
+            //登出
+            _signInManager.SignOutAsync();
+            _logger.LogInformation("User logged out.");
         }
 
         public async Task<IActionResult> OnPost(string returnUrl = null)

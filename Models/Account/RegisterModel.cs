@@ -12,7 +12,7 @@ namespace HospitalPersonnelSystem.Models
         [Display(Name = "用户账号")]
         [Required(ErrorMessage = GTSharp.Validate.Required)]
         [StringLength(6, ErrorMessage = GTSharp.Validate.StringLength, MinimumLength = 3)]
-        [Remote(action: "VerifyUserName", controller: "Admin")]//验证
+        [Remote(action: "VerifyUserName", controller: "Account")]//验证
         [DataType(DataType.Text)]
         public string UserName { get; set; }
 
