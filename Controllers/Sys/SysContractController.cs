@@ -12,7 +12,8 @@ using GTSharp;
 
 namespace HospitalPersonnelSystem.Controllers
 {
-    [Authorize(Roles = "SysContract")]
+    //合同管理
+    [Authorize(Roles = "000000,SysContract")]
     public class SysContractController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -30,7 +31,7 @@ namespace HospitalPersonnelSystem.Controllers
         }
 
         // GET: SysContract/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
             {
@@ -39,7 +40,7 @@ namespace HospitalPersonnelSystem.Controllers
 
             var sysContract = await _context.SysContracts
                 .Include(s => s.SysEmp)
-                .FirstOrDefaultAsync(m => m.EmpCode == id);
+                .FirstOrDefaultAsync(m => m.Code == id);
             if (sysContract == null)
             {
                 return NotFound();
@@ -75,7 +76,7 @@ namespace HospitalPersonnelSystem.Controllers
         }
 
         // GET: SysContract/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
             {
@@ -97,9 +98,9 @@ namespace HospitalPersonnelSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Code,EmpCode,YearLimit,EndDate,SN,Remark,CreateEmp,CreateDate")] SysContract sysContract)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Code,EmpCode,YearLimit,EndDate,SN,Remark,CreateEmp,CreateDate")] SysContract sysContract)
         {
-            if (id != sysContract.EmpCode)
+            if (id != sysContract.Code)
             {
                 return NotFound();
             }
@@ -113,7 +114,7 @@ namespace HospitalPersonnelSystem.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SysContractExists(sysContract.EmpCode))
+                    if (!SysContractExists(sysContract.Code))
                     {
                         return NotFound();
                     }
@@ -159,9 +160,9 @@ namespace HospitalPersonnelSystem.Controllers
         //    return RedirectToAction(nameof(Index));
         //}
 
-        private bool SysContractExists(string id)
+        private bool SysContractExists(Guid id)
         {
-            return _context.SysContracts.Any(e => e.EmpCode == id);
+            return _context.SysContracts.Any(e => e.Code == id);
         }
     }
 }

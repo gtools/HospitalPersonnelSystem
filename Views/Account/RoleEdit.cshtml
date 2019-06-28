@@ -9,6 +9,7 @@
     var itemtypename = "itemtype";
     var itemtypenames = "itemtype";
     var chtrue = "checked=\"checked\"";
+    var code = "";
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -22,11 +23,12 @@
     <div class="card-columns">
         @foreach (var itemtype in Model.SysNavbarTypes.OrderBy(t => t.Sort))
         {
+            code=itemtype.Code.ToString()+"1";
             <div class="card">
                 <div class="card-header">
                     <div class="custom-control custom-checkbox mr-md-2">
-                        <input type="checkbox" class="custom-control-input" id="@itemtype.Code" name="@itemtype.Code">
-                        <label class="custom-control-label" for="@itemtype.Code" data-toggle="tooltip" data-placement="top" title="全选&取消全选">@itemtype.Name</label>
+                        <input type="checkbox" class="custom-control-input" id="@code" name="@code">
+                        <label class="custom-control-label" for="@code" data-toggle="tooltip" data-placement="top" title="全选&取消全选">@itemtype.Name</label>
                     </div>
                 </div>
                 <div class="card-body">
@@ -37,7 +39,7 @@
                             else { chtrue = ""; }
                             <div class="col-md-4 my-1">
                                 <div class="custom-control custom-checkbox mr-md-2">
-                                    <input type="checkbox" class="custom-control-input" id="@item.Code" name="Claims" name-data="@itemtype.Code" value="@item.Controller" @chtrue>
+                                    <input type="checkbox" class="custom-control-input" id="@item.Code" name="Claims" name-data="@code" value="@item.Controller" @chtrue>
                                     <label class="custom-control-label" for="@item.Code">@item.Name</label>
                                 </div>
                             </div>
@@ -55,15 +57,16 @@
 @section Scripts {
     @foreach (var itemtype in Model.SysNavbarTypes.OrderBy(t => t.Sort))
     {
+        code=itemtype.Code.ToString()+"1";
         <script type="text/javascript">
-        @{i = i + 1;}
-        @{itemtypenames = itemtypename + i.ToString();}
-        var @itemtypenames = true;
-        //全选
-        $("#@itemtype.Code").click(function () {
-            $(':checkbox[name-data="@itemtype.Code"]').attr("checked", @itemtypenames);
-            @itemtypenames = !@itemtypenames;
-        });
+            @{i = i + 1;}
+            @{itemtypenames = itemtypename + i.ToString();}
+            var @itemtypenames = true;
+            //全选
+            $("#@code").click(function () {
+                $(':checkbox[name-data="@code"]').attr("checked", @itemtypenames);
+                @itemtypenames = !@itemtypenames;
+            });
         </script>
     }
 }

@@ -45,6 +45,30 @@ namespace HospitalPersonnelSystem.Models
             if (!context.ComPosts.Any())
                 context.ComPosts.AddRange(ComPosts());
 
+            //执业资格
+            if (!context.ComProfessionRegisters.Any())
+                context.ComProfessionRegisters.AddRange(ComProfessionRegisters());
+
+            //执业范围
+            if (!context.ComProfessionExtents.Any())
+                context.ComProfessionExtents.AddRange(ComProfessionExtents());
+
+            //职称系列
+            if (!context.ComProfessionTitleTypes.Any())
+                context.ComProfessionTitleTypes.AddRange(ComProfessionTitleTypes());
+
+            //职称级别
+            if (!context.ComProfessionTitleLevels.Any())
+                context.ComProfessionTitleLevels.AddRange(ComProfessionTitleLevels());
+
+            //职称
+            if (!context.ComProfessionTitles.Any())
+                context.ComProfessionTitles.AddRange(ComProfessionTitles());
+
+            //执业类别
+            if (!context.ComProfessionTypes.Any())
+                context.ComProfessionTypes.AddRange(ComProfessionTypes());
+
             //科室
             if (!context.SysDepts.Any())
                 context.SysDepts.AddRange(SysDepts());
@@ -86,6 +110,18 @@ namespace HospitalPersonnelSystem.Models
         /// <param name="context">EF</param>
         public static void Clear(ApplicationDbContext context, UserManager<HPSUser> userManager)
         {
+            //职称评定
+            if (context.SysProfessionInfos.Any())
+                context.SysProfessionInfos.RemoveRange(context.SysProfessionInfos.ToList());
+
+            //学历评定
+            if (context.SysEducations.Any())
+                context.SysEducations.RemoveRange(context.SysEducations.ToList());
+
+            //合同管理
+            if (context.SysContracts.Any())
+                context.SysContracts.RemoveRange(context.SysContracts.ToList());
+
             //管理员用户
             if (context.Users.Any())//判断是否清空
                 context.Users.RemoveRange(context.Users.Include(t => t.SysEmp).ToList());
@@ -113,6 +149,30 @@ namespace HospitalPersonnelSystem.Models
             //岗位
             if (context.ComPosts.Any())
                 context.ComPosts.RemoveRange(context.ComPosts.ToList());
+
+            //执业资格
+            if (context.ComProfessionRegisters.Any())
+                context.ComProfessionRegisters.RemoveRange(context.ComProfessionRegisters.ToList());
+
+            //执业范围
+            if (context.ComProfessionExtents.Any())
+                context.ComProfessionExtents.RemoveRange(context.ComProfessionExtents.ToList());
+
+            //职称系列
+            if (context.ComProfessionTitleTypes.Any())
+                context.ComProfessionTitleTypes.RemoveRange(context.ComProfessionTitleTypes.ToList());
+
+            //职称级别
+            if (context.ComProfessionTitleLevels.Any())
+                context.ComProfessionTitleLevels.RemoveRange(context.ComProfessionTitleLevels.ToList());
+
+            //职称
+            if (context.ComProfessionTitles.Any())
+                context.ComProfessionTitles.RemoveRange(context.ComProfessionTitles.ToList());
+
+            //执业类别
+            if (context.ComProfessionTypes.Any())
+                context.ComProfessionTypes.RemoveRange(context.ComProfessionTypes.ToList());
 
             //科室
             if (context.SysDepts.Any())
@@ -166,7 +226,10 @@ namespace HospitalPersonnelSystem.Models
                 new SysNavbar("84694a3e-bd02-4c7b-809a-13b03179ec47", SysNavbarTypes()[0].Code.ToString(), 2, "菜单管理", null, "SysNavbar", null, "CDGL"),
                 new SysNavbar("806f6f52-0a4c-4921-a22a-f5fbece20df0", SysNavbarTypes()[0].Code.ToString(), 3, "基础信息管理", null, "Basic", null, "JCXXGL"),
                 new SysNavbar("093cdc6b-b746-4126-9205-38e997d1957c", SysNavbarTypes()[1].Code.ToString(), 4, "科室管理", null, "SysDept", null, "KSGL"),
-                new SysNavbar("99a41871-4f8a-4211-98e0-8cf7c78ca2ce", SysNavbarTypes()[1].Code.ToString(), 5, "人员管理", null, "SysEmp", null, "RYGL")
+                new SysNavbar("99a41871-4f8a-4211-98e0-8cf7c78ca2ce", SysNavbarTypes()[1].Code.ToString(), 5, "人员管理", null, "SysEmp", null, "RYGL"),
+                new SysNavbar("34121d7c-15d1-4488-8158-7bb6885521cc", SysNavbarTypes()[2].Code.ToString(), 6, "职称评定", null, "SysProfessionInfo", null, "ZCPD"),
+                new SysNavbar("fa1db30f-fbe0-4ebf-ba6e-90bac56deb11", SysNavbarTypes()[2].Code.ToString(), 7, "学历评定", null, "SysEducation", null, "XLPD"),
+                new SysNavbar("0dc5856b-2399-4334-a790-a00385b5b285", SysNavbarTypes()[2].Code.ToString(), 8, "合同管理", null, "SysContract", null, "HTGL")
 
                 //Basic
             };
@@ -294,6 +357,139 @@ namespace HospitalPersonnelSystem.Models
         }
 
         /// <summary>
+        /// 执业资格
+        /// </summary>
+        /// <returns></returns>
+        static List<ComProfessionRegister> ComProfessionRegisters()
+        {
+            return new List<ComProfessionRegister>()
+            {
+                new ComProfessionRegister("972d26e3-2057-4fbb-8ea5-5cd27ef08f56", "执业护士", 1, "ZYHS"),
+                new ComProfessionRegister("5682174b-a606-49ac-8e21-cd1f4528b2bb", "执业医师", 2, "ZYYS"),
+                new ComProfessionRegister("77aa99bd-d60b-4294-b8ad-fae4ff12c4d8", "无", 3, "M,W")
+            };
+        }
+
+        /// <summary>
+        /// 执业范围
+        /// </summary>
+        /// <returns></returns>
+        static List<ComProfessionExtent> ComProfessionExtents()
+        {
+            return new List<ComProfessionExtent>()
+            {
+                new ComProfessionExtent("81dc3ba0-c02b-46ca-88e1-169cfdcdaf28", "护理专业", 1, "HLZY"),
+                new ComProfessionExtent("057361fe-d658-4870-a9aa-6d4b3d588a3e", "外科专业", 2, "WKZY")
+            };
+        }
+
+        /// <summary>
+        /// 职称系列
+        /// </summary>
+        /// <returns></returns>
+        static List<ComProfessionTitleType> ComProfessionTitleTypes()
+        {
+            return new List<ComProfessionTitleType>()
+            {
+                new ComProfessionTitleType("b9bbcf12-f2c7-48e1-9ece-12068ac58768", "卫生技术人员", 1, "WSJSRY"),
+                new ComProfessionTitleType("072c109c-b77a-4ce5-8379-0e01aade0099", "高等学校教师", 2, "GDXXJS"),
+                new ComProfessionTitleType("e63e2af4-6278-45fd-9e6e-1619e46bd6d6", "中等专业学校教师", 3, "ZDZYXXJS"),
+                new ComProfessionTitleType("16c8d407-a09c-42e5-b780-ebba33162ebf", "技工学校教师", 4, "JGXXJS"),
+                new ComProfessionTitleType("5824b69d-28c8-47dc-b49c-0eb48732f780", "中学教师", 5, "ZXJS"),
+                new ComProfessionTitleType("cf256af3-9556-4049-8e6b-b05106babd00", "小学（幼儿园）教师", 6, "XX（YEY）JS"),
+                new ComProfessionTitleType("cc0a3196-7793-4729-a79f-b55b4f42cc58", "自然科学研究人员", 7, "ZRKXYJRY"),
+                new ComProfessionTitleType("b3d09255-1d6e-4c89-8671-3227659957ea", "社会科学研究人员", 8, "SHKXYJRY"),
+                new ComProfessionTitleType("c7f8405f-0966-4811-8f33-a3d9ddd4d17f", "工程技术人员", 9, "GCJSRY"),
+                new ComProfessionTitleType("234ace94-7cd4-480b-aef0-e7e161b02697", "实验技术人员", 10, "SYJSRY"),
+                new ComProfessionTitleType("a43b05e2-f2df-4016-984f-40c95bb03c0b", "农业技术人员", 11, "NYJSRY"),
+                new ComProfessionTitleType("83cb5dd3-fc2a-4d90-90e5-b0d544e57f19", "经济专业人员", 12, "JJZYRY"),
+                new ComProfessionTitleType("45c3f3a9-efeb-4d43-9db9-0470245d1d35", "会计专业人员", 13, "KJZYRY"),
+                new ComProfessionTitleType("eea9ecc4-f934-4b07-afe5-1c99fd3da8b4", "审计专业人员", 14, "SJZYRY"),
+                new ComProfessionTitleType("990ea624-3736-4f12-915b-3e872cdd4913", "统计专业人员", 15, "TJZYRY"),
+                new ComProfessionTitleType("27c45a02-43b3-47e0-ac0b-8ebf8af37d59", "新闻专业人员", 16, "XWZYRY"),
+                new ComProfessionTitleType("805682d1-68dd-44cc-97d2-aee76cd88f4b", "出版专业人员", 17, "CBZYRY"),
+                new ComProfessionTitleType("a75c01cb-707f-4704-8ce4-37183d8a6c69", "图书资料专业人员", 18, "TSZLZYRY"),
+                new ComProfessionTitleType("f977393b-d721-4bae-87af-0d34138be4af", "文物博物专业人员", 19, "WWBWZYRY"),
+                new ComProfessionTitleType("41cb832e-b01a-41d2-b3d4-a887e79f07ac", "档案专业人员", 20, "DAZYRY"),
+                new ComProfessionTitleType("78960f3e-1f31-4a41-8bc9-d7b296e8ba55", "广播电视播音人员", 21, "GBDSBYRY"),
+                new ComProfessionTitleType("19f3d687-7d72-4c90-ab9a-d6b470b04d06", "翻译人员", 22, "FYRY"),
+                new ComProfessionTitleType("0f188db0-9691-4296-a5cb-20b69101aac2", "律师", 23, "LS"),
+                new ComProfessionTitleType("afca33cc-1504-4cea-8ed7-531ff50d801c", "公证员", 24, "GZY"),
+                new ComProfessionTitleType("8f4f6be4-784e-4d68-8ce7-cbd96435718d", "海关人员", 25, "HGRY"),
+                new ComProfessionTitleType("85233e97-ea84-4e37-ac56-90f0629f92ba", "船舶技术人员", 26, "CBJSRY"),
+                new ComProfessionTitleType("65816271-4a14-4e8e-b74f-8802c3a1a50c", "民用航空飞行技术人员", 27, "MYHKFXJSRY"),
+                new ComProfessionTitleType("c3a7e48e-52b0-4ff9-882b-124cd939b773", "艺术专业人员", 28, "YSZYRY"),
+                new ComProfessionTitleType("d1274053-074b-4e27-88e3-7799dd395d1a", "工艺美术专业人员", 29, "GYMSZYRY"),
+                new ComProfessionTitleType("45af0571-55a8-4ff6-a2fb-8434df78e053", "体育教练员", 30, "TYJLY"),
+                new ComProfessionTitleType("6a70cc98-9e72-4b97-a37b-b2ebf66e2ca7", "思想政治工作人员", 31, "SXZZGZRY"),
+                new ComProfessionTitleType("f20164e3-99ce-42ba-ac19-f6bd740ed46c", "无", 32, "W")
+            };
+        }
+
+        /// <summary>
+        /// 职称级别
+        /// </summary>
+        /// <returns></returns>
+        static List<ComProfessionTitleLevel> ComProfessionTitleLevels()
+        {
+            return new List<ComProfessionTitleLevel>()
+            {
+                new ComProfessionTitleLevel("9ee36b90-1e89-4591-b849-9d79badce3a8", "正高级", 1, "ZGJ"),
+                new ComProfessionTitleLevel("4ef010d0-5c7e-4e38-bcff-fffcd69627cf", "副高级", 2, "FGJ"),
+                new ComProfessionTitleLevel("f469629a-4d6d-4640-804b-f2e5c44f5ca4", "中级", 3, "ZJ"),
+                new ComProfessionTitleLevel("4e8d76cd-5bc0-4281-8e68-446a8b649b82", "初级", 4, "CJ"),
+                new ComProfessionTitleLevel("2d9f5ae2-a9b1-497f-97f4-e31cfe6f0ba0", "无", 5, "M,W")
+            };
+        }
+
+        /// <summary>
+        /// 职称
+        /// </summary>
+        /// <returns></returns>
+        static List<ComProfessionTitle> ComProfessionTitles()
+        {
+            return new List<ComProfessionTitle>()
+            {
+                new ComProfessionTitle("9a6587f1-877a-4cd9-9190-9586357ff374", ComProfessionTitleTypes()[0].Code, ComProfessionTitleLevels()[0].Code, "主任医师", 1, "ZRYS"),
+                new ComProfessionTitle("2a993f3e-1acf-49bc-a2ce-32ad5f974b9a", ComProfessionTitleTypes()[0].Code, ComProfessionTitleLevels()[0].Code, "主任药师", 2, "ZRYS"),
+                new ComProfessionTitle("138b4279-3551-484c-826f-11831c29b8ef", ComProfessionTitleTypes()[0].Code, ComProfessionTitleLevels()[0].Code, "主任护师", 3, "ZRHS"),
+                new ComProfessionTitle("c31f1667-013d-4331-9809-00580c55761b", ComProfessionTitleTypes()[0].Code, ComProfessionTitleLevels()[0].Code, "主任技师", 4, "ZRJS"),
+                new ComProfessionTitle("a247f5a9-b7e6-42f9-9f52-39ae90766e63", ComProfessionTitleTypes()[0].Code, ComProfessionTitleLevels()[1].Code, "副主任医师", 5, "FZRYS"),
+                new ComProfessionTitle("d51ce584-a443-459e-bad9-3641a39f0ea3", ComProfessionTitleTypes()[0].Code, ComProfessionTitleLevels()[1].Code, "副主任药师", 6, "FZRYS"),
+                new ComProfessionTitle("36d00ebd-7224-439e-962a-f215318c914e", ComProfessionTitleTypes()[0].Code, ComProfessionTitleLevels()[1].Code, "副主任护师", 7, "FZRHS"),
+                new ComProfessionTitle("3ddab2f1-3c6a-4b09-a0ec-d743297fd662", ComProfessionTitleTypes()[0].Code, ComProfessionTitleLevels()[1].Code, "副主任技师", 8, "FZRJS"),
+                new ComProfessionTitle("9e2e2813-14a1-417f-ad41-018760bb4345", ComProfessionTitleTypes()[0].Code, ComProfessionTitleLevels()[2].Code, "主治医师", 9, "ZZYS"),
+                new ComProfessionTitle("959e0116-a6b0-48e7-ade2-84576055ca58", ComProfessionTitleTypes()[0].Code, ComProfessionTitleLevels()[2].Code, "主管药师", 10, "ZGYS"),
+                new ComProfessionTitle("b9527c98-b7ef-47b7-b1a8-5710506ba47a", ComProfessionTitleTypes()[0].Code, ComProfessionTitleLevels()[2].Code, "主管护师", 11, "ZGHS"),
+                new ComProfessionTitle("92223c91-dd24-44d4-9b04-b65b0811f8a2", ComProfessionTitleTypes()[0].Code, ComProfessionTitleLevels()[2].Code, "主管技师", 12, "ZGJS"),
+                new ComProfessionTitle("efc6b47b-5bd5-46e8-809e-c570ed09b446", ComProfessionTitleTypes()[0].Code, ComProfessionTitleLevels()[3].Code, "医师", 13, "YS"),
+                new ComProfessionTitle("11a39f8b-0c38-4673-8649-d3b5c574fe93", ComProfessionTitleTypes()[0].Code, ComProfessionTitleLevels()[3].Code, "医士", 14, "YS"),
+                new ComProfessionTitle("a66cc816-b673-41b6-a17c-313ea811b90b", ComProfessionTitleTypes()[0].Code, ComProfessionTitleLevels()[3].Code, "药师", 15, "YS"),
+                new ComProfessionTitle("70648907-3292-4e6f-bf4d-9e94e2b07fe6", ComProfessionTitleTypes()[0].Code, ComProfessionTitleLevels()[3].Code, "药士", 16, "YS"),
+                new ComProfessionTitle("00a56523-a8ba-4534-910c-1d0e51d288ea", ComProfessionTitleTypes()[0].Code, ComProfessionTitleLevels()[3].Code, "护师", 17, "HS"),
+                new ComProfessionTitle("7e101785-9817-4c56-92da-92716ecbbeab", ComProfessionTitleTypes()[0].Code, ComProfessionTitleLevels()[3].Code, "护士", 18, "HS"),
+                new ComProfessionTitle("1573ab91-609f-42f5-8666-ead60dbb7e16", ComProfessionTitleTypes()[0].Code, ComProfessionTitleLevels()[3].Code, "技师", 19, "JS"),
+                new ComProfessionTitle("28683b64-719d-42d9-83bb-9da0a599d4d0", ComProfessionTitleTypes()[0].Code, ComProfessionTitleLevels()[3].Code, "技士", 20, "JS"),
+                new ComProfessionTitle("a888cb9b-2f27-48fe-a0d7-65f0220cd457", ComProfessionTitleTypes()[0].Code, ComProfessionTitleLevels()[4].Code, "无职称", 21, "WZC")
+            };
+        }
+
+        /// <summary>
+        /// 执业类别
+        /// </summary>
+        /// <returns></returns>
+        static List<ComProfessionType> ComProfessionTypes()
+        {
+            return new List<ComProfessionType>()
+            {
+                new ComProfessionType("8f0f9e11-21dc-4f27-9fa1-bfcd3866b98c", "临床", 1, "LC"),
+                new ComProfessionType("cecfc213-7f9c-4794-9fd3-48f03552175f", "口腔", 2, "KQ"),
+                new ComProfessionType("1bef14e7-017f-408d-8b21-a2be1081f3e9", "公卫", 3, "GW"),
+                new ComProfessionType("ce7e7937-e090-4900-baeb-3faa6da4c39d", "中医", 4, "ZY")
+            };
+        }
+
+        /// <summary>
         /// 科室
         /// </summary>
         /// <returns></returns>
@@ -350,22 +546,6 @@ namespace HospitalPersonnelSystem.Models
 
 
 
-        ///// <summary>
-        ///// 默认数据
-        ///// </summary>
-        ///// <param name="modelBuilder"></param>
-        //void InsertData(ModelBuilder modelBuilder)
-        //{
-
-        //    #region 菜单
-        //    modelBuilder.Entity<SysNavbar>().HasData(
-        //        new SysNavbar("43155cdf-69c5-4610-9578-711a8830e39c", "49b247e4-33bb-4793-a23f-ef86ebc5f654", 1, "账号管理", "Account", "Index", "ZHGL"),
-        //        new SysNavbar("84694a3e-bd02-4c7b-809a-13b03179ec47", "49b247e4-33bb-4793-a23f-ef86ebc5f654", 2, "菜单类别", "SysNavbarType", "Index", "CDLB"),
-        //        new SysNavbar("b5c4e0db-5fe3-45e8-ae94-66b451509232", "49b247e4-33bb-4793-a23f-ef86ebc5f654", 3, "菜单", "SysNavbar", "Index", "CD"));
-
-
-
-
 
 
         //    //new SysNavbar("84694a3e-bd02-4c7b-809a-13b03179ec47", "Index", "SysNavbarType", "菜单类别", 1, "CCLB,CDLB,CSLB", "4d3c3953-fd9e-4df1-aa18-3285e020d4bc"),
@@ -401,75 +581,11 @@ namespace HospitalPersonnelSystem.Models
 
 
 
-        //    #region 职称系列
-        //    modelBuilder.Entity<ComProfessionTitleType>().HasData(
-        //        new ComProfessionTitleType("b9bbcf12-f2c7-48e1-9ece-12068ac58768", "卫生技术人员", 1, "WSJSRY,WSJZRY"),
-        //        new ComProfessionTitleType("072c109c-b77a-4ce5-8379-0e01aade0099", "高等学校教师", 2, "GDXJJS,GDXXJS"),
-        //        new ComProfessionTitleType("e63e2af4-6278-45fd-9e6e-1619e46bd6d6", "中等专业学校教师", 3, "ZDZYXJJS,ZDZYXXJS"),
-        //        new ComProfessionTitleType("16c8d407-a09c-42e5-b780-ebba33162ebf", "技工学校教师", 4, "JGXJJS,JGXXJS"),
-        //        new ComProfessionTitleType("5824b69d-28c8-47dc-b49c-0eb48732f780", "中学教师", 5, "ZXJS"),
-        //        new ComProfessionTitleType("cf256af3-9556-4049-8e6b-b05106babd00", "小学（幼儿园）教师", 6, "XX（YEY）JS"),
-        //        new ComProfessionTitleType("cc0a3196-7793-4729-a79f-b55b4f42cc58", "自然科学研究人员", 7, "ZRKXYJRY"),
-        //        new ComProfessionTitleType("b3d09255-1d6e-4c89-8671-3227659957ea", "社会科学研究人员", 8, "SHKXYJRY,SKKXYJRY"),
-        //        new ComProfessionTitleType("c7f8405f-0966-4811-8f33-a3d9ddd4d17f", "工程技术人员", 9, "GCJSRY,GCJZRY"),
-        //        new ComProfessionTitleType("234ace94-7cd4-480b-aef0-e7e161b02697", "实验技术人员", 10, "SYJSRY,SYJZRY"),
-        //        new ComProfessionTitleType("a43b05e2-f2df-4016-984f-40c95bb03c0b", "农业技术人员", 11, "NYJSRY,NYJZRY"),
-        //        new ComProfessionTitleType("83cb5dd3-fc2a-4d90-90e5-b0d544e57f19", "经济专业人员", 12, "JJZYRY"),
-        //        new ComProfessionTitleType("45c3f3a9-efeb-4d43-9db9-0470245d1d35", "会计专业人员", 13, "HJZYRY,KJZYRY"),
-        //        new ComProfessionTitleType("eea9ecc4-f934-4b07-afe5-1c99fd3da8b4", "审计专业人员", 14, "SJZYRY"),
-        //        new ComProfessionTitleType("990ea624-3736-4f12-915b-3e872cdd4913", "统计专业人员", 15, "TJZYRY"),
-        //        new ComProfessionTitleType("27c45a02-43b3-47e0-ac0b-8ebf8af37d59", "新闻专业人员", 16, "XWZYRY"),
-        //        new ComProfessionTitleType("805682d1-68dd-44cc-97d2-aee76cd88f4b", "出版专业人员", 17, "CBZYRY"),
-        //        new ComProfessionTitleType("a75c01cb-707f-4704-8ce4-37183d8a6c69", "图书资料专业人员", 18, "TSZLZYRY"),
-        //        new ComProfessionTitleType("f977393b-d721-4bae-87af-0d34138be4af", "文物博物专业人员", 19, "WWBWZYRY"),
-        //        new ComProfessionTitleType("41cb832e-b01a-41d2-b3d4-a887e79f07ac", "档案专业人员", 20, "DAZYRY"),
-        //        new ComProfessionTitleType("78960f3e-1f31-4a41-8bc9-d7b296e8ba55", "广播电视播音人员", 21, "ABDSBYRY,GBDSBYRY"),
-        //        new ComProfessionTitleType("19f3d687-7d72-4c90-ab9a-d6b470b04d06", "翻译人员", 22, "FYRY"),
-        //        new ComProfessionTitleType("0f188db0-9691-4296-a5cb-20b69101aac2", "律师", 23, "LS"),
-        //        new ComProfessionTitleType("afca33cc-1504-4cea-8ed7-531ff50d801c", "公证员", 24, "GZY"),
-        //        new ComProfessionTitleType("8f4f6be4-784e-4d68-8ce7-cbd96435718d", "海关人员", 25, "HGRY"),
-        //        new ComProfessionTitleType("85233e97-ea84-4e37-ac56-90f0629f92ba", "船舶技术人员", 26, "CBJSRY,CBJZRY"),
-        //        new ComProfessionTitleType("65816271-4a14-4e8e-b74f-8802c3a1a50c", "民用航空飞行技术人员", 27, "MYHKFHJSRY,MYHKFXJSRY,MYHKFHJZRY,MYHKFXJZRY"),
-        //        new ComProfessionTitleType("c3a7e48e-52b0-4ff9-882b-124cd939b773", "艺术专业人员", 28, "YSZYRY,YZZYRY"),
-        //        new ComProfessionTitleType("d1274053-074b-4e27-88e3-7799dd395d1a", "工艺美术专业人员", 29, "GYMSZYRY,GYMZZYRY"),
-        //        new ComProfessionTitleType("45af0571-55a8-4ff6-a2fb-8434df78e053", "体育教练员", 30, "TYJLY"),
-        //        new ComProfessionTitleType("6a70cc98-9e72-4b97-a37b-b2ebf66e2ca7", "思想政治工作人员", 31, "SXZZGZRY"),
-        //        new ComProfessionTitleType("f20164e3-99ce-42ba-ac19-f6bd740ed46c", "无", 32, "M,W"));
-        //    #endregion
 
-        //    #region 职称级别
-        //    modelBuilder.Entity<ComProfessionTitleLevel>().HasData(
-        //        new ComProfessionTitleLevel("9ee36b90-1e89-4591-b849-9d79badce3a8", "正高级", 1, "ZGJ"),
-        //        new ComProfessionTitleLevel("4ef010d0-5c7e-4e38-bcff-fffcd69627cf", "副高级", 2, "FGJ"),
-        //        new ComProfessionTitleLevel("f469629a-4d6d-4640-804b-f2e5c44f5ca4", "中级", 3, "ZJ"),
-        //        new ComProfessionTitleLevel("4e8d76cd-5bc0-4281-8e68-446a8b649b82", "初级", 4, "CJ"),
-        //        new ComProfessionTitleLevel("2d9f5ae2-a9b1-497f-97f4-e31cfe6f0ba0", "无", 5, "M,W"));
-        //    #endregion
 
-        //    #region 职称
-        //    modelBuilder.Entity<ComProfessionTitle>().HasData(
-        //        new ComProfessionTitle("9a6587f1-877a-4cd9-9190-9586357ff374", "9ee36b90-1e89-4591-b849-9d79badce3a8", "主任医师", 1, "ZRYS", "b9bbcf12-f2c7-48e1-9ece-12068ac58768"),
-        //        new ComProfessionTitle("2a993f3e-1acf-49bc-a2ce-32ad5f974b9a", "9ee36b90-1e89-4591-b849-9d79badce3a8", "主任药师", 2, "ZRYS", "b9bbcf12-f2c7-48e1-9ece-12068ac58768"),
-        //        new ComProfessionTitle("138b4279-3551-484c-826f-11831c29b8ef", "9ee36b90-1e89-4591-b849-9d79badce3a8", "主任护师", 3, "ZRHS", "b9bbcf12-f2c7-48e1-9ece-12068ac58768"),
-        //        new ComProfessionTitle("c31f1667-013d-4331-9809-00580c55761b", "9ee36b90-1e89-4591-b849-9d79badce3a8", "主任技师", 4, "ZRJS", "b9bbcf12-f2c7-48e1-9ece-12068ac58768"),
-        //        new ComProfessionTitle("a247f5a9-b7e6-42f9-9f52-39ae90766e63", "4ef010d0-5c7e-4e38-bcff-fffcd69627cf", "副主任医师", 5, "FZRYS", "b9bbcf12-f2c7-48e1-9ece-12068ac58768"),
-        //        new ComProfessionTitle("d51ce584-a443-459e-bad9-3641a39f0ea3", "4ef010d0-5c7e-4e38-bcff-fffcd69627cf", "副主任药师", 6, "FZRYS", "b9bbcf12-f2c7-48e1-9ece-12068ac58768"),
-        //        new ComProfessionTitle("36d00ebd-7224-439e-962a-f215318c914e", "4ef010d0-5c7e-4e38-bcff-fffcd69627cf", "副主任护师", 7, "FZRHS", "b9bbcf12-f2c7-48e1-9ece-12068ac58768"),
-        //        new ComProfessionTitle("3ddab2f1-3c6a-4b09-a0ec-d743297fd662", "4ef010d0-5c7e-4e38-bcff-fffcd69627cf", "副主任技师", 8, "FZRJS", "b9bbcf12-f2c7-48e1-9ece-12068ac58768"),
-        //        new ComProfessionTitle("9e2e2813-14a1-417f-ad41-018760bb4345", "f469629a-4d6d-4640-804b-f2e5c44f5ca4", "主治医师", 9, "ZZYS", "b9bbcf12-f2c7-48e1-9ece-12068ac58768"),
-        //        new ComProfessionTitle("959e0116-a6b0-48e7-ade2-84576055ca58", "f469629a-4d6d-4640-804b-f2e5c44f5ca4", "主管药师", 10, "ZGYS", "b9bbcf12-f2c7-48e1-9ece-12068ac58768"),
-        //        new ComProfessionTitle("b9527c98-b7ef-47b7-b1a8-5710506ba47a", "f469629a-4d6d-4640-804b-f2e5c44f5ca4", "主管护师", 11, "ZGHS", "b9bbcf12-f2c7-48e1-9ece-12068ac58768"),
-        //        new ComProfessionTitle("92223c91-dd24-44d4-9b04-b65b0811f8a2", "f469629a-4d6d-4640-804b-f2e5c44f5ca4", "主管技师", 12, "ZGJS", "b9bbcf12-f2c7-48e1-9ece-12068ac58768"),
-        //        new ComProfessionTitle("efc6b47b-5bd5-46e8-809e-c570ed09b446", "4e8d76cd-5bc0-4281-8e68-446a8b649b82", "医师", 13, "YS", "b9bbcf12-f2c7-48e1-9ece-12068ac58768"),
-        //        new ComProfessionTitle("11a39f8b-0c38-4673-8649-d3b5c574fe93", "4e8d76cd-5bc0-4281-8e68-446a8b649b82", "医士", 14, "YS", "b9bbcf12-f2c7-48e1-9ece-12068ac58768"),
-        //        new ComProfessionTitle("a66cc816-b673-41b6-a17c-313ea811b90b", "4e8d76cd-5bc0-4281-8e68-446a8b649b82", "药师", 15, "YS", "b9bbcf12-f2c7-48e1-9ece-12068ac58768"),
-        //        new ComProfessionTitle("70648907-3292-4e6f-bf4d-9e94e2b07fe6", "4e8d76cd-5bc0-4281-8e68-446a8b649b82", "药士", 16, "YS", "b9bbcf12-f2c7-48e1-9ece-12068ac58768"),
-        //        new ComProfessionTitle("00a56523-a8ba-4534-910c-1d0e51d288ea", "4e8d76cd-5bc0-4281-8e68-446a8b649b82", "护师", 17, "HS", "b9bbcf12-f2c7-48e1-9ece-12068ac58768"),
-        //        new ComProfessionTitle("7e101785-9817-4c56-92da-92716ecbbeab", "4e8d76cd-5bc0-4281-8e68-446a8b649b82", "护士", 18, "HS", "b9bbcf12-f2c7-48e1-9ece-12068ac58768"),
-        //        new ComProfessionTitle("1573ab91-609f-42f5-8666-ead60dbb7e16", "4e8d76cd-5bc0-4281-8e68-446a8b649b82", "技师", 19, "JS", "b9bbcf12-f2c7-48e1-9ece-12068ac58768"),
-        //        new ComProfessionTitle("28683b64-719d-42d9-83bb-9da0a599d4d0", "4e8d76cd-5bc0-4281-8e68-446a8b649b82", "技士", 20, "JS", "b9bbcf12-f2c7-48e1-9ece-12068ac58768"),
-        //        new ComProfessionTitle("a888cb9b-2f27-48fe-a0d7-65f0220cd457", "2d9f5ae2-a9b1-497f-97f4-e31cfe6f0ba0", "无职称", 21, "MZC,WZC", "f20164e3-99ce-42ba-ac19-f6bd740ed46c"));
-        //    #endregion
+
+
+
 
         //    #region 行政职务
         //    modelBuilder.Entity<ComAdminDuty>().HasData(
@@ -540,32 +656,767 @@ namespace HospitalPersonnelSystem.Models
         //        new ComMarriage("6cca4dd0-8fa7-46be-90ab-f6ac0379adde", "未说明的婚姻状况", 5, "WSMDHYZK,WYMDHYZK"));
         //    #endregion
 
-        //    #region 执业资格
-        //    modelBuilder.Entity<ComProfessionRegister>().HasData(
-        //        new ComProfessionRegister("972d26e3-2057-4fbb-8ea5-5cd27ef08f56", "执业护士", 1, "ZYHS"),
-        //        new ComProfessionRegister("5682174b-a606-49ac-8e21-cd1f4528b2bb", "执业医师", 2, "ZYYS"),
-        //        new ComProfessionRegister("77aa99bd-d60b-4294-b8ad-fae4ff12c4d8", "无", 3, "M,W"));
-        //    #endregion
 
-        //    #region 执业类别
-        //    modelBuilder.Entity<ComProfessionType>().HasData(
-        //        new ComProfessionType("8f0f9e11-21dc-4f27-9fa1-bfcd3866b98c", "临床", 1, "LC"),
-        //        new ComProfessionType("cecfc213-7f9c-4794-9fd3-48f03552175f", "口腔", 2, "KQ"),
-        //        new ComProfessionType("1bef14e7-017f-408d-8b21-a2be1081f3e9", "公卫", 3, "GW"),
-        //        new ComProfessionType("ce7e7937-e090-4900-baeb-3faa6da4c39d", "中医", 4, "ZY"));
-        //    #endregion
 
-        //    #region 执业范围
-        //    modelBuilder.Entity<ComProfessionExtent>().HasData(
-        //        new ComProfessionExtent("81dc3ba0-c02b-46ca-88e1-169cfdcdaf28", "护理专业", 1, "HLZY"),
-        //        new ComProfessionExtent("057361fe-d658-4870-a9aa-6d4b3d588a3e", "外科专业", 2, "WKZY"));
-        //    #endregion
+
+
+
 
 
         //}
 
 
 
+        #region 注释
+
+        //#region 人员分类
+        //modelBuilder.Entity<SysEmpClass>(b =>
+        //{
+        //    b.ToTable("SysEmpClass");
+        //    b.HasKey(t => t.Code);
+        //    b.Property(t => t.Code)
+        //    .HasDefaultValueSql("newid()");
+        //    b.Property(t => t.Sort)
+        //    .HasDefaultValue(0);
+        //});
+        //modelBuilder.Entity<SysEmpClass>()
+        //    .HasData(new SysEmpClass
+        //    {
+        //        Code = Guid.Parse("{d5108379-4bc2-42c6-96ea-f4f84eb728da}"),
+        //        Name = "医疗",
+        //        Spell = "YL",
+        //        Sort = 0
+        //    }, new SysEmpClass
+        //    {
+        //        Code = Guid.Parse("{2c5f6589-4c07-41ad-8e62-3e28ce106e41}"),
+        //        Name = "护理",
+        //        Spell = "HL",
+        //        Sort = 1
+        //    }, new SysEmpClass
+        //    {
+        //        Code = Guid.Parse("{c4fcd57c-126d-4b48-9ae8-ad5227b8385b}"),
+        //        Name = "医技",
+        //        Spell = "YJ",
+        //        Sort = 2
+        //    }, new SysEmpClass
+        //    {
+        //        Code = Guid.Parse("{57e99a9f-7bb9-4cd2-8b3d-54d040d626fe}"),
+        //        Name = "门诊",
+        //        Spell = "MZ",
+        //        Sort = 3
+        //    }, new SysEmpClass
+        //    {
+        //        Code = Guid.Parse("{c8d0bebe-6d93-45e6-8a78-6c9f56f9ab4e}"),
+        //        Name = "下乡",
+        //        Spell = "XX",
+        //        Sort = 4
+        //    }, new SysEmpClass
+        //    {
+        //        Code = Guid.Parse("{0dbc8541-087b-456d-9ee8-ff57d5d6895f}"),
+        //        Name = "行政",
+        //        Spell = "XZ",
+        //        Sort = 5
+        //    }, new SysEmpClass
+        //    {
+        //        Code = Guid.Parse("{9192472f-76d5-456a-8d78-727905c81227}"),
+        //        Name = "财务",
+        //        Spell = "CW",
+        //        Sort = 6
+        //    }, new SysEmpClass
+        //    {
+        //        Code = Guid.Parse("{3eeb9567-670f-43d4-99f0-51ec51f99e87}"),
+        //        Name = "管理",
+        //        Spell = "GL",
+        //        Sort = 7
+        //    }, new SysEmpClass
+        //    {
+        //        Code = Guid.Parse("{3ba23c03-ccd0-4ad6-afcf-ee04de4affb1}"),
+        //        Name = "计算机",
+        //        Spell = "JSJ",
+        //        Sort = 8
+        //    }, new SysEmpClass
+        //    {
+        //        Code = Guid.Parse("{6a5aa9d2-25d7-41d2-8598-0abf6d468c74}"),
+        //        Name = "后勤",
+        //        Spell = "HQ",
+        //        Sort = 9
+        //    }, new SysEmpClass
+        //    {
+        //        Code = Guid.Parse("{9acc51e4-0e74-4cfc-ba4c-513731c51fbd}"),
+        //        Name = "借调",
+        //        Spell = "JD",
+        //        Sort = 10
+        //    }, new SysEmpClass
+        //    {
+        //        Code = Guid.Parse("{58f2eb1c-5976-4a7e-9fdf-e6a3a3689534}"),
+        //        Name = "内退",
+        //        Spell = "NT",
+        //        Sort = 11
+        //    }, new SysEmpClass
+        //    {
+        //        Code = Guid.Parse("{a642f8cd-b5a6-4fe4-b483-e14c5a4fe5b1}"),
+        //        Name = "停薪留职",
+        //        Spell = "TXLZ",
+        //        Sort = 12
+        //    }, new SysEmpClass
+        //    {
+        //        Code = Guid.Parse("{a4e9fcae-ac9d-4fbd-8a04-a330176c3bf4}"),
+        //        Name = "不在岗",
+        //        Spell = "BZG",
+        //        Sort = 13
+        //    });
+        //#endregion
+        //岗位 
+        //#region 岗位类别
+        //modelBuilder.Entity<ComPostType>(b =>
+        //{
+        //    b.ToTable("ComPostType");
+        //    b.HasKey(t => t.Code);
+        //    b.Property(t => t.Code)
+        //    .HasDefaultValueSql("newid()");
+        //    b.Property(t => t.Sort)
+        //    .HasDefaultValue(0);
+        //});
+        //modelBuilder.Entity<ComPostType>()
+        //    .HasData(new ComPostType
+        //    {
+        //        Code = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+        //        Name = "管理人员",
+        //        Spell = "GLRY",
+        //        Sort = 0
+        //    }, new ComPostType
+        //    {
+        //        Code = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Name = "专业技术人员",
+        //        Spell = "ZYJSRY",
+        //        Sort = 1
+        //    }, new ComPostType
+        //    {
+        //        Code = Guid.Parse("{654bbfbf-a2d4-464a-9410-0822684eb278}"),
+        //        Name = "工勤技能人员",
+        //        Spell = "GQJNRY",
+        //        Sort = 2
+        //    }, new ComPostType
+        //    {
+        //        Code = Guid.Parse("{3bacb485-2037-4835-8268-7cec05a8f02f}"),
+        //        Name = "其他从业人员",
+        //        Spell = "QTCYRY",
+        //        Sort = 3
+        //    });
+        //#endregion
+
+        //#region 岗位
+        //modelBuilder.Entity<ComPost>(b =>
+        //{
+        //    b.ToTable("ComPost");
+        //    b.HasKey(t => t.Code);
+        //    b.Property(t => t.Code)
+        //    .HasDefaultValueSql("newid()");
+        //    b.Property(t => t.Sort)
+        //    .HasDefaultValue(0);
+        //});
+        //modelBuilder.Entity<ComPost>()
+        //    .HasData(new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{03ab2e38-ad6d-4ded-b81d-f30188c3ce99}"),
+        //        Name = "主任医师",
+        //        Spell = "ZRYS",
+        //        Sort = 0
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{849957b2-896b-469d-8c6f-fceda4e8d0bf}"),
+        //        Name = "副主任医师",
+        //        Spell = "FZRYS",
+        //        Sort = 1
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{3ed375b5-8384-473d-a4f2-7b0af0a2fb83}"),
+        //        Name = "副主任中医师",
+        //        Spell = "FZRZYS",
+        //        Sort = 2
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{3196870a-8c69-469d-b9f9-0f2cf30ed725}"),
+        //        Name = "副主任药师",
+        //        Spell = "FZRYS",
+        //        Sort = 3
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{eb5aada7-b36a-4481-8913-3cdb0d6c58b1}"),
+        //        Name = "副主任护师",
+        //        Spell = "FZRHS",
+        //        Sort = 4
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{7a877fb5-e5c2-4e7f-98b3-90a8971fa4f2}"),
+        //        Name = "副主任技师",
+        //        Spell = "FZRJS",
+        //        Sort = 5
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{d7ffb990-8f9d-4b22-b3cb-7f5f7866052b}"),
+        //        Name = "主治医师",
+        //        Spell = "ZYYS",
+        //        Sort = 6
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{3a8968ef-8fab-4e13-9d8f-87f8dc6310c3}"),
+        //        Name = "主管药师",
+        //        Spell = "ZHYS",
+        //        Sort = 7
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{81c18332-d2fd-46b1-90d8-da4af2413b8f}"),
+        //        Name = "主管护师",
+        //        Spell = "ZGHS",
+        //        Sort = 8
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{1f04b110-c7ef-46f1-bf64-64dc1d99fa01}"),
+        //        Name = "主管技师",
+        //        Spell = "ZHJS",
+        //        Sort = 9
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{5e1f9469-8024-4e73-bad8-1c4a6960f1e3}"),
+        //        Name = "主管检验师",
+        //        Spell = "ZGJYS",
+        //        Sort = 10
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{5c8d1d42-7f7f-4310-aa81-6506a363afe5}"),
+        //        Name = "医师",
+        //        Spell = "YS",
+        //        Sort = 11
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{0ddc1f8a-5230-4d90-9b5b-46de37de4d94}"),
+        //        Name = "药师",
+        //        Spell = "YS",
+        //        Sort = 12
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{54a4aaea-d563-44cd-9f2d-df074ff29f21}"),
+        //        Name = "护师",
+        //        Spell = "HS",
+        //        Sort = 13
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{525fc200-ceba-4fb8-9428-d0af3e56c0dc}"),
+        //        Name = "技师",
+        //        Spell = "JS",
+        //        Sort = 14
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{dc49d800-e709-4168-a5ae-6bf699a7e457}"),
+        //        Name = "康复技师",
+        //        Spell = "KFJS",
+        //        Sort = 15
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{d7c1ff7a-2a5b-4c03-a89f-2f751668e1ec}"),
+        //        Name = "工人技师",
+        //        Spell = "GRJS",
+        //        Sort = 16
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{622a47d3-6f08-4ed6-b203-bb6f9c35c869}"),
+        //        Name = "工程师",
+        //        Spell = "GCS",
+        //        Sort = 17
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{0ae60efc-8725-430e-b661-df29e489b302}"),
+        //        Name = "会计师",
+        //        Spell = "KJS",
+        //        Sort = 18
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{6833c8ba-7959-4d1f-96f3-b5e6e12f460b}"),
+        //        Name = "经济师",
+        //        Spell = "JJS",
+        //        Sort = 19
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{21ac04c5-7dbd-4cb5-b8eb-099c1938c33b}"),
+        //        Name = "统计师",
+        //        Spell = "TJS",
+        //        Sort = 20
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{fe525ac1-13ac-4dde-a737-73d26f163a16}"),
+        //        Name = "政工师",
+        //        Spell = "ZGS",
+        //        Sort = 21
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{c33dac54-066e-46ca-aa53-f5412e89bb35}"),
+        //        Name = "检验师",
+        //        Spell = "JYS",
+        //        Sort = 22
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{82d40cb9-8e2e-4068-bb1e-2d2f767e0a6c}"),
+        //        Name = "助理工程师",
+        //        Spell = "ZLGCS",
+        //        Sort = 23
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{9f39059c-4402-4812-9b0e-0a6e21707a83}"),
+        //        Name = "助理会计师",
+        //        Spell = "ZLHJS",
+        //        Sort = 24
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{4a289a58-cb42-487a-9664-d3af37591c77}"),
+        //        Name = "助理政工师",
+        //        Spell = "ZLZGS",
+        //        Sort = 25
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{d4d15612-c315-4dff-9df1-ba4da903e175}"),
+        //        Name = "医士",
+        //        Spell = "YS",
+        //        Sort = 26
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{9df8d9a4-8bce-422a-b0ad-45d6624cb8a4}"),
+        //        Name = "药士",
+        //        Spell = "YS",
+        //        Sort = 27
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{0a3333a9-7253-4d62-b6eb-d70af16542b6}"),
+        //        Name = "护士",
+        //        Spell = "HS",
+        //        Sort = 28
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{fe147b9a-afd1-46b9-98bc-293932cbba7f}"),
+        //        Name = "技士",
+        //        Spell = "JS",
+        //        Sort = 29
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{44fd7880-c1bb-411b-94c5-a83b39fe1d70}"),
+        //        Name = "检验士",
+        //        Spell = "JYS",
+        //        Sort = 30
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{ec959e6f-9af0-42d6-b035-65c301b6fc14}"),
+        //        Name = "会计员",
+        //        Spell = "KJY",
+        //        Sort = 31
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{c95e56b0-ca72-46d6-af2e-a61a2396c3db}"),
+        //        Name = "经济员",
+        //        Spell = "JJY",
+        //        Sort = 32
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{5ed553e9-f45c-469f-a5c7-0635f62f6f8c}"),
+        //        Name = "馆员",
+        //        Spell = "GY",
+        //        Sort = 33
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{654bbfbf-a2d4-464a-9410-0822684eb278}"),
+        //        Code = Guid.Parse("{75e2ed27-a4f7-4292-997d-b0b9459c4e5c}"),
+        //        Name = "高级技师",
+        //        Spell = "GJJS",
+        //        Sort = 0
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{654bbfbf-a2d4-464a-9410-0822684eb278}"),
+        //        Code = Guid.Parse("{f57fab19-f03e-4720-ba03-20b25af72f56}"),
+        //        Name = "技师",
+        //        Spell = "JS",
+        //        Sort = 1
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{654bbfbf-a2d4-464a-9410-0822684eb278}"),
+        //        Code = Guid.Parse("{ac0566d1-263a-46a7-8624-9e227963cd82}"),
+        //        Name = "高级工",
+        //        Spell = "GJG",
+        //        Sort = 2
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{654bbfbf-a2d4-464a-9410-0822684eb278}"),
+        //        Code = Guid.Parse("{0de14529-b648-4747-80ac-0ff90955c852}"),
+        //        Name = "中级工",
+        //        Spell = "ZJG",
+        //        Sort = 3
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{654bbfbf-a2d4-464a-9410-0822684eb278}"),
+        //        Code = Guid.Parse("{dc92af6b-17b7-4589-9fa5-2cd40a557e3f}"),
+        //        Name = "初级工",
+        //        Spell = "CJG",
+        //        Sort = 4
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{654bbfbf-a2d4-464a-9410-0822684eb278}"),
+        //        Code = Guid.Parse("{0583a494-3fdf-4c99-a96c-c220ce71c266}"),
+        //        Name = "普通工",
+        //        Spell = "PTG",
+        //        Sort = 5
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+        //        Code = Guid.Parse("{90e68bcd-7867-4558-be8e-6c9dea4c4f1a}"),
+        //        Name = "一级职员(正部)",
+        //        Spell = "YJZYZB",
+        //        Sort = 0
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+        //        Code = Guid.Parse("{fb9c4306-081c-41f9-8c4c-983e416c1940}"),
+        //        Name = "二级职员(副部)",
+        //        Spell = "EJZYFB",
+        //        Sort = 1
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+        //        Code = Guid.Parse("{5d74a866-7316-4251-9d9b-e9dfae651d2e}"),
+        //        Name = "三级职员(正厅)",
+        //        Spell = "SJZYZT",
+        //        Sort = 2
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+        //        Code = Guid.Parse("{b94f43c1-c614-4097-9d62-70969078f250}"),
+        //        Name = "四级职员(副厅)",
+        //        Spell = "SJZYFT",
+        //        Sort = 3
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+        //        Code = Guid.Parse("{b6cd168e-3bee-4073-a94f-013f61cc9a98}"),
+        //        Name = "五级职员(正处)",
+        //        Spell = "WJZYZC",
+        //        Sort = 4
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+        //        Code = Guid.Parse("{0507dfdc-18a6-48e2-8907-55a18bbd9666}"),
+        //        Name = "六级职员(副处)",
+        //        Spell = "LJZYFC",
+        //        Sort = 5
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+        //        Code = Guid.Parse("{030f0e56-1b35-4be7-a057-abd6b82999f5}"),
+        //        Name = "七级职员(正科)",
+        //        Spell = "QJZYZK",
+        //        Sort = 6
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+        //        Code = Guid.Parse("{f0bdb9b9-c798-49f1-9e4d-cc2786c7ce46}"),
+        //        Name = "八级职员(副科)",
+        //        Spell = "BJZYFK",
+        //        Sort = 7
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+        //        Code = Guid.Parse("{7f200f23-fd24-4806-a593-b3fdcfc02aa4}"),
+        //        Name = "九级职员(科员)",
+        //        Spell = "JZZYKY",
+        //        Sort = 8
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+        //        Code = Guid.Parse("{22c4a3d6-a13a-412c-b91e-ea9e16e2c85e}"),
+        //        Name = "十级职员(办事员)",
+        //        Spell = "SJZYBSY",
+        //        Sort = 9
+        //    }, new ComPost
+        //    {
+        //        TypeCode = Guid.Parse("{3bacb485-2037-4835-8268-7cec05a8f02f}"),
+        //        Code = Guid.Parse("{ec7ce259-7002-473b-aaf2-23e3f9628710}"),
+        //        Name = "未明确职务",
+        //        Spell = "WMQZW",
+        //        Sort = 0
+        //    });
+        //#endregion
+
+        //#region 岗位级别
+        //modelBuilder.Entity<ComPostLevel>(b =>
+        //{
+        //    b.ToTable("ComPostLevel");
+        //    b.HasKey(t => t.Code);
+        //    b.Property(t => t.Code)
+        //    .HasDefaultValueSql("newid()");
+        //    b.Property(t => t.Sort)
+        //    .HasDefaultValue(0);
+        //});
+        //modelBuilder.Entity<ComPostLevel>()
+        //    .HasData(new ComPostLevel
+        //    {
+        //        TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+        //        Code = Guid.Parse("{ab66bc18-a2a8-4c72-a2e2-75e10f9a1c07}"),
+        //        Name = "一级职员（部级正职）",
+        //        Spell = "YJZYBJZZ",
+        //        Sort = 0
+        //    }, new ComPostLevel
+        //    {
+        //        TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+        //        Code = Guid.Parse("{7b173701-fd60-49e0-b1bf-155dd8edf287}"),
+        //        Name = "二级职员（部级副职）",
+        //        Spell = "EJZYBJFZ",
+        //        Sort = 1
+        //    }, new ComPostLevel
+        //    {
+        //        TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+        //        Code = Guid.Parse("{b9424c72-2c8a-41ef-a120-7995fac42c08}"),
+        //        Name = "三级职员（厅级正职）",
+        //        Spell = "SJZYTZYTJZZ",
+        //        Sort = 2
+        //    }, new ComPostLevel
+        //    {
+        //        TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+        //        Code = Guid.Parse("{dff6728c-67da-4d2b-a54a-c0477c96d9c5}"),
+        //        Name = "四级职员（厅级副职）",
+        //        Spell = "SJZYTJFZ",
+        //        Sort = 3
+        //    }, new ComPostLevel
+        //    {
+        //        TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+        //        Code = Guid.Parse("{e3d937c0-93e0-43d3-9f8e-6124c6e6a5fc}"),
+        //        Name = "五级职员（处级正职）",
+        //        Spell = "WJZYCJZZ",
+        //        Sort = 4
+        //    }, new ComPostLevel
+        //    {
+        //        TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+        //        Code = Guid.Parse("{3b0e735a-83b9-4331-9133-ec330a696f3c}"),
+        //        Name = "六级职员（处级副职）",
+        //        Spell = "LJZYCJFZ",
+        //        Sort = 5
+        //    }, new ComPostLevel
+        //    {
+        //        TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+        //        Code = Guid.Parse("{ff871fdf-315b-41f8-bbfd-68a1f1cd84e0}"),
+        //        Name = "七级职员（科级正职）",
+        //        Spell = "QJZYKJZZ",
+        //        Sort = 6
+        //    }, new ComPostLevel
+        //    {
+        //        TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+        //        Code = Guid.Parse("{4668379d-3e73-469e-b731-dcd99e1768ac}"),
+        //        Name = "八级职员（科级副职）",
+        //        Spell = "BJZYKJFZ",
+        //        Sort = 7
+        //    }, new ComPostLevel
+        //    {
+        //        TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+        //        Code = Guid.Parse("{22ea8fa3-a3e1-4c06-a04a-174b5efbe1c8}"),
+        //        Name = "九级职员（科员）",
+        //        Spell = "JJZYKY",
+        //        Sort = 8
+        //    }, new ComPostLevel
+        //    {
+        //        TypeCode = Guid.Parse("{101af3fb-5081-4d9d-ba00-578b54b16eb7}"),
+        //        Code = Guid.Parse("{efe18ba3-9604-4544-865f-4d3474480149}"),
+        //        Name = "十级职员（办事员）",
+        //        Spell = "SJZYBSY",
+        //        Sort = 9
+        //    }, new ComPostLevel
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{8b75edbe-8b3f-413c-b92b-2f308084f3dc}"),
+        //        Name = "一级",
+        //        Spell = "YJ",
+        //        Sort = 0
+        //    }, new ComPostLevel
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{b9824136-b797-456b-a429-565f157f98f6}"),
+        //        Name = "二级",
+        //        Spell = "EJ",
+        //        Sort = 1
+        //    }, new ComPostLevel
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{0eaec349-c3fc-4cd8-bd0b-a5cfa53861ea}"),
+        //        Name = "三级",
+        //        Spell = "SJ",
+        //        Sort = 2
+        //    }, new ComPostLevel
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{9c5282ca-c12a-4779-b3e3-3a931bcd1fb9}"),
+        //        Name = "四级",
+        //        Spell = "SJ",
+        //        Sort = 3
+        //    }, new ComPostLevel
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{beb3b0c1-56d2-4135-b36c-33151b4769f1}"),
+        //        Name = "五级",
+        //        Spell = "WJ",
+        //        Sort = 4
+        //    }, new ComPostLevel
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{20f8d17b-88e8-4cb5-bd81-4ca77f0a4bb7}"),
+        //        Name = "六级",
+        //        Spell = "LJ",
+        //        Sort = 5
+        //    }, new ComPostLevel
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{12028e5b-4ebe-4069-8595-9d526d0b9f78}"),
+        //        Name = "七级",
+        //        Spell = "QJ",
+        //        Sort = 6
+        //    }, new ComPostLevel
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{975ebb9e-5d1e-4139-b806-db62aa8f9ef5}"),
+        //        Name = "八级",
+        //        Spell = "BJ",
+        //        Sort = 7
+        //    }, new ComPostLevel
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{92a854b0-dd0d-4f62-bb0d-e059d626cc8a}"),
+        //        Name = "九级",
+        //        Spell = "JJ",
+        //        Sort = 8
+        //    }, new ComPostLevel
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{88bd532a-a76a-4a14-aad7-edc199ac15c2}"),
+        //        Name = "十级",
+        //        Spell = "SJ",
+        //        Sort = 9
+        //    }, new ComPostLevel
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{904425eb-ddbc-4892-a0f2-28530a13cc6f}"),
+        //        Name = "十一级",
+        //        Spell = "SYJ",
+        //        Sort = 10
+        //    }, new ComPostLevel
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{cd71e1cb-020d-4dad-b528-49cfa73d7262}"),
+        //        Name = "十二级",
+        //        Spell = "SEJ",
+        //        Sort = 11
+        //    }, new ComPostLevel
+        //    {
+        //        TypeCode = Guid.Parse("{2acfa7dd-84a5-4041-bc10-5ce8c252e22f}"),
+        //        Code = Guid.Parse("{2186f63c-9f6c-40c2-81fb-53dc0341a736}"),
+        //        Name = "十三级",
+        //        Spell = "SSJ",
+        //        Sort = 12
+        //    }, new ComPostLevel
+        //    {
+        //        TypeCode = Guid.Parse("{654bbfbf-a2d4-464a-9410-0822684eb278}"),
+        //        Code = Guid.Parse("{e289d673-b2a3-4856-a29d-ceef8a5e26b2}"),
+        //        Name = "一级岗位（高级技师）",
+        //        Spell = "YJGWGJJS",
+        //        Sort = 0
+        //    }, new ComPostLevel
+        //    {
+        //        TypeCode = Guid.Parse("{654bbfbf-a2d4-464a-9410-0822684eb278}"),
+        //        Code = Guid.Parse("{3cf258fd-e6f3-43f2-9789-ded0a0256ee5}"),
+        //        Name = "二级岗位（技师）",
+        //        Spell = "EJGWJS",
+        //        Sort = 1
+        //    }, new ComPostLevel
+        //    {
+        //        TypeCode = Guid.Parse("{654bbfbf-a2d4-464a-9410-0822684eb278}"),
+        //        Code = Guid.Parse("{36d4d0b7-7fef-46bc-9b17-e094f7629040}"),
+        //        Name = "三级岗位（高级工）",
+        //        Spell = "SJGWGJG",
+        //        Sort = 2
+        //    }, new ComPostLevel
+        //    {
+        //        TypeCode = Guid.Parse("{654bbfbf-a2d4-464a-9410-0822684eb278}"),
+        //        Code = Guid.Parse("{19c9a75c-79bf-4552-8cc4-8b56e4882385}"),
+        //        Name = "四级岗位（中级工）",
+        //        Spell = "SJGWZJG",
+        //        Sort = 3
+        //    }, new ComPostLevel
+        //    {
+        //        TypeCode = Guid.Parse("{654bbfbf-a2d4-464a-9410-0822684eb278}"),
+        //        Code = Guid.Parse("{d44d5a34-78de-44eb-a26e-9930086f793b}"),
+        //        Name = "五级岗位（初级工）",
+        //        Spell = "WJGWCJG",
+        //        Sort = 4
+        //    }, new ComPostLevel
+        //    {
+        //        TypeCode = Guid.Parse("{654bbfbf-a2d4-464a-9410-0822684eb278}"),
+        //        Code = Guid.Parse("{dd765fd9-879f-4fe9-9d41-7b8b6b6ba061}"),
+        //        Name = "普通工",
+        //        Spell = "PTG",
+        //        Sort = 5
+        //    }, new ComPostLevel
+        //    {
+        //        TypeCode = Guid.Parse("{3bacb485-2037-4835-8268-7cec05a8f02f}"),
+        //        Code = Guid.Parse("{6c9c57c3-9cd6-4eba-8b55-3027babbc070}"),
+        //        Name = "其他等级人员",
+        //        Spell = "QTDJRY",
+        //        Sort = 0
+        //    });
+        //#endregion
+
+
+
+
+
+
+        //#region 人员属性
+        //modelBuilder.Entity<SysEmpAttribute>(b =>
+        //{
+        //    b.ToTable("SysEmpAttribute");
+        //    b.HasKey(t => t.Code);
+        //    b.Property(t => t.Code)
+        //    .HasDefaultValueSql("newid()");
+        //    b.Property(t => t.Sort)
+        //    .HasDefaultValue(0);
+        //});
+        //#endregion
+        #endregion
 
     }
 }

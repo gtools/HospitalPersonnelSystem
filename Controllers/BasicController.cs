@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Identity;
 namespace HospitalPersonnelSystem.Controllers
 {
     //基础信息管理
-    [Authorize]
+    [Authorize(Roles = "000000,Basic")]
     public class BasicController : Controller
     {
         private readonly ApplicationDbContext _context;

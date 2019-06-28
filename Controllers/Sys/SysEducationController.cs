@@ -12,7 +12,8 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace HospitalPersonnelSystem.Controllers
 {
-    [Authorize(Roles = "SysEducation")]
+    //学历评定
+    [Authorize(Roles = "000000,SysEducation")]
     public class SysEducationController : Controller
     {
         private readonly ApplicationDbContext _context;

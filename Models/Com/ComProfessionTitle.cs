@@ -69,14 +69,14 @@ namespace HospitalPersonnelSystem.Models
         /// </summary>
         public List<SysProfessionInfo> SysProfessionInfos { get; set; }
 
-        public ComProfessionTitle(string code, string levelcode, string name, int sort, string spell, string typecode)
+        public ComProfessionTitle(string code, Guid typecode, Guid levelcode, string name, int sort, string spell)
         {
             Code = new Guid(code);
-            LevelCode = new Guid(levelcode);
+            LevelCode = levelcode;
+            TypeCode = typecode;
             this.name = name;
             Sort = sort;
             Spell = spell;
-            TypeCode = new Guid(typecode);
         }
 
         public ComProfessionTitle() { }

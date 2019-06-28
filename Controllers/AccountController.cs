@@ -29,6 +29,7 @@ namespace HospitalPersonnelSystem.Areas.Admin.Controllers
     /// </summary>
     //[Authorize(Roles = "Account")]//权限
     //[Area("Admin")]//区域
+    [Authorize(Roles = "000000,Account")]
     public class AccountController : Controller
     {
         private readonly ApplicationDbContext _context;

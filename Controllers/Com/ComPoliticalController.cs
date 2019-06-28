@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace HospitalPersonnelSystem.Controllers
 {
-    [Authorize(Roles = "000000,ComPolitical")]
+    [Authorize(Roles = "000000,Basic,ComPolitical")]
     public class ComPoliticalController : Controller
     {
         private readonly ApplicationDbContext _context;

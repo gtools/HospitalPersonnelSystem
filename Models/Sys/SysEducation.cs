@@ -117,5 +117,16 @@ namespace HospitalPersonnelSystem.Models
         /// </summary>
         [Display(Name = "备注")]
         public string Remark { get; set; }
+        /// <summary>
+        /// 创建人
+        /// </summary>
+        [Display(Name = "创建人")]
+        public string CreateEmp { get; set; }
+        /// <summary>
+        /// 创建日期
+        /// </summary>
+        [Display(Name = "创建日期")]
+        [DataType(DataType.Date)]
+        public DateTime? CreateDate { get; set; }
     }
 }

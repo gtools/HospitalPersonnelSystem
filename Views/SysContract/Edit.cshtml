@@ -5,20 +5,21 @@
     ViewData["Controller"] = "SysContract";
 }
 
-<h1>Edit</h1>
+<h1>@ViewData["Title"]</h1>
 
-<h4>SysContract</h4>
+<div>
+    <a asp-action="Index" data-toggle="tooltip" data-placement="left" title="返回"><i class="fa fa-arrow-alt-circle-left fa-lg"></i></a>
+</div>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Code" />
             <div class="form-group">
-                <label asp-for="Code" class="control-label"></label>
-                <input asp-for="Code" class="form-control" />
-                <span asp-validation-for="Code" class="text-danger"></span>
+                <label asp-for="EmpCode" class="control-label"></label>
+                <select asp-for="EmpCode" class="form-control" asp-items="ViewBag.EmpCode"></select>
             </div>
-            <input type="hidden" asp-for="EmpCode" />
             <div class="form-group">
                 <label asp-for="YearLimit" class="control-label"></label>
                 <input asp-for="YearLimit" class="form-control" />
@@ -40,24 +41,10 @@
                 <span asp-validation-for="Remark" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CreateEmp" class="control-label"></label>
-                <input asp-for="CreateEmp" class="form-control" />
-                <span asp-validation-for="CreateEmp" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreateDate" class="control-label"></label>
-                <input asp-for="CreateDate" class="form-control" />
-                <span asp-validation-for="CreateDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="保&nbsp;&nbsp;存" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

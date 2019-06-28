@@ -14,9 +14,6 @@
     <thead class="thead-dark">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Code)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.SysEmp)
             </th>
             <th>
@@ -43,9 +40,6 @@
     <tfoot>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Code)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.SysEmp)
             </th>
             <th>
@@ -69,7 +63,7 @@
             <th></th>
         </tr>
         <tr>
-            <th colspan="9" class="ts-pager">
+            <th colspan="8" class="ts-pager">
                 <div class="form-inline">
                     <div class="btn-group btn-group-sm mx-1" role="group">
                         <button type="button" class="btn btn-secondary first" title="首页">
@@ -104,9 +98,6 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Code)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.SysEmp.EmpCode)
                 </td>
                 <td>
@@ -128,9 +119,9 @@
                     @Html.DisplayFor(modelItem => item.CreateDate)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.EmpCode" data-toggle="tooltip" data-placement="left" title="编辑"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;
-                    <a asp-action="Details" asp-route-id="@item.EmpCode" data-toggle="tooltip" data-placement="top" title="查看"><i class="fa fa-info-circle"></i></a> @*|
-                        <a asp-action="Delete" asp-route-id="@item.EmpCode">Delete</a>*@
+                    <a asp-action="Edit" asp-route-id="@item.Code" data-toggle="tooltip" data-placement="left" title="编辑"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a asp-action="Details" asp-route-id="@item.Code" data-toggle="tooltip" data-placement="top" title="查看"><i class="fa fa-info-circle"></i></a> @*|
+                        <a asp-action="Delete" asp-route-id="@item.Code">Delete</a>*@
                 </td>
             </tr>
         }

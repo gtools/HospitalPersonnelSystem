@@ -40,15 +40,15 @@ namespace HospitalPersonnelSystem.ViewComponents
                 if (claims.Where(t => t.Value == "000000").Any())
                     return View(sysNavbarTypes);
                 //一般权限
-                foreach (var sysNavbar in sysNavbarTypes)
+                for (int j = sysNavbarTypes.Count - 1; j >= 0; j--)
                 {
-                    foreach (var item in sysNavbar.SysNavbars)
+                    for (int i = sysNavbarTypes[j].SysNavbars.Count - 1; i >= 0; i--)
                     {
-                        if (!claims.Where(t => t.Value == item.Controller).Any())
-                            sysNavbar.SysNavbars.Remove(item);
+                        if (!claims.Where(t => t.Value == sysNavbarTypes[j].SysNavbars[i].Controller).Any())
+                            sysNavbarTypes[j].SysNavbars.RemoveAt(i);
                     }
-                    if (!sysNavbar.SysNavbars.Any())
-                        sysNavbarTypes.Remove(sysNavbar);
+                    if (!sysNavbarTypes[j].SysNavbars.Any())
+                        sysNavbarTypes.RemoveAt(j);
                 }
                 return View(sysNavbarTypes);
             }
